@@ -17,7 +17,7 @@ Design goal: a backend that is correct, testable and small enough for two develo
 | D3 | ML connects through a precomputed, schema-validated `forecast_bundle.json`. The backend never imports PyTorch or model code. |
 | D4 | Prompts, explanations, readbacks and takeaways are backend-owned templates with `text` and `speech` variants. UI labels stay in the frontend. |
 | D5 | Speech recognition starts with the browser Web Speech API (`ar-EG`, `en-US`). A server-side provider such as Azure can be added behind the same interface later. |
-| D6 | Transcript interpretation is deterministic, one parser per answer type, driven by an editable lexicon. No LLM in the MVP. |
+| D6 | ~~Transcript interpretation is deterministic, one parser per answer type, driven by an editable lexicon. No LLM in the MVP.~~ **Superseded 14 Nov (Yahya):** a Gemini Flash model extracts the answer fields from the transcript into a strict JSON schema, with `null` for anything not said. The backend validates every value; Gemini only proposes. See §8.3. |
 | D7 | Text-to-speech uses pre-generated prompt audio plus a cached backend endpoint behind a provider adapter. The provider remains to be selected. |
 | D8 | A runtime data release is committed under `data/release/`, hashed in a manifest, and loaded and validated once at startup. |
 
@@ -369,40 +369,52 @@ The MVP uses the browser Web Speech API with `lang = "ar-EG"` or `"en-US"`. The 
 
 Chrome's implementation sends audio to Google. The microphone disclosure must say so before permission is requested (PRIVACY_ASSUMPTIONS.md).
 
-### 8.3 Interpretation (D6)
+### 8.3 Interpretation (D6, Gemini extraction)
 
-`POST /speech/interpret`
+Decided 14 Nov 2026 (Yahya): **Gemini extracts the facts the farmer said; it never decides, advises or chats.** Model: `gemini-3.8-flash` (check the exact ID on Google's model page before wiring it). The call is made by the backend only; the key never reaches the browser.
+
+`POST /speech/interpret` keeps its request:
 
 ```json
 {"question_id": "s1_final_cut_date", "answer_type": "date", "locale": "ar-EG",
- "transcript": "عشرين مايو", "context": {"issue_date": ""}}
+ "transcript": "عشرين مايو", "context": {"season_order": 1, "issue_date": "2026-11-14"}}
 ```
 
-Returns a `SpeechProposal`:
+**What the backend sends to Gemini:** the transcript, the current `question_id`, the allowed values from the data-release catalogue (crop IDs, purposes) and this fixed instruction: *extract only what the speaker said; return `null` for every field that was not said; never guess a year, unit, crop or date; never add advice or text outside the schema.* Structured output is required (`response_mime_type: application/json` with the schema below), temperature 0.
+
+**Extraction schema (strict; every field nullable, no extra keys):**
 
 ```json
-{"question_id": "s1_final_cut_date", "status": "needs_clarification",
- "field_path": "seasons[0].harvest_or_cut_date",
- "proposed": {"value": null, "partial": {"day": 20, "month": 5}},
- "clarification": {"code": "ask_year", "choices": ["2027", "2028"]},
- "readback": {"text": "...", "speech": "عشرين مايو، أنهي سنة؟"}}
+{
+  "seasons": [
+    {"order": 1,
+     "crop": "berseem | grain_maize | grain_sorghum | wheat | unknown | null",
+     "crop_said": "the words used, only when ambiguous (e.g. \"ذرة\"), else null",
+     "purpose": "forage | grain | null",
+     "sowing_date":   {"day": 1, "month": 1, "year": null},
+     "last_cut_date": {"day": 20, "month": 5, "year": null},
+     "must_stay": true}
+  ],
+  "area": {"value": null, "unit": "feddan | qirat | hectare | null"},
+  "answer": {"yes_no": "yes | no | null", "confirm": null, "dont_know": null},
+  "ambiguous": [{"path": "seasons[1].crop", "said": "ذرة", "options": ["grain_maize", "grain_sorghum"]}],
+  "off_topic": false
+}
 ```
 
-One parser per answer type, all deterministic:
+- A date part not said is `null` (`"year": null` for “20 May”). The backend resolves a missing year only from the season being asked and always reads it back with the year (design/voice-first.md §3).
+- `seasons` lists only seasons the speaker mentioned. `must_stay` is `true` only when the farmer said it must not change; otherwise `null`, never `false` by default.
+- `unknown` crop or `dont_know: true` means the farmer said “I don't know”; that becomes `confirmed_unknown` after readback, never a guess.
+- `off_topic: true` (for example “what should I plant?”) returns the fixed redirect template; Gemini's own words are never shown or spoken.
 
-| `answer_type` | Handles | Clarifies when |
-|---|---|---|
-| `crop` | برسيم، قمح، ذرة، درة، سورجم and spelling variants | "درة"/"ذرة" alone: maize or sorghum? grain or forage? |
-| `yes_no` | أيوه، آه، تمام، لا، مش، ما…ش; corrections like "مش قمح، قصدي برسيم" | Mixed or contradictory answer |
-| `date` | Day, month name or number, optional year, "١٠/١١" | Missing year; relative dates ("الجمعة الجاية", "بعد العيد") are never guessed |
-| `area` | Numbers in words and digits; فدان، قيراط، نص، ربع، "فدان إلا ربع" | Missing unit |
-| `unknown` | مش عارف، مش فاكر، معرفش | Never; returns `unknown` for `confirmed_unknown` |
-| `choice` | Any closed list from `prompts.json`, matched against lexicon synonyms | No or multiple matches |
+**Backend validation after Gemini (deterministic):** reject the whole reply as `no_match` if it is not valid JSON for the schema; drop any value outside the catalogue enums; check day/month ranges, the season's months and that a planned date is not in the past; negation is checked again on the transcript (a negated protected value never becomes permission to change it). Timeout or provider error → `no_match`, and the screen points to the pictures.
 
-- Arabic normalisation before matching: remove tashkeel and tatweel; unify alef forms, ة/ه and ى/ي; convert Arabic-Indic digits.
-- Negation is detected before value extraction. A negated protected value never becomes permission to change it.
-- Parsers are tested against the twelve case families in [validation_accessibility_alignment.md](../reports/validation_accessibility_alignment.md), with a held-out set of paraphrases.
-- An LLM fallback for `no_match` may be added later behind this same endpoint. It would still only propose.
+**Response:** the existing `SpeechProposal`, one per extracted field. **Proposed contract change (Yahya, shared-contract owner; Amr reviews frontend impact):** `POST /speech/interpret` returns `{"proposals": [SpeechProposal, ...], "ambiguous": [...], "off_topic": bool}` so one sentence can fill several fields (lab 02 “opening sentence”). Single-field answers return a list of one.
+
+- Recognition and extraction never confirm. The readback and the separate explicit confirm (§8.1) are unchanged.
+- The transcript is sent to Google for extraction and is not stored or logged by us. Check the Gemini API data terms for the tier we use; the mic disclosure must say the words are sent to Google to be understood.
+- Test before relying on it: a set of real Egyptian Arabic recordings per answer type, scored field by field (correct, wrong, null when said, value when not said). No accuracy figure exists yet.
+- Open: send the audio itself to Gemini instead of the browser transcript (would replace D5 and the “no audio upload” rule). Not decided.
 
 ## 9. Voice output (D7)
 

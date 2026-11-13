@@ -28,7 +28,7 @@ Last reviewed .
 | DB server, Kubernetes, microservices, queues, user accounts | Rejected | Not needed for a local prototype | 11 Nov, [architecture](backend/architecture.md) |
 | Handwritten duplicate API types on the frontend | Rejected | Generate from OpenAPI | 11 Nov, [architecture](backend/architecture.md) |
 | Running PyTorch / model inference inside the backend | Rejected | ML talks to backend only via `forecast_bundle.json` | 12 Nov, [backend design D3](backend/backend-design.md) |
-| LLM for transcript interpretation | Deferred | Deterministic per-question parsers for MVP | 12 Nov, D6 |
+| LLM for transcript interpretation | ~~Deferred~~ **Reversed 14 Nov: adopted** (Gemini strict extraction) | Was: deterministic per-question parsers for MVP | 12 Nov, D6; reversed 14 Nov, [decisions](decisions.md) |
 | Idempotency keys, sessions, CSRF, approval revocation | Deferred | `expected_revision` gives retry safety in MVP | 12 Nov, D2 |
 | Regenerating the weather/ET0 CSV with renamed columns | Rejected | Ship original frozen bytes + typed adapter | 13 Nov, [blueprint D04](planner/blueprint.md) |
 

@@ -2,7 +2,7 @@
 
 **Read this if…** you will produce, check or replace the app's spoken audio, or wire the text-to-speech provider.
 
-Status: Proposed 13 Nov 2026 · Owner: Yahya (pipeline), Amr (voice choice and sign-off) · Last reviewed 13 Nov 2026.
+Status: Proposed 13 Nov 2026 · Owner: Yahya (pipeline), **Moaaz (runs the generation and the listening review, from 14 Nov)**, Amr (voice sign-off) · Last reviewed 14 Nov 2026.
 
 Fills the provider slot left open in [backend design §9 (D7)](backend-design.md#9-voice-output-d7). **ElevenLabs is used offline only: all audio is generated ahead of time; the running app never calls ElevenLabs** (Yahya, 13 Nov 2026). Spoken wording comes from the templates in [§7](backend-design.md#7-bilingual-design-d4); voice behaviour on screen is in [design/voice-first.md](../design/voice-first.md). Nothing here has been run yet: the scripts below are planned, not written.
 

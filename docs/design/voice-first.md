@@ -47,7 +47,8 @@ The farmer says or taps what they will grow in each of the four seasons and what
 - Cards align on a fixed grid: picture | text | action, centred vertically; dates never wrap mid-date; equal-height cards with actions on one baseline.
 - **Visual first, one idea per screen** (Yahya, 13 Nov round 2): a few words, a picture, at most one main action plus a way back. Details are spoken or behind “for the engineer”. If a screen needs a legend, it has too much on it.
 - **The four seasons look the same everywhere:** a strip of four arched cards (crop picture, name, date with a cut or sow icon). It sits on top of every question in lab 02 at every width and is tappable; later screens reuse it for before/after and the summary.
-- **Numbers are digits** (Arabic-Indic in Arabic) on screen; month names stay words. The spoken `speech` variant still spells numbers (voice-generation.md §4).
+- **Numbers are digits** (Arabic-Indic in Arabic) on screen; month names stay words. **Arabic year ranges read right-to-left: the earlier year sits on the right** (“٢٠٢٧/٢٠٢٦” on screen for winter 2026/27). Each year is its own `<bdi>` so its digits never break (Yahya, 14 Nov). English ranges stay left-to-right. The spoken `speech` variant still spells numbers (voice-generation.md §4).
+- **Maize is “ذرة شامية” on screen,** never plain “ذرة”, which is ambiguous; the “which ذرة?” question appears only when the farmer *says* “ذرة”, never after a tap.
 - **Crop pictures are coloured illustrations** (green clover with cream flowers, yellow cob, golden ear, red-brown grain head). Outline icons were too abstract. Real photos and a recognition test are still required.
 - **Purpose is asked only when a crop has more than one** (berseem is always feed, wheat always grain in the labs). The list per crop is a placeholder for the crop catalogue.
 - **The season is the headline** on every lab 02 question: a big winter (cloud) or summer (sun) card with “Season 1 of 4” and its years; the question sits smaller under it.
@@ -56,7 +57,23 @@ The farmer says or taps what they will grow in each of the four seasons and what
 - Logo: `media/brand/mission-el-gheet-logo.svg` (plus cream-gold and currentColor variants), supplied by Yahya 13 Nov.
 - Targets stay at design.md sizes: 48 px minimum, 56–60 px primary, 84 px mic (76 px on phone).
 
-## 4. What the labs are and are not
+## 3a. Planner output the labs follow (snapshot, still changing)
+
+Checked 14 Nov 2026 against `origin/planner/candidate-generation` at `de081ab` (Milestones 1–2, Amr + Astra), by running `tools/planner_cli.py plan` on `uh001.json` and `synthetic-mixed.json`. **The planner team is still adding to this output (Yahya, 14 Nov); re-check the labs when it changes.**
+
+| Planner output | Where it shows in the labs |
+|---|---|
+| Journey `check` vs `explore`; exploration needs explicit permissions + scope readback + `exploration_confirmed` | Lab 03: what must stay → what may change (date / crop chips) → “this is what we will check” → one confirm. “Nothing may change” = check only |
+| Scope issues: `blocked` (e.g. `profile_binding_unavailable`), `excluded`; missing inputs | Lab 03 readback lines: “cannot be checked” (red dashed), “unknown” (grey dashed) |
+| `current.status` + first reason `sowing_before_protected_cut` and `preparation_shortfall` (`earliest_sowing_date`) | Lab 04 conflict pictures; “Why?” steps |
+| `feasible_alternatives` (≤2 shown), `review_investigations`, `rejected_candidates` | Lab 05 date cards (review), layout state (feasible) |
+| `changes` (direct edit vs dependent; endpoints → unknown) | Lab 05 before/after strip; harvest “?” |
+| Unknown checks driving `needs_review` (harvest mapping, irrigation, soil, cultivar…) | Lab 05 “why it needs review” tiles (top four; full list for the engineer) |
+| `search.status` `incomplete` + `uninstantiated_choice_ids` | Lab 05 “not checked · search incomplete” line |
+| Missing input `plan.s1.sowing_date` | Lab 02 asks the berseem sowing date (past allowed, “I don't remember” = unknown) |
+| Assumptions, sources, policy `pending_team_review`, SYNTHETIC banner | Engineer details only (not on farmer screens yet) |
+
+
 
 Static HTML in `work/ux-phase-4/` sharing `lab.js`/`lab.css`, using the Phase 3 fonts and the UH-001 fixture. Each lab has a state picker, a farmer-utterance simulator, problem injection (silence, not understood, mic denied, sound unavailable), Arabic/English, phone width and optional real browser voice (labelled; quality varies). Recognition, planning, forecasts and saving are simulated. Crop drawings are placeholders. Arabic wording is draft for native Egyptian review.
 

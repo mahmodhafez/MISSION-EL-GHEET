@@ -38,6 +38,11 @@ been dropped by a `/work/*` ignore rule. Content unchanged except two links to r
   headline and limits dates to the season's months (placeholder windows, open question 6 in voice-first.md) and to
   dates after today. Same checks pass.
 
+- **14 Nov, round 4:** labs aligned with the planner output on `planner/candidate-generation` (`de081ab`): lab 03
+  now asks what may change and confirms the search scope; lab 05 shows why dates need review and that the search
+  was incomplete; lab 02 asks the berseem sowing date. Planner output is still in progress, so this is a snapshot
+  ([voice-first.md](../design/voice-first.md) §3a). `check-labs.cjs` and the headless run pass.
+
 ## History of the design rounds
 
 V1 → V2 → V3 wireframes (12 Nov) → three visual options → Fieldlight Hybrid. Reviews:
