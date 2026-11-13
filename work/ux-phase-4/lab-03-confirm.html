@@ -25,7 +25,7 @@ const def={
     {id:'protect',name:'1 · What must stay? (nothing locked yet)',note:'Tap the lock on what must not change. On berseem the lock keeps the last cut; on maize and wheat it keeps the crop and its purpose (UH-001 commitments).'},
     {id:'locked',name:'2 · Locked (UH-001)',note:'Seasons 1–3 locked. Next: what is allowed to change.'},
     {id:'change',name:'3 · What can change? (permissions)',note:'The planner only searches what the farmer allows: here maize sowing on 28 May or 1 June, and maize instead of sorghum in season 4 (UH-001 exploration choices). Nothing is pre-ticked.'},
-    {id:'scope',name:'4 · Search readback + one confirm',note:'Short readback of what will be searched, what cannot be searched (season 4 maize: no data, profile_binding_unavailable) and what is unknown. One explicit confirm starts the check and the search.'},
+    {id:'scope',name:'4 · Search readback + one confirm',note:'Short readback of what will be searched and what is unknown. One explicit confirm starts the check and the search. A choice the KB cannot evaluate (season 4 maize: profile_binding_unavailable) is only known after the search, so it shows in lab 05, not here (corrected 14 Nov against the planner’s scope preview).'},
     {id:'stale',name:'5 · Changed after confirming',note:'Editing a confirmed fact stops audio and marks the last check as not current, until confirmed again.'}
   ],
   enter(id,ctx){const d=ctx.data=fresh();if(id!=='protect')d.locks={s1:true,s2:true,s3:true};if(id==='scope'||id==='stale')UH(d);if(id==='stale')d.stale=true;},
@@ -34,7 +34,7 @@ const def={
   prompt(ctx){const d=ctx.data,st=ctx.state;
     if(d.stale)return{ar:'غيّرت ميعاد بعد التأكيد. أكّد تاني.',en:'You changed a date after confirming. Confirm again.'};
     if(st==='change')return{ar:'إيه اللي ممكن يتغيّر علشان ندوّر على بدايل؟ ميعاد الذرة؟ محصول الموسم ٤؟',en:'What may change so we can look for alternatives? The maize date? The season 4 crop?'};
-    if(st==='scope')return{ar:'هندوّر على ميعادين للذرة. الذرة في الموسم ٤ مش هنقدر نشيّكها، مفيش بيانات كفاية. لو تمام، قول "دوّر".',en:'We will look at two maize dates. Maize in season 4 cannot be checked; there is not enough data. If that is OK, say “search”.'};
+    if(st==='scope')return{ar:'هندوّر على ميعادين للذرة، وعلى ذرة شامية في الموسم ٤. لو تمام، قول "دوّر".',en:'We will look at two maize dates, and maize in season 4. If that is OK, say “search”.'};
     if(!Object.keys(d.locks).length)return{ar:'إيه اللي لازم يفضل زي ما هو مهما حصل؟ دوس على القفل.',en:'What must stay exactly as it is, whatever happens? Tap the lock.'};
     return{ar:'تمام. اللي بعده: إيه اللي ممكن يتغيّر؟',en:'Good. Next: what may change?'};},
   render(ctx){
@@ -54,7 +54,7 @@ const def={
         Lab.strip(ctx,items,{cls:'in compact'})+
         `<ul class="scope-list">
           ${dts.length?`<li class="ok">${icon('search')}<span>${L==='ar'?'ذرة':'Maize'}: ${dts.map(x=>ctx.date(x,{noYear:true})).join(L==='ar'?' أو ':' or ')}</span></li>`:''}
-          ${d.swap?`<li class="blocked">${icon('reject')}<span>${L==='ar'?'ذرة في الموسم ٤: مش هنقدر نشيّك':'Maize in season 4: cannot be checked'}<small>${L==='ar'?'مفيش بيانات كفاية':'not enough data'}</small></span></li>`:''}
+          ${d.swap?`<li class="ok">${icon('search')}<span>${L==='ar'?'الموسم ٤: ذرة شامية بدل الذرة الرفيعة':'Season 4: maize instead of sorghum'}</span></li>`:''}
           <li class="unk">${icon('unknown')}<span>${L==='ar'?'ميعاد زراعة البرسيم: مش معروف':'Berseem sowing date: unknown'}</span></li>
         </ul>
         <button class="primary wide-btn" data-act="confirm">${icon('search')}${L==='ar'?'أكّد ودوّر':'Confirm and search'}</button>`;}
@@ -90,7 +90,7 @@ const def={
   },
   notes:[
     'Follows the planner on planner/candidate-generation: it searches only explicit permissions (dates, crops), shows a scope readback with blocked choices and missing inputs, and needs one explicit confirmation (exploration_confirmed) before searching. The preview itself never authorizes.',
-    'UH-001 permissions: maize sowing 28 May or 1 June; maize instead of sorghum in season 4. The season-4 choice is blocked in the current KB (profile_binding_unavailable), so the readback says “cannot be checked” before the search, not after.',
+    'UH-001 permissions: maize sowing 28 May or 1 June; maize instead of sorghum in season 4. The planner’s scope preview does not flag the season-4 block; it appears in the search exclusions, so lab 05 shows “not checked”.',
     '“Nothing may change” is the check-only journey: the Promise Test runs on the plan as it is, with no search.',
     'Missing inputs the planner reports (berseem sowing date) are shown as dashed “?” lines; they are allowed but make results needs_review.',
     'Hectares stay hectares. Protection never implies enough feed or a guaranteed harvest.'
