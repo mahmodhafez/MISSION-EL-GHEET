@@ -207,3 +207,48 @@ Only UH-001 uses the project agronomy fixture. Positive algorithm fixtures below
 5. **Yahya** add replay and Evidence Card integration at the approved later milestones using the prepared release from **Refaat**. Run symmetric mapping/coverage tests, the numerical regression fixtures and API/card currentness checks. Keep Chronos isolated. Real eligibility publication depends on the five [evidence gates](agronomy-evidence.md#evidence-gates-for-a-real-feasible-option). If no complete second case is sourced, use the labelled synthetic cases for engineering verification and report the evidence gap.
 
 This specification is sufficient to implement the initial deterministic conflict and review slice when authorized. A real feasible recommendation requires complete, scoped evidence for all four seasons and each relevant transition. The engineering fixtures and scientific release must remain distinguishable at the API and presentation boundaries.
+
+### Milestone 1 implementation boundary (2026-11-13)
+
+The implementation is `meg_core.planner.constraints.evaluate(plan: tuple[SeasonInput, ...],
+snapshot: ScenarioSnapshot, kb: KnowledgeBase) -> PlanEvaluation`, under
+`packages/meg-core/src/`. With that source directory on Python's import path:
+
+```python
+from meg_core.planner.constraints import evaluate
+result = evaluate(plan, snapshot, kb)
+```
+
+Shared schemas and the KB loader were absent on the fetched integration baseline. The types
+currently live in private `planner/_types.py`; they are immutable computation views, not a
+published JSON/Pydantic contract. No `meg_core/contracts/` implementation or loader is supplied.
+The views retain the documented result fields and use `Explanation.params` per API §0; Yahya
+owns the final spelling and shared-model binding. `plan_ref` stays `None` until the adapter
+binds the correct current/candidate reference. The adapter also maps season labels to private
+`winter-YYYY` / `summer-YYYY` keys (winter start year), agricultural context to `field.*` paths,
+and preparation to full civil days (`day`). No implicit unit conversion occurs.
+
+The engine accepts exact-calendar, inclusive-window, fact-requirement, transition-preparation
+and predecessor rules. Verified sources and applicable scope are required for positive support
+or agronomic failure. Preferences cannot supply eligibility coverage. Draft rules remain unknown;
+missing topics cannot be removed by an empty registry. Source hashes and release approval are
+Refaat's loader responsibilities, not a second implementation inside the evaluator. There is
+no generic expression interpreter, built-in crop duration, or enabled real rotation prohibition.
+Hard quantified production requirements stay unresolved until a supported predicate is agreed.
+
+Malformed inputs raise private `planner._validation.InputValidationError` with `code` and
+`field_paths`; they never become agricultural review outcomes. Private result mappings are
+immutable; the shared-model adapter must map fields explicitly (including `dict(explanation.params)`),
+not assume these dataclasses are the final wire serializer. Forecast invariance must additionally
+be tested at Yahya's real adapter; only structural core independence is tested now.
+
+Focused test command from the worktree root, with an available Python 3.12+ executable:
+
+```sh
+python -I -S -m unittest discover -s packages/meg-core/tests -v
+```
+
+The tests add only this package's `src/` directory to the import path and require no installed
+third-party packages. See [planner status](../status/planner.md) for the interpreter actually used,
+test count, evidence limitations and integration gates. Milestone 2 generation and
+`meg_core.planner.service.plan(snapshot, kb, policy)` remain separate future work.
