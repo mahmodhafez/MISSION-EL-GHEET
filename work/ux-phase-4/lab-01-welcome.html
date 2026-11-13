@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 01 · Welcome</title><link rel="stylesheet" href="lab.css"></head>
+<body>
+<script src="lab.js"></script>
+<script>
+(function(){
+const {icon,crop}=Lab;
+const def={
+  num:'01',title:'Welcome & first use',
+  states:[
+    {id:'start',name:'1 · First open (silent)',note:'Browsers block audio until a tap, so the first screen is a single big Start. Both languages visible. No mic prompt.'},
+    {id:'intro',name:'2 · Spoken intro after Start',note:'Short intro (2 sentences). Says it is a practice tool and how to answer: talk or tap.'},
+    {id:'intent',name:'3 · Choose what to do',note:'Two entry intentions from Fieldlight: check a plan I have, or plan from what I need. Two pictures, each with listen.'},
+    {id:'try',name:'4 · Practice turn',note:'Optional 10-second practice: “Tap the mic and say your name of a crop.” Teaches push-to-talk by doing (research: onboarding by play, not instructions).'}
+  ],
+  dock:ctx=>ctx.state!=='start',
+  back:false,
+  quiet:ctx=>ctx.state==='start',
+  prompt(ctx){
+    if(ctx.state==='start')return null;
+    if(ctx.state==='intro')return{ar:'أهلاً بيك. ده تطبيق تجريبي بيساعدك تخطط زراعة أرضك لأربع مواسم. تقدر تتكلّم أو تختار من الصور.',en:'Welcome. This is a practice tool that helps you plan your field for four seasons. You can talk or tap the pictures.'};
+    if(ctx.state==='intent')return{ar:'عندك خطة وعايز تشيّك عليها، ولا عايز نخطط سوا من الأول؟',en:'Do you have a plan you want to check, or shall we plan together from the start?'};
+    if(ctx.state==='try')return{ar:'جرّب: دوس على الميكروفون وقول اسم أي محصول.',en:'Try it: tap the mic and say the name of any crop.'};
+  },
+  render(ctx){
+    const L=ctx.locale;
+    if(ctx.state==='start')return `<div style="display:grid;gap:18px;align-content:center;flex:1;text-align:center;justify-items:center;min-height:100%">
+      <span class="tile-wrap" style="justify-content:center"><span class="art" style="width:140px;height:150px;border-radius:70px 70px 12px 12px;background:var(--portrait);display:grid;place-items:center">${crop('wheat')}</span></span>
+      <h2 class="question" style="max-width:none">${L==='ar'?'سكة المواسم':'Season Path'}</h2>
+      <p class="sub">${L==='ar'?'خطّط أرضك لأربع مواسم، بالكلام أو بالصور':'Plan your field for four seasons, by talking or tapping'}</p>
+      <div class="actions" style="justify-content:center">
+        <button class="primary" data-act="start" lang="ar" style="min-width:150px">${icon('play')}ابدأ</button>
+        <button class="secondary" data-act="start-en" lang="en" style="min-width:150px">${icon('play')}Start</button>
+      </div>
+      <span class="badge sim">${ctx.t(Lab.UI.sim)}</span></div>`;
+    if(ctx.state==='intro')return `<h2 class="question">${ctx.t(def.prompt(ctx))}</h2><div class="actions"><button class="primary wide-btn" data-act="next">${icon('check')}${L==='ar'?'يلا':'Continue'}</button></div><span class="badge sim">${ctx.t(Lab.UI.sim)}</span>`;
+    if(ctx.state==='intent')return `<h2 class="question">${ctx.t(def.prompt(ctx))}</h2><div class="tiles" style="grid-template-columns:1fr 1fr">
+      ${[['check','plan',{ar:'عندي خطة: شيّك عليها',en:'I have a plan: check it'}],['explore','explore',{ar:'خطّط معايا من الأول',en:'Plan with me from the start'}]].map(([v,ic,t])=>`<div class="tile-wrap"><button class="tile" data-act="intent" data-v="${v}"><span class="art">${icon(ic)}</span>${ctx.t(t)}</button><button class="hear" data-act="hear" aria-label="${L==='ar'?'اسمع':'Listen'}">${icon('speaker')}</button></div>`).join('')}</div>`;
+    if(ctx.state==='try')return `<h2 class="question">${ctx.t(def.prompt(ctx))}</h2><p class="sub">${L==='ar'?'ده تمرين بس. مش هيتحفظ.':'Just practice. Nothing is saved.'}</p><div class="actions"><button class="secondary wide-btn" data-act="skip">${L==='ar'?'اتخطّى التمرين':'Skip practice'}</button></div>`;
+  },
+  utterances(ctx){
+    if(ctx.state==='try')return[{label:'Practice works',say:{ar:'قمح',en:'Wheat'},effect(){return{ar:'برافو، سمعت: قمح. كده إنت عارف تستخدم الميكروفون. يلا نبدأ.',en:'Good, I heard: wheat. That is how the mic works. Let us start.'};}}];
+    if(ctx.state==='intent')return[{label:'Check plan',say:{ar:'عندي خطة',en:'I have a plan'},effect(ctx){ctx.lastHeard={chips:[{ar:'عندي خطة',en:'I have a plan'}],snap:'{}'};return{ar:'تمام، هنشيّك على خطتك.',en:'OK, we will check your plan.'};}},{label:'Plan together',say:{ar:'خطّط معايا',en:'Plan with me'},effect(){return{ar:'تمام، هنخطط سوا.',en:'OK, we will plan together.'};}}];
+    return[];
+  },
+  action(a,b,ctx){
+    if(a==='start'||a==='start-en'){ctx.locale=a==='start'?'ar':'en';ctx.audioStarted=true;ctx.go('intro');return null;}
+    if(a==='next'){ctx.go('intent');return null;}
+    if(a==='intent'){ctx.go('try');return null;}
+    if(a==='skip'){location.href='lab-02-seasons.html';return null;}
+  },
+  notes:[
+    'Start is also the audio unlock: the first tap is the user gesture browsers need before playing sound.',
+    'Language is chosen by which Start you press; the header switch stays available on every screen (no forced language screen; rejected idea).',
+    'No mic permission on this page. The practice turn is where the first mic tap (and the one-line reason) happens.',
+    'Practice turn is skippable. Research (Polly, HealthLine) says people learn voice by doing, with feedback.',
+    '“Practice tool” label stays visible: demo data must be audibly and visibly illustrative (design §1).'
+  ]
+};
+Lab.page(def);
+})();
+</script>
+</body>
+</html>

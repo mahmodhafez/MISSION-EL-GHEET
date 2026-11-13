@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 08 · Save & takeaway</title><link rel="stylesheet" href="lab.css"></head>
+<body>
+<script src="lab.js"></script>
+<script>
+(function(){
+const {icon}=Lab;
+// Takeaway wording: reference-scenario.md §6.
+const TAKEAWAY={ar:'حشة البرسيم يوم عشرين مايو محفوظة في الخطة. ميعاد الذرة الحالي متعارض معاها. عندنا مواعيد ممكن نراجعها، لكن مفيش بديل مؤكد لسه. هنحتفظ بخطتك وبالنقط اللي محتاجة مراجعة.',en:'The berseem cut on 20 May is kept in the plan. The current maize date conflicts with it. There are dates we could review, but no confirmed alternative yet. We will keep your plan and the points that need review.'};
+const def={
+  num:'08',title:'Save for review & spoken takeaway (Evidence Card)',
+  states:[
+    {id:'ready',name:'1 · Before saving',note:'Plan status and save status are two separate lines. Nothing says “saved” yet.'},
+    {id:'saving',name:'2 · Saving',note:'Named operation; Save button disabled to prevent duplicates.'},
+    {id:'saved',name:'3 · Saved review draft + takeaway',note:'Saved only after the server confirms. The plan is still “has a conflict”; saving is storage, not approval.'},
+    {id:'failed',name:'4 · Save failed',note:'Persistent “not saved” in words and speech. Retry keeps everything. No celebration.'},
+    {id:'superseded',name:'5 · Plan changed after saving',note:'The saved card and its audio describe an older version; the app says so and stops old audio.'}
+  ],
+  progress:()=>null,caption:false,
+  prompt(ctx){
+    if(ctx.state==='ready')return{ar:'تحب نحفظ الخطة للمراجعة؟ الحفظ مش معناه إن الخطة اتوافق عليها.',en:'Shall we save the plan for review? Saving does not mean the plan is approved.'};
+    if(ctx.state==='saving')return{ar:'بحفظ الخطة…',en:'Saving the plan…'};
+    if(ctx.state==='saved')return TAKEAWAY;
+    if(ctx.state==='failed')return{ar:'الخطة لسه ماتحفظتش. جرّب تاني.',en:'The plan has not been saved yet. Try again.'};
+    if(ctx.state==='superseded')return{ar:'الكارت ده لخطة قديمة. غيّرت حاجة بعد الحفظ. احفظ تاني علشان الكارت يبقى مطابق.',en:'This card is for an older plan. You changed something after saving. Save again so the card matches.'};
+  },
+  render(ctx){
+    const L=ctx.locale,st=ctx.state;
+    const saveLine={ready:['unknown','save',{ar:'لسه ماتحفظتش',en:'Not saved yet'}],saving:['unknown','save',{ar:'بيتحفظ…',en:'Saving…'}],saved:['feasible-save','check',{ar:'مسودة محفوظة للمراجعة',en:'Saved draft for review'}],failed:['rejected','reject',{ar:'ماتحفظتش',en:'Not saved'}],superseded:['unknown','review',{ar:'المحفوظ لنسخة قديمة',en:'Saved copy is out of date'}]}[st];
+    const card=`<article class="card">
+      <div class="card-status">
+        <span class="badge rejected">${icon('reject')}${L==='ar'?'الخطة فيها تعارض':'Plan has a conflict'}</span>
+        <span class="badge ${saveLine[0]==='feasible-save'?'saved':saveLine[0]}">${icon(saveLine[1])}${ctx.t(saveLine[2])}</span>
+      </div>
+      <div class="card-row protected">${icon('lock')}<span><b>${L==='ar'?'ثابت:':'Protected:'}</b> ${L==='ar'?'آخر حشة برسيم':'last berseem cut'} ${ctx.date('2027-05-20')} · ${L==='ar'?'ذرة حبوب · قمح حبوب':'grain maize · grain wheat'}</span></div>
+      <div class="card-row">${icon('reject')}<span><b>${L==='ar'?'التعارض:':'Conflict:'}</b> ${L==='ar'?'زراعة الذرة':'maize sowing'} ${ctx.date('2027-05-15',{noYear:true})} ${L==='ar'?'قبل الحشة':'before the cut'}</span></div>
+      <div class="card-row">${icon('review')}<span><b>${L==='ar'?'محتاج مراجعة:':'Needs review:'}</b> ${L==='ar'?'٢٨ مايو و١ يونيو؛ الأرض والمية؛ الذرة الرفيعة':'28 May and 1 June; soil and water; sorghum'}</span></div>
+      <div class="card-row">${icon('unknown')}<span><b>${L==='ar'?'افتراضات:':'Assumptions:'}</b> ${L==='ar'?'٧ أيام تجهيز؛ الملوحة والمية مش معروفين':'7 prep days; salinity and water unknown'}</span></div>
+      <div class="card-foot">${L==='ar'?'نسخة':'Version'} <bdi dir="ltr">UH-001 · rev 1</bdi> · ${L==='ar'?'مثال تجريبي':'practice example'}</div></article>`;
+    let act='';
+    if(st==='ready')act=`<button class="primary wide-btn" data-act="save">${icon('save')}${L==='ar'?'احفظ الخطة للمراجعة':'Save the plan for review'}</button>`;
+    if(st==='saving')act=`<button class="primary wide-btn" disabled>${icon('save')}${L==='ar'?'بيتحفظ…':'Saving…'}</button>`;
+    if(st==='saved')act=`<div class="choice-row two-btn"><button class="primary" data-act="takeaway">${icon('speaker')}${L==='ar'?'اسمع الملخّص تاني':'Hear the summary again'}</button><button class="secondary" data-act="details">${icon('plan')}${L==='ar'?'تفاصيل للمهندس':'Details for an engineer'}</button></div>`;
+    if(st==='failed')act=`<div class="status rejected">${icon('reject')}<div><strong>${L==='ar'?'الخطة لسه ماتحفظتش':'The plan has not been saved'}</strong><p>${L==='ar'?'كل حاجة لسه موجودة على الموبايل.':'Everything is still on this phone.'}</p></div></div><button class="primary wide-btn" data-act="save">${icon('repeat')}${L==='ar'?'جرّب تاني':'Try again'}</button>`;
+    if(st==='superseded')act=`<button class="primary wide-btn" data-act="save">${icon('save')}${L==='ar'?'احفظ النسخة الجديدة':'Save the new version'}</button>`;
+    return card+act;
+  },
+  utterances(ctx){
+    if(ctx.state==='ready')return[{label:'Clear save intent',say:{ar:'احفظها',en:'Save it'},effect(ctx){ctx.go('saving');setTimeout(()=>ctx.go('saved'),1200);}},{label:'Asks to approve (not allowed)',say:{ar:'وافق على الخطة',en:'Approve the plan'},effect(){return{ar:'مقدرش أوافق على خطة فيها تعارض. أقدر أحفظها للمراجعة.',en:'I cannot approve a plan with a conflict. I can save it for review.'};}}];
+    return[];
+  },
+  action(a,b,ctx){
+    if(a==='save'){ctx.go('saving');setTimeout(()=>{if(ctx.state==='saving')ctx.go('saved');},1200);return null;}
+    if(a==='takeaway')return TAKEAWAY;
+    if(a==='details')return{ar:'التفاصيل الكاملة هتبقى هنا للمهندس الزراعي: المصادر والقواعد والإصدار.',en:'The full details for an extension engineer go here: sources, rules and version.'};
+  },
+  notes:[
+    'Two status lines, always: plan status (rejected) and save status. A saved draft stays “has a conflict”.',
+    'Card order follows design §4: status → protected → conflict → review/assumptions → version.',
+    'The spoken takeaway is the exact UH-001 template and describes this exact version. After any change, old audio stops and the card says it is out of date.',
+    '“Approve” does not exist for a rejected plan, by voice or touch.',
+    'Save success here is simulated with a timer. The real app may say “saved” only after the server confirms.'
+  ]
+};
+Lab.page(def);
+})();
+</script>
+</body>
+</html>

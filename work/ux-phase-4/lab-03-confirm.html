@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 03 · Readback & protect</title><link rel="stylesheet" href="lab.css"></head>
+<body>
+<script src="lab.js"></script>
+<script>
+(function(){
+const {icon,crop,CROPS,PURPOSE,SEASONS}=Lab;
+// UH-001 fixture values (docs/product/reference-scenario.md). Illustrative, not a real farmer.
+const G=[
+  {k:'s1',crop:'berseem',purpose:'forage',season:0,dateKind:'end',date:'2027-05-20',lockable:true},
+  {k:'s2',crop:'maize',purpose:'grain',season:1,dateKind:'start',date:'2027-05-15',lockable:true},
+  {k:'s3',crop:'wheat',purpose:'grain',season:2,dateKind:'start',date:'2027-11-20',lockable:true},
+  {k:'s4',crop:'sorghum',purpose:'grain',season:3,dateKind:'start',date:'2028-06-01',lockable:true},
+  {k:'field'},{k:'prep'}
+];
+const fresh=()=>({now:0,ok:[],locks:{},askLock:false,confirmed:false,stale:false});
+function title(ctx,g){const L=ctx.locale;
+  if(g.crop)return `${ctx.num(g.season+1)} · ${ctx.t(CROPS[g.crop])} <span class="meta">· ${ctx.t(PURPOSE[g.purpose])}</span>`;
+  if(g.k==='field')return L==='ar'?'الأرض والمية':'Field and water';
+  return L==='ar'?'التجهيز بين المحصولين':'Preparation between crops';}
+function lines(ctx,g){const L=ctx.locale;
+  if(g.crop)return[ctx.t(SEASONS[g.season]),`${g.dateKind==='end'?(L==='ar'?'آخر حشة ':'Last cut '):(L==='ar'?'الزراعة ':'Sowing ')}<b>${ctx.date(g.date)}</b>`];
+  if(g.k==='field')return[L==='ar'?'المساحة: <b>١ هكتار</b> (زي ما قلت)':'Area: <b>1 hectare</b> (as you said)',L==='ar'?'الأرض: طينية تقيلة (كلامك، مش تحليل)':'Soil: heavy clay (your report, not a lab test)',`<span class="unk">${icon('unknown')}${L==='ar'?'الملوحة: مش معروفة':'Salinity: unknown'}</span> <span class="unk">${icon('unknown')}${L==='ar'?'مواعيد المية: مش معروفة':'Water timing: unknown'}</span>`];
+  return[L==='ar'?'<b>٧ أيام كاملة</b> بعد ما الأرض تفضى':'<b>7 full days</b> after the field is free',L==='ar'?'ده افتراض، مش توصية':'This is an assumption, not a recommendation'];}
+function speakGroup(ctx,g){const L=ctx.locale;
+  if(g.crop){const d=Lab.plain(ctx.date(g.date));const c=ctx.t(CROPS[g.crop]),p=ctx.t(PURPOSE[g.purpose]);
+    return L==='ar'?`الموسم ${['الأول','التاني','التالت','الرابع'][g.season]}: ${c}، ${p}. ${g.dateKind==='end'?'آخر حشة':'الزراعة'} ${d}. صح؟`:`Season ${g.season+1}: ${c}, ${p}. ${g.dateKind==='end'?'Last cut':'Sowing'} ${d}. Is that right?`;}
+  if(g.k==='field')return L==='ar'?'الأرض واحد هكتار، طينية تقيلة حسب كلامك. الملوحة ومواعيد المية مش معروفين، وده عادي. صح؟':'One hectare, heavy clay by your report. Salinity and water delivery are unknown, and that is fine. Is that right?';
+  return L==='ar'?'هنفترض سبع أيام تجهيز كاملة بعد ما الأرض تفضى. صح؟':'We assume seven full preparation days after the field is free. Is that right?';}
+const LOCKQ={ar:'ده لازم يفضل زي ما هو مهما حصل؟',en:'Must this stay exactly as it is, whatever happens?'};
+const def={
+  num:'03',title:'Readback & protect what must stay',
+  data:fresh(),
+  states:[
+    {id:'g1',name:'1 · Read back season 1',note:'One group at a time. Read, then “right?”. The group is highlighted; the others stay as one-line rows so nothing scrolls.'},
+    {id:'lock',name:'2 · Protect question',note:'“Must this stay?” after each crop group. Two big answers. Protection is the farmer’s choice and is shown with a lock and words, never as success.'},
+    {id:'field',name:'3 · Field group with unknowns',note:'Unknown is said out loud and shown with a dashed “?”; it is never zero or hidden.'},
+    {id:'all',name:'4 · Everything checked: final confirm',note:'One explicit confirm for the whole snapshot. Button says exactly what happens: confirm and check. Silence never confirms.'},
+    {id:'stale',name:'5 · Changed after confirming',note:'Editing a confirmed fact stops audio and marks earlier results as not current, until re-confirmed.'}
+  ],
+  enter(id,ctx){const d=ctx.data=fresh();
+    if(id==='lock'){d.askLock=true;}
+    if(id==='field'){d.now=4;d.ok=[0,1,2,3];d.locks={s1:true,s2:true,s3:true};}
+    if(id==='all'||id==='stale'){d.now=6;d.ok=[0,1,2,3,4,5];d.locks={s1:true,s2:true,s3:true};}
+    if(id==='stale'){d.confirmed=true;d.stale=true;}},
+  progress:()=>null,
+  caption:false, // the open group IS what is being spoken; it gets a 'speaking' outline instead
+  prompt(ctx){const d=ctx.data;
+    if(d.stale)return{ar:'غيّرت ميعاد. نتيجة الفحص اللي فاتت مابقتش حالية. راجع وأكّد تاني علشان نشيّك من جديد.',en:'You changed a date. The last check is no longer current. Review and confirm again so we can check again.'};
+    if(d.now>=G.length)return{ar:'راجعنا كل حاجة. لو كله صح، دوس "أكّد وشيّك على الخطة".',en:'We went through everything. If it is all right, press “Confirm and check the plan”.'};
+    if(d.askLock)return LOCKQ;
+    return{ar:speakGroup({...ctx,locale:'ar'},G[d.now]),en:speakGroup({...ctx,locale:'en'},G[d.now])};},
+  render(ctx){
+    const d=ctx.data,L=ctx.locale;
+    const rows=G.map((g,i)=>{
+      const cur=i===d.now,ok=d.ok.includes(i),locked=g.k&&d.locks[g.k];
+      const badge=locked?`<span class="badge protected">${icon('lock')}${L==='ar'?'ثابت باختيارك':'Protected by your choice'}</span>`:'';
+      if(!cur)return `<li class="rb-row ${ok?'ok':''}"><span class="rb-mark">${ok?icon('check'):ctx.num(i+1)}</span><span class="rb-title">${title(ctx,g)}</span>${badge}<button class="chip-btn icon-only" data-act="goto" data-v="${i}" aria-label="${L==='ar'?'غيّر':'Change'}">${icon('edit')}</button></li>`;
+      return `<li class="rb-row now ${ctx.voice==='speaking'?'speaking':''}" aria-live="polite">${g.crop?`<span class="portrait-sm">${crop(g.crop)}</span>`:`<span class="rb-mark">${ctx.num(i+1)}</span>`}<div class="rb-body"><div class="rb-title">${title(ctx,g)}</div>${lines(ctx,g).map(l=>`<div class="rb-line">${l}</div>`).join('')}${badge}
+        ${d.askLock?`<p class="rb-q">${ctx.t(LOCKQ)}</p><div class="actions"><button class="primary" data-act="lock" data-v="yes">${icon('lock')}${L==='ar'?'لازم يفضل':'Must stay'}</button><button class="secondary" data-act="lock" data-v="no">${L==='ar'?'ممكن يتغيّر':'Can change'}</button></div>`
+        :`<div class="actions"><button class="primary" data-act="ok">${icon('check')}${ctx.t(Lab.UI.yes)}</button><button class="secondary" data-act="change">${icon('edit')}${ctx.t(Lab.UI.change)}</button></div>`}</div></li>`;}).join('');
+    const head=d.stale?`<div class="status unknown">${icon('review')}<div><strong>${L==='ar'?'النتيجة مابقتش حالية':'Result no longer current'}</strong><p>${L==='ar'?'غيّرت ميعاد الذرة بعد التأكيد.':'You changed the maize date after confirming.'}</p></div></div>`
+      :(d.now>=G.length?`<h2 class="question">${L==='ar'?'كله صح؟':'Is it all right?'}</h2>`:'');
+    const foot=d.now>=G.length?`<button class="primary wide-btn" data-act="confirm">${icon('check')}${L==='ar'?'أكّد البيانات وشيّك على الخطة':'Confirm these details and check the plan'}</button>`:'';
+    return head+`<ol class="rb-list">${rows}</ol>`+foot;
+  },
+  utterances(ctx){const d=ctx.data;
+    if(d.now>=G.length)return[{label:'Explicit confirm by voice (after full readback)',say:{ar:'أيوه، أكّد',en:'Yes, confirm'},effect(){location.href='lab-04-check.html';}},{label:'“Yes” alone is not enough here',say:{ar:'آه',en:'Yeah'},effect(){return{ar:'علشان أتأكد: عايز تأكد البيانات وتشيّك على الخطة؟ قول "أكّد" أو دوس الزرار.',en:'To be sure: do you want to confirm and check the plan? Say “confirm” or press the button.'};}}];
+    if(d.askLock)return[{label:'Must stay',say:{ar:'لازم يفضل',en:'It must stay'},effect(ctx){return doLock(ctx,true);}},{label:'Can change',say:{ar:'ممكن يتغيّر',en:'It can change'},effect(ctx){return doLock(ctx,false);}}];
+    return[{label:'Right',say:{ar:'صح',en:'Right'},effect(ctx){return doOk(ctx);}},{label:'Correction in one sentence',say:{ar:'لا، الزراعة يوم ١٨ مايو',en:'No, sowing is on 18 May'},effect(ctx){ctx.heard={said:this.say,chips:[{text:{ar:'الزراعة ١٨ مايو ٢٠٢٧',en:'Sowing 18 May 2027'}}],onYes(){return{ar:'غيّرتها. ١٨ مايو ٢٠٢٧.',en:'Changed it. 18 May 2027.'};}};return{ar:'تقصد الزراعة يوم ١٨ مايو ٢٠٢٧؟',en:'You mean sowing on 18 May 2027?'};}}];},
+  action(a,b,ctx){const d=ctx.data;
+    if(a==='ok')return doOk(ctx);
+    if(a==='lock')return doLock(ctx,b.dataset.v==='yes');
+    if(a==='goto'){d.now=+b.dataset.v;d.askLock=false;if(d.confirmed)d.stale=true;return def.prompt(ctx);}
+    if(a==='change'){location.href='lab-02-seasons.html';return null;}
+    if(a==='confirm'){location.href='lab-04-check.html';return null;}
+    if(a==='back'){if(d.now>0){d.now--;d.askLock=false;}return def.prompt(ctx);}
+  },
+  notes:[
+    'Fits one screen: the current group is open, all others are one-line rows with a tick, a lock if protected, and a Change button.',
+    'Per-item implicit confirmation earlier (lab 02) + this one grouped readback + one explicit final confirm. Matches design §3 and the Phase 1 “no dialog after every tap” refinement.',
+    'Final confirm needs a clear intent (“confirm”), not a bare “yeah”: Google guidance keeps explicit confirmation for the one hard-to-undo step.',
+    'Hectares stay hectares. No silent feddan conversion (reference scenario §1).',
+    'Locks for seasons 1–3 follow the UH-001 fixture. Protection never implies enough feed or a guaranteed harvest.'
+  ]
+};
+function doOk(ctx){const d=ctx.data,g=G[d.now];if(g&&g.lockable&&!(g.k in d.locks)){d.askLock=true;return LOCKQ;}d.ok.push(d.now);d.now++;d.askLock=false;return def.prompt(ctx);}
+function doLock(ctx,yes){const d=ctx.data,g=G[d.now];d.locks[g.k]=yes;d.askLock=false;d.ok.push(d.now);d.now++;
+  const say=yes?{ar:'تمام، ثبّتناه.',en:'OK, it is protected.'}:{ar:'تمام، ممكن يتغيّر.',en:'OK, it can change.'};const n=def.prompt(ctx);return{ar:say.ar+' '+n.ar,en:say.en+' '+n.en};}
+Lab.page(def);
+})();
+</script>
+</body>
+</html>

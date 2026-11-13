@@ -36,6 +36,7 @@ checkpoint-*/
 !/work/ux-phase-2/preview.html
 !/work/ux-phase-2/preview-v3.html
 !/work/ux-phase-3/
+!/work/ux-phase-4/
 wandb/
 mlruns/
 

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 07 · Next 7 days</title><link rel="stylesheet" href="lab.css"></head>
+<body>
+<script src="lab.js"></script>
+<script>
+(function(){
+const {icon}=Lab;
+// Statuses follow docs/backend/ml-contract.md §6: not_applicable → unavailable → stale → available.
+const def={
+  num:'07',title:'Next 7 days (experimental outlook)',
+  states:[
+    {id:'na',name:'1 · Not applicable (UH-001)',note:'UH-001 decisions are months away; the outlook only covers the next 7 days. Say so in one line and move on.'},
+    {id:'unavailable',name:'2 · Unavailable',note:'No forecast file or an invalid one. The rest of the app works the same.'},
+    {id:'stale',name:'3 · Too old',note:'Issued too long ago. Show the dates, withhold the numbers.'},
+    {id:'available',name:'4 · Available (layout only)',note:'Seven dated days, a range not a single number, clearly experimental, with the method named. Values are placeholders.'}
+  ],
+  progress:()=>null,caption:false,
+  prompt(ctx){
+    if(ctx.state==='na')return{ar:'توقع الجو بيغطي السبع أيام الجاية بس. قراراتك بعد شهور، فمش هيفيد هنا.',en:'The weather outlook only covers the next seven days. Your decisions are months away, so it does not apply here.'};
+    if(ctx.state==='unavailable')return{ar:'توقع الجو مش متاح دلوقتي. ده مش بيأثر على خطتك.',en:'The weather outlook is not available right now. This does not affect your plan.'};
+    if(ctx.state==='stale')return{ar:'آخر توقع قديم، فمش هنعرضه.',en:'The latest outlook is too old, so we will not show it.'};
+    if(ctx.state==='available')return{ar:'ده توقع تجريبي للسبع أيام الجاية. بيدّي مدى، مش رقم أكيد، ومش بيغيّر خطتك.',en:'This is an experimental outlook for the next seven days. It gives a range, not a sure number, and it does not change your plan.'};
+  },
+  render(ctx){
+    const L=ctx.locale;
+    const exp=`<span class="badge sim">${icon('future')}${L==='ar'?'تجريبي':'Experimental'}</span>`;
+    if(ctx.state!=='available'){
+      const map={na:['unknown',{ar:'مش مناسب للقرار ده',en:'Does not apply to this decision'}],unavailable:['unknown',{ar:'توقع الجو مش متاح',en:'Outlook not available'}],stale:['unknown',{ar:'التوقع قديم',en:'Outlook too old'}]};
+      const [cls,t]=map[ctx.state];
+      const extra=ctx.state==='stale'?`<p>${L==='ar'?'صدر':'Issued'} ${ctx.date('2026-11-01')} · ${L==='ar'?'كان صالح لحد':'valid until'} ${ctx.date('2026-11-02')} <span class="meta">(${L==='ar'?'تواريخ مثال':'example dates'})</span></p>`:'';
+      return `<div class="status ${cls} dashed">${icon('future')}<div><strong>${ctx.t(t)}</strong><p>${ctx.t(def.prompt(ctx))}</p>${extra}</div></div>${exp}
+        <button class="primary wide-btn" data-act="go">${icon('check')}${L==='ar'?'كمّل':'Continue'}</button>`;
+    }
+    const days=[1,2,3,4,5,6,7];
+    return `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${exp}<span class="meta">${L==='ar'?'الطريقة: متوسط السنين اللي فاتت (مش ذكاء اصطناعي)':'Method: past-years average (not AI)'}</span></div>
+      <div class="notice">${L==='ar'?'شكل بس: الأرقام مش حقيقية.':'Layout only: no real values.'}</div>
+      <ol class="week">${days.map(d=>`<li><b>${L==='ar'?'يوم':'Day'} ${ctx.num(d)}</b><span class="range"><span class="band"></span></span><em>— ${L==='ar'?'لـ':'to'} — °C</em></li>`).join('')}</ol>
+      <p class="sub">${L==='ar'?'ده مدى (من ١٠٪ لـ ٩٠٪)، مش وعد. مش بيغيّر إذا كانت الخطة ممكنة.':'A range (10% to 90%), not a promise. It never changes whether the plan holds.'}</p>`;
+  },
+  utterances(){return[];},
+  action(a){if(a==='go'){location.href='lab-08-card.html';}return null;},
+  notes:[
+    'The outlook is a side note, never a step. It appears only for actions in the next 7 days, on a plan that already holds.',
+    'Method is named honestly. Today the published method is climatology (a baseline), which beat the trained model; the UI must not say “AI forecast”.',
+    'A range, not one number. Dashed treatment = future/uncertain, distinct from the solid history panel in lab 06.',
+    'Status order and reasons follow the ML ↔ backend contract §6.'
+  ]
+};
+Lab.page(def);
+})();
+</script>
+</body>
+</html>

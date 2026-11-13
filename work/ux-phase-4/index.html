@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UX Phase 4 · Voice-first labs</title><link rel="stylesheet" href="lab.css">
+<style>
+.hub{max-width:1100px;margin:0 auto;padding:24px 16px;direction:ltr;color:var(--lab)}
+.hub h1{font-size:28px;margin:0 0 6px}
+.hub p{max-width:70ch}
+.hub ol{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.hub li a{display:block;background:#fff;border:1px solid #C9D2C8;border-radius:12px;padding:14px;color:var(--lab);text-decoration:none;min-height:100%}
+.hub li a:hover{border-color:var(--action)}
+.hub li b{display:block;font-size:18px;margin-bottom:4px}
+.hub li span{font-size:14px;color:#5C6A63}
+.flow{font-size:15px;background:#fff;border:1px solid #C9D2C8;border-radius:12px;padding:10px 14px}
+</style></head>
+<body>
+<main class="hub">
+  <span class="tag" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#5C6A63">MISSION EL GHEET · UX Phase 4</span>
+  <h1>Voice-first labs, one per page</h1>
+  <p>Each lab is one app page with all its states, a farmer-utterance simulator, problem injection (silence, not understood, mic denied, no sound), Arabic/English, phone width and optional real browser voice. Everything is simulated: no live recognition, planning, forecasting or saving. Data is the fictional UH-001 (Uncle Hussein) fixture. Plan and research: <a href="../../docs/design/voice-first.md">docs/design/voice-first.md</a>.</p>
+  <p class="flow"><b>Flow:</b> 01 Welcome → 02 Choose crops per season → 03 Readback &amp; protect → 04 Promise Test → 05 Alternatives (optional: 06 Past weather, 07 Next 7 days) → 08 Save &amp; takeaway. Lab 00 is the shared voice dock used on every page.</p>
+  <ol>
+    <li><a href="lab-00-voice.html"><b>00 · Voice controller &amp; states</b><span>Push-to-talk dock, every voice state in words, barge-in, two-miss fallback to pictures.</span></a></li>
+    <li><a href="lab-01-welcome.html"><b>01 · Welcome &amp; first use</b><span>Silent first screen, Start unlocks audio, two intentions, practice turn.</span></a></li>
+    <li><a href="lab-02-seasons.html"><b>02 · Choose crops per season</b><span>One question per screen, pictures + mic, implicit confirm, clarify “ذرة”, staged dates, never assume a year.</span></a></li>
+    <li><a href="lab-03-confirm.html"><b>03 · Readback &amp; protect</b><span>Grouped readback, “must this stay?”, unknowns spoken, one explicit confirm.</span></a></li>
+    <li><a href="lab-04-check.html"><b>04 · Promise Test result</b><span>Conflict first, what is kept, exact date inset, Why? / What could change? / Save.</span></a></li>
+    <li><a href="lab-05-options.html"><b>05 · Alternatives &amp; investigations</b><span>Zero feasible (UH-001), dates needing review, inspect → draft → reconfirm; ≤2 alternatives layout.</span></a></li>
+    <li><a href="lab-06-replay.html"><b>06 · Past weather</b><span>What NASA history can and cannot show; honest unavailable state.</span></a></li>
+    <li><a href="lab-07-outlook.html"><b>07 · Next 7 days</b><span>Experimental outlook as a side note: not applicable / unavailable / stale / available layout.</span></a></li>
+    <li><a href="lab-08-card.html"><b>08 · Save &amp; takeaway</b><span>Plan status vs save status, spoken takeaway for the exact version, failed and out-of-date saves.</span></a></li>
+  </ol>
+  <p style="font-size:14px">Check: <code>node work/ux-phase-4/check-labs.cjs</code> (syntax, links, no live services, accessibility basics). Not browser, device or farmer testing.</p>
+</main>
+</body>
+</html>

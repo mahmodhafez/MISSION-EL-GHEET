@@ -22,6 +22,14 @@ been dropped by a `/work/*` ignore rule. Content unchanged except two links to r
 (now `docs/design/fieldlight.md`, `docs/reports/phase-3-visual-options.md`). Verified:
 `check-hybrid.cjs` and `check-preview.cjs` pass. No browser check run.
 
+## In flight
+
+- **Voice-first page labs (UX Phase 4)**, proposed 13 Nov by Yahya, for Amr's review:
+  [voice-first.md](../design/voice-first.md), `work/ux-phase-4/index.html`. Nine labs (voice dock +
+  eight pages), one step per screen with no scrolling. Verified 13 Nov: `check-labs.cjs` passes; a
+  local headless-Chromium run of every state (AR/EN, 1280 px and 390×760) had no script errors,
+  overflow or scrolling. Not verified on devices, with real speech or with farmers.
+
 ## History of the design rounds
 
 V1 → V2 → V3 wireframes (12 Nov) → three visual options → Fieldlight Hybrid. Reviews:
