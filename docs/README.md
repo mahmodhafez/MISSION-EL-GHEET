@@ -39,6 +39,7 @@ evidence, never edited · **Archive** = superseded, history only.
 | Planner | [planner/agronomy-evidence.md](planner/agronomy-evidence.md): source ledger | Current 11 Nov | Refaat |
 | Planner | [planner/agronomy-kb.v0.1.json](planner/agronomy-kb.v0.1.json), [audit.json](planner/audit.json): machine-readable KB draft | Proposed | Refaat / Karim |
 | Planner | [planner/research-handoff.md](planner/research-handoff.md): compatibility review of the planner research | Current 11 Nov | Karim / Yahya |
+| Planner | [planner/implementation-handoff.md](planner/implementation-handoff.md): M1/M2 code, interfaces, tests, manual CLI, resume steps | Draft 13 Nov | Amr + Astra |
 | Planner | [planner/frontend-handoff.md](planner/frontend-handoff.md): frontend tasks for the planner UI ("Astra") | Proposed 13 Nov | Amr |
 | ML | [ml/plan.md](ml/plan.md): deadline execution plan | Current 13 Nov | Amr |
 | ML | [ml/model-selection.md](ml/model-selection.md): which models are used, deferred or rejected | Current 13 Nov | Amr |
@@ -86,3 +87,5 @@ Older originals: branch `handoff/full-project-precleanup-` and `archive-snapshot
 
 Docs moved on . If a script or an old note uses a former path, see
 [archive/path-map-.txt](archive/path-map-.txt).
+
+- [13 November recovery and contract review](reports/2026-11-13-recovery.md): verified local subset, remaining contract decisions and implementation boundaries.

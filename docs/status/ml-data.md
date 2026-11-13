@@ -2,7 +2,7 @@
 
 **Read this if…** you're asking "what data and models exist, and what runs?"
 
-**As of **, last commit `0122e92`. Owners: Amr (ML decisions), Refaat (data), Mahmoud (Ridge). If this is far behind `git log`, trust git.
+**As of 2026-11-13**, inspected base `70891af`. Owner(s): Amr (coordination), Refaat / Ahmed (data, climatology and optional Ridge), Mahmoud (historical evaluator). Implementation pending unless explicitly verified below.
 
 ---
 
@@ -10,10 +10,10 @@
 
 From the [ML plan](../ml/plan.md) (13 Nov):
 
-1. Share the assembled release `meg-shared--v1`; every recipient verifies hashes against its manifest.
+1. Share the assembled release `meg-shared-20261113-v1`; every recipient verifies hashes against its manifest.
 2. Refaat: 38-feature schema, keyed X/y, origin ledger, no-future-feature tests.
-3. Mahmoud: climatology adapter; one Ridge experiment **only** after Amr's go (≤3 h).
-4. Amr: accept/reject artifacts; write `forecast_bundle.json` for the backend.
+3. Refaat / Ahmed: existing climatology baseline and optional bounded Ridge experiment after Amr's go. Mahmoud owns historical Season Replay; no new ML training.
+4. Amr: coordinate acceptance; optional bundle publication only after a scientifically supported artifact and Yahya-approved schema exist. No trained forecast or bundle is required for P0.
 
 ## Built and verified
 
@@ -21,7 +21,7 @@ From the [ML plan](../ml/plan.md) (13 Nov):
 |---|---|---|
 | NASA POWER / ET0 audit + regeneration scripts | `data/validation/` | 16 tests pass (13 Nov, Linux, Python 3.12.3); **13 skip** without the validation ZIP. With the ZIP: 16/16 pass (Amr, 12–13 Nov, Windows, 3.13.5) |
 | Shared-release builder | `ml/tools/prepare_shared_release.py` | 3 tests pass (1 skips without the ZIP), 13 Nov |
-| Refaat's climatology + evaluator package | `data/local/shared--v1/refaat/` (also `work/refaat-handoff-/`) | 10 tests + 5 reproduction commands passed on Amr's machine (13 Nov), [record](../ml/refaat-verification.json). Needs the CSVs, which are not in git |
+| Refaat's climatology + evaluator package | `data/local/shared-20261113-v1/refaat/` (also `work/refaat-handoff-/`) | 10 tests + 5 reproduction commands passed on Amr's machine (13 Nov), [record](../ml/refaat-verification.json). Needs the CSVs, which are not in git |
 | Chronos-2 + LoRA experiment | Validation ZIP only | Trained and reloaded (11 Nov). **Lost to seasonal climatology.** [Results](../ml/ml-experiment.md) |
 
 ## Not in git (must be transferred)
@@ -40,3 +40,5 @@ From the [ML plan](../ml/plan.md) (13 Nov):
 ## Proposals (not approved)
 
 - [Multi-grid-cell experiment](../ml/multigrid-proposal.md).
+
+Confirmed assignment update, 2026-11-13: [team roster](../team.md) governs current ownership. FastAPI and Fieldlight Hybrid are chosen; shared API approval is pending. No trained forecast is required for P0. Recovered NASA/climatology subset is local and Git-ignored; Phase 3 frontend assets await safe transfer.

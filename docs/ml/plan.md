@@ -1,5 +1,7 @@
 # Final execution plan — 
 
+Current assignment override, confirmed by Amr 2026-11-13: [team roster](../team.md) governs ownership. Amr + Astra own planner/generation/Promise Test/tests; Yahya owns FastAPI/shared contracts and Fieldlight React; Mahmoud owns historical evaluation, with no new ML training; Refaat / Ahmed owns KB/data/climatology and optional bounded Ridge. No trained forecast is required for P0. Shared API approval remains pending.
+
 **Read this if…** you're doing any ML or forecast work before the deadline.
 
 Status: Current,  · Owner: Amr. Last reviewed .

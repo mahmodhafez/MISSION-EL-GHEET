@@ -24,7 +24,7 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 | `ml/` | Shared-release builder (`tools/`), tests, future experiments | Builder + 3 tests |
 | `data/validation/` | NASA POWER / ET0 audit and regeneration scripts | Yes, 16 tests |
 | `data/local/` | Assembled data release (mostly git-ignored) | Partial, see `docs/status/ml-data.md` |
-| `work/ux-phase-2/`, `work/ux-phase-3/` | Standalone HTML wireframes and the Fieldlight prototype | Yes (design artifacts) |
+| `work/ux-phase-2/`, `work/ux-phase-3/` | Standalone HTML wireframes and the Fieldlight prototype | Phase 2 tracked; Phase 3 awaits safe transfer |
 | `archive-snapshot/`, `work/*` (other) | Frozen evidence from the 13 Nov recovery snapshot | Don't edit |
 | `docs/` | Everything written. Start at `docs/README.md` | n/a |
 
@@ -77,7 +77,7 @@ No app install/run commands exist yet. Add them here when the first app code lan
 - `backend/` and `frontend/` contain only `.gitkeep` files. Docs once assumed backend code
   existed when it didn't; check the tree before you believe a doc.
 - The big evidence ZIP (`docs/VALIDATION_ARTIFACTS.zip`, ~470 MB) and model weights are **not in
-  git**. Request them from Amr/Refaat (`docs/archive/handoff-/ARTIFACT_TRANSFER.md`).
+  git**. Request them from Amr/Refaat (`docs/archive/handoff/ARTIFACT_TRANSFER.md`).
 - Many older docs contain Windows paths from Amr's machine (`C:/Users/Amr Hany/...`). They are
   history, not paths you should expect to exist.
 - Status words have exact meanings: `feasible | rejected | needs_review` for plans;
@@ -91,3 +91,5 @@ No app install/run commands exist yet. Add them here when the first app code lan
 Update `docs/status/<area>.md` in the same commit as the code: what changed, its date, and what
 you actually verified. If you learned a durable fact, put it in the matching topic file and date
 it. Don't grow this file; it's a router.
+
+Current ownership (confirmed by Amr, 2026-11-13): follow `docs/team.md`; it supersedes older assignments in topic documents. Shared API approval is pending. No trained forecast is required for P0.

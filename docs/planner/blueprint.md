@@ -1,8 +1,10 @@
 # Climate-aware rotation planner: implementation blueprint
 
+Ownership confirmed by Amr, 2026-11-13: [team roster](../team.md) supersedes older assignments. This update changes ownership only; shared API approval remains pending.
+
 **Read this if…** you're building the planner, replay or baselines, or need the `meg_core` package layout (§9.1).
 
-Status: Proposed ; D01–D10 await Amr's approval (status Q5) · Owner: Amr / Karim. Last reviewed .
+Status: Proposed ; D01–D10 await Amr's approval (status Q5) · Owner: Amr / Amr + Astra. Last reviewed .
 
  finalization — **PROPOSED FOR AMR'S REVIEW. No implementation authorization.** Scientific audit dated 12 November is retained unchanged.
 
@@ -12,7 +14,7 @@ This package comprises this blueprint, [machine-readable knowledge draft](agrono
 
 ## 1. Recommended architecture and actual starting point
 
-Build **one catalogue-driven deterministic planner, Karim's Promise Test, and an independent historical POWER replay engine**, within Yahya's approved FastAPI/Pydantic/SQLite architecture. Keep React presentation and generated TypeScript contracts; preserve Fieldlight Hybrid. Use verified frozen weather bytes. Generate schedules from versioned crop evidence and confirmed permissions, never scenario-ID branches. Return unresolved candidates as `needs_review`, not recommendations. A farmer can save a review draft even when no feasible option exists.
+Build **one catalogue-driven deterministic planner, Amr + Astra's Promise Test, and an independent historical POWER replay engine**, within Yahya's approved FastAPI/Pydantic/SQLite architecture. Keep React presentation and generated TypeScript contracts; preserve Fieldlight Hybrid. Use verified frozen weather bytes. Generate schedules from versioned crop evidence and confirmed permissions, never scenario-ID branches. Return unresolved candidates as `needs_review`, not recommendations. A farmer can save a review draft even when no feasible option exists.
 
 The smallest defensible model set is seasonal climatology plus persistence as research comparators, with **one bounded direct Ridge regression experiment** after P0 integration. LightGBM is an optional challenger, not a dependency of the demo. Preserve and report the existing trained Chronos-2 LoRA experiment; optionally evaluate its pinned base model on the new target protocol. Do not repeat fine-tuning to satisfy an ML slogan. C3S and AquaCrop are separate future research. None may influence hard feasibility.
 
@@ -45,8 +47,8 @@ Complexity estimates concern isolated component work after data/contracts are re
 
 | Component | Exact model/algorithm | Purpose | Inputs | Outputs | Required datasets | Must train/fine-tune? | Evaluation protocol | Complexity | Owner | MVP / Optional / Research | Acceptance criteria | Fallback behavior |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Candidate generation | Lazy ordered finite enumeration, max 256 raw alternatives | Derive reviewable four-season schedules | Confirmed goals, scope, locks, typed templates | Candidates, changes, search coverage | KB + farmer facts | No | Non-fixture generation, cap, determinism, permission tests | Medium, 5–7 h | Karim | MVP | No fixture branching, no invented endpoints, extensible IDs | Empty/incomplete result with exact gaps |
-| Promise Test | Existing registry and three-valued rule reduction | Enforce commitments/calendar/applicability | Candidate, snapshot, required-topic registry | rejected / needs_review / feasible | KB rules + confirmed facts | No | UH-001; negative and synthetic positive cases | Medium, 5–7 h | Karim | MVP | Hard fail wins; every mandatory topic covered | Unknown prevents feasibility |
+| Candidate generation | Lazy ordered finite enumeration, max 256 raw alternatives | Derive reviewable four-season schedules | Confirmed goals, scope, locks, typed templates | Candidates, changes, search coverage | KB + farmer facts | No | Non-fixture generation, cap, determinism, permission tests | Medium, 5–7 h | Amr + Astra | MVP | No fixture branching, no invented endpoints, extensible IDs | Empty/incomplete result with exact gaps |
+| Promise Test | Existing registry and three-valued rule reduction | Enforce commitments/calendar/applicability | Candidate, snapshot, required-topic registry | rejected / needs_review / feasible | KB rules + confirmed facts | No | UH-001; negative and synthetic positive cases | Medium, 5–7 h | Amr + Astra | MVP | Hard fail wins; every mandatory topic covered | Unknown prevents feasibility |
 | Historical evaluator | Paired calendar-block replay | Describe exposure | Schedule intervals + same historical blocks | Tmax, ET0, duration, paired distributions | Frozen 2001–2025 CSV | No | Hand arithmetic, missing/leap policies, symmetric pairing | Medium, 5–6 h | Mahmoud | MVP | Identical anchors and units; no water-saving inference | Partial/unavailable with excluded blocks |
 | Climatology | Circular ±15-day seasonal distribution; weekly analog means | Strong seasonal comparator | Only training observations available by cutoff | Daily or weekly point/empirical quantiles | Frozen real Tmax/ET0 | Estimate reference distribution; no ML training | Rolling-origin protocol below | Low, 2 h | Amr | MVP research baseline | No future labels; exact date semantics | Unavailable if insufficient support |
 | Persistence | Last observed value; last 7-day mean secondary | Detect whether history adds value | Cutoff history | Constant future weekly means | Same data | No | Identical issue dates/horizons | Low, <1 h | Amr | MVP research comparator | Same information boundary | Unavailable on missing context |
@@ -72,7 +74,7 @@ Archive: `d284b3162a2dd5bbde8bcb37ae3090adcf080a5d044a4e25b2c96836b4cee95f`, 468
 | Frozen `weather_et0.csv` | 9,131 daily rows, –; above fields + ET0 mm/day and two sensitivity columns | Available; SHA256 `17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8`. Copy bytes, do not regenerate for runtime. Sensitivities are not independent targets | Derived FAO56 + ASCE bound, source/generator hashes; original bytes and notices preserved. Refaat; replay, ML |
 | Frozen `weather_et0_2026_Jan_Oct.csv` | 304 daily rows, –10-31 | Available; SHA256 `c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e`. Development/consumed assessment only; incomplete year excluded from default replay | Additional GEOSIT/FLASHFLUX listed by source; no invented per-day transition. Refaat; diagnostic ML |
 | ARC/FAO/Egyptian journal crop sources | W1–W3, B1–B2, M1–M4, S1–S2 in [AGRONOMY_EVIDENCE](agronomy-evidence.md); exact URLs/locators also in KB draft | Published windows, trial calendars, cultivars, maturity ranges. Available as source ledger; several PDFs inaccessible in this session. Required reacquisition and double transcription before runtime activation | Observation is distinct from recommendation and transfer assumption. Article access is not redistribution permission. Refaat; KB, planner |
-| Current local operational crop calendars | Target-year seed availability, harvest criterion, removal, preparation, cultivar-dependent endpoints | Missing for complete transferable four-season plans. Obtain dated extension/agronomist evidence and confirmed operational facts; no universal duration fill | Named scope, reviewer, source/date and methods required. Refaat/Karim; feasibility |
+| Current local operational crop calendars | Target-year seed availability, harvest criterion, removal, preparation, cultivar-dependent endpoints | Missing for complete transferable four-season plans. Obtain dated extension/agronomist evidence and confirmed operational facts; no universal duration fill | Named scope, reviewer, source/date and methods required. Refaat/Amr + Astra; feasibility |
 | Actual field and farmer facts | Texture; EC dS/m with extraction/depth/date; pH method; drainage/water table; irrigation restrictions; crop purpose/quantity/locks | Missing until intake or measurements. Trial soil stays a research profile. No imputed soil, irrigation or biomass | Farmer reports/measurements separate from science status. Local controlled storage; no real records on unauthenticated public demo. Amr/Yahya; planner |
 | Saved ML artifacts | Base checkpoint, LoRA adapters, installed requirements, evaluation protocol, NPZ predictions, results | Present inside ZIP; saved scores reproduced, no weights loaded. Training 2001–18, diagnostic 2019–21, consumed Jul–Oct 2026. Freeze new split manifest | Pin revision `29ec3766d36d6f73f0696f85560a422f50e8498c`; Apache-2.0 notices per recorded model/library. Amr/Refaat; research |
 | [C3S monthly seasonal forecasts/hindcasts](https://cds.climate.copernicus.eu/datasets/seasonal-monthly-single-levels?tab=overview) | Global 1° grid, monthly; catalogue hindcasts 1993–2016, forecasts 2017 onward; actual system coverage must be checked. 2m mean temperature K; precipitation rate m/s | Not acquired; optional. Convert K→°C, rate→monthly mm using exact seconds only after checking product metadata. Store every system/version/member/init/lead | CDS licences, including additional non-European contribution terms; authenticated acquisition approval if needed. Mahmoud; optional outlook |
@@ -96,7 +98,7 @@ The runtime release manifest binds file bytes plus loader, mapping, metric and r
 
 ## 4. Agricultural KB and evidence gaps
 
-`docs/planner/agronomy-kb.v0.1.json` is a **versioned machine-readable planning artifact**, not an approved runtime catalogue. It transcribes the existing ledger into sourced assertions and typed trial templates; no fixture is used as agronomic evidence. Each assertion carries units, evidence status, origin, applicability, source locator, review state and permitted use. Source hashes unavailable in the ledger remain null with reasons. A source statement's historical `verified` label does not approve transfer or activation. Refaat must double-check source extraction; Karim must approve rule effect; Yahya validates schema before promoting it into D8's runtime release.
+`docs/planner/agronomy-kb.v0.1.json` is a **versioned machine-readable planning artifact**, not an approved runtime catalogue. It transcribes the existing ledger into sourced assertions and typed trial templates; no fixture is used as agronomic evidence. Each assertion carries units, evidence status, origin, applicability, source locator, review state and permitted use. Source hashes unavailable in the ledger remain null with reasons. A source statement's historical `verified` label does not approve transfer or activation. Refaat must double-check source extraction; Amr + Astra must approve rule effect; Yahya validates schema before promoting it into D8's runtime release.
 
 Runtime schema: `Crop{id,names,purposes,profiles[]}`; `Profile{id,crop_id,purpose,cultivar,scope,assertion_ids,template_ids,required_topics}`; `Template{id,source_refs,observed_calendar,endpoint_semantics,transfer_policy,unknowns}`; `Rule{id,version,effect,required_for,applicability,assertion_ids,explanation_code}`. Use the existing `Fact` and `SourceRef` semantics; nulls require reasons. Conditions reference registered Python functions, never executable JSON expressions.
 
@@ -117,12 +119,12 @@ The following seven groups are this blueprint's register, **not a claimed transc
 | Gap | Missing evidence | Blocks | Owner / closure criterion |
 |---|---|---|---|
 | G1 | Target-year cultivar identity, local suitability and seed availability | Feasible maize/wheat/sorghum selection | Refaat; applicable dated source plus farmer seed confirmation |
-| G2 | Sowing-dependent harvest/final cut and crop-end mapping, including berseem regrowth | Concrete transferable crop calendar; full replay when endpoints null | Refaat/Karim; scoped source or documented operational plan, no arbitrary duration |
+| G2 | Sowing-dependent harvest/final cut and crop-end mapping, including berseem regrowth | Concrete transferable crop calendar; full replay when endpoints null | Refaat/Amr + Astra; scoped source or documented operational plan, no arbitrary duration |
 | G3 | Removal, access/workability and first free field date | Occupancy pass | Farmer + agronomist; confirmed applicable operational basis |
-| G4 | Transition-specific preparation days/operations for all three transitions | Next sowing pass | Karim; evidence applies to predecessor, equipment and soil condition |
+| G4 | Transition-specific preparation days/operations for all three transitions | Next sowing pass | Amr + Astra; evidence applies to predecessor, equipment and soil condition |
 | G5 | Field salinity method/depth, drainage, water table and relevant soil suitability | Field applicability | Refaat; compatible field data or explicitly unresolved gate |
 | G6 | Irrigation access/timing/restrictions and cultivar management applicability | Supported operational feasibility | Farmer/Refaat; evidence of constraints, not assumed unlimited supply |
-| G7 | Complete four-season intentions, predecessor/successor applicability, hard production quantities | Complete SB-001, succession coverage, feed/grain quantity promises | Amr/Karim; all slots supplied; source-supported checks. Crop presence never proves quantity |
+| G7 | Complete four-season intentions, predecessor/successor applicability, hard production quantities | Complete SB-001, succession coverage, feed/grain quantity promises | Amr/Amr + Astra; all slots supplied; source-supported checks. Crop presence never proves quantity |
 
 Additional optional gaps: Kc/stage inputs block ETc; crop-specific heat-response calibration blocks heat-risk/yield labels; prospective weather vintages and fresh outcomes block operational ML claims; C3S hindcasts/verification block outlook skill. No generic hard rotation prohibition, nitrogen credit or soil improvement magnitude is established by the inspected ledger.
 
@@ -154,7 +156,7 @@ promise_test(confirmed_snapshot, immutable_catalogue):
     keep independent downstream farmer intentions; never silently shift them
     key = canonical facts + evidence semantics + release + input revision
     if exact duplicate: merge choice provenance; continue
-    checks = Karim.evaluate_all(plan, snapshot, catalogue)
+    checks = Amr + Astra.evaluate_all(plan, snapshot, catalogue)
     # all seasons, 3 transitions, every earlier known occupation bound
     status = rejected if applicable hard fail else
              needs_review if mandatory topic missing/unknown else feasible
@@ -304,9 +306,9 @@ This section finalizes code placement, not new product scope. Keep the approved 
 |---|---|---|
 | `packages/meg-core/src/meg_core/contracts/` | Existing Fact, SourceRef, ScenarioSnapshot, SeasonInput, RuleEvaluation, PlanEvaluation, Candidate, PlanningResult and ReplayResult; new DTOs below | Single shared Pydantic definitions, with Yahya reviewing API compatibility; backend `app/schemas/` re-exports these domain types and owns HTTP envelopes |
 | `meg_core/knowledge/load.py` | `load_knowledge(release_dir: Path, expected_release: str) -> KnowledgeBase` | Refaat: explicit file I/O, hashes, source/ID/unit/scope checks; immutable validated result |
-| `meg_core/planner/scope.py` | `prepare_scope(request: ScopeRequest, kb: KnowledgeBase) -> ScopePreview` | Karim: source-driven finite authorized choices and missing paths, pure |
-| `meg_core/planner/generate.py` | `generate(snapshot: ScenarioSnapshot, kb: KnowledgeBase, policy: SearchPolicy) -> GenerationResult` | Karim: bounded enumeration, dependent-date invalidation, deduplication and provenance, pure |
-| `meg_core/planner/constraints.py` | `evaluate(plan: tuple[SeasonInput, ...], snapshot: ScenarioSnapshot, kb: KnowledgeBase) -> PlanEvaluation` | Karim: existing Promise Test registry/date/status semantics, pure |
+| `meg_core/planner/scope.py` | `prepare_scope(request: ScopeRequest, kb: KnowledgeBase) -> ScopePreview` | Amr + Astra: source-driven finite authorized choices and missing paths, pure |
+| `meg_core/planner/generate.py` | `generate(snapshot: ScenarioSnapshot, kb: KnowledgeBase, policy: SearchPolicy) -> GenerationResult` | Amr + Astra: bounded enumeration, dependent-date invalidation, deduplication and provenance, pure |
+| `meg_core/planner/constraints.py` | `evaluate(plan: tuple[SeasonInput, ...], snapshot: ScenarioSnapshot, kb: KnowledgeBase) -> PlanEvaluation` | Amr + Astra: existing Promise Test registry/date/status semantics, pure |
 | `meg_core/planner/service.py` | `plan(snapshot: ScenarioSnapshot, kb: KnowledgeBase, policy: SearchPolicy) -> PlanningResult` | Pure orchestration of current evaluation, generation, candidate evaluation and ordering; no storage/HTTP/climate |
 | `meg_core/climate/load.py` | `load_weather(release_dir: Path, expected_release: str) -> WeatherDataset` | Refaat: frozen-byte validation and typed adapter; no regeneration |
 | `meg_core/climate/mapping.py` | `map_blocks(plans: tuple[ResolvedPlan, ...], weather: WeatherDataset, policy: ReplayPolicy) -> BlockMapping` | Mahmoud: paired anchors, interval and leap semantics, pure |
@@ -345,16 +347,16 @@ Loaders raise typed `ReleaseValidationError` or `KnowledgeValidationError` with 
 |---|---|---|
 | Incomplete facts, ambiguous date/unit | Nulls retain reasons; ambiguous values require correction; no silent defaults | Yahya/Amr |
 | Unsupported crop ID | 422 unresolved ID; catalogue remains extensible | Yahya |
-| Known template mismatch | Exclude with reason; unknown scope remains review | Karim |
-| Invalid same-season calendar | 422 for reversed structural dates; valid outside-preference date is not automatically rejected | Karim/Yahya |
-| Protected cut, crop, purpose | Never mutate locks; sow on/before protected final cut fails | Karim |
-| Missing duration/end/release/preparation | Unknown planning topic; no feasibility, no fabricated replay interval | Karim |
-| Cross-season and nonadjacent overlap | Hard failure even across an unknown middle season; equality at supported ready date passes | Karim |
-| Empty/no candidate | Explain no feasible result in searched scope; distinguish complete exhaustion from evidence/budget truncation | Karim |
+| Known template mismatch | Exclude with reason; unknown scope remains review | Amr + Astra |
+| Invalid same-season calendar | 422 for reversed structural dates; valid outside-preference date is not automatically rejected | Amr + Astra/Yahya |
+| Protected cut, crop, purpose | Never mutate locks; sow on/before protected final cut fails | Amr + Astra |
+| Missing duration/end/release/preparation | Unknown planning topic; no feasibility, no fabricated replay interval | Amr + Astra |
+| Cross-season and nonadjacent overlap | Hard failure even across an unknown middle season; equality at supported ready date passes | Amr + Astra |
+| Empty/no candidate | Explain no feasible result in searched scope; distinguish complete exhaustion from evidence/budget truncation | Amr + Astra |
 | Multiple review candidates | Separate list, stable edit ordering; no approval button or success color | Astra |
-| Non-fixture generation | Vary goals/crops/horizon from KB; adding a reviewed template changes output without code changes or scenario IDs | Karim/Refaat |
-| Unknown required rule topic | Registry coverage prevents vacuous feasible result | Karim |
-| Synthetic all-known positive case | Feasible only in test namespace; never runtime crop evidence | Karim |
+| Non-fixture generation | Vary goals/crops/horizon from KB; adding a reviewed template changes output without code changes or scenario IDs | Amr + Astra/Refaat |
+| Unknown required rule topic | Registry coverage prevents vacuous feasible result | Amr + Astra |
+| Synthetic all-known positive case | Feasible only in test namespace; never runtime crop evidence | Amr + Astra |
 | Missing NASA date/ET0 | Paired block exclusion for all candidates; no zero fill, affected metric unavailable | Mahmoud |
 | Leap and cross-year mapping | Feb-29 exclusions shared; intervening leap day counted; winter continuity retained | Mahmoud |
 | Unequal crop durations | 129 vs 98 days under declared inclusive endpoints; totals and rates visible | Mahmoud/Astra |
@@ -371,7 +373,7 @@ No application acceptance test above has run in this planning task. Existing sci
 
 ## 11. Two-day execution and ownership
 
-Day 1/2 below mean authorized work blocks on November 13/14, subject to D09. Estimates assume six contributors with 6–8 focused hours each day and no major environment failures. Backend availability must be reconciled first; if genuinely starting from placeholders, complete the P0 journey before expanding voice/provider work. Estimates are person-hours, not promises. Owners implement in isolated branches/worktrees; only Yahya edits shared Pydantic contracts and generated API outputs, Karim planner logic, Mahmoud replay, Refaat release data, Astra frontend, Amr experiment/wording. No agents are spawned by this planning task.
+Day 1/2 below mean authorized work blocks on November 13/14, subject to D09. Estimates assume six contributors with 6–8 focused hours each day and no major environment failures. Backend availability must be reconciled first; if genuinely starting from placeholders, complete the P0 journey before expanding voice/provider work. Estimates are person-hours, not promises. Owners implement in isolated branches/worktrees; only Yahya edits shared Pydantic contracts and generated API outputs, Amr + Astra planner logic, Mahmoud replay, Refaat release data, Astra frontend, Amr experiment/wording. No agents are spawned by this planning task.
 
 Each row's acceptance is its Definition of Done; all require reviewed diff, relevant passing checks and an honest status entry.
 
@@ -379,9 +381,9 @@ Each row's acceptance is its Definition of Done; all require reviewed diff, rele
 |---|---|---|---|---|---|
 | Contract reconciliation P0 D1 start | Yahya + Amr | Current branch/proposal crosswalk; approved delta in API/BACKEND docs, source revision recorded | Amr approval; 2 h | No hidden conflict, exact SB-001 and seven gaps known or explicitly blocked; team freezes contract | Keep existing API and omit blocked expansion |
 | A Data P0 D1 | Refaat | Frozen weather release builder, manifest, QC sidecar; `data/release/weather`, `data/validation/release_weather.py` | ZIP present; 3 h | Original hashes/row counts/units; no weights/raw archive committed; loader works offline | Fail weather component explicitly, continue planning |
-| B Crop evidence P0 D1 | Refaat + Karim | Review/promote KB to `data/release/catalogue/{crops,rules,sources,templates}.json` | Reacquire missing pages; 4 h | All four crops; original trial years, scope and unknowns retained; two-person extraction review | Leave assertions inactive; empty/review search with named gaps |
-| D Promise Test P0 D1 | Karim | `planner/dates.py`, rules, evaluate/status; UH golden test | Schemas/KB; 5 h | UH expected statuses and locks exact; negative/unknown/coverage tests | Restrict checked rules transparently; no feasibility claims |
-| C Candidate generator P0 D1–D2 | Karim | `planner/generate.py`, `enumerate.py`, scope builder tests | Rules/templates; 5 h | Generates from KB for non-fixture inputs, 256 cap, endpoint invalidation, stable order | Return supported investigations only; no fabricated full plan |
+| B Crop evidence P0 D1 | Refaat + Amr + Astra | Review/promote KB to `data/release/catalogue/{crops,rules,sources,templates}.json` | Reacquire missing pages; 4 h | All four crops; original trial years, scope and unknowns retained; two-person extraction review | Leave assertions inactive; empty/review search with named gaps |
+| D Promise Test P0 D1 | Amr + Astra | `planner/dates.py`, rules, evaluate/status; UH golden test | Schemas/KB; 5 h | UH expected statuses and locks exact; negative/unknown/coverage tests | Restrict checked rules transparently; no feasibility claims |
+| C Candidate generator P0 D1–D2 | Amr + Astra | `planner/generate.py`, `enumerate.py`, scope builder tests | Rules/templates; 5 h | Generates from KB for non-fixture inputs, 256 cap, endpoint invalidation, stable order | Return supported investigations only; no fabricated full plan |
 | I API/storage P0 D1 | Yahya | Approved schemas, core loader, SQLite/store, catalogue/scenario/planning routers, OpenAPI/TS export | Reconciliation; 6 h | Real create→evaluate→retrieve, stale revisions 409, hash failures explicit | Controlled local prototype, no remote real data |
 | E Historical P0 D1–D2 | Mahmoud | `replay/mapping.py`, `metrics.py`, unit fixtures and scientific report | Frozen release/plan models; 5 h | Common blocks, duration/units, missing/leap/symmetry checks; no water claims | Unavailable affected metrics, retain period-only diagnostics |
 | I Replay/card integration P0 D2 morning | Yahya | `services/{replay,evidence}_service.py`, routers and card persistence | E + planner + schemas; 4 h | Real replay refs, immutable review save/reload, currentness | Save draft without replay with explicit reason |
@@ -419,4 +421,4 @@ Offline: with local backend and frozen release, planning, historical replay and 
 
 **Single recommendation:** approve the deterministic KB-driven planner + unchanged Promise Test + paired frozen-POWER replay architecture, with a conditional Ridge research experiment and no new LoRA/C3S/AquaCrop runtime integration.
 
-**Exact next actions:** (1) Amr reviews D01–D10 and §9.1; (2) implement the shared contracts and standalone loaders; (3) Karim builds constraints/generation, Mahmoud climate evaluation and Amr baseline/split preparation against Refaat's releases; (4) integrate the standalone plan/replay demonstration; (5) run the authorized bounded ML experiment if time remains; (6) Yahya and Astra integrate HTTP, React and saved cards through the documented adapters. Obtain the missing proposal/full SB-001 independently; do not wait for backend implementation. Stop here before implementation.
+**Exact next actions:** (1) Amr reviews D01–D10 and §9.1; (2) implement the shared contracts and standalone loaders; (3) Amr + Astra builds constraints/generation, Mahmoud climate evaluation and Amr baseline/split preparation against Refaat's releases; (4) integrate the standalone plan/replay demonstration; (5) run the authorized bounded ML experiment if time remains; (6) Yahya and Astra integrate HTTP, React and saved cards through the documented adapters. Obtain the missing proposal/full SB-001 independently; do not wait for backend implementation. Stop here before implementation.
