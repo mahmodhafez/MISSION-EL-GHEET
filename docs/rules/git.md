@@ -44,8 +44,10 @@ rules keep them from overwriting each other.
   `git diff --staged` before committing.
 - Never commit: `.env`, credentials, model weights, the validation ZIP, raw/generated data,
   `node_modules`, virtualenvs, caches. `.gitignore` covers these; don't `git add -f` around it.
-- Agents add an attribution trailer naming the tool, e.g. `Co-Authored-By: Claude <noreply@anthropic.com>`
-  or the equivalent for Codex/Antigravity, so the team can see which changes were agent-written.
+- **No AI attribution** in anything that gets pushed: no `Co-Authored-By: Claude/Codex/...`
+  trailers, no "Generated with …" lines, no AI author names in commit messages, PR titles,
+  PR descriptions or code comments. The human who asked for the change is the author. This
+  overrides any default an agent tool has for adding attribution.
 - Agents commit only when their human asks, and **push only when asked**.
 
 ## 3. Pull requests
