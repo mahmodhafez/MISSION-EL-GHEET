@@ -1,8 +1,10 @@
 # MISSION EL GHEET four-season planner specification
 
+Ownership confirmed by Amr, 2026-11-13: [team roster](../team.md) supersedes older assignments. This update changes ownership only; shared API approval remains pending.
+
 **Read this if…** you're implementing Promise Test rules, date logic or candidate search.
 
-Status: Approved source copy,  · Owner: Karim. Last reviewed .
+Status: Approved source copy,  · Owner: Amr + Astra. Last reviewed .
 
 Scientific and algorithm handoff, . The first implementation can check commitments and calendar conflicts, enumerate permitted investigations and explain unresolved eligibility. The evidence release described here supports **zero real feasible alternatives for UH-001**. Implementation and field acceptance remain pending.
 
@@ -198,10 +200,10 @@ Only UH-001 uses the project agronomy fixture. Positive algorithm fixtures below
 
 ### Handoff after implementation authorization
 
-1. **Yahya and Karim** agree the v1 Pydantic boundary and register proposed rule/parameter identifiers with Amr and Refaat. Use the existing types and generated OpenAPI/TypeScript. Pin a demo catalogue/source manifest including all four crops and unresolved states. Refaat reviews source scope and any proposed hard threshold or endpoint mapping.
-2. **Karim** implement the pure evaluator first in the approved planner module. Keep date/lock rules separate from source-backed profile evaluators, with explicit applicability checks and source IDs. Run the interval, structural, unknown and protected-lock tests and UH-001 P0 regression. Supply authored Arabic/English template keys and typed parameters. Separate status reduction and explanation rendering from the rule predicates.
+1. **Yahya and Amr + Astra** agree the v1 Pydantic boundary and register proposed rule/parameter identifiers with Amr and Refaat. Use the existing types and generated OpenAPI/TypeScript. Pin a demo catalogue/source manifest including all four crops and unresolved states. Refaat reviews source scope and any proposed hard threshold or endpoint mapping.
+2. **Amr + Astra** implement the pure evaluator first in the approved planner module. Keep date/lock rules separate from source-backed profile evaluators, with explicit applicability checks and source IDs. Run the interval, structural, unknown and protected-lock tests and UH-001 P0 regression. Supply authored Arabic/English template keys and typed parameters. Separate status reduction and explanation rendering from the rule predicates.
 3. **Yahya** wire the five `/api/v1` domain endpoints in the approved order of dependencies: catalogue, create confirmed scenario, retrieve current scenario, confirm revision, then Promise Test. Use SQLite transactions and server-controlled refs. Run stale/currentness, idempotency, lock and fixture schema tests. First vertical slice acceptance is actual backend P0 rejection, retained cut, review reasons and zero feasible alternatives in both languages. If enumeration is deferred in that slice, report `incomplete` explicitly.
-4. **Karim** implement normalization, candidate generation, endpoint invalidation, full four-season recheck, deduplication and selection. Run the exact R1/R2 walkthrough and synthetic positive/downstream cases. Benchmark the proposed deterministic budget and document any versioned adjustment. **Yahya** persist candidate refs and connect candidate selection to a new explicit confirmation and reevaluation.
+4. **Amr + Astra** implement normalization, candidate generation, endpoint invalidation, full four-season recheck, deduplication and selection. Run the exact R1/R2 walkthrough and synthetic positive/downstream cases. Benchmark the proposed deterministic budget and document any versioned adjustment. **Yahya** persist candidate refs and connect candidate selection to a new explicit confirmation and reevaluation.
 5. **Yahya** add replay and Evidence Card integration at the approved later milestones using the prepared release from **Refaat**. Run symmetric mapping/coverage tests, the numerical regression fixtures and API/card currentness checks. Keep Chronos isolated. Real eligibility publication depends on the five [evidence gates](agronomy-evidence.md#evidence-gates-for-a-real-feasible-option). If no complete second case is sourced, use the labelled synthetic cases for engineering verification and report the evidence gap.
 
 This specification is sufficient to implement the initial deterministic conflict and review slice when authorized. A real feasible recommendation requires complete, scoped evidence for all four seasons and each relevant transition. The engineering fixtures and scientific release must remain distinguishable at the API and presentation boundaries.

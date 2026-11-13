@@ -2,7 +2,7 @@
 
 **Read this if…** you're asking "does the Promise Test / candidate search exist?"
 
-**As of **, last commit `0122e92`. Owner: **disputed**, see Q1 in the [overview](README.md). If this is far behind `git log`, trust git.
+**As of 2026-11-13**, inspected base `70891af`. Owner(s): Amr + Astra. Implementation pending unless explicitly verified below.
 
 ---
 
@@ -19,8 +19,7 @@ Implementation order from [blueprint §9.1](../planner/blueprint.md):
 
 ## In flight
 
-Unknown. Docs say Amr/"Astra" may have a planner package on a separate branch or machine. **Not
-visible in this repo.** Find out before starting so it isn't built twice.
+Assigned to Amr + Astra; implementation pending. No planner package was found on any fetched remote branch during recovery. Coordinate unpublished local work before creating overlapping files.
 
 ## Built and verified
 
@@ -36,3 +35,5 @@ Nothing in this repo.
 
 - SB-001 full definition and `CLIMATE_AWARE_PLANNER.md` are missing from the repo.
 - No second evidence-backed scenario with a feasible alternative exists yet (research goal).
+
+Confirmed assignment update, 2026-11-13: [team roster](../team.md) governs current ownership. FastAPI and Fieldlight Hybrid are chosen; shared API approval is pending. No trained forecast is required for P0. Recovered NASA/climatology subset is local and Git-ignored; Phase 3 frontend assets await safe transfer.

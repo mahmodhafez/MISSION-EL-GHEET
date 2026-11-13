@@ -4,7 +4,7 @@
 
 Status: Proposed  · Owner: Yahya. Last reviewed .
 
-Preserves [API §0](api-contracts.md) and [backend design](backend-design.md) D1–D8. Available code and proposed adapters are listed separately below. The `meg_core` planner package is not in this repo yet, so no integration has been tested. Planner ownership is open (status Q1).
+Preserves [API §0](api-contracts.md) and [backend design](backend-design.md) D1–D8. Available code and proposed adapters are listed separately below. The `meg_core` planner package is not in this repo yet, so no integration has been tested. Planner ownership is confirmed as Amr + Astra (2026-11-13; see docs/team.md).
 
 ## 1. Packages and exact call boundaries
 
@@ -14,9 +14,9 @@ Preserves [API §0](api-contracts.md) and [backend design](backend-design.md) D1
 | Existing data/scoring | `from climate_data.evaluation import load_diagnostic_data, seasonal_predictions, score_predictions`; `load_diagnostic_data(path)->DiagnosticData`; `.contexts()->Iterator[(ForecastWindow,tuple[DailyTarget,...])]`; `score_predictions(ds,forecasts)->(list[dict],dict)` | Tested research interface; backend must not score requests against future truth |
 | Shared core types | `meg_core.contracts`: ScenarioSnapshot,SearchPolicy,PlanningResult,ResolvedPlan,ReplayPolicy,ReplayResult,KnowledgeBase,WeatherDataset | Blueprint/Astra implementation target; obtain exact exported schema from that workstream |
 | Knowledge/weather | `meg_core.knowledge.load.load_knowledge(release_dir: Path, expected_release: str)->KnowledgeBase`; `meg_core.climate.load.load_weather(release_dir: Path, expected_release: str)->WeatherDataset` | Core targets, Refaat data compatible; do not duplicate loaders in backend |
-| Planner | `meg_core.planner.service.plan(snapshot: ScenarioSnapshot,kb: KnowledgeBase,policy: SearchPolicy)->PlanningResult` | Astra/Karim target; pure, deterministic, no ML dependency |
+| Planner | `meg_core.planner.service.plan(snapshot: ScenarioSnapshot,kb: KnowledgeBase,policy: SearchPolicy)->PlanningResult` | Amr + Astra target; pure, deterministic, no ML dependency |
 | Historical | `meg_core.climate.evaluate.evaluate_history(plans: tuple[ResolvedPlan,...],weather: WeatherDataset,policy: ReplayPolicy)->ReplayResult` | Core target; pure, no forecast dependency |
-| Optional ML | `meg_ml.baselines.predict_persistence(context,window)->list[Prediction]`; `meg_ml.ridge.predict_ridge(artifact,context,window)->list[Prediction]` | Mahmoud research targets, CPU only; Ridge not published to daily API without quantile contract |
+| Optional ML | `meg_ml.baselines.predict_persistence(context,window)->list[Prediction]`; `meg_ml.ridge.predict_ridge(artifact,context,window)->list[Prediction]` | Refaat / Ahmed optional research targets, CPU only; Ridge not published to daily API without quantile contract |
 | Bundle publishing | `meg_ml.publish.publish_daily_bundle(bundle: ForecastBundle,output: Path)->Path` | Amr target; schema-validated atomic output, research notebooks unnecessary |
 | Backend consumption | `app.forecast.bundle.load_bundle(path: Path)->ForecastBundle\|BundleUnavailable`; `app.forecast.service.assess_forecast(request: ForecastAssessmentRequest,bundle: ForecastBundle\|BundleUnavailable)->ForecastAssessment` | Proposed callable names for Yahya's already approved modules; thin adapters, no new HTTP endpoint |
 

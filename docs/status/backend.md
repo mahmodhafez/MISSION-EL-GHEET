@@ -2,7 +2,7 @@
 
 **Read this if…** you're asking "is the API built? what's next on the backend?"
 
-**As of **, last commit `0122e92`. Owner: Yahya. If this is far behind `git log`, trust git.
+**As of 2026-11-13**, inspected base `70891af`. Owner(s): Yahya. Implementation pending unless explicitly verified below.
 
 ---
 
@@ -10,7 +10,7 @@
 
 | # | Task | Notes |
 |---|---|---|
-| 0 | Get [ML contract](../backend/ml-contract.md) reviewed by Amr/Refaat/Mahmoud; deliver `contracts/forecast_bundle.v1.schema.json` + examples | Unblocks the ML team |
+| 0 | Get [ML contract](../backend/ml-contract.md) reviewed by Amr/Refaat/Mahmoud; deliver `contracts/forecast_bundle.v1.schema.json` + examples | Optional forecast follow-up; must not block P0 planner/history |
 | 1 | Reconcile [backend design](../backend/backend-design.md) with `meg_core` ([blueprint §9.1](../planner/blueprint.md)) | Backend becomes thin adapters around `meg_core` planner/climate. Resolve Q3, Q4 in [overview](README.md). |
 | 2 | Fold API §0 into the body of [api-contracts.md](../backend/api-contracts.md) | Remove superseded `plan_version`, idempotency, sessions, old endpoint names. Q6. |
 | 3 | Skeleton: `pyproject` (uv), `core/`, `schemas/`, SQLite store, `/health`, `/catalogue`, OpenAPI export → TS types | Backend design §12 step 1 |
@@ -39,3 +39,5 @@ Nothing. `backend/app/*` and `backend/tests/` contain only `.gitkeep`.
 ## Open questions
 
 See Q3, Q4, Q6, Q11 in the [overview](README.md).
+
+Confirmed assignment update, 2026-11-13: [team roster](../team.md) governs current ownership. FastAPI and Fieldlight Hybrid are chosen; shared API approval is pending. No trained forecast is required for P0. Recovered NASA/climatology subset is local and Git-ignored; Phase 3 frontend assets await safe transfer.

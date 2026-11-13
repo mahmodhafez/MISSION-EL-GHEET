@@ -86,3 +86,5 @@ Older originals: branch `handoff/full-project-precleanup-` and `archive-snapshot
 
 Docs moved on . If a script or an old note uses a former path, see
 [archive/path-map-.txt](archive/path-map-.txt).
+
+- [13 November recovery and contract review](reports/2026-11-13-recovery.md): verified local subset, remaining contract decisions and implementation boundaries.

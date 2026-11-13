@@ -2,7 +2,7 @@
 
 **Read this if…** you're asking "is the React app built? what screens exist?"
 
-**As of **, last commit `0122e92`. Owner: Amr (Yahya also building). If this is far behind `git log`, trust git.
+**As of 2026-11-13**, inspected base `70891af`. Owner(s): Yahya (implementation), Amr (final polish). Implementation pending unless explicitly verified below.
 
 ---
 
@@ -36,3 +36,5 @@ These are minimal-DOM checks only. **No real browser, screen-reader, speech or f
 ## Open questions
 
 Q1, Q7, Q8, Q10 in the [overview](README.md).
+
+Confirmed assignment update, 2026-11-13: [team roster](../team.md) governs current ownership. FastAPI and Fieldlight Hybrid are chosen; shared API approval is pending. No trained forecast is required for P0. Recovered NASA/climatology subset is local and Git-ignored; Phase 3 frontend assets await safe transfer.
