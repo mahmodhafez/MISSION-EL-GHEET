@@ -1,0 +1,1243 @@
+{
+  "_note": "UH-001 reference (illustrative, docs/product/reference-scenario.md). The two S2 sowing dates are the documented farmer investigations, supplied as exploration input. Expect: current REJECTED (sowing_before_protected_cut), two NEEDS_REVIEW investigations, ZERO feasible. Not runtime agronomy.",
+  "confirm_exploration": true,
+  "policy": {
+    "raw_budget": 256
+  },
+  "exploration": {
+    "choices": [
+      {
+        "type": "ExplorationChoice",
+        "choice_id": "dates",
+        "season_id": "s2",
+        "field": "sowing_date",
+        "allowed_values": [
+          "2027-05-28",
+          "2027-06-01"
+        ]
+      },
+      {
+        "type": "ExplorationChoice",
+        "choice_id": "s4-maize",
+        "season_id": "s4",
+        "field": "crop_id",
+        "allowed_values": [
+          "grain_maize"
+        ]
+      }
+    ],
+    "catalogue_choices": []
+  },
+  "snapshot": {
+    "input": {
+      "seasons": [
+        {
+          "season_id": "s1",
+          "order": 1,
+          "season_label": "winter-2026",
+          "crop_id": {
+            "value": "berseem",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "purpose": {
+            "value": "forage",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "profile_id": {
+            "value": "reference-berseem",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "sowing_date": {
+            "value": null,
+            "unknown_reason": "blank_in_recovered_reference",
+            "origin": "unknown",
+            "evidence_status": "open",
+            "confirmation_status": "confirmed_unknown",
+            "unit": null,
+            "source_refs": [],
+            "method": null
+          },
+          "harvest_or_cut_date": {
+            "value": "2027-05-20",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "crop_end_exclusive": {
+            "value": "2027-05-21",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "release_date": {
+            "value": "2027-05-21",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "preparation_days_after_release": {
+            "value": 7,
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": "day",
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "season_id": "s2",
+          "order": 2,
+          "season_label": "summer-2027",
+          "crop_id": {
+            "value": "grain_maize",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "purpose": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "profile_id": {
+            "value": "reference-grain_maize",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "sowing_date": {
+            "value": "2027-05-15",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "harvest_or_cut_date": {
+            "value": "2027-09-20",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "crop_end_exclusive": {
+            "value": "2027-09-21",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "release_date": {
+            "value": "2027-09-21",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "preparation_days_after_release": {
+            "value": 7,
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": "day",
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "season_id": "s3",
+          "order": 3,
+          "season_label": "winter-2027",
+          "crop_id": {
+            "value": "wheat",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "purpose": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "profile_id": {
+            "value": "reference-wheat",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "sowing_date": {
+            "value": "2027-11-20",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "harvest_or_cut_date": {
+            "value": "2028-04-25",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "crop_end_exclusive": {
+            "value": "2028-04-26",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "release_date": {
+            "value": "2028-04-26",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "preparation_days_after_release": {
+            "value": 7,
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": "day",
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "season_id": "s4",
+          "order": 4,
+          "season_label": "summer-2028",
+          "crop_id": {
+            "value": "grain_sorghum",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "purpose": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "profile_id": {
+            "value": "reference-grain_sorghum",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "sowing_date": {
+            "value": "2028-06-01",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "harvest_or_cut_date": {
+            "value": "2028-09-21",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "crop_end_exclusive": {
+            "value": "2028-09-22",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "release_date": {
+            "value": "2028-09-22",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          },
+          "preparation_days_after_release": {
+            "value": null,
+            "unknown_reason": "not_established",
+            "origin": "unknown",
+            "evidence_status": "open",
+            "confirmation_status": "confirmed_unknown",
+            "unit": "day",
+            "source_refs": [],
+            "method": null
+          }
+        }
+      ],
+      "site_id": "sakha",
+      "field_id": "one-field",
+      "commitments": [
+        {
+          "commitment_id": "cut",
+          "season_id": "s1",
+          "kind": "harvest_or_cut_date",
+          "protected_value": {
+            "value": "2027-05-20",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "commitment_id": "occupation",
+          "season_id": "s1",
+          "kind": "occupation_through",
+          "protected_value": {
+            "value": "2027-05-20",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "commitment_id": "maize",
+          "season_id": "s2",
+          "kind": "crop",
+          "protected_value": {
+            "value": "grain_maize",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "commitment_id": "maize-purpose",
+          "season_id": "s2",
+          "kind": "purpose",
+          "protected_value": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "commitment_id": "wheat",
+          "season_id": "s3",
+          "kind": "crop",
+          "protected_value": {
+            "value": "wheat",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "commitment_id": "wheat-purpose",
+          "season_id": "s3",
+          "kind": "purpose",
+          "protected_value": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "illustrative",
+            "evidence_status": "proposed",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "UH-001-v1",
+                "locator": "sections 2-3"
+              }
+            ],
+            "method": null
+          }
+        }
+      ],
+      "field_facts": [],
+      "production_requirements": [
+        {
+          "requirement_id": "feed",
+          "season_ids": [
+            "s1"
+          ],
+          "quantity": {
+            "value": null,
+            "unknown_reason": "not_established",
+            "origin": "unknown",
+            "evidence_status": "open",
+            "confirmation_status": "confirmed_unknown",
+            "unit": "kg",
+            "source_refs": [],
+            "method": null
+          },
+          "hard": false
+        }
+      ],
+      "journey": "check",
+      "exploration": [],
+      "exploration_confirmed": false,
+      "scope_hash": null,
+      "priority_order": [
+        "minimize_changes"
+      ],
+      "independent_facts": [
+        {
+          "season_id": "s1",
+          "field": "preparation_days_after_release",
+          "depends_on": [
+            "crop_id",
+            "profile_id",
+            "next.crop_id",
+            "next.profile_id"
+          ]
+        },
+        {
+          "season_id": "s2",
+          "field": "preparation_days_after_release",
+          "depends_on": [
+            "crop_id",
+            "profile_id",
+            "next.crop_id",
+            "next.profile_id"
+          ]
+        },
+        {
+          "season_id": "s3",
+          "field": "preparation_days_after_release",
+          "depends_on": [
+            "crop_id",
+            "profile_id",
+            "next.crop_id",
+            "next.profile_id"
+          ]
+        }
+      ],
+      "authorized_template_ids": [],
+      "hypothetical_template_ids": [],
+      "pending_scope_issues": []
+    },
+    "data_release": "UH-001-fixture-not-runtime"
+  },
+  "kb": {
+    "data_release": "UH-001-fixture-not-runtime",
+    "profiles": [
+      {
+        "profile_id": "reference-berseem",
+        "crop_id": "berseem",
+        "purpose": "forage",
+        "source_refs": [],
+        "evidence_status": "open"
+      },
+      {
+        "profile_id": "reference-grain_maize",
+        "crop_id": "grain_maize",
+        "purpose": "grain",
+        "source_refs": [],
+        "evidence_status": "open"
+      },
+      {
+        "profile_id": "reference-wheat",
+        "crop_id": "wheat",
+        "purpose": "grain",
+        "source_refs": [],
+        "evidence_status": "open"
+      },
+      {
+        "profile_id": "reference-grain_sorghum",
+        "crop_id": "grain_sorghum",
+        "purpose": "grain",
+        "source_refs": [],
+        "evidence_status": "open"
+      }
+    ],
+    "rules": [
+      {
+        "type": "FactRule",
+        "rule_id": "reference-berseem-soil-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-berseem",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.soil",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "soil_suitability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-berseem-drainage-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-berseem",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.drainage",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "soil_suitability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-berseem-cultivar-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-berseem",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.cultivar",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "cultivar_availability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-berseem-irrigation-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-berseem",
+        "topic": "irrigation_constraints",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.irrigation",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "irrigation_availability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-berseem-stages-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-berseem",
+        "topic": "demand",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "etc",
+        "applicability": [],
+        "path": "field.stages",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "crop_stages_unavailable"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_maize-soil-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_maize",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.soil",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "soil_suitability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_maize-drainage-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_maize",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.drainage",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "soil_suitability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_maize-cultivar-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_maize",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.cultivar",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "cultivar_availability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_maize-irrigation-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_maize",
+        "topic": "irrigation_constraints",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.irrigation",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "irrigation_availability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_maize-stages-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_maize",
+        "topic": "demand",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "etc",
+        "applicability": [],
+        "path": "field.stages",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "crop_stages_unavailable"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-wheat-soil-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-wheat",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.soil",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "soil_suitability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-wheat-drainage-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-wheat",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.drainage",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "soil_suitability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-wheat-cultivar-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-wheat",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.cultivar",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "cultivar_availability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-wheat-irrigation-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-wheat",
+        "topic": "irrigation_constraints",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.irrigation",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "irrigation_availability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-wheat-stages-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-wheat",
+        "topic": "demand",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "etc",
+        "applicability": [],
+        "path": "field.stages",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "crop_stages_unavailable"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_sorghum-soil-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_sorghum",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.soil",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "soil_suitability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_sorghum-drainage-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_sorghum",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.drainage",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "soil_suitability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_sorghum-cultivar-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_sorghum",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.cultivar",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "cultivar_availability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_sorghum-irrigation-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_sorghum",
+        "topic": "irrigation_constraints",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.irrigation",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "irrigation_availability_unknown"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "reference-grain_sorghum-stages-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_sorghum",
+        "topic": "demand",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "etc",
+        "applicability": [],
+        "path": "field.stages",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "crop_stages_unavailable"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "sorghum-eligibility-open",
+        "rule_version": "reference-v1",
+        "profile_id": "reference-grain_sorghum",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "UH-001-v1",
+            "locator": "sections 2-3"
+          }
+        ],
+        "evidence_status": "open",
+        "effect": "review",
+        "required_for": "planning",
+        "applicability": [],
+        "path": "field.sorghum_eligibility",
+        "expected": "supported",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "sorghum_local_eligibility_open"
+      }
+    ],
+    "required_planning_topics": [
+      "identity_purpose",
+      "local_cultivar_field_fit",
+      "sowing_support",
+      "harvest_crop_end_release",
+      "transition_preparation",
+      "irrigation_constraints",
+      "protected_commitments",
+      "hard_production_requirements_if_present"
+    ],
+    "templates": []
+  }
+}

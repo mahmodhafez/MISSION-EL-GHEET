@@ -133,7 +133,7 @@ def seasons(plan, path, profiles):
     require(all(b == a + 1 for a, b in zip(slots, slots[1:])), "nonconsecutive_seasons", path)
 
 
-def validate(plan, snapshot, kb):
+def validate(plan, snapshot, kb, *, check_confirmation=True):
     require(isinstance(snapshot, ScenarioSnapshot), "snapshot_required", "snapshot")
     require(isinstance(snapshot.input, ScenarioInput), "scenario_input_required", "snapshot.input")
     require(isinstance(kb, KnowledgeBase), "knowledge_base_required", "kb")
@@ -149,9 +149,10 @@ def validate(plan, snapshot, kb):
     require(len(profiles) == len(kb.profiles), "duplicate_profile_id", "kb.profiles")
     seasons(plan, "plan", profiles)
     seasons(snapshot.input.seasons, "snapshot.input.seasons", profiles)
-    for season in snapshot.input.seasons:
-        for name in FACT_FIELDS:
-            confirmed(getattr(season, name), f"snapshot.input.seasons.{season.season_id}.{name}")
+    if check_confirmation:
+        for season in snapshot.input.seasons:
+            for name in FACT_FIELDS:
+                confirmed(getattr(season, name), f"snapshot.input.seasons.{season.season_id}.{name}")
     require(tuple((s.season_id, s.season_label) for s in plan) ==
             tuple((s.season_id, s.season_label) for s in snapshot.input.seasons),
             "snapshot_slot_mismatch", "plan")
@@ -164,7 +165,8 @@ def validate(plan, snapshot, kb):
         key, value = entry
         text(key, "snapshot.input.field_facts")
         fact(value, "snapshot.input." + key)
-        confirmed(value, "snapshot.input." + key)
+        if check_confirmation:
+            confirmed(value, "snapshot.input." + key)
     require(len(dict(fields)) == len(fields), "duplicate_field", "snapshot.input.field_facts")
     ids = {s.season_id for s in plan}
     commitments = snapshot.input.commitments
@@ -178,7 +180,8 @@ def validate(plan, snapshot, kb):
         fact(c.protected_value, "snapshot.input.commitments." + c.commitment_id)
         text(c.protected_value.value, "snapshot.input.commitments." + c.commitment_id)
         require(c.protected_value.unit is None, "invalid_unit", c.commitment_id)
-        require(c.protected_value.confirmation_status == "confirmed", "unconfirmed_commitment", c.commitment_id)
+        if check_confirmation:
+            require(c.protected_value.confirmation_status == "confirmed", "unconfirmed_commitment", c.commitment_id)
         if c.kind in ("occupation_through", "harvest_or_cut_date"):
             try:
                 parsed = date.fromisoformat(c.protected_value.value)
@@ -197,7 +200,8 @@ def validate(plan, snapshot, kb):
         require(type(req.hard) is bool and bool(req.season_ids) and set(req.season_ids) <= ids and
                 len(set(req.season_ids)) == len(req.season_ids), "invalid_requirement", req.requirement_id)
         fact(req.quantity, req.requirement_id + ".quantity")
-        confirmed(req.quantity, req.requirement_id + ".quantity")
+        if check_confirmation:
+            confirmed(req.quantity, req.requirement_id + ".quantity")
         text(req.quantity.unit, req.requirement_id + ".quantity.unit")
         require(req.quantity.value is None or (type(req.quantity.value) in (int, float) and req.quantity.value > 0),
                 "positive_quantity_required", req.requirement_id)

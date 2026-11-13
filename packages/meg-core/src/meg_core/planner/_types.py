@@ -5,6 +5,8 @@ Refaat's loader supplies reviewed, scoped rule data; this module performs no I/O
 Only explicit Python predicates are supported, never expressions from a release.
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import date
 from types import MappingProxyType
@@ -83,6 +85,15 @@ class ScenarioInput:
     # irrigation, cultivar and management facts; no forecast slot exists.
     field_facts: tuple[tuple[str, Fact], ...] = ()
     production_requirements: tuple[ProductionRequirement, ...] = ()
+    journey: Literal["check", "explore"] = "check"
+    exploration: tuple[ExplorationChoice | DateRangeChoice, ...] = ()
+    exploration_confirmed: bool = False
+    scope_hash: str | None = None
+    priority_order: tuple[str, ...] = ("minimize_changes",)
+    independent_facts: tuple[IndependentFact, ...] = ()
+    authorized_template_ids: tuple[str, ...] = ()
+    hypothetical_template_ids: tuple[str, ...] = ()
+    pending_scope_issues: tuple[ScopeIssue, ...] = ()
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -96,6 +107,8 @@ class Profile:
     profile_id: str
     crop_id: str
     purpose: str
+    source_refs: tuple[SourceRef, ...] = ()
+    evidence_status: Literal["verified", "proposed", "open"] = "open"
 
 
 @dataclass(frozen=True)
@@ -169,6 +182,7 @@ class KnowledgeBase:
     profiles: tuple[Profile, ...] = ()
     rules: tuple[Rule, ...] = ()
     required_planning_topics: tuple[str, ...] = MANDATORY_TOPICS
+    templates: tuple[PlantingTemplate, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -203,3 +217,153 @@ class PlanEvaluation:
     # The server must bind the actual current/candidate ref. Do not attach a
     # baseline's identity to a candidate or fabricate server IDs in pure code.
     plan_ref: None = field(default=None, init=False)
+
+
+# Milestone 2 private views: no public Pydantic/HTTP contract is defined here.
+@dataclass(frozen=True)
+class ExplorationChoice:
+    choice_id: str
+    season_id: str
+    field: Literal["crop_id", "profile_id", "sowing_date"]
+    allowed_values: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class DateRangeChoice:
+    """Explicit farmer-authorized inclusive range, traversed lazily."""
+    choice_id: str
+    season_id: str
+    start: date
+    end: date
+    step_days: int = 1
+    field: Literal["sowing_date"] = field(default="sowing_date", init=False)
+
+
+@dataclass(frozen=True)
+class IndependentFact:
+    season_id: str
+    field: str
+    # Adapter-confirmed independence within this scope, subject to these inputs
+    # remaining unchanged. next.* names refer to the outgoing transition.
+    depends_on: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, kw_only=True)
+class PlantingTemplate:
+    template_id: str
+    profile_id: str
+    season_label: str
+    sowing_date: date
+    source_refs: tuple[SourceRef, ...]
+    harvest_or_cut_date: date | None = None
+    crop_end_exclusive: date | None = None
+    release_date: date | None = None
+    template_version: str = "1"
+    runtime_status: Literal["review", "approved", "disabled"] = "review"
+    applicability: tuple[Condition, ...] = ()
+
+
+@dataclass(frozen=True)
+class CatalogueChoice:
+    choice_id: str
+    season_id: str
+    field: Literal["crop_id", "profile_id", "sowing_date"]
+    allowed_crop_ids: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class ScopeIssue:
+    code: str
+    choice_ids: tuple[str, ...]
+    season_ids: tuple[str, ...]
+    missing_input_paths: tuple[str, ...] = ()
+    source_refs: tuple[SourceRef, ...] = ()
+    kind: Literal["blocked", "excluded"] = "blocked"
+
+
+@dataclass(frozen=True, kw_only=True)
+class ScopeRequest:
+    snapshot: ScenarioSnapshot
+    choices: tuple[ExplorationChoice | DateRangeChoice, ...] | None = None
+    catalogue_choices: tuple[CatalogueChoice, ...] = ()
+
+
+@dataclass(frozen=True)
+class ScopePreview:
+    data_release: str
+    scope_hash: str
+    choices: tuple[ExplorationChoice | DateRangeChoice, ...]
+    available_crop_ids: tuple[str, ...]
+    protected_commitments: tuple[Commitment, ...]
+    missing_input_paths: tuple[str, ...]
+    issues: tuple[ScopeIssue, ...]
+
+
+@dataclass(frozen=True, kw_only=True)
+class SearchPolicy:
+    raw_budget: int = 256
+    ordering_version: str = "minimal-edits-v1-proposed"
+    max_choice_records: int = 32
+    max_values_per_choice: int = 32
+
+
+@dataclass(frozen=True)
+class Change:
+    season_id: str
+    field: str
+    before: Fact
+    after: Fact
+    direct: bool
+
+
+@dataclass(frozen=True)
+class Candidate:
+    candidate_id: str
+    kind: Literal["timing_variant", "crop_change", "combined"]
+    plan: tuple[SeasonInput, ...]
+    changes: tuple[Change, ...]
+    evaluation: PlanEvaluation
+    choice_ids: tuple[str, ...]
+    direct_season_ids: tuple[str, ...]
+    template_ids: tuple[str, ...]
+    source_refs: tuple[SourceRef, ...]
+    tradeoffs: tuple[Explanation, ...] = ()
+
+
+@dataclass(frozen=True)
+class SearchSummary:
+    status: Literal["complete", "incomplete"]
+    raw_count: int
+    materialized_count: int
+    evaluated_count: int
+    rejected_count: int
+    needs_review_count: int
+    feasible_count: int
+    duplicate_count: int
+    excluded_count: int
+    blocked_count: int
+    scope_choice_ids: tuple[str, ...]
+    uninstantiated_choice_ids: tuple[str, ...]
+    limit_reason: str | None
+    policy_version: str
+    policy_approval: str = "pending_team_review"
+
+
+@dataclass(frozen=True)
+class GenerationResult:
+    candidates: tuple[Candidate, ...]
+    search: SearchSummary
+    exclusions: tuple[ScopeIssue, ...]
+    scope: ScopePreview
+
+
+@dataclass(frozen=True)
+class PlanningResult:
+    current: PlanEvaluation
+    feasible_alternatives: tuple[Candidate, ...]
+    review_investigations: tuple[Candidate, ...]
+    rejected_candidates: tuple[Candidate, ...]
+    search: SearchSummary
+    exclusions: tuple[ScopeIssue, ...]
+    scope: ScopePreview
+    data_release: str

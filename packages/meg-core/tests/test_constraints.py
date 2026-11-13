@@ -333,13 +333,18 @@ class PromiseTest(unittest.TestCase):
 
     def test_forecast_independence_structural_no_integration_claim(self):
         root = Path(constraints.__file__).parent
-        allowed = {"__future__", "dataclasses", "datetime", "typing", "types", "math", "re"}
+        # M2 adds pure standard-library hashing/serialization and lazy iteration.
+        # No I/O, networking, server, weather or ML module is permitted.
+        allowed = {"__future__", "dataclasses", "datetime", "typing", "types", "math", "re",
+                   "hashlib", "json", "heapq", "itertools"}
         for file in root.glob("*.py"):
             for node in ast.walk(ast.parse(file.read_text(encoding="utf-8"))):
                 if isinstance(node, ast.Import):
                     self.assertTrue(all(n.name.split(".")[0] in allowed for n in node.names))
                 if isinstance(node, ast.ImportFrom) and node.level == 0:
                     self.assertIn(node.module.split(".")[0], allowed)
+                if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
+                    self.assertNotIn(node.func.id, {"open", "exec", "eval", "__import__"})
         self.assertNotIn("forecast", ScenarioSnapshot.__dataclass_fields__)
         self.assertNotIn("forecast", KnowledgeBase.__dataclass_fields__)
 

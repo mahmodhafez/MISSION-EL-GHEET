@@ -1,0 +1,1441 @@
+{
+  "_note": "SYNTHETIC-ONLY algorithm fixture. One-day sowing shifts permitted in all four seasons; exact endpoint mappings for shifted dates are absent, so endpoints stay unknown (NEEDS_REVIEW) or collide (REJECTED).",
+  "confirm_exploration": true,
+  "policy": {
+    "raw_budget": 256
+  },
+  "exploration": {
+    "choices": [
+      {
+        "type": "ExplorationChoice",
+        "choice_id": "s1",
+        "season_id": "s1",
+        "field": "sowing_date",
+        "allowed_values": [
+          "2030-11-21"
+        ]
+      },
+      {
+        "type": "ExplorationChoice",
+        "choice_id": "s2",
+        "season_id": "s2",
+        "field": "sowing_date",
+        "allowed_values": [
+          "2031-05-29"
+        ]
+      },
+      {
+        "type": "ExplorationChoice",
+        "choice_id": "s3",
+        "season_id": "s3",
+        "field": "sowing_date",
+        "allowed_values": [
+          "2031-11-21"
+        ]
+      },
+      {
+        "type": "ExplorationChoice",
+        "choice_id": "s4",
+        "season_id": "s4",
+        "field": "sowing_date",
+        "allowed_values": [
+          "2032-06-02"
+        ]
+      }
+    ],
+    "catalogue_choices": []
+  },
+  "snapshot": {
+    "input": {
+      "seasons": [
+        {
+          "season_id": "s1",
+          "order": 1,
+          "season_label": "winter-2030",
+          "crop_id": {
+            "value": "synthetic-crop-1",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "purpose": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "profile_id": {
+            "value": "synthetic-profile-1",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "sowing_date": {
+            "value": "2030-11-20",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "harvest_or_cut_date": {
+            "value": "2031-05-20",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "crop_end_exclusive": {
+            "value": "2031-05-21",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "release_date": {
+            "value": "2031-05-21",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "preparation_days_after_release": {
+            "value": 7,
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": "day",
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "season_id": "s2",
+          "order": 2,
+          "season_label": "summer-2031",
+          "crop_id": {
+            "value": "synthetic-crop-2",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "purpose": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "profile_id": {
+            "value": "synthetic-profile-2",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "sowing_date": {
+            "value": "2031-05-28",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "harvest_or_cut_date": {
+            "value": "2031-09-20",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "crop_end_exclusive": {
+            "value": "2031-09-21",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "release_date": {
+            "value": "2031-09-21",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "preparation_days_after_release": {
+            "value": 7,
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": "day",
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "season_id": "s3",
+          "order": 3,
+          "season_label": "winter-2031",
+          "crop_id": {
+            "value": "synthetic-crop-3",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "purpose": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "profile_id": {
+            "value": "synthetic-profile-3",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "sowing_date": {
+            "value": "2031-11-20",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "harvest_or_cut_date": {
+            "value": "2032-04-25",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "crop_end_exclusive": {
+            "value": "2032-04-26",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "release_date": {
+            "value": "2032-04-26",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "preparation_days_after_release": {
+            "value": 7,
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": "day",
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          }
+        },
+        {
+          "season_id": "s4",
+          "order": 4,
+          "season_label": "summer-2032",
+          "crop_id": {
+            "value": "synthetic-crop-4",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "purpose": {
+            "value": "grain",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "profile_id": {
+            "value": "synthetic-profile-4",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "sowing_date": {
+            "value": "2032-06-01",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "harvest_or_cut_date": {
+            "value": "2032-09-21",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "crop_end_exclusive": {
+            "value": "2032-09-22",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "release_date": {
+            "value": "2032-09-22",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          },
+          "preparation_days_after_release": {
+            "value": null,
+            "unknown_reason": "not_established",
+            "origin": "unknown",
+            "evidence_status": "open",
+            "confirmation_status": "confirmed_unknown",
+            "unit": "day",
+            "source_refs": [],
+            "method": null
+          }
+        }
+      ],
+      "site_id": "synthetic-site",
+      "field_id": "one-field",
+      "commitments": [],
+      "field_facts": [
+        [
+          "cultivar_available",
+          {
+            "value": "yes",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          }
+        ],
+        [
+          "irrigation",
+          {
+            "value": "available",
+            "unknown_reason": null,
+            "origin": "field_measurement",
+            "evidence_status": "verified",
+            "confirmation_status": "confirmed",
+            "unit": null,
+            "source_refs": [
+              {
+                "source_id": "SYNTHETIC-ONLY",
+                "locator": "algorithm fixture; no agricultural evidence"
+              }
+            ],
+            "method": null
+          }
+        ]
+      ],
+      "production_requirements": [],
+      "journey": "check",
+      "exploration": [],
+      "exploration_confirmed": false,
+      "scope_hash": null,
+      "priority_order": [
+        "minimize_changes"
+      ],
+      "independent_facts": [],
+      "authorized_template_ids": [],
+      "hypothetical_template_ids": [],
+      "pending_scope_issues": []
+    },
+    "data_release": "synthetic-only-v1"
+  },
+  "kb": {
+    "data_release": "synthetic-only-v1",
+    "profiles": [
+      {
+        "profile_id": "synthetic-profile-1",
+        "crop_id": "synthetic-crop-1",
+        "purpose": "grain",
+        "source_refs": [],
+        "evidence_status": "open"
+      },
+      {
+        "profile_id": "synthetic-profile-2",
+        "crop_id": "synthetic-crop-2",
+        "purpose": "grain",
+        "source_refs": [],
+        "evidence_status": "open"
+      },
+      {
+        "profile_id": "synthetic-profile-3",
+        "crop_id": "synthetic-crop-3",
+        "purpose": "grain",
+        "source_refs": [],
+        "evidence_status": "open"
+      },
+      {
+        "profile_id": "synthetic-profile-4",
+        "crop_id": "synthetic-crop-4",
+        "purpose": "grain",
+        "source_refs": [],
+        "evidence_status": "open"
+      }
+    ],
+    "rules": [
+      {
+        "type": "FactRule",
+        "rule_id": "s1-identity_purpose",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-1",
+        "topic": "identity_purpose",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2030",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "crop_id",
+        "expected": "synthetic-crop-1",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s1-local_cultivar_field_fit",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-1",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2030",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "field.cultivar_available",
+        "expected": "yes",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s1-irrigation_constraints",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-1",
+        "topic": "irrigation_constraints",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2030",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "field.irrigation",
+        "expected": "available",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "SowingWindowRule",
+        "rule_id": "s1-sowing",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-1",
+        "topic": "sowing_support",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2030",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "start": "2030-10-06",
+        "end": "2031-01-04"
+      },
+      {
+        "type": "CalendarRule",
+        "rule_id": "s1-calendar",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-1",
+        "topic": "harvest_crop_end_release",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2030",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "sowing_date": "2030-11-20",
+        "harvest_or_cut_date": "2031-05-20",
+        "crop_end_exclusive": "2031-05-21",
+        "release_date": "2031-05-21"
+      },
+      {
+        "type": "PreparationRule",
+        "rule_id": "s1-preparation",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-1",
+        "topic": "transition_preparation",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2030",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "days": 7,
+        "next_profile_id": "synthetic-profile-2"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s2-identity_purpose",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-2",
+        "topic": "identity_purpose",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "crop_id",
+        "expected": "synthetic-crop-2",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s2-local_cultivar_field_fit",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-2",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "field.cultivar_available",
+        "expected": "yes",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s2-irrigation_constraints",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-2",
+        "topic": "irrigation_constraints",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "field.irrigation",
+        "expected": "available",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "SowingWindowRule",
+        "rule_id": "s2-sowing",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-2",
+        "topic": "sowing_support",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "start": "2031-04-13",
+        "end": "2031-07-12"
+      },
+      {
+        "type": "CalendarRule",
+        "rule_id": "s2-calendar",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-2",
+        "topic": "harvest_crop_end_release",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "sowing_date": "2031-05-28",
+        "harvest_or_cut_date": "2031-09-20",
+        "crop_end_exclusive": "2031-09-21",
+        "release_date": "2031-09-21"
+      },
+      {
+        "type": "PreparationRule",
+        "rule_id": "s2-preparation",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-2",
+        "topic": "transition_preparation",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "days": 7,
+        "next_profile_id": "synthetic-profile-3"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s3-identity_purpose",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-3",
+        "topic": "identity_purpose",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "crop_id",
+        "expected": "synthetic-crop-3",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s3-local_cultivar_field_fit",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-3",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "field.cultivar_available",
+        "expected": "yes",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s3-irrigation_constraints",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-3",
+        "topic": "irrigation_constraints",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "field.irrigation",
+        "expected": "available",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "SowingWindowRule",
+        "rule_id": "s3-sowing",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-3",
+        "topic": "sowing_support",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "start": "2031-10-06",
+        "end": "2032-01-04"
+      },
+      {
+        "type": "CalendarRule",
+        "rule_id": "s3-calendar",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-3",
+        "topic": "harvest_crop_end_release",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "sowing_date": "2031-11-20",
+        "harvest_or_cut_date": "2032-04-25",
+        "crop_end_exclusive": "2032-04-26",
+        "release_date": "2032-04-26"
+      },
+      {
+        "type": "PreparationRule",
+        "rule_id": "s3-preparation",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-3",
+        "topic": "transition_preparation",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "winter-2031",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "days": 7,
+        "next_profile_id": "synthetic-profile-4"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s4-identity_purpose",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-4",
+        "topic": "identity_purpose",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2032",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "crop_id",
+        "expected": "synthetic-crop-4",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s4-local_cultivar_field_fit",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-4",
+        "topic": "local_cultivar_field_fit",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2032",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "field.cultivar_available",
+        "expected": "yes",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "FactRule",
+        "rule_id": "s4-irrigation_constraints",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-4",
+        "topic": "irrigation_constraints",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2032",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "path": "field.irrigation",
+        "expected": "available",
+        "operator": "eq",
+        "unit": null,
+        "method": null,
+        "unknown_code": "profile_applicability_unverified"
+      },
+      {
+        "type": "SowingWindowRule",
+        "rule_id": "s4-sowing",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-4",
+        "topic": "sowing_support",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2032",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "start": "2032-04-17",
+        "end": "2032-07-16"
+      },
+      {
+        "type": "CalendarRule",
+        "rule_id": "s4-calendar",
+        "rule_version": "synthetic-v1",
+        "profile_id": "synthetic-profile-4",
+        "topic": "harvest_crop_end_release",
+        "source_refs": [
+          {
+            "source_id": "SYNTHETIC-ONLY",
+            "locator": "algorithm fixture; no agricultural evidence"
+          }
+        ],
+        "evidence_status": "verified",
+        "effect": "hard",
+        "required_for": "planning",
+        "applicability": [
+          {
+            "path": "site_id",
+            "expected": "synthetic-site",
+            "unit": null,
+            "method": null
+          },
+          {
+            "path": "season_label",
+            "expected": "summer-2032",
+            "unit": null,
+            "method": null
+          }
+        ],
+        "sowing_date": "2032-06-01",
+        "harvest_or_cut_date": "2032-09-21",
+        "crop_end_exclusive": "2032-09-22",
+        "release_date": "2032-09-22"
+      }
+    ],
+    "required_planning_topics": [
+      "identity_purpose",
+      "local_cultivar_field_fit",
+      "sowing_support",
+      "harvest_crop_end_release",
+      "transition_preparation",
+      "irrigation_constraints",
+      "protected_commitments",
+      "hard_production_requirements_if_present"
+    ],
+    "templates": []
+  }
+}
