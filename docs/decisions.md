@@ -25,6 +25,7 @@ Last reviewed . Sources: the archived status and handoff files and the specs lin
 | 11 Nov | Architecture approved: React/TS/Vite/Tailwind; modular FastAPI/Pydantic; SQLite; generated TS types from OpenAPI; no event sourcing, queues, microservices or accounts. | User/Amr | [architecture](backend/architecture.md) |
 | 11 Nov | First slice = 5 domain endpoints: catalogue, create scenario, get scenario, new revision, Promise Test. | User/Amr | [API contracts §3](backend/api-contracts.md) |
 | 12 Nov | Backend design D1–D8 approved: pure planner/replay; 3-table SQLite, single `revision`, no idempotency keys/sessions in MVP; ML only via precomputed `forecast_bundle.json`; backend-owned bilingual templates; browser Web Speech first; deterministic transcript parsing (no LLM); cached TTS endpoint; one `data_release` token. | User | [backend design](backend/backend-design.md), [API §0](backend/api-contracts.md) |
+| 13 Nov | Text-to-speech provider for D7 is **ElevenLabs, used offline only**: all app audio is pre-generated from the reviewed templates once scenarios and templates are final; the running app never calls ElevenLabs. Voice choice still needs Amr's sign-off. | Yahya | [voice generation](backend/voice-generation.md) |
 | 13 Nov | Shared domain logic goes in standalone `meg_core` (and `meg_ml`) packages; backend adds thin adapters later. **Standalone Python work doesn't wait for the backend.** Partly overrides the `backend/app/planner/` layout in backend design §2. | Amr | [blueprint §9.1](planner/blueprint.md) |
 
 ## Design

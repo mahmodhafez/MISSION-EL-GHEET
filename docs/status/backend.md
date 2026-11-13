@@ -16,6 +16,7 @@
 | 3 | Skeleton: `pyproject` (uv), `core/`, `schemas/`, SQLite store, `/health`, `/catalogue`, OpenAPI export → TS types | Backend design §12 step 1 |
 | 4 | Scenario endpoints + `promise-test` with storage; bilingual template rendering | §12 step 4; needs planner P0 evaluator |
 | 5 | Replay, then evidence cards; `/speech/interpret`, `/speech/tts`; forecast from bundle | §12 steps 5–8 |
+| 6 | Voice audio: pick voices, write `build_prompt_audio.py`, generate once templates and scenarios are final | [voice-generation.md](../backend/voice-generation.md) (proposed 13 Nov). Provider ElevenLabs, offline only, decided 13 Nov. `/speech/tts` serves pre-generated files only. Nothing generated yet. |
 
 ## In flight
 
