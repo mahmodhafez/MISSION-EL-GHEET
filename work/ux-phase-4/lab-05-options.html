@@ -15,7 +15,7 @@ const def={
   num:'05',title:'Other dates & alternatives',
   states:[
     {id:'list',name:'1 · No sure alternative + 2 dates to check (UH-001)',note:'Honest answer first in a few words. Two date cards: maize picture, the date in big digits, an amber “needs review” badge. Nothing preselected, no “best”.'},
-    {id:'inspect',name:'2 · Look at 28 May: before / after',note:'Your plan and the plan with this date, as two rows of the same four cards. Only the maize card changes (amber). Looking changes nothing.'},
+    {id:'inspect',name:'2 · Look at 28 May: before / after + why review',note:'Your plan and the plan with this date. Only the maize card changes (amber). Below: why it needs review, from the planner’s unknown checks (harvest date invalidated: endpoint_mapping_missing; irrigation, soil, cultivar unknown). Looking changes nothing.'},
     {id:'try',name:'3 · Try it: check again with this date',note:'Replaces the old “draft” screen (13 Nov feedback). One question: check the plan again with 28 May? Your plan is kept until the new check passes and you save.'},
     {id:'layout',name:'4 · Layout only: when rules find alternatives',note:'For other scenarios the planner may return up to two feasible alternatives. Placeholders only; no values are invented.'}
   ],
@@ -35,10 +35,16 @@ const def={
         <span class="big-date">${icon('sow')}${ctx.date(x.date,{noYear:true})}</span><span class="yr">${ctx.num(2027)}</span>
         <span class="badge review">${icon('review')}${L==='ar'?'محتاج مراجعة':'Needs review'}</span>
         <button class="secondary" data-act="inspect" data-v="${k}">${icon('search')}${L==='ar'?'شوف':'Look'}</button></div>`).join('')}</div>
+      <ul class="scope-list"><li class="blocked">${icon('reject')}<span>${L==='ar'?'ذرة في الموسم ٤: ماتشيّكتش':'Maize in season 4: not checked'}<small>${L==='ar'?'مفيش بيانات كفاية · البحث مش كامل':'not enough data · search incomplete'}</small></span></li></ul>
       <button class="secondary wide-btn" data-act="keep">${icon('save')}${L==='ar'?'سيب خطتي واحفظها':'Keep my plan and save it'}</button>`;
     if(ctx.state==='inspect')return `<p class="strip-label">${L==='ar'?'خطتك':'Your plan'}</p>${Lab.strip(ctx,PLAN,{cls:'in compact'})}
       <p class="strip-label">${icon('search')}${L==='ar'?'بالذرة':'With maize on'} ${ctx.date(r.date,{noYear:true})}</p>${Lab.strip(ctx,withDate(r.date),{cls:'in compact'})}
-      <div class="legend-row"><span><span class="s-mark lock">${icon('lock')}</span>${L==='ar'?'بيفضل':'stays'}</span><span><span class="s-mark change">${icon('edit')}</span>${L==='ar'?'بيتغيّر':'changes'}</span><span>${icon('unknown')}${L==='ar'?'حصاد الذرة: مش معروف':'maize harvest: unknown'}</span></div>
+      <p class="strip-label">${icon('review')}${L==='ar'?'ليه محتاج مراجعة؟':'Why it needs review'}</p>
+      <div class="facts four">
+        <span class="fact unk">${icon('cut')}؟<small>${L==='ar'?'حصاد الذرة':'maize harvest'}</small></span>
+        <span class="fact unk">${icon('drop')}؟<small>${L==='ar'?'المية':'water'}</small></span>
+        <span class="fact unk">${icon('soil')}؟<small>${L==='ar'?'التربة':'soil'}</small></span>
+        <span class="fact unk">${icon('sow')}؟<small>${L==='ar'?'الصنف':'variety'}</small></span></div>
       <div class="two-btns"><button class="primary" data-act="try">${icon('check')}${L==='ar'?'جرّبه':'Try it'}</button><button class="secondary" data-act="list">${icon('back')}${ctx.t(Lab.UI.back)}</button></div>`;
     if(ctx.state==='try')return `<h2 class="question">${L==='ar'?'نشيّك تاني بالميعاد ده؟':'Check again with this date?'}</h2>
       ${Lab.strip(ctx,withDate(R[d.pick].date),{cls:'in'})}
@@ -65,6 +71,8 @@ const def={
     return null;
   },
   notes:[
+    'Matches planner/candidate-generation output for UH-001: current rejected; review_investigations = 28 May and 1 June (needs_review); feasible_alternatives = 0; search INCOMPLETE because the season-4 maize choice is blocked (profile_binding_unavailable). The screen says so instead of implying a full search.',
+    '“Why it needs review” shows the planner’s top unknown checks as picture tiles. The full list (about 14 codes) belongs in the engineer details, not here.',
     'Alternatives come only from the rules, at most two, each keeping every locked item. ML never proposes or ranks them.',
     'UH-001 honestly has zero. The dates to check use the amber “needs review” badge and a neutral button: no green, no “recommended”.',
     'Look → Try → Check again. “Try” starts a new Promise Test with the changed date; it is not approval. A bare “OK” does not adopt. (The old word “draft” confused review; it is gone from the screen.)',

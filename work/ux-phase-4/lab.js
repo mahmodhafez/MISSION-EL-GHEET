@@ -106,10 +106,11 @@ const CROP_ART={
 function crop(name){return `<svg viewBox="0 0 110 120" aria-hidden="true">${CROP_ART[name]||CROP_ART.unknown}</svg>`;}
 
 const CROPS={
-  berseem:{ar:'برسيم',en:'Berseem'},
-  maize:{ar:'ذرة',en:'Maize'},
-  wheat:{ar:'قمح',en:'Wheat'},
-  sorghum:{ar:'ذرة رفيعة',en:'Sorghum'},
+  // Maize is always “ذرة شامية” on screen: plain “ذرة” is ambiguous (maize or sorghum) and is only ever heard, never shown.
+  berseem:{ar:'برسيم',en:'Berseem',def:'البرسيم'},
+  maize:{ar:'ذرة شامية',en:'Maize',def:'الذرة الشامية'},
+  wheat:{ar:'قمح',en:'Wheat',def:'القمح'},
+  sorghum:{ar:'ذرة رفيعة',en:'Sorghum',def:'الذرة الرفيعة'},
   fallow:{ar:'الأرض فاضية',en:'Leave empty'},
   unknown:{ar:'لسه مش عارف',en:"I don't know yet"}
 };
@@ -117,14 +118,15 @@ const PURPOSE={forage:{ar:'علف للمواشي',en:'animal feed'},grain:{ar:'�
 const PURPOSE_ICON={forage:'cow',grain:'sack'};
 /* Purposes a crop can have. Placeholder until the crop catalogue lists them; one option = no question. */
 const CROP_PURPOSES={berseem:['forage'],maize:['grain','forage'],wheat:['grain'],sorghum:['grain','forage']};
-// Year ranges are isolated LTR so Arabic-Indic digits around "/" are never visually reversed (design §5).
+// Arabic year ranges read right-to-left: earlier year on the RIGHT. Each year is its own isolate so its digits
+// stay intact, and the pair follows the RTL order (Yahya, 14 Nov). English stays LTR.
 const SEASONS=[
-  {ar:'شتوي <bdi dir="ltr">٢٠٢٦/٢٠٢٧</bdi>',en:'Winter 2026/27'},{ar:'صيفي <bdi>٢٠٢٧</bdi>',en:'Summer 2027'},
-  {ar:'شتوي <bdi dir="ltr">٢٠٢٧/٢٠٢٨</bdi>',en:'Winter 2027/28'},{ar:'صيفي <bdi>٢٠٢٨</bdi>',en:'Summer 2028'}
+  {ar:'شتوي <span class="yr-range"><bdi>٢٠٢٦</bdi>/<bdi>٢٠٢٧</bdi></span>',en:'Winter 2026/27'},{ar:'صيفي <bdi>٢٠٢٧</bdi>',en:'Summer 2027'},
+  {ar:'شتوي <span class="yr-range"><bdi>٢٠٢٧</bdi>/<bdi>٢٠٢٨</bdi></span>',en:'Winter 2027/28'},{ar:'صيفي <bdi>٢٠٢٨</bdi>',en:'Summer 2028'}
 ];
 
 const SEASON_SHORT=[{ar:'شتوي',en:'Winter'},{ar:'صيفي',en:'Summer'},{ar:'شتوي',en:'Winter'},{ar:'صيفي',en:'Summer'}];
-const SEASON_YEAR=[{ar:'<bdi dir="ltr">٢٦/٢٧</bdi>',en:'26/27'},{ar:'<bdi>٢٠٢٧</bdi>',en:'2027'},{ar:'<bdi dir="ltr">٢٧/٢٨</bdi>',en:'27/28'},{ar:'<bdi>٢٠٢٨</bdi>',en:'2028'}];
+const SEASON_YEAR=[{ar:'<span class="yr-range"><bdi>٢٦</bdi>/<bdi>٢٧</bdi></span>',en:'26/27'},{ar:'<bdi>٢٠٢٧</bdi>',en:'2027'},{ar:'<span class="yr-range"><bdi>٢٧</bdi>/<bdi>٢٨</bdi></span>',en:'27/28'},{ar:'<bdi>٢٠٢٨</bdi>',en:'2028'}];
 const MARK_ICON={lock:'lock',reject:'reject',review:'review',done:'check',change:'edit'};
 
 /* Logo: canonical files live in media/brand/ (three colour variants). */
