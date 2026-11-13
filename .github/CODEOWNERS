@@ -1,0 +1,23 @@
+# Who must review changes to each path. Later lines win.
+# Only enforced once branch protection on `main` requires code-owner review.
+# TODO: add GitHub handles for Karim, Refaat, Mahmoud and Moaaz (see docs/team.md).
+
+*                       @Amrhany06
+
+/backend/               @Yahya-alaa
+/docs/backend/          @Yahya-alaa
+/docs/rules/            @Yahya-alaa @Amrhany06
+/AGENTS.md              @Yahya-alaa @Amrhany06
+/CLAUDE.md              @Yahya-alaa @Amrhany06
+/.github/               @Yahya-alaa @Amrhany06
+
+/frontend/              @Amrhany06 @Yahya-alaa
+/work/ux-phase-2/       @Amrhany06
+/work/ux-phase-3/       @Amrhany06
+/docs/design/           @Amrhany06
+
+/ml/                    @Amrhany06
+/docs/ml/               @Amrhany06
+/data/                  @Amrhany06
+/docs/science/          @Amrhany06
+/docs/planner/          @Amrhany06

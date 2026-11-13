@@ -1,0 +1,130 @@
+{
+  "source": "https://jenvbs.journals.ekb.eg/article_54170_dd3f51abb5d4b2a15ee54215c93d8298.pdf",
+  "locator": "Table2 printedpage149",
+  "months": 11,
+  "comparisons": [
+    {
+      "month": "2015-11",
+      "days": 30,
+      "differences_power_minus_published": {
+        "tmax_c": 1.7773333333333348,
+        "tmin_c": 1.6543333333333319,
+        "rh_percent": -8.493666666666655,
+        "wind2_m_s": 1.5413425925925925
+      }
+    },
+    {
+      "month": "2015-12",
+      "days": 31,
+      "differences_power_minus_published": {
+        "tmax_c": 1.6993548387096773,
+        "tmin_c": 3.3006451612903227,
+        "rh_percent": -10.086129032258071,
+        "wind2_m_s": 1.640828853046595
+      }
+    },
+    {
+      "month": "2016-01",
+      "days": 31,
+      "differences_power_minus_published": {
+        "tmax_c": 0.33419354838709836,
+        "tmin_c": 1.9480645161290333,
+        "rh_percent": -7.516451612903225,
+        "wind2_m_s": 1.634880525686977
+      }
+    },
+    {
+      "month": "2016-02",
+      "days": 29,
+      "differences_power_minus_published": {
+        "tmax_c": 1.8658620689655194,
+        "tmin_c": 0.5886206896551727,
+        "rh_percent": -6.478275862068962,
+        "wind2_m_s": 1.7266858237547895
+      }
+    },
+    {
+      "month": "2016-03",
+      "days": 31,
+      "differences_power_minus_published": {
+        "tmax_c": 1.8825806451612905,
+        "tmin_c": -0.044516129032258434,
+        "rh_percent": -13.26161290322581,
+        "wind2_m_s": 2.080131421744325
+      }
+    },
+    {
+      "month": "2016-04",
+      "days": 30,
+      "differences_power_minus_published": {
+        "tmax_c": 3.354999999999997,
+        "tmin_c": -3.793000000000001,
+        "rh_percent": -11.574000000000005,
+        "wind2_m_s": 1.8158981481481482
+      }
+    },
+    {
+      "month": "2016-05",
+      "days": 31,
+      "differences_power_minus_published": {
+        "tmax_c": 3.973225806451616,
+        "tmin_c": -5.217419354838711,
+        "rh_percent": -11.656451612903226,
+        "wind2_m_s": 2.183766427718041
+      }
+    },
+    {
+      "month": "2016-06",
+      "days": 30,
+      "differences_power_minus_published": {
+        "tmax_c": 5.886333333333333,
+        "tmin_c": -5.0120000000000005,
+        "rh_percent": -14.623999999999995,
+        "wind2_m_s": 1.7534444444444448
+      }
+    },
+    {
+      "month": "2016-07",
+      "days": 31,
+      "differences_power_minus_published": {
+        "tmax_c": 4.66838709677419,
+        "tmin_c": -3.7212903225806464,
+        "rh_percent": -17.15032258064516,
+        "wind2_m_s": 1.7057093787335724
+      }
+    },
+    {
+      "month": "2016-08",
+      "days": 31,
+      "differences_power_minus_published": {
+        "tmax_c": 4.321612903225805,
+        "tmin_c": -3.6003225806451624,
+        "rh_percent": -14.295806451612897,
+        "wind2_m_s": 1.5565710872162488
+      }
+    },
+    {
+      "month": "2016-09",
+      "days": 30,
+      "differences_power_minus_published": {
+        "tmax_c": 3.175999999999995,
+        "tmin_c": -2.9490000000000016,
+        "rh_percent": -11.95366666666667,
+        "wind2_m_s": 1.4573055555555554
+      }
+    }
+  ],
+  "mean_monthly_bias": {
+    "tmax_c": 2.9945348703947143,
+    "tmin_c": -1.5314440624262655,
+    "rh_percent": -11.553671217177333,
+    "wind2_m_s": 1.7360512962401173
+  },
+  "monthly_mae": {
+    "tmax_c": 2.9945348703947143,
+    "tmin_c": 2.8935647352276948,
+    "rh_percent": 11.553671217177333,
+    "wind2_m_s": 1.7360512962401173
+  },
+  "interpretation": "Diagnostic only: one published table, no original station archive/QC or exact station exposure metadata. Differences are material and do not establish which source is right. Pan evaporation in that table is not ET0 and was not compared with calculated ET0. No bias correction fitted."
+}

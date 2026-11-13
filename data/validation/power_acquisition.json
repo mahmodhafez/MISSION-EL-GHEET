@@ -1,0 +1,149 @@
+{
+  "record_type": "copied archived acquisition metadata values; not a new data release",
+  "releases": [
+    {
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CT2MDEW%2CRH2M%2CWS2M%2CALLSKY_SFC_SW_DWN%2CPS%2CPRECTOTCORR&community=AG&longitude=30.95&latitude=31.10&start=20010101&end=20251231&format=JSON&time-standard=LST",
+      "retrieved_utc": "2026-11-10T18:30:43.237314+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "bytes": 1214288,
+      "sha256": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf",
+      "parameters": {
+        "parameters": "T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PS,PRECTOTCORR",
+        "community": "AG",
+        "longitude": "30.95",
+        "latitude": "31.10",
+        "start": "20010101",
+        "end": "20251231",
+        "format": "JSON",
+        "time-standard": "LST"
+      },
+      "coordinate_status": "Provisional research point near Sakha; not a confirmed farmer parcel. Pilot locality remains evidence-dependent.",
+      "capture_method": "Original HTTP response bytes downloaded directly from NASA POWER API.",
+      "response_header": {
+        "title": "NASA/POWER Source Native Resolution Daily Data",
+        "api": {
+          "version": "v2.10.3",
+          "name": "POWER Daily API"
+        },
+        "sources": [
+          "MERRA2",
+          "SYN1DEG",
+          "POWER"
+        ],
+        "fill_value": -999.0,
+        "time_standard": "LST",
+        "start": "20010101",
+        "end": "20251231"
+      },
+      "response_units": {
+        "T2M_MAX": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Maximum"
+        },
+        "T2M_MIN": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Minimum"
+        },
+        "T2MDEW": {
+          "units": "C",
+          "longname": "Dew/Frost Point at 2 Meters"
+        },
+        "RH2M": {
+          "units": "%",
+          "longname": "Relative Humidity at 2 Meters"
+        },
+        "WS2M": {
+          "units": "m/s",
+          "longname": "Wind Speed at 2 Meters"
+        },
+        "ALLSKY_SFC_SW_DWN": {
+          "units": "MJ/m^2/day",
+          "longname": "All Sky Surface Shortwave Downward Irradiance"
+        },
+        "PS": {
+          "units": "kPa",
+          "longname": "Surface Pressure"
+        },
+        "PRECTOTCORR": {
+          "units": "mm/day",
+          "longname": "Precipitation Corrected"
+        }
+      },
+      "limitation": "Archive downloaded now, not historical issue-time vintages. Gridded products, not field observations."
+    },
+    {
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CT2MDEW%2CRH2M%2CWS2M%2CALLSKY_SFC_SW_DWN%2CPS%2CPRECTOTCORR&community=AG&longitude=30.95&latitude=31.10&start=20260101&end=20261031&format=JSON&time-standard=LST",
+      "retrieved_utc": "2026-11-10T23:27:30.138361+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "bytes": 41487,
+      "sha256": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700",
+      "parameters": {
+        "parameters": "T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PS,PRECTOTCORR",
+        "community": "AG",
+        "longitude": "30.95",
+        "latitude": "31.10",
+        "start": "20260101",
+        "end": "20261031",
+        "format": "JSON",
+        "time-standard": "LST"
+      },
+      "coordinate_status": "Provisional research point near Sakha; not a confirmed farmer parcel. Pilot locality remains evidence-dependent.",
+      "capture_method": "Original HTTP response bytes downloaded directly from NASA POWER API.",
+      "response_header": {
+        "title": "NASA/POWER Source Native Resolution Daily Data",
+        "api": {
+          "version": "v2.10.3",
+          "name": "POWER Daily API"
+        },
+        "sources": [
+          "MERRA2",
+          "GEOSIT",
+          "SYN1DEG",
+          "FLASHFLUX",
+          "POWER"
+        ],
+        "fill_value": -999.0,
+        "time_standard": "LST",
+        "start": "20260101",
+        "end": "20261031"
+      },
+      "response_units": {
+        "T2M_MAX": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Maximum"
+        },
+        "T2M_MIN": {
+          "units": "C",
+          "longname": "Temperature at 2 Meters Minimum"
+        },
+        "T2MDEW": {
+          "units": "C",
+          "longname": "Dew/Frost Point at 2 Meters"
+        },
+        "RH2M": {
+          "units": "%",
+          "longname": "Relative Humidity at 2 Meters"
+        },
+        "WS2M": {
+          "units": "m/s",
+          "longname": "Wind Speed at 2 Meters"
+        },
+        "ALLSKY_SFC_SW_DWN": {
+          "units": "MJ/m^2/day",
+          "longname": "All Sky Surface Shortwave Downward Irradiance"
+        },
+        "PS": {
+          "units": "kPa",
+          "longname": "Surface Pressure"
+        },
+        "PRECTOTCORR": {
+          "units": "mm/day",
+          "longname": "Precipitation Corrected"
+        }
+      },
+      "limitation": "Archive downloaded now, not historical issue-time vintages. Gridded products, not field observations."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "model_id": "amazon/chronos-2",
+  "revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+  "downloaded_at_utc": "2026-11-10T18:42:47.622037+00:00",
+  "published_weight_sha256": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+  "files": [
+    {
+      "filename": "config.json",
+      "url": "https://huggingface.co/amazon/chronos-2/resolve/29ec3766d36d6f73f0696f85560a422f50e8498c/config.json",
+      "http_status": 200,
+      "bytes": 1067,
+      "sha256": "ef1143bfdc9c0376d9a056eefca46cb4b1ec3d0ffacd541ff56feb40fb708031",
+      "seconds": 0.3575264000101015
+    },
+    {
+      "filename": "model.safetensors",
+      "url": "https://huggingface.co/amazon/chronos-2/resolve/29ec3766d36d6f73f0696f85560a422f50e8498c/model.safetensors",
+      "http_status": 200,
+      "bytes": 477930472,
+      "sha256": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+      "seconds": 300.2317791999667
+    }
+  ]
+}

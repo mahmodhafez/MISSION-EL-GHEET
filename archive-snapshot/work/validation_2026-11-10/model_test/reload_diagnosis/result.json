@@ -1,0 +1,11 @@
+{
+  "training_flag_after_fit": true,
+  "original_forward_hook": true,
+  "forward_type": "<class 'method'>",
+  "repeat_difference": 0.9242763519287109,
+  "eval_only_difference": 0.480926513671875,
+  "remove_mixed_precision_hook_difference": 0.08822154998779297,
+  "raw_vs_reload_difference": 0.4835538864135742,
+  "unwrapped_vs_reload_difference": 0.0007219314575195312,
+  "reloaded_training_flag": false
+}

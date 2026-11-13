@@ -1,0 +1,33 @@
+{
+  "release_id": "sakha-power-2026-11-10-audited",
+  "method": "FAO56 ET0 with the ASCE daily cloudiness bound",
+  "generator": {
+    "path": "audit_weather.py",
+    "sha256": "905a700d542c5a3e2dc7dd136e21acd7a84469d1ff940efa0836bbb63e7ee0e0",
+    "archive_member": "work/validation_2026-11-10/audit_weather.py"
+  },
+  "periods": {
+    "historical": {
+      "source_filename": "power_sakha_2001_2025_LST.json",
+      "archive_member": "work/validation_2026-11-10/power_sakha_2001_2025_LST.json",
+      "source_sha256": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf",
+      "acquisition_index": 0,
+      "suffix": "",
+      "csv_filename": "weather_et0.csv",
+      "csv_sha256": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8",
+      "audit_filename": "weather_audit.json",
+      "days": 9131
+    },
+    "2026": {
+      "source_filename": "power_sakha_2026_Jan_Oct_LST.json",
+      "archive_member": "work/validation_2026-11-10/power_sakha_2026_Jan_Oct_LST.json",
+      "source_sha256": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700",
+      "acquisition_index": 1,
+      "suffix": "_2026_Jan_Oct",
+      "csv_filename": "weather_et0_2026_Jan_Oct.csv",
+      "csv_sha256": "c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e",
+      "audit_filename": "weather_audit_2026_Jan_Oct.json",
+      "days": 304
+    }
+  }
+}

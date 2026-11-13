@@ -1,0 +1,32 @@
+{
+  "sample_checks": "passed",
+  "parameter_count": 7,
+  "consecutive_days": 7,
+  "numeric_values": 49,
+  "units": {
+    "T2M_MAX": "C",
+    "T2M_MIN": "C",
+    "RH2M": "%",
+    "WS2M": "m/s",
+    "ALLSKY_SFC_SW_DWN": "MJ/m^2/day",
+    "PS": "kPa",
+    "PRECTOTCORR": "mm/day"
+  },
+  "fao56_reference_check": {
+    "source": "https://www.fao.org/4/X0490E/x0490e08.htm",
+    "computed_mm_per_day": 3.878940282205318,
+    "published_mm_per_day": 3.88,
+    "absolute_difference_mm_per_day": 0.001059717794682058,
+    "tolerance_mm_per_day": 0.02,
+    "passed": true
+  },
+  "not_verified": [
+    "POWER-to-ET0 pipeline",
+    "crop ETc",
+    "full historical export",
+    "forecast skill",
+    "farm representativeness",
+    "speech recognition",
+    "farmer usability"
+  ]
+}

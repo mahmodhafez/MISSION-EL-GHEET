@@ -1,0 +1,1357 @@
+{
+  "schema_version": "planning-kb-0.1",
+  "knowledge_version": "sakha-ledger-2026-11-12-draft1",
+  "status": "proposed_not_runtime_release",
+  "scope": "one Sakha field; extensible crop catalogue; no complete feasible recommendation claimed",
+  "origin_document": "docs/AGRONOMY_EVIDENCE.md",
+  "sources": [
+    {
+      "source_id": "W1",
+      "title": "ARC bulletin 1449, Wheat cultivation in old lands, 2025/26",
+      "url": "https://fliphtml5.com/opyuzh/hvor/",
+      "locator": "printed pp. 9,49",
+      "publisher": "ARC / Central Agricultural Extension; third-party facsimile",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "W2",
+      "title": "ARC wheat cultivar map, October 2025",
+      "url": "https://www.arc.sci.eg/files/3245/Attachment.pdf",
+      "locator": "printed p. 10",
+      "publisher": "ARC",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "W3",
+      "title": "Aiad 2019 Sakha wheat-maize experiment",
+      "url": "https://jenvbs.journals.ekb.eg/article_54170_dd3f51abb5d4b2a15ee54215c93d8298.pdf",
+      "locator": "pp.148–150, Table 1, Grains used",
+      "publisher": "Journal of Environmental and Biological Sciences / EKB",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "B1",
+      "title": "Egyptian Clover, Egypt chapter, 2014",
+      "url": "https://www.fao.org/4/i3500e/i3500e.pdf",
+      "locator": "pp.65–68",
+      "publisher": "FAO",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "official_page_opened_2026-11-12; exact extraction still requires release review",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "B2",
+      "title": "Badawy et al. 2018 Sakha multicut trial",
+      "url": "https://jacb.journals.ekb.eg/article_37052_3288f6f8cae945634a56dbb494c606af.pdf",
+      "locator": "pp.296–297, Materials and Methods, Table 2",
+      "publisher": "Journal of Agricultural Chemistry and Biotechnology / EKB",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "M1",
+      "title": "ARC grain maize bulletin 1429/2023",
+      "url": "https://misrelzraea.com/wp-content/uploads/2024/03/%D9%86%D8%B4%D8%B1%D8%A9-%D8%A7%D9%84%D8%B0%D8%B1%D8%A9-%D9%86%D9%87%D8%A7%D8%A6%D9%89-copy_compressed.pdf",
+      "locator": "pp.4–5,12–13,33",
+      "publisher": "ARC / Ministry of Agriculture",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "M2",
+      "title": "White single-cross 10 product, 18 December 2025",
+      "url": "https://www.arc.sci.eg/Products/Details/9563",
+      "locator": "characteristics",
+      "publisher": "ARC Maize Research Department",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "M3",
+      "title": "Khalil et al. 2013 sowing dates and maize hybrids",
+      "url": "https://journals.ekb.eg/article_214279_10adca1017adb1fb423b1c95d18850db.pdf",
+      "locator": "pp.251–252; Table 6 p.256",
+      "publisher": "ARC Field Crops Research Institute / EKB",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "M4",
+      "title": "Sugita et al. 2017 Sakha-A cropping periods",
+      "url": "https://tsukuba.repo.nii.ac.jp/record/41521/files/HydrologicalSciencesJournal_20170314.pdf",
+      "locator": "section 3.1, Table 2",
+      "publisher": "Hydrological Sciences Journal; institutional author manuscript",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "S1",
+      "title": "Khaffagy et al. 2014 Sakha sorghum hybrid 888",
+      "url": "https://ejar.journals.ekb.eg/article_156996_9a5a55f8292901f606c2df514d9989c3.pdf",
+      "locator": "pp.1440–1442, Materials and Methods",
+      "publisher": "Egyptian Journal of Agricultural Research",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "prior_repository_source_audit; not independently reverified in this session",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "S2",
+      "title": "Shandweel 1 product, 16 December 2025",
+      "url": "https://www.arc.sci.eg/Products/Details/9535",
+      "locator": "characteristics",
+      "publisher": "ARC Sorghum Research Department",
+      "metadata_basis": "docs/AGRONOMY_EVIDENCE.md, audited 2026-11-11",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": null,
+      "access_note": "official_page_opened_2026-11-12; exact extraction still requires release review",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    }
+  ],
+  "assertions": [
+    {
+      "assertion_id": "wheat_oldland_preferred_window",
+      "crop_id": "wheat",
+      "kind": "advisory_window",
+      "value": {
+        "start_month_day": "11-15",
+        "end_month_day": "11-30",
+        "inclusive": true,
+        "conditional_extension": "12-10"
+      },
+      "unit": "month-day",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "W1",
+          "locator": "printed pp. 9,49"
+        }
+      ],
+      "scope": {
+        "land_class": "old_land",
+        "region": "Egypt",
+        "purpose": "grain"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Extension conditional; no exact harvest/release duration."
+    },
+    {
+      "assertion_id": "wheat_kafr_cultivar_examples",
+      "crop_id": "wheat",
+      "kind": "cultivar_guidance",
+      "value": [
+        "Giza 171",
+        "Sakha 96",
+        "Sakha 97"
+      ],
+      "unit": null,
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "W2",
+          "locator": "printed p. 10"
+        }
+      ],
+      "scope": {
+        "region": "Kafr El-Sheikh",
+        "season": "2025/26",
+        "purpose": "grain"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Non-exhaustive examples; target-season applicability and seed availability unknown; absence is not a prohibition."
+    },
+    {
+      "assertion_id": "wheat_giza168_2015",
+      "crop_id": "wheat",
+      "kind": "observed_calendar",
+      "value": {
+        "sowing": "2015-11-20",
+        "harvest": "2016-04-25"
+      },
+      "unit": "date",
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "W3",
+          "locator": "pp.148–150, Table 1, Grains used"
+        }
+      ],
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "Giza 168",
+        "purpose": "grain",
+        "management": "saline soil irrigation/amendment trial"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Not a transferable duration or field-release rule."
+    },
+    {
+      "assertion_id": "berseem_egypt_guidance",
+      "crop_id": "berseem",
+      "kind": "qualitative_guidance",
+      "value": {
+        "sowing": "mid-September to late November",
+        "types": [
+          "multicut Miskawi",
+          "single-cut Fahl"
+        ],
+        "establishment_note": "slower establishment/fewer cuts after mid-November"
+      },
+      "unit": null,
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "B1",
+          "locator": "pp.65–68"
+        }
+      ],
+      "scope": {
+        "region": "Egypt; type-specific Lower Egypt guidance",
+        "purpose": "forage"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Do not convert qualitative endpoints into exact dates or promise biomass/cuts."
+    },
+    {
+      "assertion_id": "berseem_2015_cuts",
+      "crop_id": "berseem",
+      "kind": "observed_cut_offsets",
+      "value": {
+        "sowing": "2015-10-10",
+        "cut_days_after_sowing": [
+          60,
+          110,
+          149,
+          179,
+          208
+        ]
+      },
+      "unit": "day",
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "B2",
+          "locator": "pp.296–297, Materials and Methods, Table 2"
+        }
+      ],
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "trial includes Sakha 4 and other varieties/populations",
+        "purpose": "multicut forage"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Trial protocol; not November-sowing rule; final field clearance unknown."
+    },
+    {
+      "assertion_id": "berseem_2016_cuts",
+      "crop_id": "berseem",
+      "kind": "observed_cut_offsets",
+      "value": {
+        "sowing": "2016-10-09",
+        "cut_days_after_sowing": [
+          58,
+          108,
+          147,
+          180,
+          210
+        ]
+      },
+      "unit": "day",
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "B2",
+          "locator": "pp.296–297, Materials and Methods, Table 2"
+        }
+      ],
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "trial includes Sakha 4 and other varieties/populations",
+        "purpose": "multicut forage"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Do not average trial-year cut offsets."
+    },
+    {
+      "assertion_id": "maize_oldland_preferred_window",
+      "crop_id": "grain_maize",
+      "kind": "advisory_window",
+      "value": {
+        "start_month_day": "05-01",
+        "end_month_day": "05-31",
+        "inclusive": true
+      },
+      "unit": "month-day",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "M1",
+          "locator": "pp.4–5,12–13,33"
+        }
+      ],
+      "scope": {
+        "land_class": "old_land",
+        "region": "Egypt",
+        "purpose": "grain"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "May preferred is not a hard biological June exclusion."
+    },
+    {
+      "assertion_id": "maize_bulletin_harvest_range",
+      "crop_id": "grain_maize",
+      "kind": "harvest_guidance",
+      "value": {
+        "minimum": 100,
+        "maximum": 110
+      },
+      "unit": "day_after_sowing",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "M1",
+          "locator": "pp.4–5,12–13,33"
+        }
+      ],
+      "scope": {
+        "purpose": "grain",
+        "cultivar": "recommended types in bulletin"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Harvest guidance differs from maturity; no removal/preparation mapping."
+    },
+    {
+      "assertion_id": "maize_sc10_maturity",
+      "crop_id": "grain_maize",
+      "kind": "maturity_guidance",
+      "value": {
+        "minimum": 105,
+        "maximum": 115
+      },
+      "unit": "day",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "M2",
+          "locator": "characteristics"
+        }
+      ],
+      "scope": {
+        "cultivar": "white single-cross 10",
+        "purpose": "grain"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Not interchangeable with harvest or field release; date-specific application unresolved."
+    },
+    {
+      "assertion_id": "maize_sc10_2016",
+      "crop_id": "grain_maize",
+      "kind": "observed_calendar",
+      "value": {
+        "sowing": "2016-05-15",
+        "harvest": "2016-09-20"
+      },
+      "unit": "date",
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "W3",
+          "locator": "pp.148–150, Table 1, Grains used"
+        }
+      ],
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "SC10",
+        "purpose": "grain",
+        "predecessor": "Giza 168 wheat",
+        "management": "saline soil irrigation/amendment trial"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Target-year transfer is proposed; 128 elapsed days is not a universal duration."
+    },
+    {
+      "assertion_id": "maize_sc10_sowing_study",
+      "crop_id": "grain_maize",
+      "kind": "observed_sowing_dates",
+      "value": {
+        "years": [
+          2010,
+          2011
+        ],
+        "month_days": [
+          "05-01",
+          "05-15",
+          "06-01",
+          "06-15"
+        ]
+      },
+      "unit": "month-day",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "M3",
+          "locator": "pp.251–252; Table 6 p.256"
+        }
+      ],
+      "scope": {
+        "site": "Sakha and Mallawy; retain Sakha results separately",
+        "cultivar": "SC10 included",
+        "purpose": "grain"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Local June 1 analogue exists; no field clearance dates supplied."
+    },
+    {
+      "assertion_id": "maize_sakha_a_periods",
+      "crop_id": "grain_maize",
+      "kind": "observed_periods",
+      "value": [
+        {
+          "start": "2010-06-20",
+          "end": "2010-10-01"
+        },
+        {
+          "start": "2011-06-14",
+          "end": "2011-09-17"
+        },
+        {
+          "start": "2013-07-01",
+          "end": "2013-10-10"
+        }
+      ],
+      "unit": "date",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "M4",
+          "locator": "section 3.1, Table 2"
+        }
+      ],
+      "scope": {
+        "site": "Sakha-A",
+        "management": "furrow irrigated",
+        "cultivar": null,
+        "purpose": "maize crop"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Reported cropping periods; endpoint and cultivar applicability require review; no clearance rule."
+    },
+    {
+      "assertion_id": "sorghum_888_2012",
+      "crop_id": "grain_sorghum",
+      "kind": "observed_calendar",
+      "value": {
+        "sowing": "2012-06-15",
+        "harvest": "2012-09-20"
+      },
+      "unit": "date",
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "S1",
+          "locator": "pp.1440–1442, Materials and Methods"
+        }
+      ],
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "hybrid 888",
+        "purpose": "grain",
+        "predecessor": "barley",
+        "management": "weed-control experiment"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "No wheat-to-sorghum transfer, continuous sowing window, seed availability or clearance established."
+    },
+    {
+      "assertion_id": "sorghum_888_2013",
+      "crop_id": "grain_sorghum",
+      "kind": "observed_calendar",
+      "value": {
+        "sowing": "2013-06-10",
+        "harvest": "2013-09-20"
+      },
+      "unit": "date",
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "S1",
+          "locator": "pp.1440–1442, Materials and Methods"
+        }
+      ],
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "hybrid 888",
+        "purpose": "grain",
+        "predecessor": "barley",
+        "management": "weed-control experiment"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "No wheat-to-sorghum transfer, continuous sowing window, seed availability or clearance established."
+    },
+    {
+      "assertion_id": "sorghum_shandweel1_range",
+      "crop_id": "grain_sorghum",
+      "kind": "harvest_guidance",
+      "value": {
+        "minimum": 110,
+        "maximum": 120
+      },
+      "unit": "day_after_sowing",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "prior_repository_ledger_only_unless_source_access_note_says_otherwise",
+      "runtime_activation": "pending_source_and_rule_review",
+      "source_refs": [
+        {
+          "source_id": "S2",
+          "locator": "characteristics"
+        }
+      ],
+      "scope": {
+        "cultivar": "Shandweel 1",
+        "purpose": "dual purpose"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Cannot transfer to hybrid 888 or a specific Sakha field."
+    }
+  ],
+  "templates": [
+    {
+      "template_id": "wheat_giza168_2015-trial-v1",
+      "crop_id": "wheat",
+      "assertion_ids": [
+        "wheat_giza168_2015"
+      ],
+      "observed_calendar": {
+        "sowing": "2015-11-20",
+        "harvest": "2016-04-25"
+      },
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "Giza 168",
+        "purpose": "grain",
+        "management": "saline soil irrigation/amendment trial"
+      },
+      "endpoint_semantics": "reported_harvest_or_cut; crop_end_and_release_not_established",
+      "transfer_policy": {
+        "mode": "explicit_hypothetical_month_day_transfer_only",
+        "evidence_status": "proposed",
+        "requires_farmer_scope_confirmation": true,
+        "can_establish_feasibility": false
+      },
+      "unknowns": {
+        "crop_end_exclusive": "last_crop_day_interpretation_requires_review",
+        "release_date": "no_verified_field_clearance",
+        "preparation_days": "no_transition_specific_duration",
+        "field_applicability": "new_field_not_validated"
+      },
+      "runtime_activation": "pending_source_and_rule_review"
+    },
+    {
+      "template_id": "berseem_2015_cuts-trial-v1",
+      "crop_id": "berseem",
+      "assertion_ids": [
+        "berseem_2015_cuts"
+      ],
+      "observed_calendar": {
+        "sowing": "2015-10-10",
+        "cut_days_after_sowing": [
+          60,
+          110,
+          149,
+          179,
+          208
+        ]
+      },
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "trial includes Sakha 4 and other varieties/populations",
+        "purpose": "multicut forage"
+      },
+      "endpoint_semantics": "reported_harvest_or_cut; crop_end_and_release_not_established",
+      "transfer_policy": {
+        "mode": "explicit_hypothetical_month_day_transfer_only",
+        "evidence_status": "proposed",
+        "requires_farmer_scope_confirmation": true,
+        "can_establish_feasibility": false
+      },
+      "unknowns": {
+        "crop_end_exclusive": "last_crop_day_interpretation_requires_review",
+        "release_date": "no_verified_field_clearance",
+        "preparation_days": "no_transition_specific_duration",
+        "field_applicability": "new_field_not_validated"
+      },
+      "runtime_activation": "pending_source_and_rule_review"
+    },
+    {
+      "template_id": "berseem_2016_cuts-trial-v1",
+      "crop_id": "berseem",
+      "assertion_ids": [
+        "berseem_2016_cuts"
+      ],
+      "observed_calendar": {
+        "sowing": "2016-10-09",
+        "cut_days_after_sowing": [
+          58,
+          108,
+          147,
+          180,
+          210
+        ]
+      },
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "trial includes Sakha 4 and other varieties/populations",
+        "purpose": "multicut forage"
+      },
+      "endpoint_semantics": "reported_harvest_or_cut; crop_end_and_release_not_established",
+      "transfer_policy": {
+        "mode": "explicit_hypothetical_month_day_transfer_only",
+        "evidence_status": "proposed",
+        "requires_farmer_scope_confirmation": true,
+        "can_establish_feasibility": false
+      },
+      "unknowns": {
+        "crop_end_exclusive": "last_crop_day_interpretation_requires_review",
+        "release_date": "no_verified_field_clearance",
+        "preparation_days": "no_transition_specific_duration",
+        "field_applicability": "new_field_not_validated"
+      },
+      "runtime_activation": "pending_source_and_rule_review"
+    },
+    {
+      "template_id": "maize_sc10_2016-trial-v1",
+      "crop_id": "grain_maize",
+      "assertion_ids": [
+        "maize_sc10_2016"
+      ],
+      "observed_calendar": {
+        "sowing": "2016-05-15",
+        "harvest": "2016-09-20"
+      },
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "SC10",
+        "purpose": "grain",
+        "predecessor": "Giza 168 wheat",
+        "management": "saline soil irrigation/amendment trial"
+      },
+      "endpoint_semantics": "reported_harvest_or_cut; crop_end_and_release_not_established",
+      "transfer_policy": {
+        "mode": "explicit_hypothetical_month_day_transfer_only",
+        "evidence_status": "proposed",
+        "requires_farmer_scope_confirmation": true,
+        "can_establish_feasibility": false
+      },
+      "unknowns": {
+        "crop_end_exclusive": "last_crop_day_interpretation_requires_review",
+        "release_date": "no_verified_field_clearance",
+        "preparation_days": "no_transition_specific_duration",
+        "field_applicability": "new_field_not_validated"
+      },
+      "runtime_activation": "pending_source_and_rule_review"
+    },
+    {
+      "template_id": "sorghum_888_2012-trial-v1",
+      "crop_id": "grain_sorghum",
+      "assertion_ids": [
+        "sorghum_888_2012"
+      ],
+      "observed_calendar": {
+        "sowing": "2012-06-15",
+        "harvest": "2012-09-20"
+      },
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "hybrid 888",
+        "purpose": "grain",
+        "predecessor": "barley",
+        "management": "weed-control experiment"
+      },
+      "endpoint_semantics": "reported_harvest_or_cut; crop_end_and_release_not_established",
+      "transfer_policy": {
+        "mode": "explicit_hypothetical_month_day_transfer_only",
+        "evidence_status": "proposed",
+        "requires_farmer_scope_confirmation": true,
+        "can_establish_feasibility": false
+      },
+      "unknowns": {
+        "crop_end_exclusive": "last_crop_day_interpretation_requires_review",
+        "release_date": "no_verified_field_clearance",
+        "preparation_days": "no_transition_specific_duration",
+        "field_applicability": "new_field_not_validated"
+      },
+      "runtime_activation": "pending_source_and_rule_review"
+    },
+    {
+      "template_id": "sorghum_888_2013-trial-v1",
+      "crop_id": "grain_sorghum",
+      "assertion_ids": [
+        "sorghum_888_2013"
+      ],
+      "observed_calendar": {
+        "sowing": "2013-06-10",
+        "harvest": "2013-09-20"
+      },
+      "scope": {
+        "site": "Sakha",
+        "cultivar": "hybrid 888",
+        "purpose": "grain",
+        "predecessor": "barley",
+        "management": "weed-control experiment"
+      },
+      "endpoint_semantics": "reported_harvest_or_cut; crop_end_and_release_not_established",
+      "transfer_policy": {
+        "mode": "explicit_hypothetical_month_day_transfer_only",
+        "evidence_status": "proposed",
+        "requires_farmer_scope_confirmation": true,
+        "can_establish_feasibility": false
+      },
+      "unknowns": {
+        "crop_end_exclusive": "last_crop_day_interpretation_requires_review",
+        "release_date": "no_verified_field_clearance",
+        "preparation_days": "no_transition_specific_duration",
+        "field_applicability": "new_field_not_validated"
+      },
+      "runtime_activation": "pending_source_and_rule_review"
+    }
+  ],
+  "required_planning_topics": [
+    "identity_purpose",
+    "local_cultivar_field_fit",
+    "sowing_support",
+    "harvest_crop_end_release",
+    "transition_preparation",
+    "irrigation_constraints",
+    "protected_commitments",
+    "hard_production_requirements_if_present"
+  ],
+  "rules_policy": {
+    "hard_agronomic_exclusions_enabled": [],
+    "absence_of_source": "unknown_required_topic_not_pass",
+    "source_conflicts": "retain_scopes_and_require_review",
+    "climate_can_change_status": false
+  },
+  "fixture_policy": "UH-001 and SB-001 belong in separate fixtures; neither supplies agricultural rules",
+  "release_gate": [
+    "Refaat checks original page/value/units/scope",
+    "Karim approves rule effect and mandatory topic coverage",
+    "Yahya validates schema/source IDs/hashes and publishes a new data_release after authorization"
+  ],
+  "crops": [
+    {
+      "crop_id": "wheat",
+      "names": {
+        "ar-EG": "قمح",
+        "en": "Wheat"
+      },
+      "purpose": "grain",
+      "assertion_ids": [
+        "wheat_oldland_preferred_window",
+        "wheat_kafr_cultivar_examples",
+        "wheat_giza168_2015"
+      ],
+      "template_ids": [
+        "wheat_giza168_2015-trial-v1"
+      ],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    },
+    {
+      "crop_id": "berseem",
+      "names": {
+        "ar-EG": "برسيم",
+        "en": "Egyptian clover"
+      },
+      "purpose": "forage",
+      "assertion_ids": [
+        "berseem_egypt_guidance",
+        "berseem_2015_cuts",
+        "berseem_2016_cuts"
+      ],
+      "template_ids": [
+        "berseem_2015_cuts-trial-v1",
+        "berseem_2016_cuts-trial-v1"
+      ],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    },
+    {
+      "crop_id": "grain_maize",
+      "names": {
+        "ar-EG": "ذرة شامية حبوب",
+        "en": "Grain maize"
+      },
+      "purpose": "grain",
+      "assertion_ids": [
+        "maize_oldland_preferred_window",
+        "maize_bulletin_harvest_range",
+        "maize_sc10_maturity",
+        "maize_sc10_2016",
+        "maize_sc10_sowing_study",
+        "maize_sakha_a_periods"
+      ],
+      "template_ids": [
+        "maize_sc10_2016-trial-v1"
+      ],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    },
+    {
+      "crop_id": "grain_sorghum",
+      "names": {
+        "ar-EG": "ذرة رفيعة حبوب",
+        "en": "Grain sorghum"
+      },
+      "purpose": "grain",
+      "assertion_ids": [
+        "sorghum_888_2012",
+        "sorghum_888_2013",
+        "sorghum_shandweel1_range"
+      ],
+      "template_ids": [
+        "sorghum_888_2012-trial-v1",
+        "sorghum_888_2013-trial-v1"
+      ],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "wheat_oldland_preferred_window-evidence-review",
+      "version": 1,
+      "effect": "preference",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "wheat_oldland_preferred_window"
+      ],
+      "source_refs": [
+        {
+          "source_id": "W1",
+          "locator": "printed pp. 9,49"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": "month-day",
+      "applicability": {
+        "land_class": "old_land",
+        "region": "Egypt",
+        "purpose": "grain"
+      },
+      "evaluator_id": "advisory_window",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "wheat_kafr_cultivar_examples-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "wheat_kafr_cultivar_examples"
+      ],
+      "source_refs": [
+        {
+          "source_id": "W2",
+          "locator": "printed p. 10"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": null,
+      "applicability": {
+        "region": "Kafr El-Sheikh",
+        "season": "2025/26",
+        "purpose": "grain"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "wheat_giza168_2015-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "wheat_giza168_2015"
+      ],
+      "source_refs": [
+        {
+          "source_id": "W3",
+          "locator": "pp.148–150, Table 1, Grains used"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_study",
+      "unit": "date",
+      "applicability": {
+        "site": "Sakha",
+        "cultivar": "Giza 168",
+        "purpose": "grain",
+        "management": "saline soil irrigation/amendment trial"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "berseem_egypt_guidance-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "berseem_egypt_guidance"
+      ],
+      "source_refs": [
+        {
+          "source_id": "B1",
+          "locator": "pp.65–68"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": null,
+      "applicability": {
+        "region": "Egypt; type-specific Lower Egypt guidance",
+        "purpose": "forage"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "berseem_2015_cuts-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "berseem_2015_cuts"
+      ],
+      "source_refs": [
+        {
+          "source_id": "B2",
+          "locator": "pp.296–297, Materials and Methods, Table 2"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_study",
+      "unit": "day",
+      "applicability": {
+        "site": "Sakha",
+        "cultivar": "trial includes Sakha 4 and other varieties/populations",
+        "purpose": "multicut forage"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "berseem_2016_cuts-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "berseem_2016_cuts"
+      ],
+      "source_refs": [
+        {
+          "source_id": "B2",
+          "locator": "pp.296–297, Materials and Methods, Table 2"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_study",
+      "unit": "day",
+      "applicability": {
+        "site": "Sakha",
+        "cultivar": "trial includes Sakha 4 and other varieties/populations",
+        "purpose": "multicut forage"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "maize_oldland_preferred_window-evidence-review",
+      "version": 1,
+      "effect": "preference",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "maize_oldland_preferred_window"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M1",
+          "locator": "pp.4–5,12–13,33"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": "month-day",
+      "applicability": {
+        "land_class": "old_land",
+        "region": "Egypt",
+        "purpose": "grain"
+      },
+      "evaluator_id": "advisory_window",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "maize_bulletin_harvest_range-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "maize_bulletin_harvest_range"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M1",
+          "locator": "pp.4–5,12–13,33"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": "day_after_sowing",
+      "applicability": {
+        "purpose": "grain",
+        "cultivar": "recommended types in bulletin"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "maize_sc10_maturity-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "maize_sc10_maturity"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M2",
+          "locator": "characteristics"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": "day",
+      "applicability": {
+        "cultivar": "white single-cross 10",
+        "purpose": "grain"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "maize_sc10_2016-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "maize_sc10_2016"
+      ],
+      "source_refs": [
+        {
+          "source_id": "W3",
+          "locator": "pp.148–150, Table 1, Grains used"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_study",
+      "unit": "date",
+      "applicability": {
+        "site": "Sakha",
+        "cultivar": "SC10",
+        "purpose": "grain",
+        "predecessor": "Giza 168 wheat",
+        "management": "saline soil irrigation/amendment trial"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "maize_sc10_sowing_study-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "maize_sc10_sowing_study"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M3",
+          "locator": "pp.251–252; Table 6 p.256"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": "month-day",
+      "applicability": {
+        "site": "Sakha and Mallawy; retain Sakha results separately",
+        "cultivar": "SC10 included",
+        "purpose": "grain"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "maize_sakha_a_periods-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "maize_sakha_a_periods"
+      ],
+      "source_refs": [
+        {
+          "source_id": "M4",
+          "locator": "section 3.1, Table 2"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": "date",
+      "applicability": {
+        "site": "Sakha-A",
+        "management": "furrow irrigated",
+        "cultivar": null,
+        "purpose": "maize crop"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "sorghum_888_2012-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "sorghum_888_2012"
+      ],
+      "source_refs": [
+        {
+          "source_id": "S1",
+          "locator": "pp.1440–1442, Materials and Methods"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_study",
+      "unit": "date",
+      "applicability": {
+        "site": "Sakha",
+        "cultivar": "hybrid 888",
+        "purpose": "grain",
+        "predecessor": "barley",
+        "management": "weed-control experiment"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "sorghum_888_2013-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "sorghum_888_2013"
+      ],
+      "source_refs": [
+        {
+          "source_id": "S1",
+          "locator": "pp.1440–1442, Materials and Methods"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_study",
+      "unit": "date",
+      "applicability": {
+        "site": "Sakha",
+        "cultivar": "hybrid 888",
+        "purpose": "grain",
+        "predecessor": "barley",
+        "management": "weed-control experiment"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    },
+    {
+      "rule_id": "sorghum_shandweel1_range-evidence-review",
+      "version": 1,
+      "effect": "review",
+      "required_for": "explanation",
+      "assertion_ids": [
+        "sorghum_shandweel1_range"
+      ],
+      "source_refs": [
+        {
+          "source_id": "S2",
+          "locator": "characteristics"
+        }
+      ],
+      "evidence_status": "verified",
+      "origin": "published_guidance",
+      "unit": "day_after_sowing",
+      "applicability": {
+        "cultivar": "Shandweel 1",
+        "purpose": "dual purpose"
+      },
+      "evaluator_id": "evidence_context",
+      "runtime_activation": "pending_source_and_rule_review",
+      "cannot_discharge_required_planning_topic": true
+    }
+  ]
+}

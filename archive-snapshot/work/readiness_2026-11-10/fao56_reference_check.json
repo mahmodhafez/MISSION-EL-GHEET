@@ -1,0 +1,13 @@
+{
+  "reference_source": "https://www.fao.org/4/X0490E/x0490e08.htm",
+  "fixture": "FAO56 Chapter4 Example18; published rounded intermediate inputs",
+  "computed_et0_mm_per_day": 3.878940282205318,
+  "published_et0_mm_per_day": 3.88,
+  "absolute_difference_mm_per_day": 0.001059717794682058,
+  "within_0_02_mm_per_day": true,
+  "humidity_source": "https://www.fao.org/4/X0490E/x0490e07.htm",
+  "humidity_fixture": "FAO56 Example5: Tmin18,Tmax25,RHmax82,RHmin54",
+  "ea_extrema_kPa": 1.7015355568176478,
+  "ea_mean_RH_kPa": 1.7788007528568932,
+  "caveat": "This checks the core equation with published intermediate values; it does not validate a POWER-to-ET0 pipeline or any farm result."
+}

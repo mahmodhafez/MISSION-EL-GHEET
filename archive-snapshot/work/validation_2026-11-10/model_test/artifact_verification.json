@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "checks": [
+    "all held-out target dates/values match source CSV",
+    "persistence uses issue-date-minus-seven cutoff",
+    "all reported model/climatology MAE values independently reproduced",
+    "completed runs record real adapter updates and passing reload checks; adapters exist",
+    "current data hashes match evaluated data"
+  ],
+  "weekly_origins": 17,
+  "days_per_target": 119
+}

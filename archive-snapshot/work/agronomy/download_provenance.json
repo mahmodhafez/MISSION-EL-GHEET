@@ -1,0 +1,12 @@
+[
+  {
+    "file": "sugita_2017.pdf",
+    "url": "https://tsukuba.repo.nii.ac.jp/record/41521/files/HydrologicalSciencesJournal_20170314.pdf",
+    "error": "HTTP Error 503: Service Temporarily Unavailable"
+  },
+  {
+    "file": "maize_arc.pdf",
+    "url": "https://www.arc.sci.eg/files/2114/Attachment.pdf",
+    "error": "<urlopen error [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond>"
+  }
+]

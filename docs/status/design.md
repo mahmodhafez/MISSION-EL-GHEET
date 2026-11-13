@@ -1,0 +1,30 @@
+# Status: design / UX
+
+**Read this if…** you're asking "which design is approved and what's still open?"
+
+**As of **, last commit `0122e92`. Owner: Amr. If this is far behind `git log`, trust git.
+
+---
+
+## Approved
+
+| What | Date | Where |
+|---|---|---|
+| Season Path interaction model ("Show, Speak, Choose, Confirm") | 11 Nov | [design.md](../design/design.md) §1, §3–§6 |
+| UX Phase 1 + five refinements | 11 Nov | [ux-phase-1.md](../design/ux-phase-1.md) |
+| Fieldlight Hybrid visual identity (arched botanical season cards) | 12 Nov (confirm, Q8) | [fieldlight.md](../design/fieldlight.md), `work/ux-phase-3/fieldlight-hybrid.html` |
+
+`design.md` §2 (sand/terracotta palette) is **superseded** by Fieldlight. Its interaction,
+accessibility and status-language sections still apply.
+
+## History of the design rounds
+
+V1 → V2 → V3 wireframes (12 Nov) → three visual options → Fieldlight Hybrid. Reviews:
+[V2](../reports/-wireframe-v2-review.md), [V3](../reports/-wireframe-v3-review.md),
+[visual options](../reports/-phase-3-visual-options.md).
+
+## Not done
+
+- Real-browser check of the final prototypes in both languages at phone and desktop width.
+- Real crop photographs (the botanical SVGs are placeholders); crop recognition test.
+- The proposed six-person farmer usability protocol ([design §8](../design/design.md)) has not run.

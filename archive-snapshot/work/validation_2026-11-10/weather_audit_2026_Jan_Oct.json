@@ -1,0 +1,230 @@
+{
+  "source_sha256": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700",
+  "days": 304,
+  "parameters": 8,
+  "values": 2432,
+  "coverage": [
+    "2026-01-01",
+    "2026-10-31"
+  ],
+  "quality": {
+    "T2M_MAX": {
+      "count": 304,
+      "missing_or_invalid": 0,
+      "minimum": 16.49,
+      "maximum": 43.56,
+      "mean": 31.751677631578946,
+      "units": "C"
+    },
+    "T2M_MIN": {
+      "count": 304,
+      "missing_or_invalid": 0,
+      "minimum": 6.59,
+      "maximum": 25.34,
+      "mean": 16.76078947368421,
+      "units": "C"
+    },
+    "T2MDEW": {
+      "count": 304,
+      "missing_or_invalid": 0,
+      "minimum": -4.58,
+      "maximum": 19.77,
+      "mean": 11.313782894736843,
+      "units": "C"
+    },
+    "RH2M": {
+      "count": 304,
+      "missing_or_invalid": 0,
+      "minimum": 22.97,
+      "maximum": 81.09,
+      "mean": 53.481151315789475,
+      "units": "%"
+    },
+    "WS2M": {
+      "count": 304,
+      "missing_or_invalid": 0,
+      "minimum": 1.21,
+      "maximum": 5.67,
+      "mean": 2.744342105263158,
+      "units": "m/s"
+    },
+    "ALLSKY_SFC_SW_DWN": {
+      "count": 304,
+      "missing_or_invalid": 0,
+      "minimum": 3.13,
+      "maximum": 30.35,
+      "mean": 21.26266447368421,
+      "units": "MJ/m^2/day"
+    },
+    "PS": {
+      "count": 304,
+      "missing_or_invalid": 0,
+      "minimum": 100.04,
+      "maximum": 102.51,
+      "mean": 101.25197368421053,
+      "units": "kPa"
+    },
+    "PRECTOTCORR": {
+      "count": 304,
+      "missing_or_invalid": 0,
+      "minimum": 0.0,
+      "maximum": 9.57,
+      "mean": 0.09671052631578947,
+      "units": "mm/day"
+    }
+  },
+  "reference_checks": [
+    {
+      "name": "FAO Example 3 saturation pressure at 24.5 C",
+      "value": 3.07464905088159,
+      "reference": 3.075,
+      "tolerance": 0.002,
+      "passed": true
+    },
+    {
+      "name": "FAO Example 3 mean saturation pressure",
+      "value": 2.389997641498681,
+      "reference": 2.39,
+      "tolerance": 0.002,
+      "passed": true
+    },
+    {
+      "name": "FAO Example 5 humidity extrema",
+      "value": 1.7015355568176478,
+      "reference": 1.7,
+      "tolerance": 0.005,
+      "passed": true
+    },
+    {
+      "name": "FAO Example 8 extraterrestrial radiation",
+      "value": 32.193995875112726,
+      "reference": 32.2,
+      "tolerance": 0.1,
+      "passed": true
+    },
+    {
+      "name": "FAO Example 9 daylight",
+      "value": 11.66559194558473,
+      "reference": 11.7,
+      "tolerance": 0.05,
+      "passed": true
+    },
+    {
+      "name": "FAO Example 11 net longwave radiation",
+      "value": 3.5340348158468147,
+      "reference": 3.5,
+      "tolerance": 0.1,
+      "passed": true
+    },
+    {
+      "name": "FAO Example 12 net radiation",
+      "value": 7.630965184153187,
+      "reference": 7.6,
+      "tolerance": 0.15,
+      "passed": true
+    },
+    {
+      "name": "FAO Example 18 wind height and unit conversion",
+      "value": 2.077641875466511,
+      "reference": 2.078,
+      "tolerance": 0.005,
+      "passed": true
+    },
+    {
+      "name": "FAO Example 18 end-to-end reconstruction",
+      "value": 3.8802594471140064,
+      "reference": 3.88,
+      "tolerance": 0.04,
+      "passed": true
+    },
+    {
+      "name": "1 mm over 1 hectare is 10 cubic metres",
+      "value": 10.0,
+      "reference": 10,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    {
+      "name": "ETc arithmetic at constant ET0=4 and Kc=1.2",
+      "value": 48.0,
+      "reference": 48,
+      "tolerance": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "Reject Tmin above Tmax",
+      "passed": true
+    }
+  ],
+  "full_reference_example": {
+    "et0": 3.8802594471140064,
+    "es": 1.9974855625338357,
+    "ea": 1.4086238018595982,
+    "vpd": 0.5888617606742375,
+    "ra": 41.08837556354228,
+    "rso": 30.898458423783794,
+    "rs_ratio": 0.7143415154129114,
+    "rns": 16.995479743063786,
+    "rnl": 3.712294570431445,
+    "rn": 13.28318517263234,
+    "slope": 0.12211265844598747,
+    "gamma": 0.06658213300847304,
+    "daylight": 16.104611680362105
+  },
+  "flags": {
+    "rs_above_rso": {
+      "count": 0,
+      "first_dates": []
+    },
+    "raw_ratio_below_0_3": {
+      "count": 2,
+      "first_dates": [
+        "2026-01-22",
+        "2026-04-01"
+      ]
+    },
+    "negative_unbounded_cloud_factor": {
+      "count": 2,
+      "first_dates": [
+        "2026-01-22",
+        "2026-04-01"
+      ]
+    },
+    "negative_vpd": {
+      "count": 0,
+      "first_dates": []
+    },
+    "negative_et0": {
+      "count": 0,
+      "first_dates": []
+    },
+    "dew_above_tmin": {
+      "count": 0,
+      "first_dates": []
+    }
+  },
+  "et0_summary": {
+    "minimum_mm_day": 1.946037723803206,
+    "maximum_mm_day": 11.013245926813514,
+    "mean_mm_day": 6.204192375013922,
+    "mean_annual_total_mm": null
+  },
+  "humidity_method_sensitivity": {
+    "mean_abs_difference_mm_day": 0.5114241564710781,
+    "note": "Dewpoint route preferred for this audit. The RH-mean comparison is an approximation, not an independent truth reference."
+  },
+  "cloud_bound_sensitivity": {
+    "source": "https://content-hub.uidaho.edu/api/public/content/9d9ea3f325e945158730b61661e8add8?v=cc545c86",
+    "equation": "ASCE-EWRI2005 Eq18, printedpage20: 0.3<=Rs/Rso<=1.0",
+    "mean_abs_difference_mm_day": 0.0017389428693104232,
+    "maximum_abs_difference_mm_day": 0.297723102135548
+  },
+  "limitations": [
+    "No station or lysimeter comparison",
+    "Daily aggregated gridded inputs",
+    "Native source resolution, not field resolution",
+    "Current historical archive, not issue-time vintages",
+    "ETc arithmetic check does not validate crop coefficients or management",
+    "Published rounded examples entail tolerances; no arbitrary clipping of ET0"
+  ]
+}

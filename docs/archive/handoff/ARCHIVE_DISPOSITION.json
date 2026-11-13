@@ -1,0 +1,437 @@
+[
+  {
+    "member": ".validation-venv/Lib/site-packages/chronos_forecasting-2.3.2.dist-info/licenses/LICENSE",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": ".validation-venv/Lib/site-packages/chronos_forecasting-2.3.2.dist-info/licenses/NOTICE",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "outputs/DATA_SPEC.md",
+    "published_copy": "archive-snapshot/outputs/DATA_SPEC.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/HANDOFF.md",
+    "published_copy": "archive-snapshot/outputs/HANDOFF.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/MISSION_EL_GHEET_Final_Product_Decisions.md",
+    "published_copy": "archive-snapshot/outputs/MISSION_EL_GHEET_Final_Product_Decisions.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/MISSION_EL_GHEET_Readiness_and_Quality_Plan.md",
+    "published_copy": "archive-snapshot/outputs/MISSION_EL_GHEET_Readiness_and_Quality_Plan.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/MISSION_EL_GHEET_Validation_Verdict.md",
+    "published_copy": "archive-snapshot/outputs/MISSION_EL_GHEET_Validation_Verdict.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/ML_EXPERIMENT.md",
+    "published_copy": "archive-snapshot/outputs/ML_EXPERIMENT.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/PRODUCT.md",
+    "published_copy": "archive-snapshot/outputs/PRODUCT.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/REFERENCE_SCENARIO.md",
+    "published_copy": "archive-snapshot/outputs/REFERENCE_SCENARIO.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/SCIENCE.md",
+    "published_copy": "archive-snapshot/outputs/SCIENCE.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/validation_accessibility_alignment.md",
+    "published_copy": "archive-snapshot/outputs/validation_accessibility_alignment.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/validation_agronomy.md",
+    "published_copy": "archive-snapshot/outputs/validation_agronomy.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/validation_data_equations.md",
+    "published_copy": "archive-snapshot/outputs/validation_data_equations.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/validation_equations_review.md",
+    "published_copy": "archive-snapshot/outputs/validation_equations_review.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/validation_model_execution.md",
+    "published_copy": "archive-snapshot/outputs/validation_model_execution.md",
+    "reason": null
+  },
+  {
+    "member": "outputs/validation_models.md",
+    "published_copy": "archive-snapshot/outputs/validation_models.md",
+    "reason": null
+  },
+  {
+    "member": "work/agronomy/download_provenance.json",
+    "published_copy": "archive-snapshot/work/agronomy/download_provenance.json",
+    "reason": null
+  },
+  {
+    "member": "work/agronomy/study_downloads_2026-11-11.json",
+    "published_copy": "archive-snapshot/work/agronomy/study_downloads_2026-11-11.json",
+    "reason": null
+  },
+  {
+    "member": "work/package_handoff.py",
+    "published_copy": "archive-snapshot/work/package_handoff.py",
+    "reason": null
+  },
+  {
+    "member": "work/readiness_2026-11-10/check_readiness.py",
+    "published_copy": "archive-snapshot/work/readiness_2026-11-10/check_readiness.py",
+    "reason": null
+  },
+  {
+    "member": "work/readiness_2026-11-10/fao56_reference_check.json",
+    "published_copy": "archive-snapshot/work/readiness_2026-11-10/fao56_reference_check.json",
+    "reason": null
+  },
+  {
+    "member": "work/readiness_2026-11-10/power_sakha_sample.json",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/readiness_2026-11-10/power_sample_provenance.json",
+    "published_copy": "archive-snapshot/work/readiness_2026-11-10/power_sample_provenance.json",
+    "reason": null
+  },
+  {
+    "member": "work/readiness_2026-11-10/readiness_checks.json",
+    "published_copy": "archive-snapshot/work/readiness_2026-11-10/readiness_checks.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/asce_2005.pdf",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/asce_2005.txt",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/audit_weather.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/audit_weather.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/check_station_table.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/check_station_table.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/download_local_studies.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/download_local_studies.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/download_power.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/download_power.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/download_references.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/download_references.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/adaptation200/diagnostic_predictions.npz",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/adaptation200/results.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/adaptation200/results.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/adaptation200/training/finetuned-ckpt/adapter_config.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/adaptation200/training/finetuned-ckpt/adapter_config.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/adaptation200/training/finetuned-ckpt/adapter_model.safetensors",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/adaptation200/training/finetuned-ckpt/README.md",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/adaptation200/training/finetuned-ckpt/README.md",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/adaptation200.log",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/artifact_verification.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/artifact_verification.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/checkpoint/config.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/checkpoint/config.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/checkpoint/model.safetensors",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/checkpoint_commit_history.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/checkpoint_commit_history.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/checkpoint_provenance.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/checkpoint_provenance.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/configure_env.ps1",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/configure_env.ps1",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/diagnose_reload.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/diagnose_reload.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/download_checkpoint.log",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/download_checkpoint.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/download_checkpoint.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/evaluate_holdout.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/evaluate_holdout.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/evaluation_protocol.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/evaluation_protocol.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/holdout.log",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/holdout_predictions.npz",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/holdout_results.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/holdout_results.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/install_chronos.log",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/install_torch.log",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/installed_requirements.txt",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/installed_requirements.txt",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/official_pipeline_v2_3_2.py.txt",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/reload_diagnosis/finetuned-ckpt/adapter_config.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/reload_diagnosis/finetuned-ckpt/adapter_config.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/reload_diagnosis/finetuned-ckpt/adapter_model.safetensors",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/reload_diagnosis/finetuned-ckpt/README.md",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/reload_diagnosis/finetuned-ckpt/README.md",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/reload_diagnosis/result.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/reload_diagnosis/result.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/reload_diagnosis.log",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/run_model_test.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/run_model_test.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20/diagnostic_predictions.npz",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20/results.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20/results.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20/training/finetuned-ckpt/adapter_config.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20/training/finetuned-ckpt/adapter_config.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20/training/finetuned-ckpt/adapter_model.safetensors",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20/training/finetuned-ckpt/README.md",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20/training/finetuned-ckpt/README.md",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20.log",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20_verified/diagnostic_predictions.npz",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20_verified/results.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20_verified/results.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20_verified/training/finetuned-ckpt/adapter_config.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20_verified/training/finetuned-ckpt/adapter_config.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20_verified/training/finetuned-ckpt/adapter_model.safetensors",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20_verified/training/finetuned-ckpt/README.md",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20_verified/training/finetuned-ckpt/README.md",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/smoke20_verified.log",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/model_test/verify_model_artifacts.py",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/model_test/verify_model_artifacts.py",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/power_provenance.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/power_provenance.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/power_provenance_2026_Jan_Oct.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/power_provenance_2026_Jan_Oct.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/power_sakha_2001_2025_LST.json",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/power_sakha_2026_Jan_Oct_LST.json",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/station_table_diagnostic.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/station_table_diagnostic.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/weather_audit.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/weather_audit.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/weather_audit_2026_Jan_Oct.json",
+    "published_copy": "archive-snapshot/work/validation_2026-11-10/weather_audit_2026_Jan_Oct.json",
+    "reason": null
+  },
+  {
+    "member": "work/validation_2026-11-10/weather_et0.csv",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "work/validation_2026-11-10/weather_et0_2026_Jan_Oct.csv",
+    "published_copy": null,
+    "reason": "Scientific/model payload, execution log, environment license or third-party reference; retained in separately transferred archive"
+  },
+  {
+    "member": "REPRODUCE.md",
+    "published_copy": "archive-snapshot/REPRODUCE.md",
+    "reason": null
+  },
+  {
+    "member": "MISSING_ARTIFACTS.md",
+    "published_copy": "archive-snapshot/MISSING_ARTIFACTS.md",
+    "reason": null
+  },
+  {
+    "member": "ARTIFACT_MANIFEST.json",
+    "published_copy": "archive-snapshot/ARTIFACT_MANIFEST.json",
+    "reason": null
+  }
+]

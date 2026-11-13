@@ -1,0 +1,234 @@
+{
+  "run_id": "smoke20_verified",
+  "started_utc": "2026-11-10T23:33:14.609516+00:00",
+  "status": "completed",
+  "purpose": "Execution feasibility and diagnostic validation, not final agricultural or forecasting validation",
+  "versions": {
+    "torch": "2.9.1+cu128",
+    "chronos-forecasting": "2.3.2",
+    "peft": "0.18.1",
+    "transformers": "5.22.2",
+    "accelerate": "1.15.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1"
+  },
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "total_vram_bytes": 4294443008,
+    "free_vram_before_bytes": 3466277684
+  },
+  "input_sha256": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8",
+  "checkpoint_sha256": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+  "experiment": {
+    "training_period": [
+      "2001-01-01",
+      "2018-12-31"
+    ],
+    "validation_issues": [
+      "2019-01-15",
+      "2019-02-15",
+      "2019-03-15",
+      "2019-04-15",
+      "2019-05-15",
+      "2019-06-15",
+      "2019-07-15",
+      "2019-08-15",
+      "2019-09-15",
+      "2019-10-15",
+      "2019-11-15",
+      "2019-12-15",
+      "2020-01-15",
+      "2020-02-15",
+      "2020-03-15",
+      "2020-04-15",
+      "2020-05-15",
+      "2020-06-15",
+      "2020-07-15",
+      "2020-08-15",
+      "2020-09-15",
+      "2020-10-15",
+      "2020-11-15",
+      "2020-12-15",
+      "2021-01-15",
+      "2021-02-15",
+      "2021-03-15",
+      "2021-04-15",
+      "2021-05-15",
+      "2021-06-15",
+      "2021-07-15",
+      "2021-08-15",
+      "2021-09-15",
+      "2021-10-15",
+      "2021-11-15",
+      "2021-12-15"
+    ],
+    "issue_count": 36,
+    "targets": [
+      "tmax_c",
+      "et0_mm_day"
+    ],
+    "input_cutoff": "issue date minus 7 days",
+    "model_horizon_steps": 14,
+    "scored_steps": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "context_days": 60,
+    "batch_series": 4,
+    "learning_rate": 1e-05,
+    "steps": 20,
+    "cross_learning": false,
+    "limits": [
+      "36 diagnostic validation origins, not an untouched final test",
+      "Unknown pretraining overlap",
+      "Current archive with simulated latency, not real-time vintages",
+      "No crop-outcome or decision benefit evaluated"
+    ]
+  },
+  "baseline_scores": {
+    "seasonal_climatology": {
+      "tmax_c": {
+        "mae": 2.534365188507807,
+        "rmse": 3.305463183133233,
+        "bias": 0.15511905200897702,
+        "mae_by_lead_1_to_7": [
+          2.550138791402181,
+          2.365416897667779,
+          2.5015278657277427,
+          2.576527860429552,
+          2.604166719648573,
+          2.9804168277316623,
+          2.162361356947157
+        ],
+        "interval_80_coverage": 0.7936507936507936,
+        "interval_mean_width": 8.013392709550404,
+        "mean_pinball_loss": 0.7852983023123765
+      },
+      "et0_mm_day": {
+        "mae": 0.583124450747929,
+        "rmse": 0.8052144814149734,
+        "bias": -0.11981442759907435,
+        "mae_by_lead_1_to_7": [
+          0.577890028556188,
+          0.5857876439889272,
+          0.590567883518007,
+          0.518078174855974,
+          0.5945449305905236,
+          0.588863343000412,
+          0.6261391507254707
+        ],
+        "interval_80_coverage": 0.8174603174603174,
+        "interval_mean_width": 1.968981727531978,
+        "mean_pinball_loss": 0.1896629183790671
+      }
+    },
+    "persistence": {
+      "tmax_c": {
+        "mae": 3.79015851020813
+      },
+      "et0_mm_day": {
+        "mae": 0.8878126740455627
+      }
+    }
+  },
+  "zero_shot": {
+    "scores": {
+      "tmax_c": {
+        "mae": 3.3014838695526123,
+        "rmse": 4.490394115447998,
+        "bias": 0.10495109856128693,
+        "mae_by_lead_1_to_7": [
+          3.2038278579711914,
+          3.173712730407715,
+          3.007969856262207,
+          2.9845335483551025,
+          3.3987016677856445,
+          3.8169338703155518,
+          3.524707317352295
+        ],
+        "interval_80_coverage": 0.7380952380952381,
+        "interval_mean_width": 10.037678718566895,
+        "mean_pinball_loss": 1.0971358450632247
+      },
+      "et0_mm_day": {
+        "mae": 0.7379949688911438,
+        "rmse": 1.0493535995483398,
+        "bias": -0.21048763394355774,
+        "mae_by_lead_1_to_7": [
+          0.7641313076019287,
+          0.7826269865036011,
+          0.7563862204551697,
+          0.6548506617546082,
+          0.6976378560066223,
+          0.718624472618103,
+          0.7917071580886841
+        ],
+        "interval_80_coverage": 0.7936507936507936,
+        "interval_mean_width": 2.702334403991699,
+        "mean_pinball_loss": 0.24710036804751742
+      }
+    },
+    "forecast_seconds": 0.9565310999751091
+  },
+  "lora": {
+    "trainable_parameters": 1206912,
+    "total_parameters": 120684576,
+    "fraction": 0.010000548868813195,
+    "adapter_tensors": 194,
+    "changed_adapter_tensors": 194,
+    "max_absolute_parameter_change": 9.998328459914774e-05,
+    "completed_steps": 20
+  },
+  "training_seconds": 5.810523899970576,
+  "peak_allocated_vram_bytes": 1267588608,
+  "peak_reserved_vram_bytes": 1270874112,
+  "fine_tuned": {
+    "scores": {
+      "tmax_c": {
+        "mae": 3.299954891204834,
+        "rmse": 4.488318920135498,
+        "bias": 0.10705799609422684,
+        "mae_by_lead_1_to_7": [
+          3.204850435256958,
+          3.1720190048217773,
+          3.0056772232055664,
+          2.9807825088500977,
+          3.396721363067627,
+          3.8164825439453125,
+          3.523150682449341
+        ],
+        "interval_80_coverage": 0.7380952380952381,
+        "interval_mean_width": 10.01681137084961,
+        "mean_pinball_loss": 1.096742579798219
+      },
+      "et0_mm_day": {
+        "mae": 0.7382134795188904,
+        "rmse": 1.0497127771377563,
+        "bias": -0.210213765501976,
+        "mae_by_lead_1_to_7": [
+          0.7644510865211487,
+          0.7828028202056885,
+          0.756721556186676,
+          0.6546318531036377,
+          0.6978673338890076,
+          0.7186287641525269,
+          0.7923905849456787
+        ],
+        "interval_80_coverage": 0.7936507936507936,
+        "interval_mean_width": 2.6972596645355225,
+        "mean_pinball_loss": 0.24717412444334186
+      }
+    },
+    "forecast_seconds": 1.0980678999912925
+  },
+  "reload": {
+    "max_prediction_difference": 0.000568389892578125,
+    "within_0_001": true
+  },
+  "finished_utc": "2026-11-10T23:33:24.438853+00:00"
+}

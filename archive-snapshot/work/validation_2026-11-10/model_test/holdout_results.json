@@ -1,0 +1,192 @@
+{
+  "selected_adapter": "adaptation200",
+  "selection_validation_et0_mae": {
+    "smoke20_verified": 0.7382134795188904,
+    "adaptation200": 0.7291198968887329
+  },
+  "checkpoint_revision_date": "2026-06-05",
+  "issue_dates": [
+    "2026-07-01",
+    "2026-07-08",
+    "2026-07-15",
+    "2026-07-22",
+    "2026-07-29",
+    "2026-08-05",
+    "2026-08-12",
+    "2026-08-19",
+    "2026-08-26",
+    "2026-09-02",
+    "2026-09-09",
+    "2026-09-16",
+    "2026-09-23",
+    "2026-09-30",
+    "2026-10-07",
+    "2026-10-14",
+    "2026-10-21"
+  ],
+  "nonoverlapping_weeks": 17,
+  "forecast_days_per_target": 119,
+  "forecast_contract": "Cutoff D-7; 14 steps; score steps8-14 for D+1..D+7",
+  "scores": {
+    "zero_shot": {
+      "tmax_c": {
+        "mae": 2.0002341270446777,
+        "rmse": 2.672781467437744,
+        "bias": 1.0346556901931763,
+        "mae_by_lead_1_to_7": [
+          1.8819217681884766,
+          2.0596938133239746,
+          1.9564974308013916,
+          1.8421682119369507,
+          2.0972650051116943,
+          2.1470913887023926,
+          2.0169994831085205
+        ],
+        "interval_80_coverage": 0.7563025210084033,
+        "mean_interval_width": 6.841685771942139,
+        "mean_pinball_loss": 0.7029063954072841
+      },
+      "et0_mm_day": {
+        "mae": 0.6442238688468933,
+        "rmse": 0.7800334692001343,
+        "bias": 0.4299473464488983,
+        "mae_by_lead_1_to_7": [
+          0.7225514650344849,
+          0.5116412043571472,
+          0.5464510917663574,
+          0.5709882378578186,
+          0.6581661105155945,
+          0.7047878503799438,
+          0.7949818968772888
+        ],
+        "interval_80_coverage": 0.6974789915966386,
+        "mean_interval_width": 1.9988725185394287,
+        "mean_pinball_loss": 0.21176019356030376
+      }
+    },
+    "fine_tuned": {
+      "tmax_c": {
+        "mae": 1.9875693321228027,
+        "rmse": 2.65691876411438,
+        "bias": 1.0484330654144287,
+        "mae_by_lead_1_to_7": [
+          1.8846381902694702,
+          2.052990674972534,
+          1.9376518726348877,
+          1.8280274868011475,
+          2.081948757171631,
+          2.12434720993042,
+          2.003380537033081
+        ],
+        "interval_80_coverage": 0.7647058823529411,
+        "mean_interval_width": 6.724053382873535,
+        "mean_pinball_loss": 0.6972262337094262
+      },
+      "et0_mm_day": {
+        "mae": 0.6400626301765442,
+        "rmse": 0.7746844291687012,
+        "bias": 0.4255540668964386,
+        "mae_by_lead_1_to_7": [
+          0.7196472883224487,
+          0.5091274976730347,
+          0.5491867065429688,
+          0.5695087313652039,
+          0.6485850214958191,
+          0.6928678154945374,
+          0.7915153503417969
+        ],
+        "interval_80_coverage": 0.7058823529411765,
+        "mean_interval_width": 1.964170217514038,
+        "mean_pinball_loss": 0.21021927892326975
+      }
+    },
+    "seasonal_climatology": {
+      "tmax_c": {
+        "mae": 1.6555463566499597,
+        "rmse": 2.028802572961523,
+        "bias": -0.6226891830187886,
+        "mae_by_lead_1_to_7": [
+          1.5882354063146256,
+          1.5429415422327377,
+          1.1976469825295841,
+          1.6614708619959213,
+          1.7470585879157572,
+          1.8950000650742476,
+          1.9564710504868452
+        ],
+        "interval_80_coverage": 0.865546218487395,
+        "mean_interval_width": 6.05793269982859,
+        "mean_pinball_loss": 0.5190599705458355
+      },
+      "et0_mm_day": {
+        "mae": 0.5234047084295449,
+        "rmse": 0.6667065394025634,
+        "bias": -0.23775912733638987,
+        "mae_by_lead_1_to_7": [
+          0.6733975270215202,
+          0.5037827632006477,
+          0.49965718213249655,
+          0.4811592242297004,
+          0.4783921382006477,
+          0.5161047823288861,
+          0.5113393418929156
+        ],
+        "interval_80_coverage": 0.8151260504201681,
+        "mean_interval_width": 1.606635996073234,
+        "mean_pinball_loss": 0.16620323286670932
+      }
+    },
+    "persistence": {
+      "tmax_c": {
+        "mae": 2.4096646308898926
+      },
+      "et0_mm_day": {
+        "mae": 0.7531590461730957
+      }
+    }
+  },
+  "prediction_seconds": {
+    "zero_shot": 0.6280570000526495,
+    "fine_tuned": 0.322573299985379
+  },
+  "limits": [
+    "17 July-October weekly origins at one provisional point",
+    "Current revised POWER archive with simulated latency, not prospective real-time evaluation",
+    "Target ET0 is calculated from gridded products, not independent field observations",
+    "No agricultural decision or farmer outcome validated"
+  ],
+  "paired_diagnostics": {
+    "zero_shot_vs_tuned_tmax_c": {
+      "mean_mae_reduction_positive_is_better": 0.012664640322327614,
+      "descriptive_week_bootstrap_95_interval": [
+        -0.005356548528652638,
+        0.02925201915204524
+      ]
+    },
+    "zero_shot_vs_tuned_et0_mm_day": {
+      "mean_mae_reduction_positive_is_better": 0.004161319229751825,
+      "descriptive_week_bootstrap_95_interval": [
+        -0.0009222422930179163,
+        0.009745576768182218
+      ]
+    },
+    "seasonal_climatology_vs_tuned_tmax_c": {
+      "mean_mae_reduction_positive_is_better": -0.3320228948312648,
+      "descriptive_week_bootstrap_95_interval": [
+        -1.1318411258839758,
+        0.31385935060366815
+      ]
+    },
+    "seasonal_climatology_vs_tuned_et0_mm_day": {
+      "mean_mae_reduction_positive_is_better": -0.11665792262353818,
+      "descriptive_week_bootstrap_95_interval": [
+        -0.2622706447172315,
+        0.020307899091173465
+      ]
+    }
+  },
+  "input_hashes": {
+    "weather_et0.csv": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8",
+    "weather_et0_2026_Jan_Oct.csv": "c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e"
+  }
+}

@@ -1,0 +1,2 @@
+# Preserve the byte-identified historical ET0 generator across checkout platforms.
+data/validation/audit_weather.py -text

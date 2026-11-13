@@ -1,0 +1,12 @@
+{
+  "observed_date": "2026-11-10",
+  "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PS,PRECTOTCORR&community=AG&longitude=30.95&latitude=31.10&start=20241001&end=20241007&format=JSON&time-standard=UTC",
+  "capture_method": "JSON response observed in the in-app browser and transcribed into power_sakha_sample.json. Not a byte-for-byte HTTP download archive.",
+  "coordinate_status": "Provisional Sakha-area research point; not an agreed pilot location or farmer parcel.",
+  "access_result": "Browser returned data. Direct shell download failed DNS resolution. Application download route remains unresolved.",
+  "limitations": [
+    "Seven historical days only; not a replay or model-training dataset.",
+    "No station validation, field representativeness assessment, or operational latency test.",
+    "Current historical archive response; not a record of the information available at a historical forecast issue time."
+  ]
+}

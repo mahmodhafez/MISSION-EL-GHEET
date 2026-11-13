@@ -1,0 +1,117 @@
+{
+  "audit_date": "2026-11-12",
+  "audit_type": "read_only_existing_checker_no_training",
+  "head": "aa7f9a2",
+  "archive_sha256": "d284b3162a2dd5bbde8bcb37ae3090adcf080a5d044a4e25b2c96836b4cee95f",
+  "command": "python -I -S data/validation/audit_saved_evidence.py --archive docs/VALIDATION_ARTIFACTS.zip",
+  "runtime": "3.13.5",
+  "status": "passed",
+  "integrity_checked_members": 16,
+  "weather": {
+    "days": 9435,
+    "source_values": 75480,
+    "max_et0_difference_mm_day": 0.0,
+    "cloud_floor_days": 38
+  },
+  "ml": {
+    "days_per_target": 119,
+    "selected_adapter": "adaptation200",
+    "dataset_hashes_match": true,
+    "scores": {
+      "zero_shot": {
+        "tmax_c": {
+          "mae": 2.0002338665874064,
+          "rmse": 2.6727816861976526,
+          "bias": 1.034655771335634,
+          "interval_80_coverage": 0.7563025210084033,
+          "mean_interval_width": 6.841684565824621,
+          "mean_pinball_loss": 0.702906395407284,
+          "covered": 90
+        },
+        "et0_mm_day": {
+          "mae": 0.6442239484867128,
+          "rmse": 0.7800334158470299,
+          "bias": 0.4299473942828779,
+          "interval_80_coverage": 0.6974789915966386,
+          "mean_interval_width": 1.9988726026871626,
+          "mean_pinball_loss": 0.21176019356030376,
+          "covered": 83
+        }
+      },
+      "fine_tuned": {
+        "tmax_c": {
+          "mae": 1.9875692479750688,
+          "rmse": 2.656918918652175,
+          "bias": 1.0484330313546317,
+          "interval_80_coverage": 0.7647058823529411,
+          "mean_interval_width": 6.724052605508756,
+          "mean_pinball_loss": 0.6972262337094262,
+          "covered": 91
+        },
+        "et0_mm_day": {
+          "mae": 0.640062632680941,
+          "rmse": 0.7746844233551897,
+          "bias": 0.4255541112242627,
+          "interval_80_coverage": 0.7058823529411765,
+          "mean_interval_width": 1.9641701674261014,
+          "mean_pinball_loss": 0.21021927892326975,
+          "covered": 84
+        }
+      },
+      "seasonal_climatology": {
+        "tmax_c": {
+          "mae": 1.6555463566499597,
+          "rmse": 2.028802572961523,
+          "bias": -0.6226891830187886,
+          "interval_80_coverage": 0.865546218487395,
+          "mean_interval_width": 6.05793269982859,
+          "mean_pinball_loss": 0.5190599705458355,
+          "covered": 103
+        },
+        "et0_mm_day": {
+          "mae": 0.5234047084295449,
+          "rmse": 0.6667065394025634,
+          "bias": -0.23775912733638987,
+          "interval_80_coverage": 0.8151260504201681,
+          "mean_interval_width": 1.606635996073234,
+          "mean_pinball_loss": 0.1662032328667093,
+          "covered": 97
+        }
+      },
+      "persistence": {
+        "tmax_c": {
+          "mae": 2.4096643143341323
+        },
+        "et0_mm_day": {
+          "mae": 0.7531590341519909
+        }
+      }
+    },
+    "method_provenance": "Archived training/evaluator source inspected; saved predictions rescored. No new inference/training or interval calibration."
+  },
+  "limitations": [
+    "No training or inference rerun",
+    "No full archive member/weight tensor audit",
+    "No new station or agronomic field validation",
+    "No application tests; application code absent from inspected checkout",
+    "User-reported Linux 14/16 byte regeneration result not rerun or altered",
+    "CLIMATE_AWARE_PLANNER.md and newer backend unavailable in inspected refs",
+    "SB-001 complete plans and original seven gaps not available"
+  ],
+  "frozen_csvs": [
+    {
+      "name": "weather_et0.csv",
+      "rows": 9131,
+      "first": "2001-01-01",
+      "last": "2025-12-31",
+      "sha256": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8"
+    },
+    {
+      "name": "weather_et0_2026_Jan_Oct.csv",
+      "rows": 304,
+      "first": "2026-01-01",
+      "last": "2026-10-31",
+      "sha256": "c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e"
+    }
+  ]
+}

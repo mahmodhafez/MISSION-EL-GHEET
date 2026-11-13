@@ -1,0 +1,2658 @@
+[
+  {
+    "path": ".gitattributes",
+    "bytes": 122,
+    "sha256": "d73d3121ba597116ee6f05def477318318a35493cfb6013762dd08f0fbc4d921",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 1826,
+    "sha256": "7184a79c9bf75abbbc8e18835f619213a2f670ee43082706ea257ca43834a26f",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": ".venv/.gitignore",
+    "bytes": 1,
+    "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/.lock",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/CACHEDIR.TAG",
+    "bytes": 43,
+    "sha256": "5953156d7e0c564a427251316eaf26f8870e6483ae2197f916b630e4f93e31ae",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Lib/site-packages/__pycache__/_virtualenv.cpython-313.pyc",
+    "bytes": 4854,
+    "sha256": "929aa00655f981744aaad4430626560bd8bccee635a6c0156c312ebeff1259ca",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Lib/site-packages/_virtualenv.pth",
+    "bytes": 18,
+    "sha256": "69ac3d8f27e679c81b94ab30b3b56e9cd138219b1ba94a1fa3606d5a76a1433d",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Lib/site-packages/_virtualenv.py",
+    "bytes": 5246,
+    "sha256": "cfb3db86aaa53bb62b5ff764970bec2d71c9228590a0ebec57f6ec926cc0bf1a",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/activate",
+    "bytes": 4107,
+    "sha256": "be4a641212b4b5b2ab3337b95cdbb8dbbaa510de46b0a8d3a82941c9428db2c3",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/activate.bat",
+    "bytes": 2687,
+    "sha256": "aeff6020262eff16e0abc06068ffef91be0ff7bce9236d4f97aa6f7c2bca0651",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/activate.csh",
+    "bytes": 2637,
+    "sha256": "13ff8d241bccf68538dd1388244690b17a098a8f6450e5160f3e3c1aa5180bff",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/activate.fish",
+    "bytes": 4348,
+    "sha256": "39eb9be357cbc0b7923c862bb4bc7cbe8cc20fd33aa60fe06af32044b4d31110",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/activate.nu",
+    "bytes": 3965,
+    "sha256": "4564370eccada198f073139238b2672454f170e2c85d9c74390317e75ba0d3fe",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/activate.ps1",
+    "bytes": 2769,
+    "sha256": "7da6f10c0bcc7d458dbc63ab302df7d3df689ded0dbfe9ee288072fa0bbaa45f",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/activate.xsh",
+    "bytes": 3843,
+    "sha256": "34e6cf86e35b1dd3a583ce55409f1c19a0ea6699c968f7e9842ed89ea073210b",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/activate_this.py",
+    "bytes": 2378,
+    "sha256": "372e90ff227f1040a114cc4c33f1ae5f8ee0db129803e1e4d083ad63a9751b0a",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/deactivate.bat",
+    "bytes": 1730,
+    "sha256": "13ea86073a9ee43a66e3549312599dd47ff315758b4ca5a0406faf041fb82300",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/pydoc.bat",
+    "bytes": 1219,
+    "sha256": "09f9608d478fa48a9e49af8f413cfeaab47773effd185433088b7688ce75890e",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/python.exe",
+    "bytes": 237568,
+    "sha256": "bc2669ce1086d0c634ea148395df9f029da828793f0aabf6e0e7eb326a0f4c0c",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/Scripts/pythonw.exe",
+    "bytes": 233984,
+    "sha256": "095e10ee9357122f92fbfe15ef0e9db3d5cc102079a1aafa03fd87c383ce1ecc",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": ".venv/pyvenv.cfg",
+    "bytes": 183,
+    "sha256": "1ad758f445cc7e320280e61b69cce4cc1f9eeae6f9c324f8cc1ac2b9a28b15df",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 4085,
+    "sha256": "ceddb697683ea3aa98e52f10df56be2dea38024ee1b285f2e69b700c4e6b9c4b",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "README.md",
+    "bytes": 4289,
+    "sha256": "5f6e11b5eef8bc7f369772dd9f2a411c278a328afc3dd99b76804dcd0cdbc326",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/ARTIFACT_MANIFEST.json",
+    "bytes": 16423,
+    "sha256": "de5ffff5af9a21375492f707aaa7fc4695c9bf6f002b45a293d3ac5e1e7e1ab3",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/MISSING_ARTIFACTS.md",
+    "bytes": 2568,
+    "sha256": "2fc442f75a9e0d0f8b46570115228933a666928ddbb3ec4b825fb04ae06ec5a3",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/REPRODUCE.md",
+    "bytes": 5502,
+    "sha256": "5e253a67399ee9d1f9c1166530e05ace86ea38315003baf1f2a4ebef14aaf0f1",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/DATA_SPEC.md",
+    "bytes": 11161,
+    "sha256": "4c48298e7a9a0882754429a3ff136aa50c59b1b04b89b5eb371f3d27075e8ad1",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/HANDOFF.md",
+    "bytes": 8613,
+    "sha256": "81f64ac55134711c369548385dd24b5a6874ea617553ac7f8fedef421141d14a",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/MISSION_EL_GHEET_Final_Product_Decisions.md",
+    "bytes": 6749,
+    "sha256": "e8db2ae408147845856b9ff66ea02586233d34e334afef063f9c77312411a44f",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/MISSION_EL_GHEET_Readiness_and_Quality_Plan.md",
+    "bytes": 11528,
+    "sha256": "71ff2bc924240e55690359ddb6d5f017914cd3c185a7814e43d27340a00ec874",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/MISSION_EL_GHEET_Validation_Verdict.md",
+    "bytes": 7770,
+    "sha256": "36f66a1aca03d731149d28edebba04ba1ad6ddbf72a32762247829b9e5cee82c",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/ML_EXPERIMENT.md",
+    "bytes": 10567,
+    "sha256": "a6e96186ce7214a3bb567d82ced9e7f94c08180e3acb08e68fe3946fdfd1808d",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/PRODUCT.md",
+    "bytes": 9584,
+    "sha256": "2a505447ea1d989a648d047fc130ec764aed540f012963cf7d803c211d554a5d",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/REFERENCE_SCENARIO.md",
+    "bytes": 10117,
+    "sha256": "ae9c5a6e81c01d1c83eb8136608496bfb18dd7f6b9faf64f3eb27695121c5a5d",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/SCIENCE.md",
+    "bytes": 12449,
+    "sha256": "900017076c753812e02d3a9c07872e49203bd2eab6d5cc4fc91160c1352f3ea1",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/validation_accessibility_alignment.md",
+    "bytes": 17437,
+    "sha256": "4a1335f209687a0446aabdf8334fe2421b37ae27235f63f647b4b2600773c45c",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/validation_agronomy.md",
+    "bytes": 14216,
+    "sha256": "f88155f3bb909afacf2400bc0df1ad6e1b3047985dc2f3d54f0f48a311a2c8b8",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/validation_data_equations.md",
+    "bytes": 5072,
+    "sha256": "64e7549b44aa5a433d40ea31dc4a3d7c6911fd4da4403501c67b8869bf53ae3f",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/validation_equations_review.md",
+    "bytes": 6976,
+    "sha256": "24c31d8b7fe26472e7e223cc6df2e6c5ffabfaf10fe4818c2d91e4750f6125bc",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/validation_model_execution.md",
+    "bytes": 5360,
+    "sha256": "41ea90f18ab41855feda4da3d9e67278903e0715978da137781bcb8c61beda37",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/outputs/validation_models.md",
+    "bytes": 14822,
+    "sha256": "e9cbd5bd63f7ab81e62eb1454333028c9e6bc62f51aecf2e7acccabbc4e1f946",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/agronomy/download_provenance.json",
+    "bytes": 553,
+    "sha256": "bd9d0ec7dfa41fdc37c767490425a73bdf74243b721429f58f6b0878794b4e37",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/agronomy/study_downloads_2026-11-11.json",
+    "bytes": 672,
+    "sha256": "fa7a028a0a440260da34ef8052bdd12cdefb47298c5be22ab7e7225c64caebee",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/package_handoff.py",
+    "bytes": 11371,
+    "sha256": "52afe6996011c95250bbb89c47bfd8fffd7f87bf1bfaec11cf3fe2a74c17f5db",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/readiness_2026-11-10/check_readiness.py",
+    "bytes": 3006,
+    "sha256": "50475a1ea620efaa002253612d0c6fe3b912b6d97f6717db0b47dc60fa359697",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/readiness_2026-11-10/fao56_reference_check.json",
+    "bytes": 700,
+    "sha256": "a61b50ded701200538b162b522c0e2620106e55651c123a392ff681a385da29e",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/readiness_2026-11-10/power_sample_provenance.json",
+    "bytes": 996,
+    "sha256": "e724ff92f78c4e5739a0e8490b1bd71d0dfcce3354467d34c1ea39465188af5a",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/readiness_2026-11-10/readiness_checks.json",
+    "bytes": 803,
+    "sha256": "417a12ee15db02ef9da9e4ddd9c506f2c3475be8bf073a1cda309a00436289b4",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/audit_weather.py",
+    "bytes": 9503,
+    "sha256": "905a700d542c5a3e2dc7dd136e21acd7a84469d1ff940efa0836bbb63e7ee0e0",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/check_station_table.py",
+    "bytes": 2119,
+    "sha256": "1dedef06e28016c5f7940d345b8e9137219dfeeb8f220e4963d1b869df49a96f",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/download_local_studies.py",
+    "bytes": 1488,
+    "sha256": "8df83835dcc712dd7ddc9d3547b036e2b4d985e203df6ccc5c71590011e2f5cf",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/download_power.py",
+    "bytes": 2396,
+    "sha256": "2e8bc1d339072ccbd4b37301071b6225ac0a9b8d7226edf798b5bd67f01fdab2",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/download_references.py",
+    "bytes": 1181,
+    "sha256": "89a01bcd75c42f0aa7ed572c22260f34b1126989c0cb8387dafb3a580d34ba3d",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/adaptation200/results.json",
+    "bytes": 6633,
+    "sha256": "4a3bf54946bf17ad6ce996ea879c70c7358e4089364a8f4bf1f86d83740526e3",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/adaptation200/training/finetuned-ckpt/README.md",
+    "bytes": 5382,
+    "sha256": "e85628a12129f3cc58f4538786ea668338ba53385474247cb83a5e9c47753508",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/adaptation200/training/finetuned-ckpt/adapter_config.json",
+    "bytes": 1330,
+    "sha256": "d51685e9309aa3c7ed91d91291fb2f7d37f075c4cabe19cdac370db9e9f08bbf",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/artifact_verification.json",
+    "bytes": 428,
+    "sha256": "d7908a4a52bcb4d6d1d394628d53db3260dfda1a2c2084b369237ec48f1e7520",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/checkpoint/config.json",
+    "bytes": 1067,
+    "sha256": "ef1143bfdc9c0376d9a056eefca46cb4b1ec3d0ffacd541ff56feb40fb708031",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/checkpoint_commit_history.json",
+    "bytes": 4387,
+    "sha256": "9eda6671f49327438fc85e6800df8a9c4ddb40b90cf5d6ea16a7dd99a1c67804",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/checkpoint_provenance.json",
+    "bytes": 966,
+    "sha256": "64481dc1fc58a1059a257916b07b71bb0e6818ff185f61e17ba90b7334f90014",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/configure_env.ps1",
+    "bytes": 917,
+    "sha256": "2df1bc1beab77f0105c6d8088e27c575ae451627cf5a0d28452560bebd27a70b",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/diagnose_reload.py",
+    "bytes": 2068,
+    "sha256": "ceb6f1b913a12c1ff6ac602e6455de394b7ee5f7bd3851af936fd2f2ca597eee",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/download_checkpoint.py",
+    "bytes": 2369,
+    "sha256": "27ea9157bfb366333bd96e72674de0ee9acf277be9031e335ba3d3f02b4febda",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/evaluate_holdout.py",
+    "bytes": 5414,
+    "sha256": "2000fcd43b09cd17bdbeacd00e90aa085c70228339ed9ad43fb66b4b01f09005",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/evaluation_protocol.json",
+    "bytes": 1723,
+    "sha256": "68b3285bb1a0f716e57e1168a1039f8110d9d4649e4e31f0930f7ca5a51a91d9",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/holdout_results.json",
+    "bytes": 5977,
+    "sha256": "fa1ec2c076bea36484bdb3733ff0aa5965b2b1c4f14823e9442bed289e3acf40",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/installed_requirements.txt",
+    "bytes": 850,
+    "sha256": "b2de079eeb85c4bbf5261d71617ea49e18eb92bfe55f8e443ad846ade7ada2f4",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/reload_diagnosis/finetuned-ckpt/README.md",
+    "bytes": 5382,
+    "sha256": "e85628a12129f3cc58f4538786ea668338ba53385474247cb83a5e9c47753508",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/reload_diagnosis/finetuned-ckpt/adapter_config.json",
+    "bytes": 1330,
+    "sha256": "f47ba5084b15c062318e599b67ed8fe51b8c50a6481e12aba35b0d6306b9aa5d",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/reload_diagnosis/result.json",
+    "bytes": 415,
+    "sha256": "7b08a0c8f9875148df9fd1eebfed0ab6fac97f044abc02b1c4ad03a77b7262c6",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/run_model_test.py",
+    "bytes": 9893,
+    "sha256": "7f4779aa78141f43f5730231efd5f8bfad444b134061c4edecf895b1ad345727",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20/results.json",
+    "bytes": 7071,
+    "sha256": "c26c2d4b9d0e76328e3bc50cedd9d292a4cb32b41fa3dba08223202472f5745e",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20/training/finetuned-ckpt/README.md",
+    "bytes": 5382,
+    "sha256": "e85628a12129f3cc58f4538786ea668338ba53385474247cb83a5e9c47753508",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20/training/finetuned-ckpt/adapter_config.json",
+    "bytes": 1330,
+    "sha256": "576fb899a3de949bf2ac67274caa86b07a7b360c6a08268d78b7b9b55e2e77e8",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20_verified/results.json",
+    "bytes": 6632,
+    "sha256": "8febc124eb1a56945108c297b25af4c686c3997c30955851d2dd963a4654048c",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20_verified/training/finetuned-ckpt/README.md",
+    "bytes": 5382,
+    "sha256": "e85628a12129f3cc58f4538786ea668338ba53385474247cb83a5e9c47753508",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/smoke20_verified/training/finetuned-ckpt/adapter_config.json",
+    "bytes": 1330,
+    "sha256": "49ca8707064bd85c6ea4aaf5fdc4b92e514581ca6866638aff5e2d15410cdf81",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/model_test/verify_model_artifacts.py",
+    "bytes": 2409,
+    "sha256": "f9a5c5352c4438dc6cedfb7f24840448268fcf90f18a387beac6eb251cfae712",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/power_provenance.json",
+    "bytes": 2312,
+    "sha256": "d90f33792704b02da5c5bd4a5d36dd884ded503132fdd2d18d39df25727cd469",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/power_provenance_2026_Jan_Oct.json",
+    "bytes": 2347,
+    "sha256": "01e22774c32c1ccca2820dc2eac9294f288433cdc0d65a4be920b729d24ec1d8",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/station_table_diagnostic.json",
+    "bytes": 3902,
+    "sha256": "0c1ab6456579b5cd6daea359383ebcb4d7ba67563be11643ba70c1c0c636ef08",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/weather_audit.json",
+    "bytes": 6608,
+    "sha256": "015fdc25d91781075b9aa9ae61c7f43a068b606d862d4df4ff0dac4af70d7809",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "archive-snapshot/work/validation_2026-11-10/weather_audit_2026_Jan_Oct.json",
+    "bytes": 5976,
+    "sha256": "bd2d8dae1085c79a42c52502b97cf6f84ea67bd370961f28cc2df1f3943ca473",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "backend/app/api/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "backend/app/core/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "backend/app/forecast/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "backend/app/planner/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "backend/app/replay/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "backend/app/schemas/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "backend/app/services/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "backend/tests/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/fixtures/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/manifest.json",
+    "bytes": 5464,
+    "sha256": "ff496fade44b58a46e38185e81c3c63488d5765a87514097b0c47f3d493a88ce",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/PACKAGE_MANIFEST.json",
+    "bytes": 4098,
+    "sha256": "6be436bfa2c0e02857999f3e89d9e4f334ca934edf491c51749cde363dc1d7a7",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/SHARED_DATA_DICTIONARY.md",
+    "bytes": 5856,
+    "sha256": "a2927184f4e5422c1b1efce81c66f93d0e07ecfde392ca6926a096e7310613e0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/START_HERE.md",
+    "bytes": 8278,
+    "sha256": "84ddae5684fb728e1c4edb4090e101d137f1c8cb1594c0d9c6e2ec336ff107f5",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/check_handoff.py",
+    "bytes": 7465,
+    "sha256": "86d9bba2984346f5e636648b4561141cdb66bff2209ef0fa68e4c65b5a4a085e",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/climate_data/__init__.py",
+    "bytes": 81,
+    "sha256": "bf82d94c5f50866a25da679a760366a802c1b391bed9aa068facb7aacc87368d",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/climate_data/climatology.py",
+    "bytes": 7805,
+    "sha256": "5ffa077b9205e116a15e2d143f148b5cc4fb779fa25185fae73bf5fc7eca689d",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/climate_data/evaluation.py",
+    "bytes": 12260,
+    "sha256": "afcd15903d72ccaad7cc51f83feb35cb9133518d11a7730da0e93dd465c2e9c3",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/climate_data/ml_example.py",
+    "bytes": 1348,
+    "sha256": "eceaea8982a62d921b8cb35982bf172ead55dd2fb0dc4009628de481c2e74c99",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/data/diagnostic_validation_targets.csv",
+    "bytes": 39550,
+    "sha256": "362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/data/fit_targets.csv",
+    "bytes": 237070,
+    "sha256": "24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/data/forecast_windows.csv",
+    "bytes": 3075,
+    "sha256": "8fc0c0aa99f57ee47910c3cf3bd49eeb6b4f9cccf692aa9a821d8e9e73311a44",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/data/quality_flags.csv",
+    "bytes": 811084,
+    "sha256": "db650082761b27205a0ef8ebae852a28984f5bd296a7b1a8c7d1cb39de0567a6",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/data/release.json",
+    "bytes": 1629,
+    "sha256": "45c3f7601ffa3cf1693fbc45d69d7ac2f97b1dbe22811680004eb4f11e92778b",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/data/source_manifest.json",
+    "bytes": 4702,
+    "sha256": "823a1588691e86f5eb9c4a0a83580c4621c271ce59fd0d1e8dafb04be570ece0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/provenance/CHRONOS_HISTORY.md",
+    "bytes": 1723,
+    "sha256": "9cecbbe2b61e9704222389de987c96eafc1306c1dd593ac1ac444182271af1b1",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/provenance/experiment/evaluation_protocol.json",
+    "bytes": 1723,
+    "sha256": "68b3285bb1a0f716e57e1168a1039f8110d9d4649e4e31f0930f7ca5a51a91d9",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/provenance/input_archives.json",
+    "bytes": 6190,
+    "sha256": "154091c42c834cd619d570a7f3418f3a2fed0f24bdc26f8b9e7f9d5f429f3069",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/provenance/source_manifest.json",
+    "bytes": 4821,
+    "sha256": "20262c5ebcfd16f3246e46626972fb08474f00168293fd4e0084134f51a99517",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/reference/calendar_reference.csv",
+    "bytes": 76343,
+    "sha256": "3f79d2084882ce8baf4ff76cc10c0fdff697349d8603b6893ba17c0be9f8a231",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/reference/metrics.json",
+    "bytes": 1800,
+    "sha256": "bd7bd0165ab3007374797f2af45ce9896966d2bf3be6c3d9186432af210326c0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/reference/scored_predictions.csv",
+    "bytes": 60753,
+    "sha256": "60611ae9fd6b1baab137df53ab4a4b4438ec937f30861ccd44cd8d6777b6ec28",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/reports/qa/ml.json",
+    "bytes": 3932,
+    "sha256": "e873f196b126d62a7c6a8bd1094bdc967f5fb5593c275ac5e1828223ee3ae41c",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/requirements.txt",
+    "bytes": 64,
+    "sha256": "436ea28794d36ed48ce394ca98912413eb581d6297f1b5d68d9dc55653f93c86",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/sources/power_provenance.json",
+    "bytes": 2312,
+    "sha256": "d90f33792704b02da5c5bd4a5d36dd884ded503132fdd2d18d39df25727cd469",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/sources/power_provenance_2026_Jan_Oct.json",
+    "bytes": 2347,
+    "sha256": "01e22774c32c1ccca2820dc2eac9294f288433cdc0d65a4be920b729d24ec1d8",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/tests/fixtures/diagnostic_baseline.json",
+    "bytes": 1434,
+    "sha256": "61ff3a72fe028eb0cc9b554869a926ca1f7e96b615130ba751bb3011a1629146",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/tests/test_ml.py",
+    "bytes": 8711,
+    "sha256": "c46d8921f6979106927b512e3997ec8a3c46bf76dbfa643395dc0c44614e92d0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/refaat/verify_package.py",
+    "bytes": 792,
+    "sha256": "3e045e0ead52f2cafc4999f8ac3bf3f3b5614a5a8f584b1a5f35f386d87f8efd",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/local/shared-20261113-v1/weather/weather_et0.csv",
+    "bytes": 1017464,
+    "sha256": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "data/local/shared-20261113-v1/weather/weather_et0_2026_Jan_Oct.csv",
+    "bytes": 33936,
+    "sha256": "c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "data/processed/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/validation/__pycache__/audit_saved_evidence.cpython-313.pyc",
+    "bytes": 35602,
+    "sha256": "99560da3273e6760af8127cb2dd09628a1212ef9aa790b8d61fe3d7c4f65854b",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "data/validation/__pycache__/audit_weather.cpython-313.pyc",
+    "bytes": 17444,
+    "sha256": "c489e57eeb70868a477c3510a9ca8d7c71a985e146cabfa840c5a790c4c1434d",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "data/validation/__pycache__/regenerate_et0.cpython-313.pyc",
+    "bytes": 6710,
+    "sha256": "6cf4719e0cebee3ef0bf4cc8f8d7eebe1d1c0b0ec1d234a96750d1255efdb5eb",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "data/validation/__pycache__/test_audit_saved_evidence.cpython-313.pyc",
+    "bytes": 12501,
+    "sha256": "914ddddb019a31a539e266b30173b8073a8bee2a3fab66fc9fbc95f01c053834",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "data/validation/__pycache__/test_regenerate_et0.cpython-313.pyc",
+    "bytes": 7645,
+    "sha256": "647f50fa1ef84a303f7b8725de38014f5e7d8735bc97e5423ad094c7b10c6b62",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "data/validation/audit_saved_evidence.py",
+    "bytes": 19331,
+    "sha256": "995acaad626188e7e016781c8f9250ea1f757efb7fb0332dfcba14cbc0b478f6",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/validation/audit_weather.py",
+    "bytes": 9503,
+    "sha256": "905a700d542c5a3e2dc7dd136e21acd7a84469d1ff940efa0836bbb63e7ee0e0",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/validation/et0_release_manifest.json",
+    "bytes": 1421,
+    "sha256": "2e6444d426a124850fff86567316eebe82d5123d15d1a129f2dc64fb263b0c27",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/validation/power_acquisition.json",
+    "bytes": 5357,
+    "sha256": "50ae6cc7bc8a7ce0d56bfa9e0eb1d7cebf5cf42f25cb77af357897efebc30abc",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/validation/regenerate_et0.py",
+    "bytes": 4274,
+    "sha256": "8796bec15bcf4d1d064e3dcd2528e3424e4a4c516e307623bb605263f05222d1",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/validation/test_audit_saved_evidence.py",
+    "bytes": 6252,
+    "sha256": "1ea810c96a74ac7bef539d7e1c383542f6aaae69eae3ae4d1281b38c914c1892",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "data/validation/test_regenerate_et0.py",
+    "bytes": 4314,
+    "sha256": "cfa0d9f91f636dd13f04cb88d399f7c12fa7a3b7f926bfc0612fcde4c746e764",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/AGRONOMY_EVIDENCE.md",
+    "bytes": 15201,
+    "sha256": "7e732ea45fedba65972b73444842e6233df5c98776b3033b6fbd617b36838dce",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/API_CONTRACTS.md",
+    "bytes": 26626,
+    "sha256": "7efe42676872886fda34bb1daa4d4c363dddccf25a205d917b56ce7144ec7ee2",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/ARCHITECTURE.md",
+    "bytes": 16893,
+    "sha256": "4e3f00cd3f9074ea2cab510991815976b4fb6af66b125f22852ecd7e9b55caf2",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/ASTRA_PLANNER_HANDOFF.md",
+    "bytes": 10697,
+    "sha256": "3fbe16578f8f374551fa42e30df0449a1eea948a9a13c59d1e405244e2a00505",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/BACKEND_DESIGN.md",
+    "bytes": 28158,
+    "sha256": "dd9835a121c9f8508e4b462e6a4f8e9c574a45d531f53ad856bdbef1becb7fce",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/DATA_SPEC.md",
+    "bytes": 12772,
+    "sha256": "b14c2269b581805977367b3553c2d0497fe2609ac437cc431a7d6a45cf917cf1",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/DESIGN.md",
+    "bytes": 26832,
+    "sha256": "a38493d74446cd3c8b490a4abcc0de73676fcf0877796a5a9e85061ca410e59d",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/EVIDENCE_ACCESS.md",
+    "bytes": 4980,
+    "sha256": "f9db6fc319693b9fbb23da3a88bab13322e571a7699e8ce50110262f5f5a55c6",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/FINAL_PLANNER_BLUEPRINT.md",
+    "bytes": 79791,
+    "sha256": "d0ad667d934ea02643f902069f940889b6e270be3c7ec6af904d45943b5949e8",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/FRONTEND_MILESTONE_1.md",
+    "bytes": 7172,
+    "sha256": "9d9475e90c036e79bd1da52f8f5bb0e1f9fd1099f0e9b8dcb5d4c0f8374460cb",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/HANDOFF.md",
+    "bytes": 8876,
+    "sha256": "46ffaf29defd2a127de00dbb6624595d34d0c251e5a01e93fbeb65be3e9476db",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/MISSION_EL_GHEET_Validation_Verdict.md",
+    "bytes": 7770,
+    "sha256": "36f66a1aca03d731149d28edebba04ba1ad6ddbf72a32762247829b9e5cee82c",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/ML_EXPERIMENT.md",
+    "bytes": 11921,
+    "sha256": "3af4e90c38877407fe5898c77a9d38b09705388ff4b3812147ccfb75016619a6",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/ML_MULTIGRID_PROPOSAL.md",
+    "bytes": 8883,
+    "sha256": "8f811e5939eb22920917dd36f902d39a92443b6525c044ea778b48d7c459960f",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/PHASE_3_FIELDLIGHT_REFINEMENT.md",
+    "bytes": 5358,
+    "sha256": "c111b346cd420f7b6e2ad6422dd9406a77b4df25822fc21fa12817104e052ff6",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/PHASE_3_VISUAL_REVIEW.md",
+    "bytes": 21034,
+    "sha256": "09dc4932fea3ba9ff29a086903feb32d406dfe04ef6b701a4aeda75f475390b9",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/PLANNER_RESEARCH_HANDOFF.md",
+    "bytes": 16000,
+    "sha256": "b4cf4acafb850a91ac3f321f6cdd2c285b80064bb0653fa9351d4e7aee088315",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/PLANNER_SPEC.md",
+    "bytes": 42300,
+    "sha256": "2e85a42e1165ee8801e15cebb456db007d40d89eeb35316146a167011a7b0c4e",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/PRE_PUSH_SCIENCE_AUDIT.md",
+    "bytes": 11069,
+    "sha256": "7712cc3c2e758a546537c86496e6a54f6849217c6d2d25eaf1d53395101540fe",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/PRIVACY_ASSUMPTIONS.md",
+    "bytes": 3340,
+    "sha256": "ab9b5a89f6cad562ee001b5cb0b163c07903cdb4259a857a1a25bb29443c8955",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/PRODUCT.md",
+    "bytes": 9566,
+    "sha256": "19de25d64968e879265923ddb20da5d0eeb409072457083775c79a2f08bd8594",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/PROJECT_STATUS.md",
+    "bytes": 36490,
+    "sha256": "9acd8cdfcd6579ef75e8c4ce373bce41f433e5edd20cbc9d0f9813e6b0374af0",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/REFERENCE_SCENARIO.md",
+    "bytes": 10117,
+    "sha256": "ae9c5a6e81c01d1c83eb8136608496bfb18dd7f6b9faf64f3eb27695121c5a5d",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/REPRODUCING_SCIENCE.md",
+    "bytes": 7108,
+    "sha256": "a54b1862cdd36eb1f4885bb4004d06b42ee23b6a654cee731ca22c301553d0b0",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/SCIENCE.md",
+    "bytes": 14018,
+    "sha256": "5369633e7c7a742d9fbc4c0af39ad60c873bcb28ef155b95641708a6c09f7ea1",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/SCIENTIFIC_VALIDATION_FIXES.md",
+    "bytes": 15580,
+    "sha256": "d6612a4b847ac6fafcd78f0e546011d3fb3489dede6559126c7c70e67389a613",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/UX_PHASE_1.md",
+    "bytes": 25398,
+    "sha256": "2ca80a94e8fae0999fad30d628a265d6573fb0001f623b10652facf4f2436819",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/VALIDATION_ARTIFACTS.zip",
+    "bytes": 468781522,
+    "sha256": "d284b3162a2dd5bbde8bcb37ae3090adcf080a5d044a4e25b2c96836b4cee95f",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "docs/WIREFRAME_V2_REVIEW.md",
+    "bytes": 6543,
+    "sha256": "38907e719677f15d335182684c332bdb9db38610130327af2ecf4ec1bd9d604f",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/WIREFRAME_V3_REVIEW.md",
+    "bytes": 11407,
+    "sha256": "4a092ce60f2786b33b3683c8e952bb4a6daeeb4fa062b52ea7802e2c35e89b1b",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/AMR_ML_TASK.md",
+    "bytes": 6341,
+    "sha256": "3b06449dc53bca3bcb93f2f1d25dbf3e11bae643a0533cdb635017e46feac928",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/DATASET_MANIFEST.md",
+    "bytes": 11475,
+    "sha256": "789178d97b8df4664be59647b663a7aa394e65c383f3469778860f0313032c43",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/FINAL_ML_PLANNER_PLAN.md",
+    "bytes": 7359,
+    "sha256": "3463ad7f773f0e08ba43a5eee136bc9123471515f15bd0e19393ddc3e60e2b5c",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/INTEGRATION_CHECKLIST.md",
+    "bytes": 4496,
+    "sha256": "b9fb70621ec86d1e2fc72958365f114621b01ceb57b8f3e1156049c01fb3d05c",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/MAHMOUD_ML_TASK.md",
+    "bytes": 6562,
+    "sha256": "6eee768c903fcfabd8b2b391255e1b4be17393cf1b31979eedd1ec9ac9dd04b0",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/MODEL_SELECTION.md",
+    "bytes": 6842,
+    "sha256": "9b49807227b988b51b124c427d9f8e7f58616e4492f16d637225ad0f79cdd682",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/REFAAT_ML_TASK.md",
+    "bytes": 7259,
+    "sha256": "20488259fe3be92e1b622574b481a3dbec054279189f441ee137b17029e5637a",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/YAHYA_ML_PLANNER_CONTRACT.md",
+    "bytes": 12777,
+    "sha256": "d9a59ea4f52641e943e1b287d24cd763d30d3841ae80a37254696c3135a91928",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/implementation/refaat_verification.json",
+    "bytes": 3933,
+    "sha256": "1e89b70453cd656d8cd23b5cdfc18ad8cfe270ff6a903e15a45c790a8b7a0510",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/planning/agronomy-kb.v0.1.json",
+    "bytes": 46309,
+    "sha256": "2c68647c00ead24930bade3656387f275f53c2a8f762ce66f66b45c10be5eb43",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/planning/audit.json",
+    "bytes": 4073,
+    "sha256": "83ccbac36927b06a8afb03ddc5d1ac902577cc7e18c4f0a2899e0e7b98728af9",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/validation_accessibility_alignment.md",
+    "bytes": 17437,
+    "sha256": "4a1335f209687a0446aabdf8334fe2421b37ae27235f63f647b4b2600773c45c",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/validation_agronomy.md",
+    "bytes": 14216,
+    "sha256": "f88155f3bb909afacf2400bc0df1ad6e1b3047985dc2f3d54f0f48a311a2c8b8",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/validation_data_equations.md",
+    "bytes": 5072,
+    "sha256": "64e7549b44aa5a433d40ea31dc4a3d7c6911fd4da4403501c67b8869bf53ae3f",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/validation_equations_review.md",
+    "bytes": 6976,
+    "sha256": "24c31d8b7fe26472e7e223cc6df2e6c5ffabfaf10fe4818c2d91e4750f6125bc",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/validation_model_execution.md",
+    "bytes": 5360,
+    "sha256": "41ea90f18ab41855feda4da3d9e67278903e0715978da137781bcb8c61beda37",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "docs/validation_models.md",
+    "bytes": 14822,
+    "sha256": "e9cbd5bd63f7ab81e62eb1454333028c9e6bc62f51aecf2e7acccabbc4e1f946",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/app/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/assets/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/components/shared/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/components/ui/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/features/evidence-card/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/features/farmer-intake/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/features/forecast/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/features/onboarding/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/features/promise-test/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/features/season-replay/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/features/season-timeline/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/hooks/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/i18n/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/services/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "frontend/src/styles/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "handoff_inventory.py",
+    "bytes": 4444,
+    "sha256": "dfe9acaa771642d98b0dbb0a8b3428826620d871bdc358d804001bd482e5875b",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "media/exports/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "media/illustrations/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "media/storyboards/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "ml/artifacts/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "ml/experiments/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "ml/inference/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "ml/tests/__pycache__/test_prepare_shared_release.cpython-313.pyc",
+    "bytes": 5424,
+    "sha256": "a88643482b2cb821c359cb4da416831e8c5da713c6d1333c2513349de99223ff",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "ml/tests/test_prepare_shared_release.py",
+    "bytes": 2629,
+    "sha256": "bbc10b2783bb6e7c3591a6a275562be81f800093ff9795c60425d4fba640a78d",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "ml/tools/__pycache__/prepare_shared_release.cpython-313.pyc",
+    "bytes": 7554,
+    "sha256": "3d0599ca9af5b49d0f398fa0b2e0468b3480688ac8ed2f65aaf8ba8ecb818760",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "ml/tools/prepare_shared_release.py",
+    "bytes": 4887,
+    "sha256": "6a5012bcc4b3d1660b51524da904fa7d6effe20542d392eb39d436f9e4f023c0",
+    "original_git_state": "untracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/.gitkeep",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/audit_results.json",
+    "bytes": 9053,
+    "sha256": "717fb69dc7df8317c6d984e606bb7f081c5dcb85b903148da777662def99a32c",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/local/power_sakha_2001_2025_LST.json",
+    "bytes": 1214288,
+    "sha256": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/local/power_sakha_2026_Jan_Oct_LST.json",
+    "bytes": 41487,
+    "sha256": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/__pycache__/test_audit_saved_evidence.cpython-313.pyc",
+    "bytes": 12587,
+    "sha256": "7b28309786993039453b47095b5e308958b8d8d682a09c15ec0a7e8b8173688a",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/__pycache__/test_regenerate_et0.cpython-313.pyc",
+    "bytes": 7731,
+    "sha256": "33dea1c28469f9ef77cea11f8a1f39a2f94a22beca67bc6bc82574b944955e2b",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/audit_saved_evidence.py",
+    "bytes": 19331,
+    "sha256": "995acaad626188e7e016781c8f9250ea1f757efb7fb0332dfcba14cbc0b478f6",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/audit_weather.py",
+    "bytes": 9503,
+    "sha256": "905a700d542c5a3e2dc7dd136e21acd7a84469d1ff940efa0836bbb63e7ee0e0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/et0_release_manifest.json",
+    "bytes": 1421,
+    "sha256": "2e6444d426a124850fff86567316eebe82d5123d15d1a129f2dc64fb263b0c27",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/power_acquisition.json",
+    "bytes": 5357,
+    "sha256": "50ae6cc7bc8a7ce0d56bfa9e0eb1d7cebf5cf42f25cb77af357897efebc30abc",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/regenerate_et0.py",
+    "bytes": 4274,
+    "sha256": "8796bec15bcf4d1d064e3dcd2528e3424e4a4c516e307623bb605263f05222d1",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/test_audit_saved_evidence.py",
+    "bytes": 6252,
+    "sha256": "1ea810c96a74ac7bef539d7e1c383542f6aaae69eae3ae4d1281b38c914c1892",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/data/validation/test_regenerate_et0.py",
+    "bytes": 4314,
+    "sha256": "cfa0d9f91f636dd13f04cb88d399f7c12fa7a3b7f926bfc0612fcde4c746e764",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/2026/audit_weather.py",
+    "bytes": 9503,
+    "sha256": "905a700d542c5a3e2dc7dd136e21acd7a84469d1ff940efa0836bbb63e7ee0e0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/2026/power_sakha_2026_Jan_Oct_LST.json",
+    "bytes": 41487,
+    "sha256": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/2026/reproduction_result.json",
+    "bytes": 743,
+    "sha256": "727d61acbaedb498976d1e54405015839307e04605a9dff81ea2587e7a044776",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/2026/source_provenance.json",
+    "bytes": 2349,
+    "sha256": "ca3e82c879f0c88a08864819c689b038b4604e043d9e38097ac7e75e599d1de3",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/2026/weather_audit_2026_Jan_Oct.json",
+    "bytes": 6045,
+    "sha256": "40d16807597e0e00fd04dd3accb4d4dd34bebe321e19d8ab86520b468bfabcd6",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/2026/weather_et0_2026_Jan_Oct.csv",
+    "bytes": 33936,
+    "sha256": "c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/historical/audit_weather.py",
+    "bytes": 9503,
+    "sha256": "905a700d542c5a3e2dc7dd136e21acd7a84469d1ff940efa0836bbb63e7ee0e0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/historical/power_sakha_2001_2025_LST.json",
+    "bytes": 1214288,
+    "sha256": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/historical/reproduction_result.json",
+    "bytes": 756,
+    "sha256": "d4fe0878754630bc7d3bd507a1c5451d105427a6c21f2b32ded93f35b4d9f792",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/historical/source_provenance.json",
+    "bytes": 2314,
+    "sha256": "9be690b92b868aefa0b11024ee08add19c926d502a16d3f24ad1cdce906881e5",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/historical/weather_audit.json",
+    "bytes": 6677,
+    "sha256": "259ce22eabee5cfcf9c0397b59aad475ea0ae124dfd03910d5c44fddfb101639",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean-checkpoint/outputs/historical/weather_et0.csv",
+    "bytes": 1017464,
+    "sha256": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean_regeneration.json",
+    "bytes": 1606,
+    "sha256": "e493a10b1b77cd84c7ffe8b9eb630d043524f48949dad6565b35b10feec683fc",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/clean_suite.log",
+    "bytes": 3030,
+    "sha256": "8fad0ea3c8268290528574d33471ceca6e5e70c8d0200b729adb9467cf9408c3",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Generated local execution/working-tree diagnostic; retained locally"
+  },
+  {
+    "path": "work/prepush_2026-11-12/document_checks.json",
+    "bytes": 149,
+    "sha256": "fb0be49b45c8f98d26780f186cc17c1d0ef4f8e86bb43e259da8d0b0827c7eb6",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/final_diff_checks.json",
+    "bytes": 210,
+    "sha256": "6fcb719c519390ce84932429198d32295568a1ae5fb0dd0f81a08369408cd9fa",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/initial_diff.patch",
+    "bytes": 34182,
+    "sha256": "9abb1884efcb6d4b522dd2baffac355f0b5aa01e7bc25d29c38a5c364ac0b7b2",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Generated local execution/working-tree diagnostic; retained locally"
+  },
+  {
+    "path": "work/prepush_2026-11-12/initial_hashes.json",
+    "bytes": 6990,
+    "sha256": "d22df646387b2e4e02864aa13482f885d2f304fea83f333e4dec435302d5c091",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/prepush_2026-11-12/initial_staged.patch",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Generated local execution/working-tree diagnostic; retained locally"
+  },
+  {
+    "path": "work/prepush_2026-11-12/initial_status.txt",
+    "bytes": 477,
+    "sha256": "bb020adf4d95b362ec0aec9d950c5ea0ddff0dbe99a5a7e60f368db169c240f7",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Generated local execution/working-tree diagnostic; retained locally"
+  },
+  {
+    "path": "work/prepush_2026-11-12/publication_checks.json",
+    "bytes": 1996,
+    "sha256": "d4bdbed9c22ce1d6009a14b9fff69385a460a09a1632aced7e6db623c25a582f",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/before.json",
+    "bytes": 1246,
+    "sha256": "a281d49e501645d9c9c7a6becc36e472846fe9dbc769627a36f7b0b07fd2e26d",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/candidate_checks.json",
+    "bytes": 943,
+    "sha256": "8013c8288a44653c25e1be669c98c7c74637e79239badfa768bc2eae3b1aebe4",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/.gitignore",
+    "bytes": 1826,
+    "sha256": "7184a79c9bf75abbbc8e18835f619213a2f670ee43082706ea257ca43834a26f",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/docs/PROJECT_STATUS.md",
+    "bytes": 28612,
+    "sha256": "fa4955ea4e7eb6c4ed04c1eebe984fa35d806e5a75179c5fd48d4319c68a29bc",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/docs/WIREFRAME_V2_REVIEW.md",
+    "bytes": 6506,
+    "sha256": "e6d6b29c22deef8ead09def0042ecedb5b9ff78a4c34a537316166e6a87d8423",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/docs/WIREFRAME_V3_REVIEW.md",
+    "bytes": 11344,
+    "sha256": "e218a75ad34073a8bfa5696b60b0f1d3d4ebf6bad249fe0bd41cdea6600ae99b",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/docs/YAHYA_HANDOFF.md",
+    "bytes": 6577,
+    "sha256": "1c8a795c0c96db56db0bd3015be6c84bef78837e82028d61e903e495ed3a790e",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/work/ux-phase-2/check-wireframes-v3.cjs",
+    "bytes": 12700,
+    "sha256": "d494e7b5aa4e917a7c1327c7d4cf279836e95b0fad60927ddb7268126571d5f3",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/work/ux-phase-2/check-wireframes.cjs",
+    "bytes": 6374,
+    "sha256": "6c016e02150dccbd1e3e054d480ce0793bb075ada9c5155877c254ae27d604ec",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/work/ux-phase-2/preview-v3.html",
+    "bytes": 65922,
+    "sha256": "39b64ceda5b29a4fe8685ecb70b4e4a41aa650175020d65ab33ab19940ce4f3a",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/work/ux-phase-2/preview.html",
+    "bytes": 51468,
+    "sha256": "a1898b7dc53487369c2ccb6d542a131c5b507b103a57202f69544c92ee0a40ea",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/work/ux-phase-2/season-path-wireframes-v3.html",
+    "bytes": 65922,
+    "sha256": "39b64ceda5b29a4fe8685ecb70b4e4a41aa650175020d65ab33ab19940ce4f3a",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/publish_ux_2026-11-12/clean-checkout/work/ux-phase-2/season-path-wireframes.html",
+    "bytes": 51468,
+    "sha256": "a1898b7dc53487369c2ccb6d542a131c5b507b103a57202f69544c92ee0a40ea",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/PACKAGE_MANIFEST.json",
+    "bytes": 4098,
+    "sha256": "6be436bfa2c0e02857999f3e89d9e4f334ca934edf491c51749cde363dc1d7a7",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/SHARED_DATA_DICTIONARY.md",
+    "bytes": 5856,
+    "sha256": "a2927184f4e5422c1b1efce81c66f93d0e07ecfde392ca6926a096e7310613e0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/START_HERE.md",
+    "bytes": 8278,
+    "sha256": "84ddae5684fb728e1c4edb4090e101d137f1c8cb1594c0d9c6e2ec336ff107f5",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/check_handoff.py",
+    "bytes": 7465,
+    "sha256": "86d9bba2984346f5e636648b4561141cdb66bff2209ef0fa68e4c65b5a4a085e",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/climate_data/__init__.py",
+    "bytes": 81,
+    "sha256": "bf82d94c5f50866a25da679a760366a802c1b391bed9aa068facb7aacc87368d",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/climate_data/climatology.py",
+    "bytes": 7805,
+    "sha256": "5ffa077b9205e116a15e2d143f148b5cc4fb779fa25185fae73bf5fc7eca689d",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/climate_data/evaluation.py",
+    "bytes": 12260,
+    "sha256": "afcd15903d72ccaad7cc51f83feb35cb9133518d11a7730da0e93dd465c2e9c3",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/climate_data/ml_example.py",
+    "bytes": 1348,
+    "sha256": "eceaea8982a62d921b8cb35982bf172ead55dd2fb0dc4009628de481c2e74c99",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/data/diagnostic_validation_targets.csv",
+    "bytes": 39550,
+    "sha256": "362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/refaat-handoff-20261113/data/fit_targets.csv",
+    "bytes": 237070,
+    "sha256": "24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/refaat-handoff-20261113/data/forecast_windows.csv",
+    "bytes": 3075,
+    "sha256": "8fc0c0aa99f57ee47910c3cf3bd49eeb6b4f9cccf692aa9a821d8e9e73311a44",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/refaat-handoff-20261113/data/quality_flags.csv",
+    "bytes": 811084,
+    "sha256": "db650082761b27205a0ef8ebae852a28984f5bd296a7b1a8c7d1cb39de0567a6",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/refaat-handoff-20261113/data/release.json",
+    "bytes": 1629,
+    "sha256": "45c3f7601ffa3cf1693fbc45d69d7ac2f97b1dbe22811680004eb4f11e92778b",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/data/source_manifest.json",
+    "bytes": 4702,
+    "sha256": "823a1588691e86f5eb9c4a0a83580c4621c271ce59fd0d1e8dafb04be570ece0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/provenance/CHRONOS_HISTORY.md",
+    "bytes": 1723,
+    "sha256": "9cecbbe2b61e9704222389de987c96eafc1306c1dd593ac1ac444182271af1b1",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/provenance/experiment/evaluation_protocol.json",
+    "bytes": 1723,
+    "sha256": "68b3285bb1a0f716e57e1168a1039f8110d9d4649e4e31f0930f7ca5a51a91d9",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/provenance/input_archives.json",
+    "bytes": 6190,
+    "sha256": "154091c42c834cd619d570a7f3418f3a2fed0f24bdc26f8b9e7f9d5f429f3069",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/provenance/source_manifest.json",
+    "bytes": 4821,
+    "sha256": "20262c5ebcfd16f3246e46626972fb08474f00168293fd4e0084134f51a99517",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/reference/calendar_reference.csv",
+    "bytes": 76343,
+    "sha256": "3f79d2084882ce8baf4ff76cc10c0fdff697349d8603b6893ba17c0be9f8a231",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/refaat-handoff-20261113/reference/metrics.json",
+    "bytes": 1800,
+    "sha256": "bd7bd0165ab3007374797f2af45ce9896966d2bf3be6c3d9186432af210326c0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/reference/scored_predictions.csv",
+    "bytes": 60753,
+    "sha256": "60611ae9fd6b1baab137df53ab4a4b4438ec937f30861ccd44cd8d6777b6ec28",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/refaat-handoff-20261113/reports/qa/ml.json",
+    "bytes": 3932,
+    "sha256": "e873f196b126d62a7c6a8bd1094bdc967f5fb5593c275ac5e1828223ee3ae41c",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/requirements.txt",
+    "bytes": 64,
+    "sha256": "436ea28794d36ed48ce394ca98912413eb581d6297f1b5d68d9dc55653f93c86",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/sources/power_provenance.json",
+    "bytes": 2312,
+    "sha256": "d90f33792704b02da5c5bd4a5d36dd884ded503132fdd2d18d39df25727cd469",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/sources/power_provenance_2026_Jan_Oct.json",
+    "bytes": 2347,
+    "sha256": "01e22774c32c1ccca2820dc2eac9294f288433cdc0d65a4be920b729d24ec1d8",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/tests/fixtures/diagnostic_baseline.json",
+    "bytes": 1434,
+    "sha256": "61ff3a72fe028eb0cc9b554869a926ca1f7e96b615130ba751bb3011a1629146",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/tests/test_ml.py",
+    "bytes": 8711,
+    "sha256": "c46d8921f6979106927b512e3997ec8a3c46bf76dbfa643395dc0c44614e92d0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-handoff-20261113/verify_package.py",
+    "bytes": 792,
+    "sha256": "3e045e0ead52f2cafc4999f8ac3bf3f3b5614a5a8f584b1a5f35f386d87f8efd",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/refaat-verification-20261113.json",
+    "bytes": 3933,
+    "sha256": "1e89b70453cd656d8cd23b5cdfc18ad8cfe270ff6a903e15a45c790a8b7a0510",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/audit_weather.py",
+    "bytes": 9503,
+    "sha256": "905a700d542c5a3e2dc7dd136e21acd7a84469d1ff940efa0836bbb63e7ee0e0",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/execution.json",
+    "bytes": 5167,
+    "sha256": "96f4e9d7ae30da95ead8fcd25d9f3a21bb9712b59d1313f7d3eadbbb9214e937",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/execution_2026_Jan_Oct.json",
+    "bytes": 4541,
+    "sha256": "1a8b01485788e9980e1a6fee6bc6807eebac015f876c5ece9b6fdfa500eed9e7",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/power_sakha_2001_2025_LST.json",
+    "bytes": 1214288,
+    "sha256": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/power_sakha_2026_Jan_Oct_LST.json",
+    "bytes": 41487,
+    "sha256": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/weather_audit.json",
+    "bytes": 6677,
+    "sha256": "259ce22eabee5cfcf9c0397b59aad475ea0ae124dfd03910d5c44fddfb101639",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/weather_audit_2026_Jan_Oct.json",
+    "bytes": 6045,
+    "sha256": "40d16807597e0e00fd04dd3accb4d4dd34bebe321e19d8ab86520b468bfabcd6",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/weather_et0.csv",
+    "bytes": 1017464,
+    "sha256": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_audit_replay/weather_et0_2026_Jan_Oct.csv",
+    "bytes": 33936,
+    "sha256": "c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Scientific data/model payload; transfer exact bytes separately (see ARTIFACT_TRANSFER.md)"
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/archived_replay_results.json",
+    "bytes": 298,
+    "sha256": "6074368b0f67da040e9d4d2b1bd36b716d05ab9bdc9fe23dee0123f8d4cccf2d",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/audit_results.json",
+    "bytes": 9056,
+    "sha256": "852f210144a5f1dfd721a55588028126c80c5989206904295d03ce0e313a3402",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/before.json",
+    "bytes": 2342,
+    "sha256": "54bd6d1447ef5c53b029961e0b36d967852dd52f67a00d13e64bf78575a1ab75",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/scientific_validation_2026-11-11/document_checks.json",
+    "bytes": 310,
+    "sha256": "cbbcf6b51fa933515b12530f52b78a6b456d3d380fd7faf6591e8740ec70bf2b",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/uv-cache/.gitignore",
+    "bytes": 1,
+    "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/.lock",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/CACHEDIR.TAG",
+    "bytes": 43,
+    "sha256": "5953156d7e0c564a427251316eaf26f8870e6483ae2197f916b630e4f93e31ae",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/interpreter-v4/681671c6460fa7c0/92ef3fc4dda99cf2.msgpack",
+    "bytes": 1986,
+    "sha256": "e3fcf4d409d5bdc32e8665a290eff3580255d6bcfcbf41ade33e269f82e2419a",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/interpreter-v4/681671c6460fa7c0/dd66940bd3e707fc.msgpack",
+    "bytes": 1782,
+    "sha256": "7cf733a0d06cbd4bd7d6567a3f7cb28e3e2767b9ab248682b34b41214a99c649",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/sdists-v9/.gitignore",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/simple-v25/pypi/numpy.lock",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/simple-v25/pypi/pydantic.lock",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/simple-v25/pypi/pytest.lock",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/uv-cache/simple-v25/pypi/scikit-learn.lock",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "original_git_state": "ignored",
+    "decision": "exclude",
+    "reason": "Environment/dependency/runtime cache; recreate with dependency manifests"
+  },
+  {
+    "path": "work/ux-phase-2/check-wireframes-v3.cjs",
+    "bytes": 12700,
+    "sha256": "d494e7b5aa4e917a7c1327c7d4cf279836e95b0fad60927ddb7268126571d5f3",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-2/check-wireframes.cjs",
+    "bytes": 6374,
+    "sha256": "6c016e02150dccbd1e3e054d480ce0793bb075ada9c5155877c254ae27d604ec",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-2/preview-v3.html",
+    "bytes": 65922,
+    "sha256": "39b64ceda5b29a4fe8685ecb70b4e4a41aa650175020d65ab33ab19940ce4f3a",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-2/preview.html",
+    "bytes": 51468,
+    "sha256": "a1898b7dc53487369c2ccb6d542a131c5b507b103a57202f69544c92ee0a40ea",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-2/season-path-wireframes-v3.html",
+    "bytes": 65922,
+    "sha256": "39b64ceda5b29a4fe8685ecb70b4e4a41aa650175020d65ab33ab19940ce4f3a",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-2/season-path-wireframes.html",
+    "bytes": 51468,
+    "sha256": "a1898b7dc53487369c2ccb6d542a131c5b507b103a57202f69544c92ee0a40ea",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/check-hybrid.cjs",
+    "bytes": 2513,
+    "sha256": "931d0cf539f8fbd4c7a3599127de275aa61c215be465f25f62347a8102a43633",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/check-preview.cjs",
+    "bytes": 4557,
+    "sha256": "7742bb083cf581a0ff2f5415697ccab47603df4b13d3330a169ec556f68392cd",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/contrast-report.json",
+    "bytes": 8207,
+    "sha256": "abb971b4bf70fdec31e77d749c028c5b0de7915489ea159cbcc9f7ecdd4a662a",
+    "original_git_state": "ignored",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/design.css",
+    "bytes": 15181,
+    "sha256": "fecf246cff6e43c7d561c545f7263df989dba1c2344a08e35f325480be8f01ee",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fieldlight-hybrid.css",
+    "bytes": 8116,
+    "sha256": "718f6431ec93acc5a5c1a3941dff6776f47c06d8f89402e42552edc108d4e9dd",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fieldlight-hybrid.html",
+    "bytes": 2284,
+    "sha256": "f3281260681b45e03a7f24a2e301d278b300ffe64848de10550851c0d276a635",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fieldlight-hybrid.js",
+    "bytes": 32086,
+    "sha256": "ac3eada0706f93867f5666dd36760b27dbc079a52a1056b4569805c82b72f718",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fonts/notonaskharabic-OFL.txt",
+    "bytes": 4475,
+    "sha256": "fa27a4641d00020ca4522b71d7e9d2eddafcd5031a2e55b4cfb3eedfe33a865a",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fonts/notonaskharabic.ttf",
+    "bytes": 307592,
+    "sha256": "67b5a525a661b607971fbd3f96a81b89d3a768e74534fca84f18ac97e6fab72f",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fonts/notosansarabic-OFL.txt",
+    "bytes": 4475,
+    "sha256": "3b7e321615e412e5fbb9eab5bf1c0a4cb84c732d3d5a9e9e3822972d5fb70b97",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fonts/notosansarabic.ttf",
+    "bytes": 844676,
+    "sha256": "63111b5b2e074dd48cc67692e0a2726d86ee94c1c37fe8598257b7b4e87e869e",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fonts/readexpro-OFL.txt",
+    "bytes": 4537,
+    "sha256": "b40b6c97b72d23e09ef1155ff8cc24951ef412e4cb5b53dc88c581bbace331c4",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/fonts/readexpro.ttf",
+    "bytes": 278544,
+    "sha256": "268bba7e1e8f3b14d798b3fb0e40ebaa3fc39308c9ac0020e2faf6df181cc30e",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/index.html",
+    "bytes": 2586,
+    "sha256": "3b539c4ef649c49c76fddf9fb73cbe6440bfa1d4d18961614461fe30b103c1eb",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/preview.js",
+    "bytes": 29727,
+    "sha256": "97eea959a0cde7586d0dc0d0acb3b988c09f3126ead097a7e5a7e993a74d64c2",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/tokens.fieldlight-hybrid.proposal.json",
+    "bytes": 3791,
+    "sha256": "5d2ed00f33c4c7642ee9a9344c9f8e4a0a0acc99113720149dd6604968ef8833",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  },
+  {
+    "path": "work/ux-phase-3/tokens.proposal.json",
+    "bytes": 2691,
+    "sha256": "1fc5779acda1c121c859e2038674580c30967adf8e90ee26ebaa7921c70c46b6",
+    "original_git_state": "tracked",
+    "decision": "publish",
+    "reason": null
+  }
+]

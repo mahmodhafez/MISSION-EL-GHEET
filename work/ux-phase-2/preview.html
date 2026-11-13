@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ar-EG" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Season Path · Wireframe V2</title></head><body>
+<div id="season-wireframes">
+  <div class="review-bar" dir="ltr">
+    <strong>SEASON PATH · WIREFRAME V2 · LOW FIDELITY</strong>
+    <div class="review-controls"><button data-layout="mobile" aria-pressed="true">Mobile · Arabic RTL</button><button data-layout="desktop" aria-pressed="false">Desktop · Arabic RTL</button><button data-view="states">States & recovery</button></div>
+  </div>
+  <details class="review-tools"><summary>Review tools · screens & simulated states</summary><nav class="story" aria-label="Wireframe journey overview" dir="rtl"></nav><label>Simulated voice outcome <select id="voice-simulation"><option value="ready">Ready</option><option value="listening">Listening</option><option value="recognized">Recognized · unconfirmed</option><option value="unclear">Not understood</option><option value="denied">Microphone denied</option><option value="unavailable">Microphone unavailable</option><option value="audiofailed">Playback unavailable</option></select></label><p>Review controls only. No microphone, audio service, planner or storage is connected.</p></details>
+  <div class="review-caption" dir="ltr" aria-live="polite"></div>
+  <div class="stage viz-dotted-background"><article class="phone" dir="rtl" lang="ar-EG" aria-label="Season Path Arabic wireframe">
+    <header class="app-head"><strong>سكة المواسم</strong><button data-action="help">مساعدة</button></header>
+    <div class="fixture-label">مثال توضيحي: عم حسين · نموذج تفاعلي بدون حفظ أو صوت فعلي</div>
+    <div class="app-body"></div>
+    <div class="notice" role="status" hidden></div>
+    <footer class="app-foot"><button data-action="back">رجوع</button><span>اختار أو اتكلم · وبعدها نأكد</span></footer>
+  </article></div>
+  <section class="state-board" hidden aria-label="Distinct plan, evidence and persistence states"></section>
+</div>
+<style>
+#season-wireframes{color-scheme:light;color:#252525;font-family:Arial,Tahoma,sans-serif;background:transparent;--paper:#fff;--wash:#f3f3f3;--line:#939393;--ink:#252525;--soft:#555}
+#season-wireframes *{box-sizing:border-box}
+#season-wireframes button,#season-wireframes select{font:inherit;cursor:default}
+#season-wireframes button{border:1px solid #777;background:white;color:#252525;border-radius:5px;padding:10px 14px;min-height:48px;line-height:1.5}
+#season-wireframes button:hover{background:#ececec}
+#season-wireframes button:focus-visible,#season-wireframes select:focus-visible,#season-wireframes summary:focus-visible{outline:3px solid #222;outline-offset:3px}
+#season-wireframes button[aria-pressed=true]{border:2px solid #252525;background:#e7e7e7}
+#season-wireframes button:disabled{color:#666;border-style:dashed;background:#f5f5f5}
+#season-wireframes .review-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 0 12px;font-size:13px}
+#season-wireframes .review-controls{display:flex;gap:8px;flex-wrap:wrap}
+#season-wireframes .review-controls button{font-size:13px}
+#season-wireframes .story{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:14px;padding:12px 0 20px}
+#season-wireframes .story button{position:relative;background:transparent;border:0;border-bottom:2px solid transparent;padding:4px;font-size:13px;text-align:center}
+#season-wireframes .story button[aria-current=step]{border-bottom-color:#252525;background:#eee}
+#season-wireframes .story button:not(:last-child):after{content:'←';position:absolute;left:-13px;top:28px;color:#555}
+#season-wireframes .sketch{width:42px;height:60px;border:1px solid #555;border-radius:4px;margin:0 auto 6px;padding:6px;display:flex;flex-direction:column;gap:4px;background:white}
+#season-wireframes .sketch i{height:4px;background:#d3d3d3;display:block}.sketch i:last-child{margin-top:auto}
+#season-wireframes .story button:nth-child(2) .sketch i{height:10px;border:1px solid #999;background:transparent}
+#season-wireframes .story button:nth-child(4) .sketch{border-right:3px solid #555}
+#season-wireframes .story button:nth-child(5) .sketch i:nth-child(2){height:14px;background:repeating-linear-gradient(135deg,#ddd 0 2px,#fff 2px 5px)}
+#season-wireframes .review-caption{font-size:14px;line-height:1.6;margin:0 0 12px;color:#454545;min-height:46px}
+#season-wireframes .stage{padding:20px 8px;background-color:#eee}
+#season-wireframes .phone{width:390px;max-width:100%;margin:auto;border:1.5px solid #555;border-radius:14px;background:#fff;overflow:hidden;font-size:19px;line-height:1.7}
+#season-wireframes .app-head{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #aaa;gap:12px}
+#season-wireframes .app-head strong{font-size:21px}
+#season-wireframes .app-head button{font-size:16px}
+#season-wireframes .fixture-label{font-size:13px;line-height:1.6;background:#eee;padding:7px 16px;border-bottom:1px dashed #888}
+#season-wireframes .app-body{padding:20px 18px;min-height:570px}
+#season-wireframes h2{font-size:27px;font-weight:600;line-height:1.45;margin:4px 0 12px}
+#season-wireframes h3{font-size:21px;line-height:1.5;margin:0 0 8px;font-weight:600}
+#season-wireframes p{margin:0 0 14px}
+#season-wireframes .eyebrow{font-size:15px;color:#555;margin-bottom:5px}
+#season-wireframes .small{font-size:16px;line-height:1.65;color:#444}
+#season-wireframes .tiny{font-size:14px;color:#555}
+#season-wireframes .audio{display:flex;gap:8px;margin:14px 0 20px}
+#season-wireframes .audio button{font-size:17px;flex:1;min-height:52px}
+#season-wireframes .stack{display:grid;gap:12px}
+#season-wireframes .primary{display:block;width:100%;min-height:56px;background:#333;color:white;border:2px solid #333;margin-top:18px;font-weight:600}
+#season-wireframes .primary:hover{background:#444}
+#season-wireframes .secondary{width:100%;margin-top:10px;min-height:52px}
+#season-wireframes .link{border:0;text-decoration:underline;background:transparent;padding:10px 4px}
+#season-wireframes .choice{text-align:right;display:block;width:100%;padding:14px;min-height:64px}
+#season-wireframes .choice small{display:block;color:#555;font-size:16px}
+#season-wireframes .crop-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#season-wireframes .crop{padding:10px;text-align:center}
+#season-wireframes .photo{height:70px;background:linear-gradient(155deg,transparent 49.5%,#bbb 50%,transparent 50.5%),linear-gradient(25deg,transparent 49.5%,#bbb 50%,transparent 50.5%),#f5f5f5;border:1px dashed #999;display:flex;align-items:center;justify-content:center;color:#555;font-size:14px;margin-bottom:8px}
+#season-wireframes .line{border-top:1px solid #aaa;margin:18px 0}
+#season-wireframes .box{padding:14px;border:1px solid #888;margin:12px 0;background:#fafafa}
+#season-wireframes .box p:last-child{margin-bottom:0}
+#season-wireframes .status{border:2px solid #444;border-right-width:7px;padding:12px 14px;margin:12px 0;background:white}
+#season-wireframes .status strong{display:block;font-size:21px}
+#season-wireframes .status.review{border-style:dashed;border-right-style:solid;background:repeating-linear-gradient(135deg,#f5f5f5 0 3px,#fff 3px 9px)}
+#season-wireframes .status.unknown{border:1px dashed #666;background:#f2f2f2}
+#season-wireframes .status.feasible{border:4px double #555}
+#season-wireframes .status.saved{border:1px solid #666;background:#eaeaea}
+#season-wireframes .tag{font-size:15px;display:inline-block;padding:3px 7px;border:1px solid #666;background:#eee;margin:4px 0}
+#season-wireframes .path{list-style:none;padding:0;margin:16px 0}
+#season-wireframes .path li{position:relative;border-right:2px solid #777;margin-right:14px;padding:0 24px 20px 0}
+#season-wireframes .path li:last-child{padding-bottom:0;border-right-color:transparent}
+#season-wireframes .path .number{position:absolute;right:-15px;top:0;width:28px;height:28px;border:1px solid #555;border-radius:50%;background:white;display:grid;place-items:center;font-size:16px}
+#season-wireframes .path strong{display:block}
+#season-wireframes .path p{font-size:16px;margin:2px 0}
+#season-wireframes .path .folded{font-size:16px;border:0;padding:6px 0;min-height:48px;text-decoration:underline}
+#season-wireframes .sofar{border-right:3px solid #777;padding:4px 12px;margin-bottom:18px;font-size:16px;color:#444}
+#season-wireframes details{border-bottom:1px solid #aaa;padding:12px 0}
+#season-wireframes summary{cursor:default;min-height:48px;line-height:1.7}
+#season-wireframes details p{font-size:17px;margin:10px 0}
+#season-wireframes .date-row{display:flex;gap:8px;align-items:end;margin:14px 0}
+#season-wireframes label{font-size:16px;flex:1;min-width:0}
+#season-wireframes select{width:100%;padding:10px 6px;min-height:52px;border:1px solid #777;background:white;color:#222;border-radius:4px}
+#season-wireframes .app-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;border-top:1px solid #999;background:#f8f8f8;font-size:15px}
+#season-wireframes .app-foot span{font-size:13px;text-align:center}
+#season-wireframes .app-foot button{padding:8px 10px;font-size:16px}
+#season-wireframes .notice{margin:0 18px 18px;padding:12px;border:1px dashed #666;background:#eee;font-size:16px}
+#season-wireframes .desktop .phone{width:100%;border-radius:6px}
+#season-wireframes .desktop .app-body{padding:24px 28px;min-height:450px}
+#season-wireframes .desktop .split{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:32px;align-items:start}
+#season-wireframes .desktop .primary,#season-wireframes .desktop .secondary{max-width:500px}
+#season-wireframes .desktop .path.panorama{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+#season-wireframes .desktop .path.panorama li{border-right:0;border-top:2px solid #888;padding:24px 0 0;margin:8px 0}
+#season-wireframes .desktop .path.panorama .number{right:0;top:-15px}
+#season-wireframes .state-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;font-size:18px;line-height:1.7}
+#season-wireframes .state-board[hidden]{display:none}
+#season-wireframes .state-tile{border:1px solid #aaa;padding:18px;background:white}
+#season-wireframes .state-tile h3{font-size:18px}
+#season-wireframes .calendar{width:100%;height:auto;display:block;background:#f7f7f7;border:1px solid #aaa;margin:16px 0}
+@media(max-width:650px){#season-wireframes .story{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 8px}#season-wireframes .story button:nth-child(4):after{display:none}#season-wireframes .desktop .split{display:block}#season-wireframes .desktop .path.panorama{display:block}#season-wireframes .desktop .path.panorama li{border-top:0;border-right:2px solid #888;padding:0 24px 18px 0;margin-right:14px}#season-wireframes .desktop .path.panorama .number{right:-15px;top:0}#season-wireframes .state-board{grid-template-columns:1fr}#season-wireframes .desktop .app-body{padding:20px 18px}#season-wireframes .stage{padding:14px 0}}
+
+/* V2 refines V1 grayscale components; no high-fidelity theme or dependencies. */
+html,body{margin:0;background:#f6f6f6}body{padding:16px}button,summary{touch-action:manipulation}
+#season-wireframes{max-width:1240px;margin:auto}#season-wireframes [hidden]{display:none!important}
+#season-wireframes .review-tools{font-size:14px;margin-bottom:8px}#season-wireframes .review-caption{min-height:0}
+#season-wireframes .story{padding:8px 0;gap:8px}#season-wireframes .story button:after{display:none}
+#season-wireframes .audio{gap:16px;margin:18px 0}#season-wireframes .audio button{min-height:98px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:2px solid #444;font-size:21px;font-weight:600;max-width:180px}
+#season-wireframes .audio svg{width:44px;height:44px}#season-wireframes .voice-panel:empty{display:none}
+#season-wireframes .voice-panel:not(:empty),#season-wireframes .transcript{border:2px dashed #555;padding:14px;margin-bottom:16px;font-size:18px}
+#season-wireframes .crop-art{display:block;height:82px;width:100px;max-width:100%;margin:auto}#season-wireframes .crop strong,#season-wireframes .crop small{display:block}#season-wireframes .crop small{font-size:16px}#season-wireframes .selection-mark{font-size:15px;display:block;margin-top:6px}
+#season-wireframes .crop[aria-pressed=true]{outline:2px solid #333;outline-offset:2px}#season-wireframes .welcome-crops{display:flex;border-bottom:2px solid #777;padding:14px 0;margin:20px 0}
+#season-wireframes .path-crop{display:flex;align-items:center;gap:10px}#season-wireframes .path-crop .crop-art{width:54px;height:60px;margin:0}#season-wireframes .path-crop small{font-size:16px;display:block;font-weight:400}
+#season-wireframes .big-date{border:2px solid #555;padding:12px;text-align:center}#season-wireframes .big-date>*{display:block}#season-wireframes .big-date strong{font-size:28px}
+#season-wireframes input{font:inherit;width:100%;min-height:52px;padding:8px;border:1px solid #555;color:#222;background:white;margin:4px 0 12px}#season-wireframes input:focus-visible{outline:3px solid #222;outline-offset:3px}
+#season-wireframes .date-conflict{display:flex;align-items:center;justify-content:space-between;gap:8px;border-block:1px solid #777;padding:12px 0;margin-bottom:12px}#season-wireframes .date-conflict>div{flex:1;text-align:center}#season-wireframes .date-conflict strong,#season-wireframes .date-conflict span{display:block}
+#season-wireframes .weather-pair{display:flex;gap:16px;text-align:center;margin-bottom:18px}#season-wireframes .weather-pair span{flex:1;border:1px solid #888;padding:18px 8px;font-size:22px}
+#season-wireframes .phone{width:390px}#season-wireframes .app-body{min-height:0}#season-wireframes .app-foot{min-height:68px}
+@media(min-width:850px){#season-wireframes .desktop .phone{max-width:1140px}#season-wireframes .desktop .audio button{min-width:130px}#season-wireframes .desktop .split{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}}
+@media(max-width:450px){body{padding:0}#season-wireframes .stage{padding:0}#season-wireframes .phone{border-radius:0;border:0}#season-wireframes .review-bar{padding:8px}#season-wireframes .review-caption{font-size:12px;padding:0 8px}#season-wireframes .app-body{padding:16px}#season-wireframes .crop-grid{gap:12px}#season-wireframes .date-row{gap:5px}#season-wireframes .date-row select{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+<script>
+(() => {
+const root=document.getElementById('season-wireframes');
+const body=root.querySelector('.app-body'),stage=root.querySelector('.stage'),board=root.querySelector('.state-board'),caption=root.querySelector('.review-caption');
+const titles=['البداية','اختياراتك','نراجع سوا','المواسم · اختياري','النتيجة','طقس زمان · اختياري','ورقة المراجعة'];
+const notes=[
+'V2 · One start action. No voice/manual mode selection. One speaker control.',
+'V2 · Crop + purpose in one choice. Visible mic/speaker; optional protection and manual editing.',
+'V2 · One grouped review, expandable exact values, one explicit confirmation. No planting approval.',
+'V2 · Optional four-season overview. Details expand; return preserves context.',
+'V2 · Conflict first; arithmetic disclosed. Inspecting never adopts a date.',
+'V2 · Optional historical evidence, not a forecast. Return restores the inspected plan.',
+'V2 · Storage and plan status remain separate. One playback control even after simulated save.'
+];
+let screen=0,route='commitment',season=0,question='crop',selected='برسيم',purpose='',group=0,inspecting=false,date='٢٨ مايو ٢٠٢٧',draft=false,saved=false,loading=false,replayOrigin=4,deferred=false;
+let voice='ready',playback=false,confirmed=false,changed=false,cutDay='20',cutMonth='5',cutYear='2027',area='1',prep='7',returnTo=null,history=[];
+const crops=['برسيم','ذرة حبوب','قمح','ذرة رفيعة حبوب'];
+const years=['شتاء ٢٠٢٦ / ٢٠٢٧','صيف ٢٠٢٧','شتاء ٢٠٢٧ / ٢٠٢٨','صيف ٢٠٢٨'];
+const sow=['١ نوفمبر ٢٠٢٦','١٥ مايو ٢٠٢٧','٢٠ نوفمبر ٢٠٢٧','١ يونيو ٢٠٢٨'];
+const end=['٢٠ مايو ٢٠٢٧','٢٠ سبتمبر ٢٠٢٧','٢٥ أبريل ٢٠٢٨','٢١ سبتمبر ٢٠٢٨'];
+const release=['٢١ مايو ٢٠٢٧','٢١ سبتمبر ٢٠٢٧','٢٦ أبريل ٢٠٢٨','٢٢ سبتمبر ٢٠٢٨'];
+const b=(text,action,cls='secondary')=>`<button class="${cls}" data-action="${action}">${text}</button>`;
+const icon=(name)=>`<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${name==='speaker'?'<path d="M6 19h9L27 9v30L15 29H6z"/><path d="M33 16q10 8 0 16M38 10q16 14 0 28"/>':'<rect x="18" y="5" width="12" height="25" rx="6"/><path d="M11 23v3a13 13 0 0 0 26 0v-3M24 39v5M17 44h14"/>'}</svg>`;
+function audio(input=false){return `<div class="audio" aria-label="اسمع أو اتكلم"><button data-action="listen" aria-expanded="${playback}">${icon('speaker')}<span>اسمع</span></button>${input?`<button data-action="speak">${icon('mic')}<span>${screen===2?'اتكلم':'جاوب'}</span></button>`:''}</div><div class="voice-panel" aria-live="polite">${voicePanel()}</div>${playback?`<div class="transcript"><strong>نص الاستماع — معاينة بدون صوت</strong><p>${spoken()}</p>${b('اقفل النص','stopaudio','link')}</div>`:''}`;}
+function voicePanel(){
+ const states={ready:'',listening:'بسمعك… اتكلم براحتك. (محاكاة)',recognized:'ده اللي فهمناه — لسه مش متأكد.',unclear:'مفهمتش الإجابة. جرّب تاني أو اختار بإيدك.',denied:'إذن الميكروفون مقفول. اختار بإيدك؛ تشغيل الصوت منفصل.',unavailable:'الميكروفون مش متاح. تقدر تكمّل بالاختيارات.',audiofailed:'الصوت مش متاح. الصور والاختيارات موجودة؛ المساعدة متاحة.'};
+ if(voice==='ready')return '';
+ return `<strong>${states[voice]}</strong>${voice==='recognized'?`<p>${proposal()}</p>${b('استخدمها كإجابة مبدئية','useproposal','secondary')}${b('أصحّحها','correctvoice','link')}`:voice==='listening'?b('وقف الاستماع','stopvoice','secondary'):['unclear','denied','unavailable'].includes(voice)?b('جرّب تاني','retryvoice','link'):''}`;
+}
+const photo=(name)=>{let i=crops.indexOf(name),shape=i===0?'<path d="M50 74V36M50 54L30 36M50 60l20-22"/><g fill="#ddd"><ellipse cx="25" cy="26" rx="13" ry="9"/><ellipse cx="43" cy="25" rx="10" ry="13"/><ellipse cx="29" cy="40" rx="12" ry="8"/><ellipse cx="67" cy="26" rx="12" ry="8"/><ellipse cx="78" cy="39" rx="9" ry="12"/></g>':i===1?'<path d="M50 76V12M50 44Q15 16 20 40Q30 51 50 54M50 63q40-34 31-14q-14 20-31 20"/><ellipse cx="56" cy="41" rx="9" ry="19" fill="#ddd"/><path d="M52 25v30M59 26v29M48 35h15M48 43h15"/>':i===2?'<path d="M50 78V14M50 65L30 45M50 58l20-16"/><g fill="#ddd">'+[18,29,40,51].map(y=>`<ellipse cx="43" cy="${y}" rx="6" ry="10" transform="rotate(-35 43 ${y})"/><ellipse cx="57" cy="${y}" rx="6" ry="10" transform="rotate(35 57 ${y})"/>`).join('')+'</g>':'<path d="M50 78V33M50 66q-22-28-31-20M50 58q18-24 29-18"/><g fill="#bbb">'+[0,1,2,3,4].map(row=>[0,1,2].map(col=>`<circle cx="${40+col*10}" cy="${12+row*8}" r="5"/>`).join('')).join('')+'</g>';
+ return `<svg class="crop-art" viewBox="0 0 100 85" aria-hidden="true" fill="none" stroke="#444" stroke-width="2">${shape}</svg>`;};
+const esc=(v)=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ar=(v)=>String(v).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+const cut=()=>`${ar(cutDay)} ${cutMonth==='5'?'مايو':cutMonth==='6'?'يونيو':ar(cutMonth)} ${ar(cutYear)}`;
+function proposal(){return screen===1&&question==='crop'?`${crops[season]} · ${season===0?'علف للمواشي':'حبوب'}`:`حشة البرسيم: ${cut()}`;}
+function spoken(){if((screen===4||screen===6)&&!inspecting&&(draft||changed||deferred||!confirmed))return 'البيانات لسه محتاجة مراجعة وفحص جديد. مفيش نتيجة محسوبة للخطة دي في النموذج. نتيجة عم حسين القديمة مش تنطبق عليها.';return [
+'أهلًا بيك. هنرتّب أربع مواسم مع بعض. دوس نبدأ. تقدر تختار بإيدك أو تجاوب بصوتك، ونراجع قبل التأكيد.',
+question==='crop'?`الموسم ${ar(season+1)}. ناوي تزرع إيه؟ الصور هنا رسومات تقريبية. اختيارك الحالي: ${selected||'لسه مفيش'}.`:question==='date'?`آخر حشة برسيم يوم ${cut()}. اختيار مبدئي؛ تقدر تغيّره. تثبيت الحشة في الخطة مش ضمان لكمية العلف.`:'نراجع معلومات الأرض واللي مش معروف. الافتراضات مش قياسات.',
+`نراجع بيانات المثال. ${deferred?'لسه مفيش التزامات ثابتة.':`حشة البرسيم ${cut()} ثابتة، وذرة حبوب في الموسم التاني وقمح حبوب في التالت ثابتين.`} زراعة البرسيم واحد نوفمبر ٢٠٢٦. الذرة ${draft?date:sow[1]} وحصادها ${draft?'غير معروف':end[1]}. القمح ${sow[2]} وحصاده ${end[2]}. الذرة الرفيعة ${sow[3]} وحصادها ${end[3]}. مساحة الأرض ${ar(area)} هكتار، والتجهيز المفترض ${ar(prep)} أيام. خلو الأرض المفترض بعد الحشة يوم ٢١ مايو ٢٠٢٧ في المثال الأصلي. التربة طينية حسب المثال. الملوحة والحموضة والصرف ومنسوب المياه وتوفر الري وكمية العلف المطلوبة غير معروفين. مناسبة الأصناف والذرة الرفيعة محتاجة مراجعة. تأكيد البيانات مش موافقة على الزراعة.`,
+'دي أربع مواسم على نفس الأرض. كل موسم يفتح تفاصيله. مواعيد المثال مقصودة، مش معتمدة للزراعة.',
+inspecting?`إنت بتشوف ميعاد ${date} بس. الخطة الأصلية ما اتغيّرتش. الحشة والمحاصيل الثابتة محفوظة. حصاد الذرة وخلو الأرض بعد التغيير غير معروفين. الميعاد محتاج مراجعة زراعية، مش إذن بالزراعة.`:draft||changed?'البيانات اتغيّرت. مفيش نتيجة جديدة في النموذج ده. نتيجة المثال القديم مش تنطبق عليها.':'ميعاد الذرة خمستاشر مايو ٢٠٢٧ قبل حشة البرسيم عشرين مايو ٢٠٢٧ على نفس الأرض. الخطة فيها تعارض. مش هنلغي الحشة. مفيش بديل مؤكد لسه. تمانية وعشرين مايو وأول يونيو محتاجين مراجعة زراعية.',
+'طقس زمان من ناسا يساعد نفهم الحرارة وطلب الجو للمياه. المقارنة مش متاحة هنا بسبب نقص معلومات المحاصيل. ده مش توقع ولا كمية مياه الري. حالة الخطة ما اتغيّرتش.',
+`الخطة الأصلية فيها تعارض. حشة البرسيم عشرين مايو ٢٠٢٧ محفوظة في الخطة. ميعاد الذرة خمستاشر مايو متعارض معاها. مفيش بديل مؤكد لسه. ${saved?'دي محاكاة لمسودة محفوظة للمراجعة؛ مفيش حفظ فعلي.':'لسه مش محفوظة.'} الحفظ مش موافقة على الزراعة.`][screen];}
+const status=(kind,title,text)=>`<div class="status ${kind}"><strong>${title}</strong><span>${text}</span></div>`;
+const lock='<span class="tag">ثابت باختيارك</span>';
+function path(full=false){return `<ol class="path ${full?'panorama':''}">${crops.map((c,i)=>`<li><span class="number">${ar(i+1)}</span><div class="eyebrow">${years[i]}</div><div class="path-crop">${photo(c)}<strong>${c}<small>${i===0?'علف للمواشي':'حبوب'}</small></strong></div>${!deferred&&i<3?lock:''}<details><summary>المواعيد والتفاصيل</summary><p>زراعة: ${draft&&i===1?date:sow[i]}</p><p>${i===0?'آخر حشة':'حصاد'}: ${i===0?cut():draft&&i===1?'غير معروف بعد تغيير الزراعة':end[i]}</p><p>خلو الأرض المفترض: ${changed?'يحتاج إعادة مراجعة':draft&&i===1?'غير معروف':release[i]}</p>${i===3?'<p>المناسبة المحلية محتاجة مراجعة</p>':''}</details></li>`).join('')}</ol>`;}
+function recap(){return `<div class="box"><h3>اللي لازم يفضل</h3><p>حشة البرسيم: ${cut()}</p><p>ذرة حبوب في الموسم التاني، وقمح حبوب في التالت.</p><p class="small">التثبيت بيحافظ على اختيارك في الخطة. مش ضمان للمحصول أو كفاية العلف.</p></div>`}
+function replayLink(){return `<div class="box"><h3>الطقس زمان كان عامل إزاي؟</h3><p class="small">استكشف الحرارة وطلب الجو للمياه في فترات تاريخية من NASA POWER.</p>${b('استكشف طقس زمان · اختياري','replay','secondary')}</div>`}
+function calendar(){return `<svg class="calendar" viewBox="0 0 330 235" role="img" aria-label="مايو ٢٠٢٧: زراعة الذرة ١٥، الحشة المحمية ٢٠، خلو مفترض ٢١، ثم سبعة أيام تجهيز حتى ٢٨"><defs><pattern id="hatch-season" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#aaa" stroke-width="2"/></pattern></defs><text x="310" y="25" text-anchor="end" font-size="16" fill="#333">مايو ٢٠٢٧ · المدة على مقياس الأيام</text><line x1="30" y1="78" x2="290" y2="78" stroke="#555"/><rect x="30" y="86" width="100" height="24" fill="url(#hatch-season)" stroke="#777"/><rect x="150" y="155" width="140" height="24" fill="#ddd" stroke="#777"/><g fill="#333" font-family="Arial" font-size="16"><text x="30" y="65" text-anchor="middle">١٥</text><text x="130" y="65" text-anchor="middle">٢٠</text><text x="150" y="140" text-anchor="middle">٢١</text><text x="290" y="140" text-anchor="middle">٢٨</text><text x="80" y="128" text-anchor="middle">تعارض</text><text x="220" y="201" text-anchor="middle">٧ أيام تجهيز مفترضة</text><text x="30" y="223">الأسبق</text><text x="290" y="223" text-anchor="end">الأحدث</text></g><g stroke="#444"><line x1="30" y1="72" x2="30" y2="86"/><line x1="130" y1="72" x2="130" y2="110"/><line x1="150" y1="78" x2="150" y2="122"/><line x1="290" y1="78" x2="290" y2="122"/></g></svg>`}
+function welcome(){return `<div class="split"><section><div class="eyebrow">أهلًا بيك</div><h2>نرتّب مواسم أرضك<br>واحدة واحدة</h2><div class="welcome-crops" aria-hidden="true">${crops.map(photo).join('')}</div><p>اختار أو اتكلم. ونراجع سوا قبل التأكيد.</p>${audio()}</section><section>${b('نبدأ ←','crops','primary')}<details><summary>اللغة · Language</summary>${b('العربية','arabic','')}${b('English · معاينة لاحقة','english','')}</details><p class="tiny">حكاية عم حسين مثال للتجربة. الرسومات تقريبية؛ الصور الحقيقية في مرحلة لاحقة.</p></section></div>`;}
+function dateEditor(){return `<div class="date-row"><label>اليوم<select data-field="cutDay">${Array.from({length:31},(_,i)=>`<option value="${i+1}" ${cutDay==i+1?'selected':''}>${ar(i+1)}</option>`).join('')}</select></label><label>الشهر<select data-field="cutMonth">${['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'].map((m,i)=>`<option value="${i+1}" ${cutMonth==i+1?'selected':''}>${m}</option>`).join('')}</select></label><label>السنة<select data-field="cutYear">${['2026','2027','2028','2029'].map(y=>`<option ${cutYear===y?'selected':''} value="${y}">${ar(y)}</option>`).join('')}</select></label></div><details><summary>اكتب التاريخ بدل الاختيارات</summary><label>يوم / شهر / سنة<input data-field="typedDate" type="date" value="${cutYear}-${cutMonth.padStart(2,'0')}-${cutDay.padStart(2,'0')}" /></label></details>`;}
+function intake(){let title=question==='crop'?(season===0?'إيه أول محصول في بالك؟':'وبعده ناوي تزرع إيه؟'):question==='date'?'آخر حشة برسيم إمتى؟':'إيه اللي تعرفه عن الأرض؟';let content='';
+ if(question==='crop')content=`<div class="crop-grid">${crops.map(c=>`<button class="crop" data-crop="${c}" aria-pressed="${selected===c}">${photo(c)}<strong>${c}</strong><small>${c==='برسيم'?'علف للمواشي':'حبوب'}</small><span class="selection-mark">${selected===c?'✓ مختار':'اختار'}</span></button>`).join('')}</div>${b('كمّل','choosecrop','primary')}${season===0?b('عندي حاجة لازم تفضل','commitment','link'):''}${b('لسه مش عارف','unknowncrop','link')}`;
+ if(question==='date')content=`<div class="big-date"><span>برسيم · آخر حشة</span><strong>${cut()}</strong><small>اختيار مبدئي — مش مؤكّد</small></div>${dateEditor()}${b('خلي الحشة دي ثابتة في مسودتي','protectyes','primary')}${b('كمّل من غير تثبيت','protectlater','secondary')}`;
+ if(question==='context')content=`<div class="box"><strong>مثال عم حسين</strong><p>قطعة واحدة · ${ar(area)} هكتار<br>${ar(prep)} أيام تجهيز مفترضة</p></div><p>تحاليل التربة وتفاصيل الري وكفاية العلف لسه مش معروفة.</p><details><summary>تعديل المساحة والتجهيز</summary><label>المساحة بالهكتار<input data-field="area" type="number" min="0.01" step="0.01" value="${esc(area)}" /></label><label>أيام التجهيز<input data-field="prep" type="number" min="0" step="1" value="${esc(prep)}" /></label><p class="small">أي تعديل يلغي نتيجة المثال. بيانات التربة الدقيقة تُراجع مع مهندس؛ مش بنفترض قياسات.</p></details>${b('راجع ملخص اختياراتي','review','primary')}`;
+ return `<div class="split"><section><div class="eyebrow">${question==='context'?'الأرض واللي مش معروف':`الموسم ${ar(season+1)} من ٤ · ${years[season]}`}</div><h2>${title}</h2>${audio(true)}${season>0?`<div class="sofar">اخترنا: ${crops.slice(0,season).join(' ← ')}</div>`:''}</section><section>${content}</section></div>`;}
+function confirmation(){return `<div class="split"><section><div class="eyebrow">آخر مراجعة قبل الفحص</div><h2>دي اختياراتك؟</h2><p>اسمع الملخص. صحّح أي معلومة، وبعدها أكّد.</p>${audio(true)}${b('أصحّح الحشة أو التثبيت','edit','secondary')}</section><section>${deferred?status('unknown','مفيش التزامات ثابتة','تقدر تكمّل من غير تثبيت؛ نتيجة عم حسين مش تنطبق.'):recap()}${draft?status('review','تغيير في المسودة فقط',`زراعة الذرة المقترحة ${date}. حصادها وخلو الأرض بعدها غير معروفين.`):''}<details><summary>المواسم الأربعة والمواعيد</summary>${path(false)}</details><details><summary>الأرض والافتراضات والمجهول</summary><p>قطعة واحدة · ${ar(area)} هكتار. تربة طينية حسب المثال؛ بدون تحليل. خلو مفترض ٢١ مايو ٢٠٢٧ + ${ar(prep)} أيام تجهيز.</p><p>الملوحة والحموضة والصرف ومنسوب المياه وتوفر الري وكمية العلف المطلوبة: غير معروفين.</p><p>الاستكشاف المسموح: ٢٨ مايو أو ١ يونيو. تغيير محصول الموسم الرابع غير متاح للتقييم هنا.</p>${b('عدّل بيانات الأرض','contextedit','link')}</details>${b('أكّد البيانات وشوف الفحص','confirmed','primary')}<p class="small">ده تأكيد معلومات، مش موافقة على الزراعة.</p></section></div>`;}
+function journey(){return `<h2>أربع مواسم على أرض واحدة</h2>${audio()}${path(true)}${b('ارجع للمكان اللي كنت فيه','pathback','primary')}`;}
+function investigation(){return `<div class="split"><section><div class="eyebrow">بتشوف بس — خطتك ما اتغيّرتش</div><h2>ميعاد تاني للذرة؟</h2>${audio()}${status('review','△ محتاج مراجعة زراعية','مش إذن بالزراعة. مفيش بديل مؤكد لسه.')}<div class="stack"><button class="choice" data-date="٢٨ مايو ٢٠٢٧" aria-pressed="${date==='٢٨ مايو ٢٠٢٧'}">٢٨ مايو ٢٠٢٧</button><button class="choice" data-date="١ يونيو ٢٠٢٧" aria-pressed="${date==='١ يونيو ٢٠٢٧'}">١ يونيو ٢٠٢٧</button></div></section><section><div class="box"><h3>الحشة هتفضل زي ما هي</h3><p>٢٠ مايو ٢٠٢٧ · والذرة والقمح الحبوب ثابتين.</p><h3>اللي هيتغيّر</h3><p>زراعة الذرة من ١٥ مايو إلى ${date}.</p></div>${status('unknown','؟ الحصاد وخلو الأرض لسه مش معروفين','لازم نراجع مناسبة الميعاد وتأثيره على المواسم اللي بعدها.')}<details><summary>ليه الميعاد محتاج مراجعة؟</summary><p>${date==='١ يونيو ٢٠٢٧'?'الدليل الحالي مش بيؤكد مناسبة ميعاد يونيو.':'٢٨ مايو متوافق حسابيًا مع افتراض التجهيز؛ ده مش اعتماد زراعي.'}</p></details>${b('ارجع من غير تغيير','closeinspect','primary')}<details><summary>عايز أضيف الميعاد لمسودتي</summary><p>ده تعديل محتاج تأكيد وفحص جديد. مش توصية.</p>${b('أضف للمسودة وراجع التغيير','adopt','secondary')}</details>${replayLink()}</section></div>`;}
+function test(){if(loading)return `<h2>بنراجع المواعيد…</h2>${status('unknown','اختياراتك لسه موجودة','معاينة تحميل فقط، مفيش اتصال فعلي.')}${b('عرض نتيجة المثال','finishload','primary')}`;if(inspecting)return investigation();if(draft||changed||deferred||!confirmed)return `<h2>محتاجين فحص للخطة دي</h2>${audio()}${status('unknown','؟ مفيش نتيجة جديدة هنا',!confirmed?'راجع البيانات وأكّدها الأول.':'المدخلات اتغيّرت. نتيجة المثال القديم مش تنطبق عليها.')}<p>حشة البرسيم: ${cut()}${draft?` · الذرة: ${date}`:''}</p>${b('ارجع للمراجعة','review','primary')}${b('استرجع بيانات مثال عم حسين','original','secondary')}`;return `<div class="split"><section><div class="eyebrow">نتيجة مثال عم حسين · Promise Test</div><h2>الذرة قبل حشة البرسيم</h2>${audio()}${status('rejected','× الخطة فيها تعارض','نفس الأرض مش فاضية لزراعة الذرة وقتها.')}<div class="date-conflict"><div>${photo(crops[1])}<strong>١٥ مايو</strong><span>زراعة الذرة</span></div><span aria-hidden="true">←</span><div>${photo(crops[0])}<strong>٢٠ مايو</strong><span>حشة ثابتة</span></div></div><p>٢٠٢٧ · مش هنلغي الحشة اللي ثبّتها.</p><details><summary>إزاي حسبنا فترة التجهيز؟</summary>${calendar()}<p>خلو مفترض ٢١ مايو + ٧ أيام تجهيز = ٢٨ مايو. حساب مواعيد، مش توصية زراعة.</p></details></section><section><div class="box"><h3>مفيش بديل مؤكد لسه</h3><p>صفر بدائل ثبتت إمكانية تنفيذها.</p>${b('شوف المواعيد اللي محتاجة مراجعة','inspect','secondary')}</div>${b('كمّل لورقة المراجعة','card','primary')}${replayLink()}<details><summary>مراجعة المهندس: الأدلة والنقط الناقصة</summary><p>التربة والري والصنف ومراحل النمو ومناسبة الذرة الرفيعة وكفاية العلف لسه محتاجين مراجعة. مفيش تعارض لاحق مثبت في المثال.</p><p>المصدر: REFERENCE_SCENARIO · UH-001/v1. نتيجة توضيحية وليست حسابًا منفّذًا.</p></details>${b('شوف المواسم الأربعة','path','link')}</section></div>`;}
+function replay(){return `<div class="split"><section><div class="eyebrow">اختياري · NASA Season Replay</div><h2>الطقس زمان يفيدني بإيه؟</h2>${audio()}<div class="weather-pair"><span>☀<br>الحرارة</span><span>≋<br>طلب الجو للمياه</span></div><p>نفهم تعرّض المواسم للطقس في السنين اللي فاتت.</p><p class="small">ده مش توقع، ومش كمية مياه الري.</p></section><section>${status('unknown','؟ المقارنة مش متاحة دلوقتي','معلومات المحاصيل بعد تغيير المواعيد مش كافية. مفيش أرقام محسوبة هنا.')}<p>${returnTo?.inspecting?'إنت لسه بتستكشف ميعاد محتاج مراجعة.':draft||changed?'الخطة المعدّلة لسه بدون نتيجة جديدة.':'الخطة الأصلية لسه فيها تعارض.'}</p><details><summary>للمهندس: المصدر والوحدات وحدود المقارنة</summary><p>NASA POWER · نقطة البحث في سخا، مش قياس أرض عم حسين. نفس الفترات التاريخية لكل خطة، مع مدة المحصول والالتزامات.</p><p>ET0: طلب جوي مرجعي، مش ري. ETc غير متاح بدون معاملات ومراحل نمو مدعومة. لا توجد قيم أو فترات مقارنة محسوبة هنا.</p><p dir="ltr">FAO56 ET0 with the ASCE daily cloudiness bound</p></details>${b('ارجع للي كنت بشوفه','replayback','primary')}</section></div>`;}
+function card(){if(draft||changed||deferred||!confirmed)return test();return `<div class="split"><section><div class="eyebrow">ورقة المراجعة · P0</div><h2>نحتفظ بالخطة للمراجعة</h2>${audio()}${status('rejected','× الخطة فيها تعارض','ذرة ١٥ مايو قبل الحشة الثابتة ٢٠ مايو ٢٠٢٧.')}${recap()}</section><section>${saved?status('saved','▤ معاينة: مسودة محفوظة للمراجعة','محاكاة فقط؛ مفيش حفظ فعلي. الحفظ مش اعتماد للزراعة.'):status('unknown','لسه مش محفوظة','زر الحفظ هنا بيعرض حالة تصميم بس.')}<p>مفيش بديل مؤكد. محتاجين مراجعة المواعيد والتربة والري.</p>${!saved?b('احفظ كمسودة للمراجعة · محاكاة','save','primary'):''}<details><summary>المواعيد والأدلة والافتراضات</summary>${path(false)}<p>UH-001/v1 · خلو الأرض ٢١ مايو مفترض، ثم ٧ أيام تجهيز. الأصناف ومراحل النمو وكفاية العلف محتاجة مراجعة. التوقع التجريبي غير مناسب للقرار البعيد ده.</p></details>${replayLink()}${b('ارجع للنتيجة','result','secondary')}</section></div>`;}
+const states=[
+['Rejected · plan','rejected','× الخطة فيها تعارض','١٥ مايو قبل الحشة الثابتة ٢٠ مايو ٢٠٢٧.','inspect','استكشف مواعيد للمراجعة'],
+['Needs review · plan / investigation','review','△ محتاج مراجعة زراعية','ميعاد ٢٨ مايو لا يُعرض كتوصية زراعة.','inspect','شوف الناقص قبل أي تغيير'],
+['Feasible · separate future case','feasible','✓ ممكن حسب الشروط الموضّحة','مثال حالة واجهة فقط؛ مش نتيجة عم حسين. لا يوجد بديل مدعوم متاح هنا.','feasibleinfo','راجع الشروط قبل اعتماد صريح'],
+['Unknown data · evidence, not a fourth plan status','unknown','؟ البيانات مش كافية','حصاد الذرة بعد تغيير الميعاد غير معروف. عدم المعرفة مش صفر.','review','راجع المعلومة أو احتفظ بالمجهول'],
+['Saved review draft · storage only','saved','▤ مسودة محفوظة للمراجعة','الحفظ لا يزيل تعارض P0 ولا يعتمد الزراعة. حالة تمثيلية فقط.','savedpreview','شوف المسودة المحفوظة'],
+['Loading · preserve input','unknown','… بنراجع المواعيد','البيانات ثابتة. مفيش نسبة تقدم مصطنعة.','loading','عرض شاشة التحميل'],
+['Empty · no invented defaults','unknown','لسه مفيش محصول مختار','ابدأ بمحصول، أو اختار مش عارف. مفيش نتيجة قبل تأكيد المدخلات.','empty','ابدأ بالمحصول'],
+['Microphone unavailable · playback can still work','unknown','الميكروفون مش متاح','اسمع واختار بإيدك. مش هنطلب الإذن كل شوية.','touch','كمّل بالاختيارات'],
+['Playback unavailable · separate failure','unknown','الصوت مش شغال دلوقتي','الصور والكلام موجودين. لو محتاج، اطلب مساعدة. لا نعتبر ده نجاحًا مستقلًا بدون قراءة.','help','مساعدة'],
+['Save failure · not a plan rejection','unknown','الحفظ ما اكتملش','الخطة لسه مش محفوظة. إجاباتك موجودة هنا؛ جرّب تاني.','savefail','ارجع وحاول الحفظ'],
+['Ambiguous speech · proposal only','unknown','تقصد مايو سنة كام؟','التعرّف على الصوت ما بيأكدش إجابة. نسمع التاريخ كامل قبل التأكيد.','ambiguous','اختار السنة'],
+['Edited / stale · stop old audio','unknown','النتيجة القديمة مش حالية','بعد التعديل: نأكد البيانات ونفحص من جديد.','review','راجع التغيير']
+];
+function renderStates(){board.innerHTML=states.map(s=>`<article class="state-tile"><h3 dir="ltr">${s[0]}</h3><div dir="rtl" lang="ar-EG">${status(s[1],s[2],s[3])}${b(s[5],s[4],'secondary')}</div></article>`).join('');}
+function showNotice(t){const n=root.querySelector('.notice');n.hidden=false;n.textContent=t;}
+function snapshot(){return {screen,season,question,inspecting,selected};}
+function render(){const active=document.activeElement?.dataset;stage.hidden=false;board.hidden=true;body.innerHTML=[welcome,intake,confirmation,journey,test,replay,card][screen]();root.querySelector('.notice').hidden=true;root.querySelectorAll('[data-screen]').forEach(e=>e.setAttribute('aria-current',Number(e.dataset.screen)===screen?'step':'false'));caption.textContent=notes[screen];root.querySelector('.app-foot').hidden=screen===0;const key=active&&['field','crop','action','date'].find(k=>active[k]);if(key){const target=Array.from(body.querySelectorAll?.(`[data-${key}]`)||[]).find(e=>e.dataset[key]===active[key]);target?.focus({preventScroll:true});}}
+function focusTitle(){const h=body.querySelector?.('h2');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});h.scrollIntoView({block:'nearest',behavior:'instant'});}}
+function go(n){history.push(snapshot());screen=n;voice='ready';playback=false;loading=false;if(n!==4)inspecting=false;render();focusTitle();}
+function restore(ctx){if(ctx){screen=ctx.screen;season=ctx.season;question=ctx.question;inspecting=ctx.inspecting;if(ctx.selected!==undefined)selected=ctx.selected;}voice='ready';playback=false;render();focusTitle();}
+function invalidate(){confirmed=false;saved=false;playback=false;voice='ready';changed=true;}
+function nextSeason(){if(season<3){season++;selected='';question='crop';}else question='context';render();focusTitle();}
+root.querySelector('.story').innerHTML=titles.map((t,i)=>`<button data-screen="${i}" aria-current="${i===0?'step':'false'}">${ar(i+1)} · ${t}</button>`).join('');
+root.addEventListener('change',e=>{
+ const el=e.target;
+ if(el.id==='voice-simulation'){voice=el.value;playback=false;render();return;}
+ const f=el.dataset.field;if(!f)return;
+ if(f==='typedDate'){if(!el.value||!/^\d{4}-\d{2}-\d{2}$/.test(el.value)){showNotice('اكتب تاريخ كامل وصحيح.');return;}[cutYear,cutMonth,cutDay]=el.value.split('-');cutMonth=String(Number(cutMonth));cutDay=String(Number(cutDay));}
+ else if(f==='cutDay')cutDay=el.value;else if(f==='cutMonth')cutMonth=el.value;else if(f==='cutYear')cutYear=el.value;
+ else if(f==='area'||f==='prep'){const value=Number(el.value);if(el.value===''||!Number.isFinite(value)||value<(f==='area'?0.01:0)||f==='prep'&&!Number.isInteger(value)){showNotice('راجع القيمة: مساحة أكبر من صفر، وتجهيز بأيام كاملة.');return;}if(f==='area')area=el.value;else prep=el.value;}
+ invalidate();render();showNotice('التعديل مبدئي. نتيجة المثال القديم مش حالية؛ لازم نراجع ونأكد.');
+});
+root.addEventListener('click',e=>{const el=e.target.closest('button');if(!el)return;
+ if(el.dataset.layout){stage.classList.toggle('desktop',el.dataset.layout==='desktop');root.querySelectorAll('[data-layout]').forEach(x=>x.setAttribute('aria-pressed',String(x===el)));render();return;}
+ if(el.dataset.view){stage.hidden=true;board.hidden=false;renderStates();caption.textContent='Review-only state sheet. Feasible is never a UH-001 result. Storage is separate from plan status.';return;}
+ if(el.dataset.screen){go(Number(el.dataset.screen));return;}
+ if(el.dataset.crop){selected=el.dataset.crop;confirmed=false;saved=false;playback=false;render();return;}
+ if(el.dataset.date){date=el.dataset.date;voice='ready';playback=false;render();return;}
+ const a=el.dataset.action;
+ if(a==='listen'||a==='repeat'){voice='ready';playback=true;render();return;}
+ if(a==='stopaudio'){playback=false;render();return;}
+ if(a==='speak'||a==='retryvoice'){playback=false;voice='listening';render();return;}
+ if(a==='stopvoice'){voice='ready';render();showNotice('وقفنا الاستماع. مفيش إجابة اتأكدت.');return;}
+ if(a==='useproposal'){if(screen===1&&question==='crop')selected=crops[season];voice='ready';confirmed=false;saved=false;render();showNotice('إجابة مبدئية فقط. راجعها قبل التأكيد.');return;}
+ if(a==='correctvoice'){voice='ready';if(screen===2){question='date';go(1);}else render();return;}
+ if(a==='help'){showNotice('دوس اسمع للتوضيح، أو اختار الصورة، أو جاوب بالميكروفون. راجع اختياراتك قبل التأكيد. في النموذج ده الصوت والميكروفون محاكاة فقط.');return;}
+ if(a==='english'){showNotice('V2 يراجع العربية فقط. النسخة الإنجليزية الكاملة لسه محتاجة تصميم واختبار؛ بياناتك ما اتغيّرتش.');return;}
+ if(a==='arabic')return;
+ if(a==='crops'||a==='empty'){season=0;question='crop';selected='';confirmed=false;go(1);return;}
+ if(a==='commitment'){season=0;selected=crops[0];question='date';go(1);return;}
+ if(a==='choosecrop'){if(selected!==crops[season]){if(selected){changed=true;confirmed=false;}showNotice(selected?'اختيارك مختلف عن مثال عم حسين. نقدر نراجعه؛ مفيش نتيجة زراعية للفرع ده هنا.':'اختار محصول أو جاوب بصوتك الأول.');return;}history.push(snapshot());if(season===0){question='date';render();focusTitle();}else nextSeason();return;}
+ if(a==='protectyes'||a==='protectlater'){
+ const d=new Date(Number(cutYear),Number(cutMonth)-1,Number(cutDay));if(d.getDate()!==Number(cutDay)||d.getMonth()!==Number(cutMonth)-1){showNotice('اليوم مش موجود في الشهر ده. راجع التاريخ.');return;}
+ deferred=a==='protectlater';confirmed=false;saved=false;history.push(snapshot());nextSeason();return;
+ }
+ if(a==='unknowncrop'){changed=true;confirmed=false;showNotice('المحصول غير معروف. مش هنختار بدالك، ومفيش نتيجة للمسودة دي.');return;}
+ if(a==='contextedit'){question='context';go(1);return;}
+ if(a==='review'){go(2);return;}
+ if(a==='edit'){season=0;question='date';go(1);return;}
+ if(a==='confirmed'){confirmed=true;go(4);return;}
+ if(a==='test'||a==='loading'){go(4);loading=true;render();return;}
+ if(a==='finishload'){loading=false;render();return;}
+ if(a==='inspect'){if(!confirmed||changed||draft||deferred){go(4);return;}go(4);inspecting=true;render();return;}
+ if(a==='closeinspect'){inspecting=false;voice='ready';playback=false;render();return;}
+ if(a==='adopt'){draft=true;saved=false;confirmed=false;go(2);showNotice('أضفنا الميعاد للمسودة فقط. النتيجة القديمة مش حالية.');return;}
+ if(a==='original'){draft=false;changed=false;deferred=false;confirmed=false;saved=false;cutDay='20';cutMonth='5';cutYear='2027';area='1';prep='7';go(2);return;}
+ if(a==='replay'||a==='path'){returnTo=snapshot();go(a==='replay'?5:3);return;}
+ if(a==='replayback'||a==='pathback'){restore(returnTo||{screen:2,season,question,inspecting:false});return;}
+ if(a==='card'){go(6);return;}
+ if(a==='result'){go(4);return;}
+ if(a==='save'||a==='savedpreview'){if(confirmed&&!changed&&!draft&&!deferred){saved=true;go(6);}else{go(2);showNotice('راجع بيانات المثال الأول. مفيش حفظ حقيقي في النموذج.');}return;}
+ if(a==='savefail'){saved=false;go(6);showNotice('الحفظ ما اكتملش. لسه مش محفوظة. جرّب تاني؛ دي محاكاة فشل.');return;}
+ if(a==='touch'){go(1);voice='denied';render();return;}
+ if(a==='ambiguous'){question='date';go(1);voice='unclear';render();return;}
+ if(a==='feasibleinfo'){caption.textContent='Feasible is a separate state illustration, not a result for Hussein. No approval action is provided.';return;}
+ if(a==='back'){restore(history.pop()||{screen:0,season:0,question:'crop',inspecting:false});return;}
+});
+render();
+})();
+</script>
+
+</body></html>

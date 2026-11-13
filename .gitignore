@@ -1,0 +1,110 @@
+﻿# Validation bundle (local evidence archive)
+/docs/VALIDATION_ARTIFACTS.zip
+
+# Model weights and checkpoints; keep model source and configuration
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.h5
+*.hdf5
+*.gguf
+*.ggml
+pytorch_model*.bin
+model*.bin
+checkpoints/
+checkpoint-*/
+
+# Local research, generated datasets and experiment outputs
+/data/local/*
+/data/raw/*
+/data/processed/*
+/data/generated/*
+/ml/artifacts/*
+/ml/outputs/*
+/ml/runs/*
+/work/*
+# Authored UX review artifacts; keep research data and generated previews ignored.
+!/work/ux-phase-2/
+/work/ux-phase-2/*
+!/work/ux-phase-2/season-path-wireframes.html
+!/work/ux-phase-2/check-wireframes.cjs
+!/work/ux-phase-2/season-path-wireframes-v3.html
+!/work/ux-phase-2/check-wireframes-v3.cjs
+# Matching review previews are required by the offline parity checks.
+!/work/ux-phase-2/preview.html
+!/work/ux-phase-2/preview-v3.html
+wandb/
+mlruns/
+
+# Python environments, caches, packaging and test output
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+junit.xml
+*.egg-info/
+.eggs/
+/build/
+/backend/build/
+/backend/dist/
+
+# Node dependencies, frontend builds and browser test output
+node_modules/
+/frontend/dist/
+/frontend/build/
+.vite/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Secrets and local credentials; keep safe environment templates
+.env
+.env.*
+!.env.example
+!.env.*.example
+.envrc
+secrets/
+.secrets/
+credentials/
+.aws/
+.ssh/
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+
+# Generated media exports, temporary files and local caches
+/media/exports/*
+.cache/
+.huggingface/
+.ipynb_checkpoints/
+tmp/
+temp/
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+~$*
+.DS_Store
+Thumbs.db
+
+# Preserve folder placeholders, including in local output folders
+!.gitkeep

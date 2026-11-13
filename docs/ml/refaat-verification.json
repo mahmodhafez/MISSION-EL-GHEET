@@ -1,0 +1,125 @@
+{
+  "package": "ml",
+  "dataset_version": "sakha-power-lst-20261110-et0-v1",
+  "started_utc": "2026-11-13T11:10:36.320539+00:00",
+  "python": "3.13.5",
+  "platform": "Windows 11",
+  "commands": [
+    {
+      "name": "verify_package",
+      "exit_code": 0,
+      "seconds": 0.44
+    },
+    {
+      "name": "public_unit_and_consumer_suite",
+      "exit_code": 0,
+      "seconds": 0.84,
+      "tests_run": 10,
+      "failed": 0,
+      "skipped": 0,
+      "passed_tests": [
+        "test_ml.SeasonalReferenceTests.test_all_keyed_scoring_errors",
+        "test_ml.SeasonalReferenceTests.test_contexts_have_only_as_of_information_and_seven_disjoint_labels",
+        "test_ml.SeasonalReferenceTests.test_contiguous_schema_finite_numeric_and_date_validation",
+        "test_ml.SeasonalReferenceTests.test_descriptive_reference_separate_from_training",
+        "test_ml.SeasonalReferenceTests.test_exact_splits_and_leaps",
+        "test_ml.SeasonalReferenceTests.test_export_against_original_validation_metrics_for_each_target_and_lead",
+        "test_ml.SeasonalReferenceTests.test_leap_day_has_separate_phase_and_support",
+        "test_ml.SeasonalReferenceTests.test_modified_or_consumed_window_rejected",
+        "test_ml.SeasonalReferenceTests.test_new_year_circular_window",
+        "test_ml.SeasonalReferenceTests.test_schema_valid_value_tampering_changes_release_hash"
+      ]
+    },
+    {
+      "name": "ml_onboarding_python_example",
+      "exit_code": 0,
+      "seconds": 0.28
+    },
+    {
+      "name": "ml_example",
+      "exit_code": 0,
+      "seconds": 0.29
+    },
+    {
+      "name": "ml_baseline",
+      "exit_code": 0,
+      "seconds": 0.27
+    }
+  ],
+  "checks": {
+    "ml": {
+      "loader": {
+        "training_rows": 6574,
+        "validation_rows": 1096,
+        "origins": 36,
+        "first_issue": "2019-01-15",
+        "first_context_start": "2018-11-10",
+        "first_context_cutoff": "2019-01-08",
+        "context_days": 60,
+        "first_scored_dates": [
+          "2019-01-16",
+          "2019-01-17",
+          "2019-01-18",
+          "2019-01-19",
+          "2019-01-20",
+          "2019-01-21",
+          "2019-01-22"
+        ],
+        "prediction_rows": 504,
+        "mae": {
+          "tmax_c": 2.534365188507807,
+          "et0_mm_day": 0.583124450747929
+        }
+      },
+      "unique_issue_target_date_pairs": 252,
+      "byte_identical_baseline_files": {
+        "calendar_reference.csv": true,
+        "scored_predictions.csv": true,
+        "metrics.json": true
+      },
+      "metrics": {
+        "tmax_c": {
+          "mae": 2.534365188507807,
+          "rmse": 3.305463183133233,
+          "bias": 0.15511905200897702,
+          "interval_80_coverage": 0.7936507936507936,
+          "interval_mean_width": 8.013392709550404,
+          "mean_pinball_loss": 0.7852983023123765,
+          "unit": "degC",
+          "scored_target_days": 252,
+          "mae_by_lead_1_to_7": [
+            2.550138791402181,
+            2.365416897667779,
+            2.5015278657277427,
+            2.576527860429552,
+            2.604166719648573,
+            2.9804168277316623,
+            2.162361356947157
+          ]
+        },
+        "et0_mm_day": {
+          "mae": 0.583124450747929,
+          "rmse": 0.8052144814149734,
+          "bias": -0.11981442759907435,
+          "interval_80_coverage": 0.8174603174603174,
+          "interval_mean_width": 1.968981727531978,
+          "mean_pinball_loss": 0.1896629183790671,
+          "unit": "mm/day",
+          "scored_target_days": 252,
+          "mae_by_lead_1_to_7": [
+            0.577890028556188,
+            0.5857876439889272,
+            0.590567883518007,
+            0.518078174855974,
+            0.5945449305905236,
+            0.588863343000412,
+            0.6261391507254707
+          ]
+        }
+      }
+    }
+  },
+  "shipped_files_verified": 27,
+  "status": "VERIFIED AND TESTED",
+  "finished_utc": "2026-11-13T11:10:38.547104+00:00"
+}
