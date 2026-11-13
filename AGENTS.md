@@ -32,7 +32,8 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 
 1. `docs/rules/working.md`: how to work here (scope, honesty, science rules).
 2. `docs/rules/git.md`: branches, commits, PRs. **Several people and agents share this repo.**
-3. The status file for your area in `docs/status/`.
+3. `docs/rules/dependencies.md` before installing or adding any package (supply-chain rules).
+4. The status file for your area in `docs/status/`.
 
 ## Routing: if you're doing X, read Y
 
@@ -49,6 +50,7 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 | About to propose an idea | `docs/rejected.md`: check it isn't already turned down |
 | Unsure what a term means (UH-001, P0, R1, Astra, LST…) | `docs/glossary.md` |
 | Writing or reorganising docs | `docs/rules/docs.md` |
+| Adding, updating or installing a package | `docs/rules/dependencies.md` |
 
 ## Rules that cause the most damage when broken
 
@@ -60,6 +62,8 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 - **Shared contracts change only by agreement.** API schemas, `meg_core.contracts` and the
   data release need sign-off from every owner they touch (see `docs/team.md`).
 - **Never push to `main` directly, never force-push, never commit data/model files or secrets.**
+- **Packages: minimum age 14 days, exact pins, hashed lock files, no install scripts, pinned pnpm/pip.**
+  Run `python3 -I scripts/check_dependency_age.py` before committing a lock change. See `docs/rules/dependencies.md`.
 
 ## Commands that exist today
 
@@ -70,8 +74,9 @@ node work/ux-phase-2/check-wireframes-v3.cjs                            # wirefr
 node work/ux-phase-3/check-hybrid.cjs                                   # Fieldlight prototype check
 node work/ux-phase-4/check-labs.cjs                                     # voice-first page labs check
 python -I -S -m unittest discover -s packages/meg-core/tests -v         # planner: 84 tests
-cd frontend && pnpm install && pnpm dev                                 # app at http://127.0.0.1:5173 (dev adapter)
-cd frontend && pnpm typecheck && pnpm test && pnpm build                # frontend checks (12 unit tests)
+cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm dev   # app at http://127.0.0.1:5173 (dev adapter)
+cd frontend && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build   # 12 unit tests
+python3 -I scripts/check_dependency_age.py                              # lock files: hashes + 14-day minimum age
 ```
 
 The frontend runs on a labelled dev adapter until the backend serves `/api/v1`.

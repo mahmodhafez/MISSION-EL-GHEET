@@ -52,3 +52,4 @@ Last reviewed . Sources: the archived status and handoff files and the specs lin
 |---|---|---|---|
 | 13 Nov | Cleanup happens on `cleanup/yahya-preintegration`; `handoff/full-project-precleanup-` stays frozen; nothing merges to `main` automatically. | Amr | [handoff](archive/handoff-/YAHYA_HANDOFF.md) |
 | 13 Nov | Docs reorganised into `docs/<area>/`; one `AGENTS.md` for all agents; per-area status files; git rules in `rules/git.md`. | Yahya | this cleanup |
+| 14 Nov | **Dependency rules:** minimum release age 14 days for every package and tool (enforced by pnpm `minimum-release-age` and pip `uploaded-prior-to`), exact pins, hashed lock files, wheels only, no install scripts, pnpm pinned by hash via corepack. | Yahya | [rules/dependencies.md](rules/dependencies.md) |

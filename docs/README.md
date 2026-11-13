@@ -17,6 +17,7 @@ evidence, never edited · **Archive** = superseded, history only.
 | [rejected.md](rejected.md) | Ideas already turned down or deferred |
 | [glossary.md](glossary.md) | UH-001, P0, ET0, Astra… |
 | [rules/working.md](rules/working.md) · [rules/git.md](rules/git.md) · [rules/docs.md](rules/docs.md) | How to work, branch/commit/PR, write docs |
+- [rules/dependencies.md](rules/dependencies.md): supply-chain rules: 14-day minimum package age, exact pins, hashed locks, no install scripts.
 
 ## Specs by area
 

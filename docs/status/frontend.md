@@ -39,6 +39,9 @@ before/after + why review → check again → summary + save; past weather and 7
   UH-001 journey (26 steps, at 390×760 and 1280×820, English plus Arabic summary) reached the real result (rejected; review dates
   28 May and 1 June; season-4 maize not checked, search incomplete) with no script errors, horizontal overflow or scrolling.
 - **Not verified:** real phones, real Arabic speech recognition or device voices, screen readers, farmers, the backend.
+- **Supply chain (14 Nov):** pnpm 10.34.9 pinned by hash via corepack; `.npmrc` `minimum-release-age` 14 days; lockfile
+  re-resolved under that rule (173 packages, all with integrity hashes, none with install scripts). `scripts/check_dependency_age.py`
+  passes. Typecheck, 12 tests and build pass on the new lockfile. Rules: [dependencies.md](../rules/dependencies.md).
 - **Known gaps:** harvest dates for maize, wheat and sorghum are not asked (the fixture supplies illustrative ones); season month
   windows are placeholders (voice-first.md open question 6); crop pictures are drawings.
 
