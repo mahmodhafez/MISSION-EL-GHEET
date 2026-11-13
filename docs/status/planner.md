@@ -2,7 +2,7 @@
 
 **Read this if…** you're asking "does the Promise Test / candidate search exist?"
 
-**As of 2026-11-13**, last commit `2b83f5c` (M1, pushed). Milestone 2 is uncommitted on `planner/candidate-generation`.
+**As of 2026-11-13**, last commit `a46500a` (M2, pushed to `origin/planner/candidate-generation`; M1 is `2b83f5c`).
 Owner(s): Amr + Astra. M1 evaluator and M2 generation/service are implemented. Shared-contract integration is pending.
 Resume and run instructions: [implementation handoff](../planner/implementation-handoff.md).
 
@@ -10,13 +10,13 @@ Resume and run instructions: [implementation handoff](../planner/implementation-
 
 ## Next up
 
-1. Amr authorizes the Milestone 2 commit/push (manual CLI acceptance passed 2026-11-13).
+1. Open a PR from `planner/candidate-generation` when Amr asks (M2 committed and pushed 2026-11-13; manual acceptance passed).
 2. Yahya binds `prepare_scope` / `service.plan` and the private views to shared contracts. Refaat supplies the reviewed loaded KB.
 
 ## In flight
 
 Milestone 2 worktree: `tmp/planner-candidate-generation` (branch `planner/candidate-generation`, from `2b83f5c`).
-All M2 code, tests, CLI and docs are uncommitted. Nothing is staged or pushed. The M1 worktree `tmp/planner-promise-test` is unchanged.
+M2 is committed as `a46500a` and pushed to `origin/planner/candidate-generation`. It is not merged and has no PR yet. The M1 worktree `tmp/planner-promise-test` is unchanged.
 
 ## Built and verified
 

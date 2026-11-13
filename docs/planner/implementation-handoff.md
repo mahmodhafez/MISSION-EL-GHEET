@@ -12,7 +12,7 @@ Status: Draft · Owner: Amr + Astra · Last reviewed 2026-11-13.
    beneath the main checkout. Don't create another Milestone 2 branch. Don't reset or clean it.
 2. Read `AGENTS.md`, [status](../status/planner.md), then this file.
 3. Run the test command below. The expected result is **84 tests, 0 failures, 0 skips**.
-4. Milestone 2 is **uncommitted** (see [Worktree state](#worktree-and-commit-state)). Commit, push or merge
+4. Milestone 2 is committed and pushed (see [Worktree state](#worktree-and-commit-state)). Further commits, pushes, PRs or merges
    only on Amr's explicit authorization.
 
 ## Branches and commits
@@ -20,7 +20,7 @@ Status: Draft · Owner: Amr + Astra · Last reviewed 2026-11-13.
 | Milestone | Branch | Commit | Remote |
 |---|---|---|---|
 | 1 · Promise Test | `planner/promise-test` | `2b83f5c` | pushed (`origin/planner/promise-test`) |
-| 2 · Candidate generation + service | `planner/candidate-generation` | based on `2b83f5c`; work uncommitted | not pushed |
+| 2 · Candidate generation + service | `planner/candidate-generation` | `a46500a` (on `2b83f5c`) | pushed (`origin/planner/candidate-generation`) |
 
 ## Callable interfaces (pure, standalone)
 
@@ -147,10 +147,9 @@ bannered SYNTHETIC. **Manual acceptance passed:** Amr ran these commands on 2026
 
 ## Worktree and commit state
 
-As of 2026-11-13, all Milestone 2 code, tests, the CLI, fixtures and this doc are **uncommitted** in the worktree
-above. Nothing is staged. Nothing was pushed or merged.
+As of 2026-11-13, Milestone 2 is committed as `a46500a` and pushed to `origin/planner/candidate-generation`,
+with a follow-up docs commit recording that state. It is not merged into `main` and has no PR yet.
 
 ## Next action
 
-Amr authorizes the Milestone 2 commit and push on `planner/candidate-generation`
-(manual acceptance already passed). Then Yahya binds the interfaces above in the backend adapter.
+Open a PR from `planner/candidate-generation` when Amr asks. Then Yahya binds the interfaces above in the backend adapter.
