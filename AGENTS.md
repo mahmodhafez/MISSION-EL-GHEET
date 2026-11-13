@@ -20,7 +20,7 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 | Path | What lives there | Real code yet? |
 |---|---|---|
 | `backend/` | FastAPI app (`app/`), tests | No, empty placeholders |
-| `frontend/` | React app (`src/features/*`) | No, empty placeholders |
+| `frontend/` | React app (`src/features/*`): voice-first flow on a dev adapter | Yes, see `docs/status/frontend.md` |
 | `ml/` | Shared-release builder (`tools/`), tests, future experiments | Builder + 3 tests |
 | `data/validation/` | NASA POWER / ET0 audit and regeneration scripts | Yes, 16 tests |
 | `data/local/` | Assembled data release (mostly git-ignored) | Partial, see `docs/status/ml-data.md` |
@@ -69,13 +69,16 @@ python -I -S -m unittest discover -s ml/tests -v                        # 3 test
 node work/ux-phase-2/check-wireframes-v3.cjs                            # wireframe smoke check
 node work/ux-phase-3/check-hybrid.cjs                                   # Fieldlight prototype check
 node work/ux-phase-4/check-labs.cjs                                     # voice-first page labs check
+python -I -S -m unittest discover -s packages/meg-core/tests -v         # planner: 84 tests
+cd frontend && pnpm install && pnpm dev                                 # app at http://127.0.0.1:5173 (dev adapter)
+cd frontend && pnpm typecheck && pnpm test && pnpm build                # frontend checks (12 unit tests)
 ```
 
-No app install/run commands exist yet. Add them here when the first app code lands.
+The frontend runs on a labelled dev adapter until the backend serves `/api/v1`.
 
 ## Facts worth knowing on day one
 
-- `backend/` and `frontend/` contain only `.gitkeep` files. Docs once assumed backend code
+- `backend/` contains only `.gitkeep` files. Docs once assumed backend code
   existed when it didn't; check the tree before you believe a doc.
 - The big evidence ZIP (`docs/VALIDATION_ARTIFACTS.zip`, ~470 MB) and model weights are **not in
   git**. Request them from Amr/Refaat (`docs/archive/handoff/ARTIFACT_TRANSFER.md`).
