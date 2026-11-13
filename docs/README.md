@@ -39,6 +39,7 @@ evidence, never edited · **Archive** = superseded, history only.
 | Planner | [planner/agronomy-evidence.md](planner/agronomy-evidence.md): source ledger | Current 11 Nov | Refaat |
 | Planner | [planner/agronomy-kb.v0.1.json](planner/agronomy-kb.v0.1.json), [audit.json](planner/audit.json): machine-readable KB draft | Proposed | Refaat / Karim |
 | Planner | [planner/research-handoff.md](planner/research-handoff.md): compatibility review of the planner research | Current 11 Nov | Karim / Yahya |
+| Planner | [planner/crop-expansion-assessment.md](planner/crop-expansion-assessment.md) + [agronomy-kb-extension.v0.2-proposed.json](planner/agronomy-kb-extension.v0.2-proposed.json): 12-crop evidence assessment, research-only | Proposed 14 Nov | Amr + Astra; review Refaat |
 | Planner | [planner/implementation-handoff.md](planner/implementation-handoff.md): M1/M2 code, interfaces, tests, manual CLI, resume steps | Draft 13 Nov | Amr + Astra |
 | Planner | [planner/frontend-handoff.md](planner/frontend-handoff.md): frontend tasks for the planner UI ("Astra") | Proposed 13 Nov | Amr |
 | ML | [ml/plan.md](ml/plan.md): deadline execution plan | Current 13 Nov | Amr |

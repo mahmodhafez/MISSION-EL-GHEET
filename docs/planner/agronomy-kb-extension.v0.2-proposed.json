@@ -1,0 +1,823 @@
+{
+  "schema_version": "planning-kb-0.1",
+  "knowledge_version": "sakha-crop-expansion-2026-11-14-proposed1",
+  "extends_knowledge_version": "sakha-ledger-2026-11-12-draft1",
+  "status": "proposed_not_runtime_release",
+  "scope": "research-only catalogue extension for one Sakha field; adds 6 crops; cantaloupe and harankash excluded (see assessment); no rules, no templates, no feasible recommendation",
+  "origin_document": "docs/planner/crop-expansion-assessment.md",
+  "sources": [
+    {
+      "source_id": "RI1",
+      "title": "Decree 32/2026 rice areas (news report of Gazette text)",
+      "url": "https://www.elbalad.news/6946667",
+      "locator": "full article",
+      "publisher": "Sada El-Balad, 23 Apr 2026",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "RI3",
+      "title": "Front. Plant Sci. 2026 rice trial, RRTC Sakha",
+      "url": "https://europepmc.org/article/PMC/PMC13352156",
+      "locator": "Methods, Crop management",
+      "publisher": "Frontiers",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "SB1",
+      "title": "El-Sharkawy et al. 2025 PeerJ, Al-Hamul sugar beet",
+      "url": "https://europepmc.org/article/PMC/PMC12182053",
+      "locator": "Methods; Table 1",
+      "publisher": "PeerJ",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed; spot-checked",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "SB2",
+      "title": "PLoS One 2026 sugar beet, Kafr El-Sheikh",
+      "url": "https://europepmc.org/article/PMC/PMC12928445",
+      "locator": "Methods",
+      "publisher": "PLOS",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "SB3",
+      "title": "BMC Plant Biol. 2026 sugar beet, Sakha ARS",
+      "url": "https://europepmc.org/article/PMC/PMC13539709",
+      "locator": "Methods",
+      "publisher": "BMC",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "WM1",
+      "title": "Hassan 2005 watermelon extension bulletin (third-party copy)",
+      "url": "https://archive.org/download/HorticulturalCropsFertilizationBasics/",
+      "locator": "pp. 4-5, ~11, ~19",
+      "publisher": "Cairo Univ. / NVG extension",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed; some digits illegible and not used",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "ST1",
+      "title": "EL-Borai & Whitaker, UF/IFAS EDIS HS1411 (rev. 2024)",
+      "url": "https://edis.ifas.ufl.edu/publication/HS1411",
+      "locator": "p. 2",
+      "publisher": "UF/IFAS",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "ST2",
+      "title": "Abd-Elgawad 2019, Bull. Natl. Res. Centre 43:7",
+      "url": "https://doi.org/10.1186/s42269-019-0049-2",
+      "locator": "pp. 8-11",
+      "publisher": "Springer",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "ST3",
+      "title": "Ayers & Westcot, FAO Irrigation & Drainage Paper 29 Rev.1",
+      "url": "https://www.fao.org/4/t0234e/T0234E03.htm",
+      "locator": "Table 4",
+      "publisher": "FAO",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "CT1",
+      "title": "El-Ashmouny et al. 2026, BMC Plant Biol. 26:162, Sakha cotton",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12849427/",
+      "locator": "Methods; Table 5; Conclusions",
+      "publisher": "BMC",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed; spot-checked",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "CT3",
+      "title": "2026 cotton variety map (news report)",
+      "url": "https://www.maspero.eg/economy/2026/03/01/932357/",
+      "locator": "full article",
+      "publisher": "Maspero, 1 Mar 2026",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "full_text_read_2026-11-14_by_assessment_not_yet_refaat_reviewed",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "CT4",
+      "title": "Resolution 1472/1994 cotton uprooting (FAOLEX summary)",
+      "url": "https://leap.unep.org/en/countries/eg/national-legislation/resolution-no-1472-1994-concerning-uprooting-cotton-shrubs-flax",
+      "locator": "Articles 1-2",
+      "publisher": "FAOLEX / UNEP LEAP",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "abstract_or_snippet_only_full_text_inaccessible; must be re-read before any use",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "FB1",
+      "title": "Attia et al. 2014, J. Plant Prod., Sakha faba bean",
+      "url": "https://doi.org/10.21608/jpp.2014.53657",
+      "locator": "abstract",
+      "publisher": "Mansoura Univ.",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "abstract_or_snippet_only_full_text_inaccessible; must be re-read before any use",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "FB2",
+      "title": "Mostafa et al. 2021, Menoufia J. Plant Prod., Sakha faba bean",
+      "url": "https://doi.org/10.21608/mjppf.2021.169116",
+      "locator": "abstract",
+      "publisher": "Menoufia Univ.",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "abstract_or_snippet_only_full_text_inaccessible; must be re-read before any use",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    },
+    {
+      "source_id": "FB4",
+      "title": "Amer et al. 2002, J. Plant Prod., Sakha 1 release",
+      "url": "https://doi.org/10.21608/jpp.2002.254204",
+      "locator": "abstract",
+      "publisher": "Mansoura Univ.",
+      "metadata_basis": "docs/planner/crop-expansion-assessment.md, researched 2026-11-14",
+      "file_sha256": null,
+      "hash_unknown_reason": "source_bytes_not_captured_in_this_planning_package",
+      "retrieved_at": "2026-11-14",
+      "access_note": "abstract_or_snippet_only_full_text_inaccessible; must be re-read before any use",
+      "terms_status": "review_before_source_redistribution",
+      "terms_url": null,
+      "owner": "Refaat"
+    }
+  ],
+  "assertions": [
+    {
+      "assertion_id": "rice_legal_area_gate",
+      "crop_id": "rice",
+      "kind": "qualitative_guidance",
+      "value": {
+        "statement": "Rice permitted only on land listed in the yearly decree annexes; 2026 Decree 32/2026; Kafr El-Sheikh among permitted governorates"
+      },
+      "unit": null,
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "RI1",
+          "locator": "full article"
+        }
+      ],
+      "scope": {
+        "region": "Egypt",
+        "season": "2026"
+      },
+      "allowed_effect": "review",
+      "limitation": "Field/village listing unknown; year-specific; penalty articles unresolved. A permission gate, not an agronomic rule."
+    },
+    {
+      "assertion_id": "rice_sakha_nursery_2024_2025",
+      "crop_id": "rice",
+      "kind": "observed_sowing_dates",
+      "value": {
+        "nursery_sowing": [
+          "2024-05-02",
+          "2025-05-02"
+        ],
+        "seedling_age_days": 30
+      },
+      "unit": "day",
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "RI3",
+          "locator": "Methods"
+        }
+      ],
+      "scope": {
+        "site": "RRTC Sakha",
+        "cultivars": [
+          "Giza 178",
+          "Super 302",
+          "Giza 183"
+        ],
+        "purpose": "grain"
+      },
+      "allowed_effect": "evidence_context",
+      "limitation": "One trial; transplant date only inferable; no harvest or release."
+    },
+    {
+      "assertion_id": "sugar_beet_alhamul_2021_2023",
+      "crop_id": "sugar_beet",
+      "kind": "observed_periods",
+      "value": {
+        "sowing": "first week of October (2021, 2022)",
+        "harvest": [
+          "2022-04-27",
+          "2023-04-24"
+        ],
+        "stated_days": 180,
+        "stated_days_conflict": "dates imply about 202-208 days"
+      },
+      "unit": null,
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "SB1",
+          "locator": "Methods; Table 1"
+        }
+      ],
+      "scope": {
+        "site": "Al-Hamul, Kafr El-Sheikh",
+        "cultivar": "Pleno",
+        "preceding_crop": "maize",
+        "soil": "saline clay",
+        "purpose": "sugar"
+      },
+      "allowed_effect": "evidence_context",
+      "limitation": "Sowing not an exact date; internal day-count conflict; release depends on an unknown factory delivery lag."
+    },
+    {
+      "assertion_id": "sugar_beet_kfs_2022_2024",
+      "crop_id": "sugar_beet",
+      "kind": "observed_periods",
+      "value": {
+        "sowing": "first week of October",
+        "harvest": "late April",
+        "stated_days": 180
+      },
+      "unit": null,
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "SB2",
+          "locator": "Methods"
+        }
+      ],
+      "scope": {
+        "site": "Kafr El-Sheikh",
+        "cultivar": "Pleno",
+        "purpose": "sugar"
+      },
+      "allowed_effect": "evidence_context",
+      "limitation": "Same day-count mismatch; no exact dates."
+    },
+    {
+      "assertion_id": "sugar_beet_sakha_2022_2024",
+      "crop_id": "sugar_beet",
+      "kind": "observed_periods",
+      "value": {
+        "sowing": "mid-September",
+        "harvest_days_after_sowing": 210
+      },
+      "unit": "day",
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "SB3",
+          "locator": "Methods"
+        }
+      ],
+      "scope": {
+        "site": "Sakha ARS",
+        "cultivar": "BTS SMART 8565",
+        "purpose": "sugar"
+      },
+      "allowed_effect": "evidence_context",
+      "limitation": "Trial interval; must not become a generic duration."
+    },
+    {
+      "assertion_id": "watermelon_egypt_summer_window",
+      "crop_id": "watermelon",
+      "kind": "advisory_window",
+      "value": {
+        "start": "mid-February",
+        "end": "mid-April",
+        "what": "seed sowing, main summer planting"
+      },
+      "unit": "month-part",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "WM1",
+          "locator": "p. 5"
+        }
+      ],
+      "scope": {
+        "region": "Egypt (national)",
+        "purpose": "fresh_fruit"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "Not North-Delta-specific; month-part bounds are not inclusive civil dates."
+    },
+    {
+      "assertion_id": "watermelon_wilt_rotation",
+      "crop_id": "watermelon",
+      "kind": "qualitative_guidance",
+      "value": {
+        "statement": "Wilt control includes a three- or four-year rotation; heavy soil only if well drained and free of salts"
+      },
+      "unit": null,
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "WM1",
+          "locator": "pp. 4-5, ~19"
+        }
+      ],
+      "scope": {
+        "region": "Egypt (national)"
+      },
+      "allowed_effect": "review",
+      "limitation": "Multi-year interval not evaluable without field history; not transferred to cantaloupe."
+    },
+    {
+      "assertion_id": "strawberry_egypt_calendar",
+      "crop_id": "strawberry",
+      "kind": "advisory_window",
+      "value": {
+        "planting": "early September to mid-October",
+        "fruiting": "frigo mid-February to May; fresh plants from early November",
+        "in_soil_until": "May"
+      },
+      "unit": "month-part",
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "ST1",
+          "locator": "p. 2"
+        },
+        {
+          "source_id": "ST2",
+          "locator": "pp. 10-11"
+        }
+      ],
+      "scope": {
+        "region": "Egypt (national)",
+        "purpose": "fresh_fruit"
+      },
+      "allowed_effect": "preference_or_review",
+      "limitation": "No removal/release date; spans the summer->winter boundary; no open-field Kafr El-Sheikh evidence."
+    },
+    {
+      "assertion_id": "strawberry_salinity_rotation",
+      "crop_id": "strawberry",
+      "kind": "qualitative_guidance",
+      "value": {
+        "statement": "FAO rates strawberry salt-sensitive (ECe 1.0 dS/m at 100% yield potential); at least 2 years before replanting strawberry; avoid heavy wet soils"
+      },
+      "unit": null,
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "ST3",
+          "locator": "Table 4"
+        },
+        {
+          "source_id": "ST2",
+          "locator": "pp. 8-9"
+        }
+      ],
+      "scope": {
+        "region": "general / Egypt review"
+      },
+      "allowed_effect": "review",
+      "limitation": "FAO value comparable only with a field ECe measured by the same method; no hard exclusion."
+    },
+    {
+      "assertion_id": "cotton_sakha_2022_2023",
+      "crop_id": "egyptian_cotton",
+      "kind": "observed_sowing_dates",
+      "value": {
+        "sowing_month_day": [
+          "04-25",
+          "05-15",
+          "05-25"
+        ],
+        "sowing_conflict": "discussion text says 10 May",
+        "harvest": "beginning of October",
+        "days_to_second_picking": "143-175 (ranges; table labels ambiguous)"
+      },
+      "unit": null,
+      "origin": "published_study",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "CT1",
+          "locator": "Methods; Table 5"
+        }
+      ],
+      "scope": {
+        "site": "Sakha station",
+        "cultivars": [
+          "Super Giza 94",
+          "Extra Giza 96",
+          "Super Giza 97"
+        ],
+        "preceding_crop": "clover",
+        "purpose": "fibre"
+      },
+      "allowed_effect": "evidence_context",
+      "limitation": "One trial; picking count and release not stated."
+    },
+    {
+      "assertion_id": "cotton_variety_map_2026",
+      "crop_id": "egyptian_cotton",
+      "kind": "cultivar_guidance",
+      "value": {
+        "Extra Giza 96": "Fuwwah, Mutubas, parts of Sidi Salem and Desouk",
+        "Super Giza 94": "rest of Kafr El-Sheikh"
+      },
+      "unit": null,
+      "origin": "published_guidance",
+      "evidence_status": "verified",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "CT3",
+          "locator": "full article"
+        }
+      ],
+      "scope": {
+        "region": "Kafr El-Sheikh",
+        "season": "2026"
+      },
+      "allowed_effect": "review",
+      "limitation": "News report of the map, not decree text; field markaz required."
+    },
+    {
+      "assertion_id": "cotton_stalk_uprooting_deadline",
+      "crop_id": "egyptian_cotton",
+      "kind": "qualitative_guidance",
+      "value": {
+        "statement": "Resolution 1472/1994: uproot before 1 Nov; stalk disposal by 1 Feb. Resolution 1229/1998: strip bolls first"
+      },
+      "unit": null,
+      "origin": "published_guidance",
+      "evidence_status": "proposed",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "CT4",
+          "locator": "Articles 1-2"
+        }
+      ],
+      "scope": {
+        "region": "Egypt"
+      },
+      "allowed_effect": "review",
+      "limitation": "Snippet only; current enforcement unverified; must not become a hard release date."
+    },
+    {
+      "assertion_id": "faba_sakha_sowing_1nov",
+      "crop_id": "faba_bean",
+      "kind": "observed_sowing_dates",
+      "value": {
+        "tested_month_day": [
+          "10-01",
+          "11-01",
+          "12-01"
+        ],
+        "reported_optimum_month_day": "11-01",
+        "note": "1 Oct sowing raised chocolate spot and rust"
+      },
+      "unit": "month-day",
+      "origin": "published_study",
+      "evidence_status": "proposed",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "FB1",
+          "locator": "abstract"
+        },
+        {
+          "source_id": "FB2",
+          "locator": "abstract"
+        }
+      ],
+      "scope": {
+        "site": "Sakha ARS",
+        "cultivars": [
+          "Sakha 4"
+        ],
+        "purpose": "grain"
+      },
+      "allowed_effect": "evidence_context",
+      "limitation": "Abstract only; no harvest date."
+    },
+    {
+      "assertion_id": "faba_sakha1_release",
+      "crop_id": "faba_bean",
+      "kind": "maturity_guidance",
+      "value": {
+        "statement": "Sakha 1 matures about 24 days earlier than Giza 461; bred to precede cotton instead of berseem"
+      },
+      "unit": null,
+      "origin": "published_guidance",
+      "evidence_status": "proposed",
+      "verification_basis": "crop-expansion-assessment 2026-11-14; Refaat review pending",
+      "runtime_activation": "research_only_not_runtime",
+      "source_refs": [
+        {
+          "source_id": "FB4",
+          "locator": "abstract"
+        }
+      ],
+      "scope": {
+        "region": "Kafr El-Sheikh demonstrations 1999-2000"
+      },
+      "allowed_effect": "evidence_context",
+      "limitation": "Relative maturity only; no absolute days."
+    }
+  ],
+  "templates": [],
+  "required_planning_topics": [
+    "identity_purpose",
+    "local_cultivar_field_fit",
+    "sowing_support",
+    "harvest_crop_end_release",
+    "transition_preparation",
+    "irrigation_constraints",
+    "protected_commitments",
+    "hard_production_requirements_if_present"
+  ],
+  "rules_policy": {
+    "hard_agronomic_exclusions_enabled": [],
+    "absence_of_source": "unknown_required_topic_not_pass",
+    "source_conflicts": "retain_scopes_and_require_review",
+    "climate_can_change_status": false
+  },
+  "fixture_policy": "no fixture uses these entries; synthetic tests must stay labelled SYNTHETIC",
+  "release_gate": [
+    "Refaat re-reads every source (abstract-only items first) and confirms page/value/units/scope",
+    "Amr approves rule effects, purposes and mandatory topic coverage",
+    "Yahya validates schema/source IDs/hashes and publishes a new data_release after authorization"
+  ],
+  "crops": [
+    {
+      "crop_id": "rice",
+      "scientific_name": "Oryza sativa",
+      "names": {
+        "ar-EG": "أرز",
+        "en": "Rice"
+      },
+      "purpose": "grain",
+      "assertion_ids": [
+        "rice_legal_area_gate",
+        "rice_sakha_nursery_2024_2025"
+      ],
+      "template_ids": [],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    },
+    {
+      "crop_id": "sugar_beet",
+      "scientific_name": "Beta vulgaris",
+      "names": {
+        "ar-EG": "بنجر السكر",
+        "en": "Sugar beet"
+      },
+      "purpose": "sugar",
+      "assertion_ids": [
+        "sugar_beet_alhamul_2021_2023",
+        "sugar_beet_kfs_2022_2024",
+        "sugar_beet_sakha_2022_2024"
+      ],
+      "template_ids": [],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    },
+    {
+      "crop_id": "watermelon",
+      "scientific_name": "Citrullus lanatus",
+      "names": {
+        "ar-EG": "بطيخ",
+        "en": "Watermelon"
+      },
+      "purpose": "fresh_fruit",
+      "assertion_ids": [
+        "watermelon_egypt_summer_window",
+        "watermelon_wilt_rotation"
+      ],
+      "template_ids": [],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    },
+    {
+      "crop_id": "strawberry",
+      "scientific_name": "Fragaria x ananassa",
+      "names": {
+        "ar-EG": "فراولة",
+        "en": "Strawberry"
+      },
+      "purpose": "fresh_fruit",
+      "assertion_ids": [
+        "strawberry_egypt_calendar",
+        "strawberry_salinity_rotation"
+      ],
+      "template_ids": [],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    },
+    {
+      "crop_id": "egyptian_cotton",
+      "scientific_name": "Gossypium barbadense",
+      "names": {
+        "ar-EG": "قطن مصري",
+        "en": "Egyptian cotton"
+      },
+      "purpose": "fibre",
+      "assertion_ids": [
+        "cotton_sakha_2022_2023",
+        "cotton_variety_map_2026",
+        "cotton_stalk_uprooting_deadline"
+      ],
+      "template_ids": [],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    },
+    {
+      "crop_id": "faba_bean",
+      "scientific_name": "Vicia faba",
+      "names": {
+        "ar-EG": "فول بلدي",
+        "en": "Faba bean"
+      },
+      "purpose": "grain",
+      "assertion_ids": [
+        "faba_sakha_sowing_1nov",
+        "faba_sakha1_release"
+      ],
+      "template_ids": [],
+      "required_topics": [
+        "identity_purpose",
+        "local_cultivar_field_fit",
+        "sowing_support",
+        "harvest_crop_end_release",
+        "transition_preparation",
+        "irrigation_constraints",
+        "protected_commitments",
+        "hard_production_requirements_if_present"
+      ],
+      "profile_binding": "runtime profiles must preserve each assertion cultivar and scope separately; crop is not one universal profile"
+    }
+  ],
+  "rules": []
+}

@@ -18,6 +18,11 @@ Resume and run instructions: [implementation handoff](../planner/implementation-
 Milestone 2 worktree: `tmp/planner-candidate-generation` (branch `planner/candidate-generation`, from `2b83f5c`).
 M2 is committed as `a46500a` and pushed to `origin/planner/candidate-generation`. It is not merged and has no PR yet. The M1 worktree `tmp/planner-promise-test` is unchanged.
 
+Crop expansion (2026-11-14, branch `planner/crop-expansion-assessment`, not merged): research-only
+[assessment](../planner/crop-expansion-assessment.md) of 8 proposed crops and a proposed KB extension with 0 rules. Approved by Amr for
+preservation and team review only. All eight crops remain unapproved; none is runtime-eligible or produces a verified feasible recommendation.
+It awaits Refaat's source review and Amr's policy decisions (purpose changes, search budget, multi-year rotation input).
+
 ## Built and verified
 
 - Built 2026-11-13: `packages/meg-core/src/meg_core/planner/constraints.py`, with private
