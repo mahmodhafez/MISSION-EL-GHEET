@@ -55,6 +55,7 @@ evidence, never edited · **Archive** = superseded, history only.
 
 | Report | Topic |
 |---|---|
+| [2026-11-13-ml-plan-review](reports/2026-11-13-ml-plan-review.md) | ML plan review: consistency, data/code, methodology |
 | [validation_accessibility_alignment](reports/validation_accessibility_alignment.md) | Accessibility and challenge alignment |
 | [validation_models](reports/validation_models.md) | Why Chronos-2 + LoRA |
 | [validation_agronomy](reports/validation_agronomy.md) | Agronomy evidence for Sakha |
