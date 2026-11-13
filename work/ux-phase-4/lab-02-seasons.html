@@ -5,121 +5,145 @@
 <script src="lab.js"></script>
 <script>
 (function(){
-const {icon,crop,CROPS,PURPOSE,SEASONS,esc}=Lab;
-const ORDER=['berseem','maize','wheat','sorghum','unknown'];
+const {icon,crop,CROPS,PURPOSE,PURPOSE_ICON,CROP_PURPOSES,SEASONS,SEASON_SHORT}=Lab;
+const ORDER=['berseem','maize','wheat','sorghum'];
+const MONTHS={ar:['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],en:['January','February','March','April','May','June','July','August','September','October','November','December']};
+// Lab "today". The real app uses the device date.
+const TODAY={y:2026,m:11,d:13};
+/* PLACEHOLDER season windows (not from the planner): winter = October..May across the year boundary,
+   summer = April..October. The spec says crop profiles set supported dates (planner-spec §1); these broad
+   windows only stop impossible picks and need the planner owner's sign-off. */
+function windowOf(i){const winter=i%2===0;
+  if(winter){const y=2026+i/2;return[10,11,12,1,2,3,4,5].map(m=>({m,y:m>=10?y:y+1}));}
+  const y=2027+(i-1)/2;return[4,5,6,7,8,9,10].map(m=>({m,y}));}
+const before=(a,b)=>a.y!==b.y?a.y<b.y:a.m!==b.m?a.m<b.m:(a.d||0)<(b.d||0);
+const monthPast=w=>w.y<TODAY.y||(w.y===TODAY.y&&w.m<TODAY.m);
+const dayPast=(y,m,d)=>before({y,m,d},TODAY);
+const daysIn=(y,m)=>new Date(y,m,0).getDate();
 const blank=()=>({crops:[null,null,null,null],purpose:[null,null,null,null],dates:[{},{},{},{}],season:0,field:'crop',pending:{}});
-const DATEQ=[{kind:'end',ar:'إمتى آخر حشة؟',en:'When is the last cut?'},{kind:'start',ar:'إمتى ناوي تزرع الذرة؟',en:'When do you plan to sow?'},{kind:'start',ar:'إمتى ناوي تزرع؟',en:'When do you plan to sow?'},{kind:'start',ar:'إمتى ناوي تزرع؟',en:'When do you plan to sow?'}];
-function nth(i,L){return L==='ar'?['الأول','التاني','التالت','الرابع'][i]:['1','2','3','4'][i];}
-function cropName(ctx,i){const c=ctx.data.crops[i];return c?ctx.t(CROPS[c]):'';}
+const kind=c=>c==='berseem'?'end':'start';
+const iso=dt=>`${dt.y}-${String(dt.m).padStart(2,'0')}-${String(dt.d).padStart(2,'0')}`;
+const full=dt=>dt&&dt.y&&dt.m&&dt.d;
 
 function advance(ctx){
-  const d=ctx.data;
-  if(d.field==='crop'){d.field=(d.crops[d.season]==='unknown')?'next':(d.purpose[d.season]?'month':'purpose');}
+  const d=ctx.data,c=d.crops[d.season];
+  if(d.field==='crop'){
+    if(c==='unknown')d.field='next';
+    else{const ps=CROP_PURPOSES[c]||[];if(!d.purpose[d.season]&&ps.length===1)d.purpose[d.season]=ps[0];d.field=d.purpose[d.season]?'month':'purpose';}
+  }
   else if(d.field==='purpose')d.field='month';
   else if(d.field==='month')d.field='day';
-  else if(d.field==='day')d.field='year';
-  else if(d.field==='year')d.field='next';
+  else if(d.field==='day')d.field='next';
   if(d.field==='next'){d.season++;d.field=d.season>3?'done':'crop';
-    // seasons already proposed from speech skip straight to what is still missing
-    if(d.field==='crop'&&d.crops[d.season]&&d.purpose[d.season])d.field='month';}
+    if(d.field==='crop'&&d.crops[d.season]&&d.purpose[d.season])d.field=full(d.dates[d.season])?'next':'month';
+    if(d.field==='next')advance(ctx);}
 }
+/* A spoken day + month: the season gives the year. Outside the season or already past → say why, show the months. */
+function spokenDate(ctx,day,m){
+  const d=ctx.data,i=d.season,w=windowOf(i).find(x=>x.m===m),L=ctx.locale;
+  const mo={ar:MONTHS.ar[m-1],en:MONTHS.en[m-1]};
+  if(!w){d.field='month';d.pending={msg:{ar:`${mo.ar} مش في الموسم ده. اختار شهر من دول.`,en:`${mo.en} is not in this season. Choose one of these months.`}};return d.pending.msg;}
+  if(dayPast(w.y,m,day)){d.field='month';d.pending={msg:{ar:`${Lab.num(day,'ar')} ${mo.ar} ${Lab.num(w.y,'ar')} عدّى خلاص. اختار ميعاد جاي.`,en:`${day} ${mo.en} ${w.y} has already passed. Choose a date ahead.`}};return d.pending.msg;}
+  return ctx.implicit({ar:'',en:''},[{ar:`${kind(d.crops[i])==='end'?'آخر حشة':'زراعة'} ${Lab.num(day,'ar')} ${mo.ar} ${Lab.num(w.y,'ar')}`,en:`${kind(d.crops[i])==='end'?'Last cut':'Sowing'} ${day} ${mo.en} ${w.y}`}],ctx=>{const d=ctx.data;d.dates[d.season]={y:w.y,m,d:day};d.pending={};d.field='day';advance(ctx);});
+}
+function datePrompt(ctx){const d=ctx.data,c=d.crops[d.season];
+  return kind(c)==='end'?{ar:'آخر حشة إمتى؟',en:'When is the last cut?'}:{ar:`هتزرع ال${CROPS[c].ar} إمتى؟`,en:`When will you sow the ${CROPS[c].en.toLowerCase()}?`};}
 
 const def={
   num:'02',title:'Choose crops for each season',
   data:blank(),
   states:[
-    {id:'crop',name:'1 · Ask season 1 crop (empty)',note:'First question. Pictures and mic offered together. No defaults are pre-selected.'},
-    {id:'opening',name:'2 · Farmer opens with a long sentence',note:'One utterance fills several seasons as proposals. The app asks only for what is missing (year, season 4).'},
-    {id:'clarify',name:'3 · Ambiguous word: “ذرة”',note:'“ذرة” alone can mean maize or sorghum in Egypt. Ask one focused question with two pictures; never guess.'},
-    {id:'purpose',name:'4 · Ask purpose',note:'Purpose (feed vs grain) is a separate fact from the crop.'},
-    {id:'month',name:'5 · Date by touch: month',note:'Touch dates go month → day → year, each read back. No calendar widget, no typing.'},
-    {id:'year',name:'6 · Year missing from speech',note:'“20 May” never becomes 2027 automatically. Ask the year with explicit choices.'},
-    {id:'done',name:'7 · All four seasons filled',note:'Path is complete but NOT confirmed. Next step is the grouped readback (lab 03).'}
+    {id:'crop',name:'1 · Ask season 1 crop (empty)',note:'The season is the headline (big winter/summer card); the question sits under it. The four seasons stay as a clickable strip on top.'},
+    {id:'opening',name:'2 · Farmer opens with a long sentence',note:'One utterance fills several seasons as proposals. The year of “20 May” comes from the season and is read back. The app asks only for what is missing.'},
+    {id:'clarify',name:'3 · Ambiguous word: “ذرة”',note:'“ذرة” alone can mean maize or sorghum in Egypt. Ask with two pictures; never guess.'},
+    {id:'purpose',name:'4 · Ask purpose (maize)',note:'Only asked when the crop has more than one purpose. Berseem is always feed and wheat always grain here.'},
+    {id:'month',name:'5 · Month: only this season, past greyed out',note:'Winter shows October → May, summer April → October (placeholder windows). Each month carries its year, so there is no separate year question. Months already past are disabled.'},
+    {id:'day',name:'6 · Day: past days greyed out',note:'Only the days that exist in that month. In November 2026, days before today (13th) are disabled.'},
+    {id:'outside',name:'7 · Spoken date outside the season or in the past',note:'“10 November” in winter 2026/27 is already past; “March” is not a summer month. Say why in one line and show the allowed months.'},
+    {id:'done',name:'8 · All four seasons filled',note:'All four cards are filled in the strip. Next is lab 03: what must stay.'}
   ],
   enter(id,ctx){
     const d=ctx.data=blank();
     if(id==='clarify'){d.pending={clarify:true};}
-    if(id==='purpose'){d.crops[0]='berseem';d.field='purpose';}
+    if(id==='purpose'){d.crops=['berseem','maize',null,null];d.purpose=['forage',null,null,null];d.dates[0]={y:2027,m:5,d:20};d.season=1;d.field='purpose';}
     if(id==='month'){d.crops[0]='berseem';d.purpose[0]='forage';d.field='month';}
-    if(id==='year'){d.crops[0]='berseem';d.purpose[0]='forage';d.dates[0]={m:5,d:20};d.field='year';d.pending={yearAsk:true};}
+    if(id==='day'){d.crops[0]='berseem';d.purpose[0]='forage';d.dates[0]={y:2026,m:11};d.field='day';}
+    if(id==='outside'){d.crops[0]='berseem';d.purpose[0]='forage';d.field='month';d.pending={msg:{ar:'١٠ نوفمبر ٢٠٢٦ عدّى خلاص. اختار ميعاد جاي.',en:'10 November 2026 has already passed. Choose a date ahead.'}};}
     if(id==='done'){d.crops=['berseem','maize','wheat','sorghum'];d.purpose=['forage','grain','grain','grain'];d.dates=[{y:2027,m:5,d:20},{y:2027,m:5,d:15},{y:2027,m:11,d:20},{y:2028,m:6,d:1}];d.season=4;d.field='done';}
   },
-  progress(ctx){const d=ctx.data;if(!ctx.phone||d.field==='done')return null; // desktop: the season column beside the question replaces the strip
-    return{crops:d.crops,now:d.field==='done'?null:d.season,step:d.field==='done'?{ar:'المواسم الأربعة اتملت. لسه هنراجعها سوا.',en:'All four seasons filled. We will check them together next.'}:{ar:`الموسم ${nth(d.season,'ar')} من ٤`,en:`Season ${d.season+1} of 4`}};},
+  top(ctx){const d=ctx.data;
+    return Lab.strip(ctx,[0,1,2,3].map(i=>{const c=d.crops[i];const dt=d.dates[i];
+      return{crop:c&&c!=='unknown'?c:null,iso:full(dt)?iso(dt):null,kind:kind(c),current:d.field!=='done'&&d.season===i,
+        mark:c&&c!=='unknown'&&full(dt)?'done':null,note:c==='unknown'?ctx.t(CROPS.unknown):''};}),{act:'edit'});},
+  caption:false,
   prompt(ctx){
-    const d=ctx.data,i=d.season,L=ctx.locale;
-    if(ctx.state==='opening'&&!d.crops[0])return{ar:'احكيلي عن الأرض. إيه اللي ناوي تزرعه في المواسم الجاية؟ وإيه اللي لازم يفضل زي ما هو؟',en:'Tell me about your field. What do you plan to grow in the coming seasons, and what must stay the same?'};
+    const d=ctx.data,i=d.season;
+    if(ctx.state==='opening'&&!d.crops[0])return{ar:'احكيلي: هتزرع إيه في المواسم الجاية؟ وإيه اللي لازم يفضل؟',en:'Tell me: what will you grow in the coming seasons, and what must stay?'};
+    if(d.pending.msg)return d.pending.msg;
     if(d.pending.clarify)return{ar:'تقصد ذرة شامية ولا ذرة رفيعة؟',en:'Do you mean maize or sorghum?'};
-    
-    if(d.field==='crop')return{ar:`هتزرع إيه في الموسم ${nth(i,'ar')}، ${SEASONS[i].ar}؟`,en:`What will you grow in season ${i+1}, ${SEASONS[i].en}?`};
-    if(d.field==='purpose')return{ar:`ال${cropName(ctx,i)} ده علشان إيه؟ علف للمواشي ولا حبوب؟`,en:`What is the ${cropName(ctx,i).toLowerCase()} for? Animal feed or grain?`};
-    if(d.field==='month')return DATEQ[i];
-    if(d.field==='day')return{ar:'يوم كام في الشهر؟',en:'Which day of the month?'};
-    if(d.field==='year'){const dt=d.dates[i];if(dt&&dt.m){const ar=Lab.plain(Lab.date('2000-'+String(dt.m).padStart(2,'0')+'-'+String(dt.d||1).padStart(2,'0'),'ar',{noYear:true})),en=Lab.plain(Lab.date('2000-'+String(dt.m).padStart(2,'0')+'-'+String(dt.d||1).padStart(2,'0'),'en',{noYear:true}));return{ar:`${ar}، سنة كام؟`,en:`${en} of which year?`};}return{ar:'سنة كام؟',en:'Which year?'};}
-    if(d.field==='done')return{ar:'دي خطتك للمواسم الأربعة. تعالى نراجعها سوا.',en:'This is your four-season plan. Let us go over it together.'};
+    if(d.field==='crop')return{ar:`الموسم ${Lab.num(i+1,'ar')}، ${Lab.plain(SEASONS[i].ar)}. هتزرع إيه؟`,en:`Season ${i+1}, ${SEASONS[i].en}. What will you grow?`};
+    if(d.field==='purpose')return{ar:`ال${CROPS[d.crops[i]].ar} علشان إيه؟ حبوب ولا علف؟`,en:`Is the ${CROPS[d.crops[i]].en.toLowerCase()} for grain or animal feed?`};
+    if(d.field==='month')return datePrompt(ctx);
+    if(d.field==='day'){const dt=d.dates[i];return{ar:`يوم كام في ${MONTHS.ar[dt.m-1]}؟`,en:`Which day in ${MONTHS.en[dt.m-1]}?`};}
+    if(d.field==='done')return{ar:'تمام، المواسم الأربعة اتملت. اللي بعده: إيه اللي لازم يفضل؟',en:'Good, all four seasons are filled. Next: what must stay?'};
   },
   utterances(ctx){
     const d=ctx.data;
-    if(ctx.state==='opening'&&!d.crops[0])return[{label:'Hussein’s opening (UH-001)',say:{ar:'أنا محتاج البرسيم للمواشي لحد حشة عشرين مايو، وعايز أزرع ذرة حبوب، وبعدها قمح.',en:'I need the berseem for my livestock until the 20 May cut, then grain maize, then wheat.'},effect(ctx){
-      ctx.heard={said:this.say,chips:[{text:{ar:'١ · برسيم — علف',en:'1 · Berseem: feed'}},{text:{ar:'آخر حشة ٢٠ مايو',en:'Last cut 20 May'}},{missing:true,text:{ar:'سنة الحشة؟',en:'Year of cut?'}},{text:{ar:'٢ · ذرة — حبوب',en:'2 · Maize: grain'}},{text:{ar:'٣ · قمح — حبوب',en:'3 · Wheat: grain'}},{missing:true,text:{ar:'٤ · ؟',en:'4 · ?'}}],
+    if(ctx.state==='opening'&&!d.crops[0])return[{label:'Hussein’s opening (UH-001)',say:{ar:'أنا محتاج البرسيم للمواشي لحد حشة ٢٠ مايو، وعايز أزرع ذرة حبوب، وبعدها قمح.',en:'I need the berseem for my livestock until the 20 May cut, then grain maize, then wheat.'},effect(ctx){
+      ctx.heard={said:this.say,chips:[{text:{ar:'برسيم · علف',en:'Berseem · feed'}},{text:{ar:'آخر حشة ٢٠ مايو ٢٠٢٧',en:'Last cut 20 May 2027'}},{text:{ar:'ذرة · حبوب',en:'Maize · grain'}},{missing:true,text:{ar:'ميعاد الذرة؟',en:'Maize date?'}},{text:{ar:'قمح · حبوب',en:'Wheat · grain'}},{missing:true,text:{ar:'الموسم ٤؟',en:'Season 4?'}}],
         yes:{ar:'أيوه، كمّل',en:'Yes, continue'},
-        onYes(ctx){const d=ctx.data;d.crops=['berseem','maize','wheat',null];d.purpose=['forage','grain','grain',null];d.dates[0]={m:5,d:20};d.season=0;d.field='year';d.pending={yearAsk:true};return null;}};
-      return{ar:'فهمت كده. بص على الكلام وقولّي لو صح. لسه عايز أعرف السنة، والموسم الرابع.',en:'Here is what I understood. Check it and tell me if it is right. I still need the year, and season 4.'};}}];
+        onYes(ctx){const d=ctx.data;d.crops=['berseem','maize','wheat',null];d.purpose=['forage','grain','grain',null];d.dates[0]={y:2027,m:5,d:20};d.season=1;d.field='month';d.pending={};return null;}};
+      return{ar:'ده اللي فهمته. الحشة في مايو ٢٠٢٧ لأنها في الموسم الشتوي ده. صح؟',en:'This is what I understood. The cut is May 2027 because it is in this winter season. Right?'};}}];
     if(d.pending.clarify)return[{label:'Means maize',say:{ar:'شامية',en:'Maize'},effect(ctx){return ctx.implicit(this.say,[{ar:'ذرة شامية',en:'Maize'}],ctx=>{ctx.data.pending={};ctx.data.crops[ctx.data.season]='maize';advance(ctx);});}},{label:'Means sorghum',say:{ar:'رفيعة',en:'Sorghum'},effect(ctx){return ctx.implicit(this.say,[{ar:'ذرة رفيعة',en:'Sorghum'}],ctx=>{ctx.data.pending={};ctx.data.crops[ctx.data.season]='sorghum';advance(ctx);});}}];
-    if(d.pending.yearAsk||d.field==='year')return[{label:'Clear year',say:{ar:'ألفين سبعة وعشرين',en:'2027'},effect(ctx){return ctx.implicit(this.say,[{ar:'سنة ٢٠٢٧',en:'Year 2027'}],ctx=>{const d=ctx.data;d.dates[d.season].y=2027;d.pending={};advance(ctx);});}},{label:'Relative year (must be read back)',say:{ar:'السنة الجاية',en:'Next year'},effect(ctx){ctx.heard={said:this.say,chips:[{text:{ar:'سنة ٢٠٢٧',en:'Year 2027'}}],onYes(ctx){const d=ctx.data;d.dates[d.season].y=2027;d.pending={};advance(ctx);}};return{ar:'السنة الجاية يعني ألفين سبعة وعشرين. صح؟',en:'Next year means 2027. Is that right?'};}}];
     if(d.field==='crop')return[
-      {label:'Crop + purpose in one go',say:{ar:'برسيم للمواشي',en:'Berseem for the animals'},effect(ctx){return ctx.implicit(this.say,[{ar:'برسيم',en:'Berseem'},{ar:'علف للمواشي',en:'for animal feed'}],ctx=>{const d=ctx.data;d.crops[d.season]='berseem';d.purpose[d.season]='forage';d.field='month';});}},
+      {label:'Crop in one word (berseem → feed, no purpose question)',say:{ar:'برسيم',en:'Berseem'},effect(ctx){return ctx.implicit(this.say,[{ar:'برسيم',en:'Berseem'},{ar:'علف',en:'feed'}],ctx=>{const d=ctx.data;d.crops[d.season]='berseem';advance(ctx);});}},
       {label:'Ambiguous word',say:{ar:'ذرة',en:'Corn'},effect(ctx){ctx.data.pending={clarify:true};return null;}},
-      {label:'Unknown is a real answer',say:{ar:'لسه مش عارف',en:"I don't know yet"},effect(ctx){const d=ctx.data;d.crops[d.season]='unknown';advance(ctx);return{ar:'ماشي، هنسيبه مش معروف دلوقتي.',en:'OK, we will leave it as unknown for now.'};}}];
-    if(d.field==='purpose')return[{label:'Feed',say:{ar:'للمواشي',en:'For the animals'},effect(ctx){return ctx.implicit(this.say,[{ar:'علف للمواشي',en:'Animal feed'}],ctx=>{ctx.data.purpose[ctx.data.season]='forage';advance(ctx);});}},{label:'Grain',say:{ar:'حبوب',en:'Grain'},effect(ctx){return ctx.implicit(this.say,[{ar:'حبوب',en:'Grain'}],ctx=>{ctx.data.purpose[ctx.data.season]='grain';advance(ctx);});}}];
-    if(d.field==='month'||d.field==='day')return[{label:'Day + month, no year',say:{ar:'عشرين مايو',en:'The twentieth of May'},effect(ctx){const d=ctx.data;d.dates[d.season]={m:5,d:20};d.field='year';d.pending={yearAsk:true};return null;}},{label:'Vague time (not a date)',say:{ar:'أول الصيف',en:'Early summer'},effect(ctx){ctx.setVoice('notunderstood');return{ar:'محتاج يوم وشهر. تقدر تقول مثلاً: خمستاشر مايو. أو اختار الشهر من تحت.',en:'I need a day and a month, for example “15 May”. Or choose the month below.'};}}];
+      {label:'Unknown is a real answer',say:{ar:'لسه مش عارف',en:"I don't know yet"},effect(ctx){const d=ctx.data;d.crops[d.season]='unknown';advance(ctx);return{ar:'ماشي، نسيبه مش معروف دلوقتي.',en:'OK, we leave it unknown for now.'};}}];
+    if(d.field==='purpose')return[{label:'Grain',say:{ar:'حبوب',en:'Grain'},effect(ctx){return ctx.implicit(this.say,[{ar:'حبوب',en:'Grain'}],ctx=>{ctx.data.purpose[ctx.data.season]='grain';advance(ctx);});}},{label:'Feed',say:{ar:'علف للمواشي',en:'For the animals'},effect(ctx){return ctx.implicit(this.say,[{ar:'علف',en:'Animal feed'}],ctx=>{ctx.data.purpose[ctx.data.season]='forage';advance(ctx);});}}];
+    if(d.field==='month'||d.field==='day')return[
+      {label:'Day + month in season → year from the season, read back',say:{ar:'٢٠ مايو',en:'20 May'},effect(ctx){return spokenDate(ctx,20,5);}},
+      {label:'Date already past',say:{ar:'١٠ نوفمبر',en:'10 November'},effect(ctx){return spokenDate(ctx,10,11);}},
+      {label:'Month outside this season',say:{ar:'١٥ أغسطس',en:'15 August'},effect(ctx){return spokenDate(ctx,15,8);}},
+      {label:'Vague time (not a date)',say:{ar:'أول الصيف',en:'Early summer'},effect(ctx){ctx.setVoice('notunderstood');return{ar:'محتاج يوم وشهر، زي: ١٥ مايو. أو اختار الشهر.',en:'I need a day and a month, like “15 May”. Or choose the month.'};}}];
     return[];
   },
   render(ctx){
     const d=ctx.data,L=ctx.locale,i=d.season;
-    let q='';
-    if(ctx.state==='opening'&&!d.crops[0]&&!ctx.heard)q=`<h2 class="question">${L==='ar'?'احكيلي عن أرضك والمواسم الجاية':'Tell me about your field and the coming seasons'}</h2><p class="sub">${L==='ar'?'اتكلّم براحتك. هكتب اللي فهمته وتراجعه.':'Talk freely. I will show what I understood for you to check.'}</p>`;
-    else if(d.pending.clarify)q=`<h2 class="question">${L==='ar'?'أنهي ذرة؟':'Which one?'}</h2><div class="tiles">${['maize','sorghum'].map(c=>tile(ctx,c,'clar')).join('')}</div>`;
-    else if(d.field==='crop')q=`<h2 class="question">${ctx.t(def.prompt(ctx))}</h2><div class="tiles">${ORDER.filter(c=>c!=='unknown').map(c=>tile(ctx,c,'crop')).join('')}</div><button class="secondary wide-btn" data-act="crop" data-v="unknown">${icon('unknown')}${ctx.t(CROPS.unknown)}</button>`;
-    else if(d.field==='purpose')q=`<h2 class="question">${ctx.t(def.prompt(ctx))}</h2><div class="tiles">${['forage','grain'].map(p=>`<div class="tile-wrap"><button class="tile" data-act="purpose" data-v="${p}" aria-pressed="false"><span class="art">${p==='forage'?crop('berseem'):crop('wheat')}</span>${ctx.t(PURPOSE[p])}</button><button class="hear" data-act="hear" aria-label="${ctx.locale==='ar'?'اسمع':'Listen'}: ${ctx.t(PURPOSE[p])}">${icon('speaker')}</button></div>`).join('')}</div>`;
-    else if(d.field==='month')q=`<h2 class="question">${ctx.t(DATEQ[i])}</h2><p class="sub">${L==='ar'?'اختار الشهر':'Choose the month'}</p><div class="dense-grid months">${Array.from({length:12},(_,m)=>`<button data-act="month" data-v="${m+1}">${ctx.t({ar:['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'][m],en:['January','February','March','April','May','June','July','August','September','October','November','December'][m]})}</button>`).join('')}</div>`;
-    else if(d.field==='day')q=`<h2 class="question">${ctx.t(def.prompt(ctx))}</h2><div class="dense-grid days">${Array.from({length:31},(_,k)=>`<button data-act="day" data-v="${k+1}">${ctx.num(k+1)}</button>`).join('')}</div>`;
-    else if(d.field==='year'){q=`<h2 class="question">${ctx.t(def.prompt(ctx))}</h2><div class="dense-grid months">${[2026,2027,2028].map(y=>`<button style="min-height:72px;font-size:24px" data-act="year" data-v="${y}">${ctx.num(y)}</button>`).join('')}</div>`;}
-    else if(d.field==='done')q=`<h2 class="question">${ctx.t(def.prompt(ctx))}</h2>`;
-    const done=d.field==='done';
-    if(done)return q+pathHTML(ctx,true)+(done?`<div class="actions"><a class="primary wide-btn" href="lab-03-confirm.html" style="text-decoration:none">${icon('check')}${L==='ar'?'يلا نراجع':'Go over it'}</a></div>`:'');
-    return `<div class="split"><div style="display:grid;gap:14px">${q}</div><aside class="ctx-only">${pathHTML(ctx,false,true)}</aside></div>`;
+    const hero=()=>{const winter=i%2===0,c=d.crops[i];
+      return `<div class="season-hero ${winter?'w':'s'}"><span class="sh-ic">${icon(winter?'winter':'sun')}</span><div><span class="sh-n">${L==='ar'?'الموسم':'Season'} ${ctx.num(i+1)} ${L==='ar'?'من':'of'} ${ctx.num(4)}</span><strong>${ctx.t(SEASONS[i])}</strong></div>${c&&c!=='unknown'&&d.field!=='crop'?`<span class="sh-crop">${crop(c)}</span>`:''}</div>`;};
+    const q=t=>hero()+`<h2 class="question q-small">${ctx.t(t)}</h2>`+(d.pending.msg?`<div class="msg" role="status">${icon('calendar')}${ctx.t(d.pending.msg)}</div>`:'');
+    if(ctx.state==='opening'&&!d.crops[0]&&!ctx.heard)return `<div class="hero"><span class="hero-ic">${icon('mic')}</span><h2>${L==='ar'?'احكيلي عن أرضك':'Tell me about your field'}</h2><p>${L==='ar'?'اتكلّم براحتك':'Talk freely'}</p></div>`;
+    if(ctx.heard)return '';
+    if(d.pending.clarify)return q({ar:'أنهي ذرة؟',en:'Which one?'})+`<div class="tiles two">${['maize','sorghum'].map(c=>tile(ctx,c,'clar')).join('')}</div>`;
+    if(d.field==='crop')return q({ar:'هتزرع إيه؟',en:'What will you grow?'})+`<div class="tiles four">${ORDER.map(c=>tile(ctx,c,'crop')).join('')}</div><button class="secondary wide-btn" data-act="crop" data-v="unknown">${icon('unknown')}${ctx.t(CROPS.unknown)}</button>`;
+    if(d.field==='purpose'){const c=d.crops[i];return q({ar:`ال${CROPS[c].ar} علشان إيه؟`,en:`${CROPS[c].en} for what?`})+`<div class="tiles two">${CROP_PURPOSES[c].map(p=>`<div class="tile-wrap"><button class="tile" data-act="purpose" data-v="${p}" aria-pressed="false"><span class="art ic">${icon(PURPOSE_ICON[p])}</span>${ctx.t(PURPOSE[p])}</button><button class="hear" data-act="hear" aria-label="${L==='ar'?'اسمع':'Listen'}: ${ctx.t(PURPOSE[p])}">${icon('speaker')}</button></div>`).join('')}</div>`;}
+    if(d.field==='month')return q(datePrompt(ctx))+`<div class="dense-grid months win">${windowOf(i).map(w=>`<button data-act="month" data-v="${w.y}-${w.m}" ${monthPast(w)?'disabled':''}>${MONTHS[L][w.m-1]}<small>${ctx.num(w.y)}</small></button>`).join('')}</div>`;
+    if(d.field==='day'){const dt=d.dates[i];return q({ar:`يوم كام في ${MONTHS.ar[dt.m-1]} ${ctx.num(dt.y)}؟`,en:`Which day in ${MONTHS.en[dt.m-1]} ${dt.y}?`})+`<div class="dense-grid days">${Array.from({length:daysIn(dt.y,dt.m)},(_,k)=>`<button data-act="day" data-v="${k+1}" ${dayPast(dt.y,dt.m,k+1)?'disabled':''}>${ctx.num(k+1)}</button>`).join('')}</div>`;}
+    if(d.field==='done')return `<div class="hero"><span class="hero-ic">${icon('check')}</span><h2>${L==='ar'?'المواسم الأربعة جاهزة':'All four seasons filled'}</h2><p>${L==='ar'?'دوس على أي موسم فوق علشان تغيّره':'Tap any season above to change it'}</p></div>
+      <a class="primary wide-btn" href="lab-03-confirm.html">${icon('lock')}${L==='ar'?'التالي: إيه اللي لازم يفضل؟':'Next: what must stay?'}</a>`;
+    return '';
   },
   action(a,b,ctx){
     const d=ctx.data,v=b.dataset.v;
-    if(a==='crop'){if(v==='maize'){d.pending={clarify:true};return null;}d.crops[d.season]=v;advance(ctx);return null;}
-    if(a==='clar'){d.pending={};d.crops[d.season]=v;advance(ctx);return null;}
+    if(a==='crop'){if(v==='maize'){d.pending={clarify:true};return null;}d.crops[d.season]=v;d.purpose[d.season]=null;d.dates[d.season]={};advance(ctx);return null;}
+    if(a==='clar'){d.pending={};d.crops[d.season]=v;d.purpose[d.season]=null;advance(ctx);return null;}
     if(a==='purpose'){d.purpose[d.season]=v;advance(ctx);return null;}
-    if(a==='month'){d.dates[d.season].m=+v;advance(ctx);return null;}
+    if(a==='month'){const [y,m]=v.split('-').map(Number);d.dates[d.season]={y,m};d.pending={};advance(ctx);return null;}
     if(a==='day'){d.dates[d.season].d=+v;advance(ctx);return null;}
-    if(a==='year'){d.dates[d.season].y=+v;d.pending={};advance(ctx);return null;}
-    if(a==='edit'){d.season=+v;d.field='crop';d.pending={};return null;}
-    if(a==='restart'){d.season=0;d.field='crop';return null;}
-    if(a==='back'){if(d.field==='crop'&&d.season>0){d.season--;d.field='crop';}else if(d.field!=='crop'){d.field='crop';}return null;}
+    if(a==='edit'){d.season=+v;d.field='crop';d.pending={};return def.prompt(ctx);}
+    if(a==='back'){d.pending={};if(d.field==='day')d.field='month';else if(d.field==='crop'&&d.season>0){d.season--;d.field='crop';}else if(d.field!=='crop'){d.field='crop';}return null;}
   },
   notes:[
-    'Push-to-talk mic at the bottom; pictures always on screen with it. Same question, two ways to answer.',
-    'Single answers are confirmed implicitly: the app says back what it heard, shows an “I heard … · Change” strip and moves on (Google confirmation guidance). A long multi-fact sentence gets an explicit check card instead. Nothing is final until lab 03’s readback.',
-    'Two misses in a row (try “Inject a problem” twice) switch emphasis to the pictures instead of looping on the mic.',
-    'Every picture has its own speaker button: tap to hear the name (FarmChat tap-to-hear).',
+    'The season is the headline: a big winter (cloud) or summer (sun) card with “Season 1 of 4” and the years. The question is smaller under it (13 Nov feedback).',
+    'Months are limited to the season and each carries its year, so touch input never asks for a year. PLACEHOLDER windows: winter October → May, summer April → October. The planner spec says crop profiles set supported dates; these windows need the planner owner’s sign-off.',
+    'No past dates: months and days before today are greyed out and crossed. Spoken past dates or months outside the season get a one-line reason and the month grid.',
+    'A spoken “20 May” takes its year from the season and is always said back with the year (“Last cut 20 May 2027 · Change”). The app still never invents a year that the season does not fix.',
+    'Purpose is asked only when a crop has more than one (maize, sorghum). Per-crop purposes are a placeholder for the crop catalogue.',
     'Tapping “Maize” also asks the maize/sorghum question here only to demo clarification. In the real app, a tap is unambiguous.',
-    'The crop list is all four catalogue crops every season. The app does not hide crops by season (that is a planner rule, not UI).',
-    'Crop drawings are placeholders. Real photos are required and need farmer recognition testing (design §2).'
+    'Crop drawings are placeholders. Real photos need farmer recognition testing (design §2).'
   ]
 };
-function tile(ctx,c,act){const d=ctx.data;const sel=d.crops[d.season]===c;const name=ctx.t(CROPS[c]);return `<div class="tile-wrap"><button class="tile ${c==='unknown'?'unknown':''}" data-act="${act}" data-v="${c}" aria-pressed="${sel}"><span class="art">${crop(c)}</span>${name}</button><button class="hear" data-act="hear" aria-label="${ctx.locale==='ar'?'اسمع':'Listen'}: ${name}">${icon('speaker')}</button></div>`;}
-function pathHTML(ctx,wide,side){
-  const d=ctx.data,L=ctx.locale;
-  return `<ol class="path ${wide?'wide':''} ${side?'side':''}" aria-label="${L==='ar'?'سكة المواسم':'Season path'}">${[0,1,2,3].map(i=>{
-    const c=d.crops[i],dt=d.dates[i];const filled=!!c;
-    const ds=dt&&dt.y&&dt.m&&dt.d?ctx.date(`${dt.y}-${String(dt.m).padStart(2,'0')}-${String(dt.d).padStart(2,'0')}`):(dt&&dt.m?`${ctx.date('2000-'+String(dt.m).padStart(2,'0')+'-'+String(dt.d||1).padStart(2,'0'),{noYear:true})} · ${L==='ar'?'السنة؟':'year?'}`:'');
-    return `<li class="${filled?'':'empty'} ${d.season===i&&d.field!=='done'?'current':''}"><span class="portrait"><span class="n">${ctx.num(i+1)}</span>${crop(c||'unknown')}</span><div class="txt"><h3>${filled?ctx.t(CROPS[c]):ctx.t({ar:'لسه',en:'Not yet'})}${d.purpose[i]?` <span class="meta"><span class="sep">· </span>${ctx.t(PURPOSE[d.purpose[i]])}</span>`:''}</h3><div class="meta">${ctx.t(SEASONS[i])}</div>${ds?`<div class="when">${DATEQ[i].kind==='end'?(L==='ar'?'آخر حشة ':'Last cut '):(L==='ar'?'الزراعة ':'Sowing ')}${ds}</div>`:''}</div><div class="end">${filled?`<button class="chip-btn" data-act="edit" data-v="${i}" aria-label="${L==='ar'?'غيّر الموسم':'Change season'} ${ctx.num(i+1)}">${icon('edit')}<span class="lbl">${L==='ar'?'غيّر':'Change'}</span></button>`:''}</div></li>`;}).join('')}</ol>`;
-}
+function tile(ctx,c,act){const d=ctx.data;const sel=d.crops[d.season]===c;const name=ctx.t(CROPS[c]);return `<div class="tile-wrap"><button class="tile" data-act="${act}" data-v="${c}" aria-pressed="${sel}"><span class="art">${crop(c)}</span>${name}</button><button class="hear" data-act="hear" aria-label="${ctx.locale==='ar'?'اسمع':'Listen'}: ${name}">${icon('speaker')}</button></div>`;}
 Lab.page(def);
 })();
 </script>

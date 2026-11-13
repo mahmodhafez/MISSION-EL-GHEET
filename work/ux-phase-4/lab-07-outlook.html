@@ -10,40 +10,39 @@ const {icon}=Lab;
 const def={
   num:'07',title:'Next 7 days (experimental outlook)',
   states:[
-    {id:'na',name:'1 · Not applicable (UH-001)',note:'UH-001 decisions are months away; the outlook only covers the next 7 days. Say so in one line and move on.'},
-    {id:'unavailable',name:'2 · Unavailable',note:'No forecast file or an invalid one. The rest of the app works the same.'},
-    {id:'stale',name:'3 · Too old',note:'Issued too long ago. Show the dates, withhold the numbers.'},
-    {id:'available',name:'4 · Available (layout only)',note:'Seven dated days, a range not a single number, clearly experimental, with the method named. Values are placeholders.'}
+    {id:'na',name:'1 · Not for this plan (UH-001)',note:'UH-001 decisions are months away; the outlook covers 7 days. One picture, one line, Continue.'},
+    {id:'unavailable',name:'2 · Not available',note:'No forecast file or an invalid one. The rest of the app works the same.'},
+    {id:'stale',name:'3 · Too old',note:'Issued too long ago: say so, show nothing.'},
+    {id:'available',name:'4 · Available (layout only)',note:'Seven day tiles, each a range not a single number, marked experimental. Values are placeholders.'}
   ],
   progress:()=>null,caption:false,
   prompt(ctx){
-    if(ctx.state==='na')return{ar:'توقع الجو بيغطي السبع أيام الجاية بس. قراراتك بعد شهور، فمش هيفيد هنا.',en:'The weather outlook only covers the next seven days. Your decisions are months away, so it does not apply here.'};
-    if(ctx.state==='unavailable')return{ar:'توقع الجو مش متاح دلوقتي. ده مش بيأثر على خطتك.',en:'The weather outlook is not available right now. This does not affect your plan.'};
-    if(ctx.state==='stale')return{ar:'آخر توقع قديم، فمش هنعرضه.',en:'The latest outlook is too old, so we will not show it.'};
-    if(ctx.state==='available')return{ar:'ده توقع تجريبي للسبع أيام الجاية. بيدّي مدى، مش رقم أكيد، ومش بيغيّر خطتك.',en:'This is an experimental outlook for the next seven days. It gives a range, not a sure number, and it does not change your plan.'};
+    if(ctx.state==='na')return{ar:'توقع الجو للأسبوع الجاي بس. قراراتك بعد شهور.',en:'The weather outlook is for next week only. Your decisions are months away.'};
+    if(ctx.state==='unavailable')return{ar:'توقع الجو مش متاح دلوقتي. خطتك مش متأثرة.',en:'The weather outlook is not available now. Your plan is not affected.'};
+    if(ctx.state==='stale')return{ar:'آخر توقع قديم، فمش هنعرضه.',en:'The last outlook is too old, so we will not show it.'};
+    if(ctx.state==='available')return{ar:'توقع تجريبي للأسبوع الجاي. مدى، مش رقم أكيد.',en:'An experimental outlook for next week. A range, not a sure number.'};
   },
   render(ctx){
     const L=ctx.locale;
     const exp=`<span class="badge sim">${icon('future')}${L==='ar'?'تجريبي':'Experimental'}</span>`;
-    if(ctx.state!=='available'){
-      const map={na:['unknown',{ar:'مش مناسب للقرار ده',en:'Does not apply to this decision'}],unavailable:['unknown',{ar:'توقع الجو مش متاح',en:'Outlook not available'}],stale:['unknown',{ar:'التوقع قديم',en:'Outlook too old'}]};
-      const [cls,t]=map[ctx.state];
-      const extra=ctx.state==='stale'?`<p>${L==='ar'?'صدر':'Issued'} ${ctx.date('2026-11-01')} · ${L==='ar'?'كان صالح لحد':'valid until'} ${ctx.date('2026-11-02')} <span class="meta">(${L==='ar'?'تواريخ مثال':'example dates'})</span></p>`:'';
-      return `<div class="status ${cls} dashed">${icon('future')}<div><strong>${ctx.t(t)}</strong><p>${ctx.t(def.prompt(ctx))}</p>${extra}</div></div>${exp}
-        <button class="primary wide-btn" data-act="go">${icon('check')}${L==='ar'?'كمّل':'Continue'}</button>`;
-    }
+    const cont=`<button class="primary wide-btn" data-act="go">${icon('check')}${L==='ar'?'كمّل':'Continue'}</button>`;
+    const hero=(sub,h,p)=>`<div class="hero unknown"><span class="hero-ic">${icon('future')}<span class="sub-ic">${icon(sub)}</span></span><h2>${h}</h2><p>${p}</p></div>`;
+    if(ctx.state==='na')return hero('calendar',L==='ar'?'مش لخطتك دي':'Not for this plan',L==='ar'?'التوقع لـ ٧ أيام بس':'The outlook covers 7 days only')+cont;
+    if(ctx.state==='unavailable')return hero('reject',L==='ar'?'التوقع مش متاح':'Outlook not available',L==='ar'?'خطتك مش متأثرة':'Your plan is not affected')+cont;
+    if(ctx.state==='stale')return hero('review',L==='ar'?'التوقع قديم':'Outlook too old',L==='ar'?'مش هنعرضه':'We will not show it')+cont;
     const days=[1,2,3,4,5,6,7];
-    return `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${exp}<span class="meta">${L==='ar'?'الطريقة: متوسط السنين اللي فاتت (مش ذكاء اصطناعي)':'Method: past-years average (not AI)'}</span></div>
+    return `<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><h2 class="question" style="font-size:24px">${L==='ar'?'الأسبوع الجاي':'Next week'}</h2>${exp}</div>
       <div class="notice">${L==='ar'?'شكل بس: الأرقام مش حقيقية.':'Layout only: no real values.'}</div>
-      <ol class="week">${days.map(d=>`<li><b>${L==='ar'?'يوم':'Day'} ${ctx.num(d)}</b><span class="range"><span class="band"></span></span><em>— ${L==='ar'?'لـ':'to'} — °C</em></li>`).join('')}</ol>
-      <p class="sub">${L==='ar'?'ده مدى (من ١٠٪ لـ ٩٠٪)، مش وعد. مش بيغيّر إذا كانت الخطة ممكنة.':'A range (10% to 90%), not a promise. It never changes whether the plan holds.'}</p>`;
+      <ol class="days7">${days.map(d=>`<li><b>${L==='ar'?'يوم':'Day'} ${ctx.num(d)}</b>${icon('thermo')}<em>— ${L==='ar'?'لـ':'to'} —°</em></li>`).join('')}</ol>
+      <div class="chips-row" style="justify-content:flex-start"><span class="ichip">${icon('thermo')}${L==='ar'?'من أقل لأعلى':'low to high'}</span><span class="ichip no">${icon('reject')}${L==='ar'?'مش بيغيّر خطتك':'Does not change your plan'}</span></div>`+cont;
   },
   utterances(){return[];},
   action(a){if(a==='go'){location.href='lab-08-card.html';}return null;},
   notes:[
+    'Rebuilt 13 Nov (feedback: simpler output). Three “no outlook” states share one pattern: picture, a few words, Continue.',
     'The outlook is a side note, never a step. It appears only for actions in the next 7 days, on a plan that already holds.',
-    'Method is named honestly. Today the published method is climatology (a baseline), which beat the trained model; the UI must not say “AI forecast”.',
-    'A range, not one number. Dashed treatment = future/uncertain, distinct from the solid history panel in lab 06.',
+    'Each day is a range, not one number. Dashed tiles = future/uncertain.',
+    'Method is named in the engineer details, not here. Today it is climatology (a baseline), so the UI never says “AI forecast”.',
     'Status order and reasons follow the ML ↔ backend contract §6.'
   ]
 };

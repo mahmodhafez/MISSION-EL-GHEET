@@ -17,21 +17,21 @@ The farmer says or taps what they will grow in each of the four seasons and what
 | Lab | Page | Main job |
 |---|---|---|
 | 00 | Voice dock (shared) | Every voice state in words; push-to-talk; barge-in; fallback |
-| 01 | Welcome | Silent first screen, Start unlocks audio, two intentions, practice turn |
-| 02 | Choose crops per season | One question per screen; pictures + mic; staged dates; never assume a year |
-| 03 | Readback & protect | Grouped readback; "must this stay?"; one explicit confirm |
-| 04 | Promise Test | Conflict first, what is kept, exact date inset, three next steps |
-| 05 | Alternatives | Zero/one/two feasible; review dates separate; inspect → draft → reconfirm |
-| 06 | Past weather | What history shows and does not; honest unavailable |
-| 07 | Next 7 days | Experimental outlook as a side note; four contract statuses |
-| 08 | Save & takeaway | Plan status vs save status; takeaway for the exact version |
+| 01 | Welcome | Logo + Start (audio unlock), two picture choices, practice turn |
+| 02 | Choose crops per season | Clickable four-season strip on top; a few words + pictures per question; never assume a year |
+| 03 | What must stay | Lock what must not change; field facts as pictures; one explicit confirm |
+| 04 | Promise Test | Conflict as two pictures; Why? as four steps; Other dates / Save |
+| 05 | Other dates & alternatives | Zero/one/two feasible; dates to check; before/after; check again with a date |
+| 06 | Past weather | One picture per screen; honest unavailable; meters not connected |
+| 07 | Next 7 days | Side note; picture + few words per status; seven day tiles |
+| 08 | Save & summary | Four crops, the one problem, one Save; full summary spoken |
 
 ## 2. Voice rules (proposed)
 
 1. **Push-to-talk, one utterance per press.** No always-listening. Android Chrome has no on-device Web Speech and unreliable continuous mode (report, browser section).
 2. **Same question, two ways to answer.** Pictures and the mic are on screen together. Touch alone completes every page (design §1).
 3. **One dock, one place for all audio,** at the bottom: [Repeat/Stop] [what is happening, in words] [mic]. Every state is named in words: ready, speaking, listening, working it out, didn't hear, didn't understand, mic off, sound off.
-4. **The screen shows what the voice says.** Where the headline already is the spoken sentence, no duplicate caption; otherwise a caption shows the words.
+4. **Short on screen, full in voice.** The screen shows the key words (crop, date, status) with pictures; the full sentence is spoken and can be replayed. Never a printed paragraph (Yahya, 13 Nov: “too much reading”).
 5. **Confirm implicitly, commit explicitly.** A single answer is said back and shown as "I heard … · Change", then the app moves on. A multi-fact sentence gets a check card. The whole snapshot gets one explicit confirm with a clear intent ("confirm"), not a bare "yeah" (design §3 already keeps answers as proposals until the final readback).
 6. **Two misses, then pictures.** First miss: short reprompt with an example. Second: pictures become the main route; the mic stays available.
 7. **Ask for the mic on first tap,** after one spoken line on why and that audio is sent to be understood. Never on arrival, never again after a refusal.
@@ -45,13 +45,24 @@ The farmer says or taps what they will grow in each of the four seasons and what
 - **One step = one screen. No scrolling** at 390×760 (phone) or in an 820-px-tall desktop frame. Raised by Yahya 13 Nov after Phase 3 needed a lot of scrolling.
 - During questions the four seasons are a compact top strip (phone) or a side column (desktop); the full path appears on review steps. Desktop review uses Fieldlight's arched cards in one row.
 - Cards align on a fixed grid: picture | text | action, centred vertically; dates never wrap mid-date; equal-height cards with actions on one baseline.
+- **Visual first, one idea per screen** (Yahya, 13 Nov round 2): a few words, a picture, at most one main action plus a way back. Details are spoken or behind “for the engineer”. If a screen needs a legend, it has too much on it.
+- **The four seasons look the same everywhere:** a strip of four arched cards (crop picture, name, date with a cut or sow icon). It sits on top of every question in lab 02 at every width and is tappable; later screens reuse it for before/after and the summary.
+- **Numbers are digits** (Arabic-Indic in Arabic) on screen; month names stay words. The spoken `speech` variant still spells numbers (voice-generation.md §4).
+- **Crop pictures are coloured illustrations** (green clover with cream flowers, yellow cob, golden ear, red-brown grain head). Outline icons were too abstract. Real photos and a recognition test are still required.
+- **Purpose is asked only when a crop has more than one** (berseem is always feed, wheat always grain in the labs). The list per crop is a placeholder for the crop catalogue.
+- **The season is the headline** on every lab 02 question: a big winter (cloud) or summer (sun) card with “Season 1 of 4” and its years; the question sits smaller under it.
+- **Dates are limited to the season and to the future.** Month buttons show only the season's months, each with its year, so touch input never asks for a year; months and days before today are disabled. A spoken date outside the season or in the past gets a one-line reason. **Placeholder windows:** winter October→May, summer April→October. The planner spec says crop profiles set the supported dates, so these windows need the planner owner's sign-off (open question 6).
+- **The practice mic is the picture itself** (lab 01): tap, talk, tap again; the labs simulate the result and never open the real microphone.
+- Logo: `media/brand/mission-el-gheet-logo.svg` (plus cream-gold and currentColor variants), supplied by Yahya 13 Nov.
 - Targets stay at design.md sizes: 48 px minimum, 56–60 px primary, 84 px mic (76 px on phone).
 
 ## 4. What the labs are and are not
 
 Static HTML in `work/ux-phase-4/` sharing `lab.js`/`lab.css`, using the Phase 3 fonts and the UH-001 fixture. Each lab has a state picker, a farmer-utterance simulator, problem injection (silence, not understood, mic denied, sound unavailable), Arabic/English, phone width and optional real browser voice (labelled; quality varies). Recognition, planning, forecasts and saving are simulated. Crop drawings are placeholders. Arabic wording is draft for native Egyptian review.
 
-Verified 13 Nov 2026: `node work/ux-phase-4/check-labs.cjs` passes. A local headless-Chromium run (not in the repo) stepped every state in both languages at 1280 px and 390×760 with no script errors, no horizontal overflow and no step needing scroll. Not verified: real devices, real speech recognition, screen readers, farmer comprehension.
+**Round 2 (13 Nov, Yahya's review):** intro screen removed; distinct intent pictures; centred buttons; lab 02 strip on top at all widths; purpose per crop; lab 03 reduced to one “what must stay?” screen (it used to re-read every season); digits on screen; calendar icon for dates; lab 04 conflict as pictures and Why? as steps; lab 05 “draft” screen replaced by “check again with this date?”; labs 06–08 rebuilt as calm one-picture screens.
+
+Verified 13 Nov 2026 (after round 2): `node work/ux-phase-4/check-labs.cjs` passes. A local headless-Chromium run (not in the repo) stepped every state in both languages at 1280 px and 390×760 with no script errors, no horizontal overflow and no step needing scroll. Not verified: real devices, real speech recognition, screen readers, farmer comprehension.
 
 ## 5. Open questions
 
@@ -60,3 +71,4 @@ Verified 13 Nov 2026: `node work/ux-phase-4/check-labs.cjs` passes. A local head
 3. **Feasible badge colour** `#245C45` sits close to action green `#17634B`. Keep (words + icon carry meaning) or change?
 4. **Practice turn** on first use: keep, shorten, or replace with a facilitator demo?
 5. **Desktop parity:** confirm the side-column season context during questions is acceptable to Amr.
+6. **Season month windows.** Which months count as winter and summer at Sakha for date input (placeholders above), and should they come from the crop profiles instead? Needs Karim (planner) and Amr.

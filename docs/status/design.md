@@ -29,6 +29,14 @@ been dropped by a `/work/*` ignore rule. Content unchanged except two links to r
   eight pages), one step per screen with no scrolling. Verified 13 Nov: `check-labs.cjs` passes; a
   local headless-Chromium run of every state (AR/EN, 1280 px and 390×760) had no script errors,
   overflow or scrolling. Not verified on devices, with real speech or with farmers.
+- **13 Nov, round 2 after Yahya's review** ([voice-first.md](../design/voice-first.md) §3–§4): less text and
+  one idea per screen, a shared four-season strip, coloured crop pictures, digits on screen, lab 03 cut to
+  “what must stay?”, labs 05–08 simplified, logo added in `media/brand/`. Verified the same way: `check-labs.cjs`
+  passes; headless-Chromium run of all 33 states (AR/EN, 1280 px and 390×760) has no script errors, overflow
+  or scrolling. Not verified on devices, with real speech or with farmers.
+- **13 Nov, round 3:** lab 01 practice mic is a tappable picture (simulated result); lab 02 shows the season as the
+  headline and limits dates to the season's months (placeholder windows, open question 6 in voice-first.md) and to
+  dates after today. Same checks pass.
 
 ## History of the design rounds
 

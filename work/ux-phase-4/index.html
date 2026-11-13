@@ -17,17 +17,17 @@
   <span class="tag" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#5C6A63">MISSION EL GHEET · UX Phase 4</span>
   <h1>Voice-first labs, one per page</h1>
   <p>Each lab is one app page with all its states, a farmer-utterance simulator, problem injection (silence, not understood, mic denied, no sound), Arabic/English, phone width and optional real browser voice. Everything is simulated: no live recognition, planning, forecasting or saving. Data is the fictional UH-001 (Uncle Hussein) fixture. Plan and research: <a href="../../docs/design/voice-first.md">docs/design/voice-first.md</a>.</p>
-  <p class="flow"><b>Flow:</b> 01 Welcome → 02 Choose crops per season → 03 Readback &amp; protect → 04 Promise Test → 05 Alternatives (optional: 06 Past weather, 07 Next 7 days) → 08 Save &amp; takeaway. Lab 00 is the shared voice dock used on every page.</p>
+  <p class="flow"><b>Flow:</b> 01 Welcome → 02 Choose crops per season → 03 What must stay → 04 Promise Test → 05 Alternatives (optional: 06 Past weather, 07 Next 7 days) → 08 Save &amp; takeaway. Lab 00 is the shared voice dock used on every page.</p>
   <ol>
     <li><a href="lab-00-voice.html"><b>00 · Voice controller &amp; states</b><span>Push-to-talk dock, every voice state in words, barge-in, two-miss fallback to pictures.</span></a></li>
-    <li><a href="lab-01-welcome.html"><b>01 · Welcome &amp; first use</b><span>Silent first screen, Start unlocks audio, two intentions, practice turn.</span></a></li>
-    <li><a href="lab-02-seasons.html"><b>02 · Choose crops per season</b><span>One question per screen, pictures + mic, implicit confirm, clarify “ذرة”, staged dates, never assume a year.</span></a></li>
-    <li><a href="lab-03-confirm.html"><b>03 · Readback &amp; protect</b><span>Grouped readback, “must this stay?”, unknowns spoken, one explicit confirm.</span></a></li>
-    <li><a href="lab-04-check.html"><b>04 · Promise Test result</b><span>Conflict first, what is kept, exact date inset, Why? / What could change? / Save.</span></a></li>
-    <li><a href="lab-05-options.html"><b>05 · Alternatives &amp; investigations</b><span>Zero feasible (UH-001), dates needing review, inspect → draft → reconfirm; ≤2 alternatives layout.</span></a></li>
-    <li><a href="lab-06-replay.html"><b>06 · Past weather</b><span>What NASA history can and cannot show; honest unavailable state.</span></a></li>
-    <li><a href="lab-07-outlook.html"><b>07 · Next 7 days</b><span>Experimental outlook as a side note: not applicable / unavailable / stale / available layout.</span></a></li>
-    <li><a href="lab-08-card.html"><b>08 · Save &amp; takeaway</b><span>Plan status vs save status, spoken takeaway for the exact version, failed and out-of-date saves.</span></a></li>
+    <li><a href="lab-01-welcome.html"><b>01 · Welcome &amp; first use</b><span>Logo + Start (audio unlock), two picture choices (check my plan / plan from the start), practice turn.</span></a></li>
+    <li><a href="lab-02-seasons.html"><b>02 · Choose crops per season</b><span>Clickable four-season strip on top, a few words + pictures per question, purpose only when a crop has more than one, clarify “ذرة”, never assume a year.</span></a></li>
+    <li><a href="lab-03-confirm.html"><b>03 · What must stay</b><span>One screen: lock what must not change, field facts as pictures (unknown = dashed “?”), one explicit confirm.</span></a></li>
+    <li><a href="lab-04-check.html"><b>04 · Promise Test result</b><span>The conflict as two pictures (maize ✕ before berseem 🔒), Why? as four steps, Other dates / Save.</span></a></li>
+    <li><a href="lab-05-options.html"><b>05 · Other dates &amp; alternatives</b><span>No sure alternative (UH-001), two date cards to check, before/after strip, “check again with this date?”, ≤2 alternatives layout.</span></a></li>
+    <li><a href="lab-06-replay.html"><b>06 · Past weather</b><span>One picture per screen: offer, not available (UH-001), heat and air-dryness meters (not connected).</span></a></li>
+    <li><a href="lab-07-outlook.html"><b>07 · Next 7 days</b><span>Picture + few words for not-for-this-plan / unavailable / too old; seven day tiles when available (layout only).</span></a></li>
+    <li><a href="lab-08-card.html"><b>08 · Save &amp; summary</b><span>Calm summary: four crops, the one problem, one Save button; full summary spoken.</span></a></li>
   </ol>
   <p style="font-size:14px">Check: <code>node work/ux-phase-4/check-labs.cjs</code> (syntax, links, no live services, accessibility basics). Not browser, device or farmer testing.</p>
 </main>

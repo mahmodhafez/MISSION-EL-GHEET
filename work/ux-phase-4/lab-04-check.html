@@ -5,33 +5,22 @@
 <script src="lab.js"></script>
 <script>
 (function(){
-const {icon,crop}=Lab;
+const {icon,crop,CROPS}=Lab;
 // UH-001 expected result (reference-scenario.md §3). Not an executed planner result.
-const SAY_SHORT={ar:'ميعاد الذرة يوم خمستاشر مايو جاي قبل حشة البرسيم اللي حضرتك ثبّتها يوم عشرين مايو. مش هنلغي الحشة.',en:'The maize sowing on 15 May comes before the berseem cut you protected on 20 May. We will not drop the cut.'};
-const SAY_WHY={ar:'حسب فرضية التجهيز اللي أكدناها، الأرض تفضى يوم واحد وعشرين مايو، وبعد سبع أيام تجهيز ممكن تبقى جاهزة من تمانية وعشرين مايو ألفين سبعة وعشرين. ده حساب أيام بس، لسه لازم نراجع مناسبة الزراعة في الميعاد ده.',en:'Under the preparation assumption we confirmed, the field is free on 21 May, and after seven preparation days it could be ready from 28 May 2027. That is only day counting; whether sowing then suits the crop still needs review.'};
-function inset(ctx){
-  const L=ctx.locale;
-  // 14..30 May 2027, one cell per day; always earlier → later, left to right, with words
-  const cells=[];for(let d=14;d<=30;d++){let c='';
-    if(d<=20)c='berseem';if(d>=15&&d<=20)c='clash';if(d>=21&&d<=27)c='prep';if(d===28)c='ok';
-    cells.push(`<div class="${c}${d===15?' maize':''}"></div>`);}
-  return `<div class="inset" role="img" aria-label="${L==='ar'?'تعارض: زراعة الذرة ١٥ مايو قبل آخر حشة ٢٠ مايو على نفس الأرض':'Conflict: maize sowing 15 May before the last cut on 20 May on the same field'}">
-    <div class="tl-labels"><span>${L==='ar'?'← قبل':'← earlier'}</span><span>${L==='ar'?'نفس الأرض':'same field'}</span><span>${L==='ar'?'بعد →':'later →'}</span></div>
-    <div class="timeline">${cells.join('')}</div>
-    <div class="tl-days">${[[15,2],[20,7],[28,15]].map(([d,c])=>`<span style="grid-column:${c}"><bdi>${ctx.num(d)}</bdi></span>`).join('')}<span style="grid-column:16/18;text-align:end"><bdi>${L==='ar'?'مايو':'May'}</bdi></span></div>
-    <div class="legend">
-      <span><i style="background:repeating-linear-gradient(45deg,var(--rejected) 0 4px,var(--rejected-bg) 4px 9px)"></i>${L==='ar'?'تعارض: زراعة ١٥ قبل حشة ٢٠':'Overlap 15–20'}</span>
-      <span><i style="background:repeating-linear-gradient(45deg,#E8E2CF 0 6px,#F6F2E6 6px 12px)"></i>${L==='ar'?'٧ أيام تجهيز (افتراض)':'7 prep days (assumed)'}</span>
-      <span><i style="outline:2px dashed var(--review);background:#fff"></i>${L==='ar'?'٢٨ مايو: محتاج مراجعة':'28 May: needs review'}</span>
-    </div></div>`;
-}
-const protectedBox=ctx=>`<div class="status protected">${icon('lock')}<div><strong>${ctx.locale==='ar'?'ثابت باختيارك':'Protected by your choice'}</strong><p>${ctx.locale==='ar'?'آخر حشة برسيم':'Last berseem cut'} <b>${ctx.date('2027-05-20')}</b></p></div></div>`;
+const SAY_SHORT={ar:'زراعة الذرة يوم ١٥ مايو قبل حشة البرسيم اللي ثبّتها يوم ٢٠ مايو. الحشة هتفضل.',en:'Sowing maize on 15 May comes before the berseem cut you kept on 20 May. The cut stays.'};
+const SAY_WHY={ar:'آخر حشة ٢٠ مايو. الأرض تفضى ٢١ مايو. بعد ٧ أيام تجهيز، أقرب ميعاد ٢٨ مايو ٢٠٢٧. ده عدّ أيام بس، ومحتاج مراجعة زراعية.',en:'Last cut 20 May. The field is free on 21 May. After 7 preparation days, the earliest date is 28 May 2027. That is only day counting and needs agricultural review.'};
+function clash(ctx){const L=ctx.locale;
+  return `<div class="clash" role="img" aria-label="${ctx.t(SAY_SHORT)}">
+    <div class="c-card reject"><span class="s-art">${crop('maize')}<span class="s-mark reject">${icon('reject')}</span></span><span class="c-name">${ctx.t(CROPS.maize)}</span><span class="c-when">${icon('sow')}${ctx.date('2027-05-15',{noYear:true})}</span><span class="c-what">${L==='ar'?'زراعة':'sowing'}</span></div>
+    <div class="vs">${icon('arrow')}<span>${L==='ar'?'قبل':'before'}</span></div>
+    <div class="c-card lock"><span class="s-art">${crop('berseem')}<span class="s-mark lock">${icon('lock')}</span></span><span class="c-name">${ctx.t(CROPS.berseem)}</span><span class="c-when">${icon('cut')}${ctx.date('2027-05-20',{noYear:true})}</span><span class="c-what">${L==='ar'?'آخر حشة · ثابت':'last cut · kept'}</span></div>
+  </div>`;}
 const def={
   num:'04',title:'Promise Test: does the plan hold?',
   states:[
-    {id:'result',name:'1 · Result: conflict (UH-001)',note:'Lead with the conflict in one sentence, then what is kept. Status = words + symbol + colour.'},
-    {id:'checking',name:'2 · Checking (named operation)',note:'Say what is happening (“checking your four seasons”), no fake percentage. Stop/Back still work.'},
-    {id:'why',name:'3 · “Why?” detail',note:'Only after the conflict is understood: the day count that gives 28 May, labelled as an assumption that needs review.'},
+    {id:'result',name:'1 · Result: conflict (UH-001)',note:'Two pictures say it: maize sown 15 May (red ✕) before the berseem cut 20 May (lock). Then three short choices. (The day strip was removed 13 Nov: too crowded; “Why?” has the step diagram.)'},
+    {id:'checking',name:'2 · Checking (named operation)',note:'Say what is happening (“checking your four seasons”), no fake percentage. Stop still works.'},
+    {id:'why',name:'3 · “Why?” as four steps',note:'The day count as four pictures: last cut → field free → 7 prep days → earliest date (needs review). Next step uses the calendar icon.'},
     {id:'failed',name:'4 · Check failed (network)',note:'Name the failed operation, keep every answer, offer Retry. Never show an old or invented result.'}
   ],
   progress:()=>null,
@@ -40,27 +29,34 @@ const def={
     if(ctx.state==='checking')return{ar:'بشيّك على المواسم الأربعة…',en:'Checking your four seasons…'};
     if(ctx.state==='result')return SAY_SHORT;
     if(ctx.state==='why')return SAY_WHY;
-    if(ctx.state==='failed')return{ar:'الفحص ماكملش. إجاباتك كلها محفوظة. جرّب تاني.',en:'The check did not finish. All your answers are kept. Try again.'};
+    if(ctx.state==='failed')return{ar:'الفحص ماكملش. إجاباتك محفوظة. جرّب تاني.',en:'The check did not finish. Your answers are kept. Try again.'};
   },
   render(ctx){
     const L=ctx.locale;
+    const banner=`<div class="banner rejected ${ctx.voice==='speaking'?'speaking':''}">${icon('reject')}<span>${L==='ar'?'الخطة فيها تعارض':'The plan has a conflict'}</span></div>`;
     if(ctx.state==='checking')return `<div style="display:grid;gap:16px;align-content:center;justify-items:center;text-align:center;flex:1">
-      <div class="seq" aria-hidden="true">${['berseem','maize','wheat','sorghum'].map((c,i)=>`<span class="portrait-sm">${crop(c)}</span>`).join('<span class="dots">···</span>')}</div>
+      <div class="seq" aria-hidden="true">${['berseem','maize','wheat','sorghum'].map(c=>`<span class="portrait-sm">${crop(c)}</span>`).join('<span class="dots">···</span>')}</div>
       <h2 class="question" role="status" style="max-width:none">${ctx.t(def.prompt(ctx))}</h2><button class="secondary" data-act="stopcheck">${icon('stop')}${L==='ar'?'وقّف':'Stop'}</button></div>`;
-    if(ctx.state==='failed')return `<div class="status unknown">${icon('review')}<div><strong>${L==='ar'?'الفحص ماكملش':'The check did not finish'}</strong><p>${L==='ar'?'مفيش نتيجة. إجاباتك كلها محفوظة على الموبايل.':'There is no result. All your answers are kept on this phone.'}</p></div></div>
-      <div class="actions"><button class="primary" data-act="retry">${icon('repeat')}${L==='ar'?'جرّب تاني':'Try again'}</button><button class="secondary" data-act="back">${icon('back')}${ctx.t(Lab.UI.back)}</button></div>`;
-    const conflict=`<div class="status rejected ${ctx.voice==='speaking'&&ctx.state==='result'?'speaking':''}">${icon('reject')}<div><strong>${L==='ar'?'الخطة فيها تعارض':'Plan has a conflict'}</strong>${ctx.state==='result'?`<p>${ctx.t(SAY_SHORT)}</p>`:''}</div></div>`;
-    if(ctx.state==='why')return conflict+inset(ctx)+`<p class="sub" style="color:var(--ink)">${ctx.t(SAY_WHY)}</p><button class="primary wide-btn" data-act="options">${icon('plan')}${L==='ar'?'شوف المواعيد اللي ممكن نراجعها':'See dates we could look into'}</button>`;
-    return conflict+protectedBox(ctx)+inset(ctx)+`<div class="choice-row">
-      <button class="primary" data-act="why">${icon('help')}${L==='ar'?'ليه؟':'Why?'}</button>
-      <button class="secondary" data-act="options">${icon('plan')}${L==='ar'?'إيه اللي ممكن يتغيّر؟':'What could change?'}</button>
-      <button class="secondary" data-act="save">${icon('save')}${L==='ar'?'احفظ للمراجعة':'Save for review'}</button></div>`;
+    if(ctx.state==='failed')return `<div class="hero unknown"><span class="hero-ic">${icon('review')}</span><h2>${L==='ar'?'الفحص ماكملش':'The check did not finish'}</h2><p>${L==='ar'?'إجاباتك محفوظة':'Your answers are kept'}</p></div>
+      <div class="two-btns"><button class="primary" data-act="retry">${icon('repeat')}${L==='ar'?'جرّب تاني':'Try again'}</button><button class="secondary" data-act="back">${icon('back')}${ctx.t(Lab.UI.back)}</button></div>`;
+    if(ctx.state==='why')return banner+`<h2 class="question" style="font-size:24px">${L==='ar'?'أقرب ميعاد للذرة':'Earliest maize date'}</h2>
+      <ol class="steps">
+        <li class="lock"><span class="ic">${icon('cut')}</span><b>${ctx.date('2027-05-20',{noYear:true})}</b><span>${L==='ar'?'آخر حشة':'last cut'}</span></li>
+        <li><span class="ic">${icon('field')}</span><b>${ctx.date('2027-05-21',{noYear:true})}</b><span>${L==='ar'?'الأرض فاضية':'field free'}</span></li>
+        <li><span class="ic">${icon('calendar')}</span><b>${L==='ar'?'٧ أيام':'7 days'}</b><span>${L==='ar'?'تجهيز (افتراض)':'prep (assumed)'}</span></li>
+        <li class="review"><span class="ic">${icon('sow')}</span><b>${ctx.date('2027-05-28',{noYear:true})}</b><span>${L==='ar'?'محتاج مراجعة':'needs review'}</span></li>
+      </ol>
+      <button class="primary wide-btn" data-act="options">${icon('calendar')}${L==='ar'?'شوف المواعيد اللي ممكن نراجعها':'See dates we could check'}</button>`;
+    return `<div class="calm">${banner}${clash(ctx)}<div class="calm-end"><div class="three-btns">
+      <button class="secondary" data-act="why">${icon('help')}<span>${L==='ar'?'ليه؟':'Why?'}</span></button>
+      <button class="primary" data-act="options">${icon('calendar')}<span>${L==='ar'?'مواعيد تانية':'Other dates'}</span></button>
+      <button class="secondary" data-act="save">${icon('save')}<span>${L==='ar'?'احفظ':'Save'}</span></button></div></div></div>`;
   },
   utterances(ctx){
     if(ctx.state==='result')return[
       {label:'Ask why',say:{ar:'ليه؟',en:'Why?'},effect(ctx){ctx.go('why');}},
       {label:'Ask what can change',say:{ar:'طب إيه اللي ممكن يتغيّر؟',en:'So what can change?'},effect(){location.href='lab-05-options.html';}},
-      {label:'Off-script request (no free advice)',say:{ar:'أزرع إيه بدل الذرة؟',en:'What should I plant instead of maize?'},effect(){return{ar:'مقدرش أنصح بمحصول من عندي. أقدر أوريك المواعيد اللي اتشيّك عليها للمراجعة. دوس "إيه اللي ممكن يتغيّر".',en:'I cannot recommend a crop on my own. I can show the dates that were checked for review. Press “What could change?”.'};}}];
+      {label:'Off-script request (no free advice)',say:{ar:'أزرع إيه بدل الذرة؟',en:'What should I plant instead of maize?'},effect(){return{ar:'مقدرش أنصح بمحصول من عندي. أقدر أوريك مواعيد تانية للمراجعة.',en:'I cannot recommend a crop on my own. I can show other dates to review.'};}}];
     if(ctx.state==='why')return[{label:'Continue',say:{ar:'وريني المواعيد',en:'Show me the dates'},effect(){location.href='lab-05-options.html';}}];
     if(ctx.state==='failed')return[{label:'Retry',say:{ar:'جرّب تاني',en:'Try again'},effect(ctx){ctx.go('checking');}}];
     return[];
@@ -73,9 +69,9 @@ const def={
     if(a==='stopcheck'||a==='back'){location.href='lab-03-confirm.html';return null;}
   },
   notes:[
-    'Screen order = speech order: conflict → what is kept → (on request) why → next steps. Exact UH-001 wording from the reference scenario.',
-    'The inset is the only place with a date scale. It reads earlier → later left-to-right in both languages, with words, not colour alone.',
-    'Three next steps, all visible: Why? / What could change? / Save for review. There is no “Approve” for a rejected plan.',
+    'Visual first (13 Nov feedback): the conflict is two crop pictures with their dates, a red ✕ on the maize and a lock on the berseem. The full sentence is spoken, not printed.',
+    'Numbers are digits everywhere on screen and in captions; months keep their names.',
+    'Three next steps, all visible: Why? / Other dates (calendar) / Save. There is no “Approve” for a rejected plan.',
     'Off-script questions get a fixed template that redirects; the app never generates advice.',
     'No ML weather here: a forecast never decides whether a plan holds (decisions 11 and 13 Nov).'
   ]
