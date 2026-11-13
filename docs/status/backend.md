@@ -16,6 +16,8 @@
 | 3 | Skeleton: `pyproject` (uv), `core/`, `schemas/`, SQLite store, `/health`, `/catalogue`, OpenAPI export → TS types | Backend design §12 step 1 |
 | 4 | Scenario endpoints + `promise-test` with storage; bilingual template rendering | §12 step 4; needs planner P0 evaluator |
 | 5 | Replay, then evidence cards; `/speech/interpret`, `/speech/tts`; forecast from bundle | §12 steps 5–8 |
+| 6 | Voice audio: pick voices, write `build_prompt_audio.py`, generate once templates and scenarios are final | [voice-generation.md](../backend/voice-generation.md) (proposed 13 Nov). Provider ElevenLabs, offline only, decided 13 Nov. `/speech/tts` serves pre-generated files only. Nothing generated yet. |
+| 7 | `/speech/interpret` with **Gemini strict extraction** (decided 14 Nov): schema, backend validation, Egyptian Arabic test set; settle the multi-proposal response change | [backend design §8.3](../backend/backend-design.md#83-interpretation-d6-gemini-extraction). Model ID to verify. Audio-to-Gemini still open. ElevenLabs generation/review moved to Moaaz (14 Nov). |
 
 ## In flight
 

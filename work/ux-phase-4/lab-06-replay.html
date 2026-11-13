@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 06 · Past weather</title><link rel="stylesheet" href="lab.css"></head>
+<body>
+<script src="lab.js"></script>
+<script>
+(function(){
+const {icon,crop,CROPS,SEASON_SHORT}=Lab;
+const PLAN=['berseem','maize','wheat','sorghum'];
+const def={
+  num:'06',title:'Past weather (NASA history)',
+  states:[
+    {id:'offer',name:'1 · Offer: want to see past years?',note:'Optional side trip, never required. One picture, one line, two buttons. Says plainly what it does not show: irrigation amounts.'},
+    {id:'unavailable',name:'2 · Not available now (UH-001)',note:'UH-001: the maize harvest date is unknown, so there are no matching periods. One picture, one reason, Continue.'},
+    {id:'layout',name:'3 · What it looks like with data',note:'Each season: heat and air dryness as 5-dot meters. Dots are empty here because values are not connected. Nothing is drawn rather than a fake value.'}
+  ],
+  progress:()=>null,caption:false,
+  prompt(ctx){
+    if(ctx.state==='offer')return{ar:'تحب تشوف المواسم دي كانت عاملة إزاي في السنين اللي فاتت؟ ده بيورّي الحر وجفاف الجو، مش كمية الري.',en:'Want to see how these seasons went in past years? It shows heat and how dry the air was, not how much to irrigate.'};
+    if(ctx.state==='unavailable')return{ar:'مش متاح دلوقتي، لأن ميعاد حصاد الذرة مش معروف.',en:'Not available now, because the maize harvest date is unknown.'};
+    if(ctx.state==='layout')return{ar:'لكل موسم: الحر وجفاف الجو في السنين اللي فاتت.',en:'For each season: heat and air dryness in past years.'};
+  },
+  render(ctx){
+    const L=ctx.locale;
+    const src=`<span class="ichip src">${icon('archive')}${L==='ar'?'ناسا · ٢٥ سنة':'NASA · 25 years'}</span>`;
+    if(ctx.state==='offer')return `<div class="hero"><span class="hero-ic">${icon('sun')}<span class="sub-ic">${icon('calendar')}</span></span><h2>${L==='ar'?'الجو في السنين اللي فاتت':'Weather in past years'}</h2></div>
+      <div class="chips-row">${src}<span class="ichip">${icon('thermo')}${L==='ar'?'الحر':'Heat'}</span><span class="ichip">${icon('drop')}${L==='ar'?'جفاف الجو':'Air dryness'}</span><span class="ichip no">${icon('reject')}${L==='ar'?'مش كمية الري':'Not irrigation'}</span></div>
+      <div class="two-btns"><button class="primary" data-act="show">${icon('search')}${L==='ar'?'وريني':'Show me'}</button><button class="secondary" data-act="skip">${L==='ar'?'كمّل':'Skip'}</button></div>`;
+    if(ctx.state==='unavailable')return `<div class="hero unknown"><span class="hero-ic">${icon('unknown')}</span><h2>${L==='ar'?'مش متاح دلوقتي':'Not available now'}</h2><p>${L==='ar'?'ميعاد حصاد الذرة مش معروف':'The maize harvest date is unknown'}</p></div>
+      <div class="banner rejected">${icon('reject')}<span>${L==='ar'?'خطتك لسه فيها تعارض':'Your plan still has a conflict'}</span></div>
+      <button class="primary wide-btn" data-act="skip">${icon('check')}${L==='ar'?'كمّل':'Continue'}</button>`;
+    const dots=`<i></i><i></i><i></i><i></i><i></i>`;
+    return `<div class="notice">${L==='ar'?'شكل بس: القيم مش متوصّلة.':'Layout only: values not connected.'}</div>
+      <div class="chips-row" style="justify-content:flex-start">${src}<span class="ichip">${icon('thermo')}${L==='ar'?'الحر':'Heat'}</span><span class="ichip">${icon('drop')}${L==='ar'?'جفاف الجو':'Air dryness'}</span></div>
+      <ul class="meters">${PLAN.map((c,i)=>`<li><span class="s-art">${crop(c)}</span><span class="who">${ctx.t(CROPS[c])}<small>${ctx.t(SEASON_SHORT[i])}</small></span><span class="meter" aria-label="${L==='ar'?'الحر: مش متوصّل':'Heat: not connected'}">${icon('thermo')}${dots}</span><span class="meter" aria-label="${L==='ar'?'جفاف الجو: مش متوصّل':'Air dryness: not connected'}">${icon('drop')}${dots}</span></li>`).join('')}</ul>
+      <button class="primary wide-btn" data-act="skip">${icon('check')}${L==='ar'?'كمّل':'Continue'}</button>`;
+  },
+  utterances(ctx){
+    if(ctx.state==='offer')return[{label:'Asks about water use',say:{ar:'يعني أروي قد إيه؟',en:'So how much should I irrigate?'},effect(){return{ar:'ده مش بيقول كمية الري. بيورّي الجو كان ناشف قد إيه بس.',en:'This does not tell irrigation amounts. It only shows how dry the air was.'};}},{label:'Wants to see it',say:{ar:'وريني',en:'Show me'},effect(ctx){ctx.go('unavailable');}}];
+    return[];
+  },
+  action(a,b,ctx){
+    if(a==='show'){ctx.go('unavailable');return null;}
+    if(a==='back'){ctx.go('offer');return null;}
+    if(a==='skip'){location.href='lab-08-card.html';return null;}
+  },
+  notes:[
+    'Rebuilt 13 Nov (feedback: “simple and easy to understand”). One picture and a few words per screen; the method and coordinates are not on the farmer screen (they go in the saved card’s engineer details).',
+    '“Air dryness” is the farmer word for ET0 (reference atmospheric demand). It is never irrigation use. The “Not irrigation” chip says that without a paragraph.',
+    'Unavailable is a normal state with a reason and a way on; it never blocks saving. The conflict stays visible so history is never mistaken for a fix.',
+    'Meters would show where a season sits against the 25-year range. Scale and wording need Amr’s design and farmer comprehension testing.'
+  ]
+};
+Lab.page(def);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 04 · Promise Test result</title><link rel="stylesheet" href="lab.css"></head>
+<body>
+<script src="lab.js"></script>
+<script>
+(function(){
+const {icon,crop,CROPS}=Lab;
+// UH-001 expected result (reference-scenario.md §3). Not an executed planner result.
+const SAY_SHORT={ar:'زراعة الذرة يوم ١٥ مايو قبل حشة البرسيم اللي ثبّتها يوم ٢٠ مايو. الحشة هتفضل.',en:'Sowing maize on 15 May comes before the berseem cut you kept on 20 May. The cut stays.'};
+const SAY_WHY={ar:'آخر حشة ٢٠ مايو. الأرض تفضى ٢١ مايو. بعد ٧ أيام تجهيز، أقرب ميعاد ٢٨ مايو ٢٠٢٧. ده عدّ أيام بس، ومحتاج مراجعة زراعية.',en:'Last cut 20 May. The field is free on 21 May. After 7 preparation days, the earliest date is 28 May 2027. That is only day counting and needs agricultural review.'};
+function clash(ctx){const L=ctx.locale;
+  return `<div class="clash" role="img" aria-label="${ctx.t(SAY_SHORT)}">
+    <div class="c-card reject"><span class="s-art">${crop('maize')}<span class="s-mark reject">${icon('reject')}</span></span><span class="c-name">${ctx.t(CROPS.maize)}</span><span class="c-when">${icon('sow')}${ctx.date('2027-05-15',{noYear:true})}</span><span class="c-what">${L==='ar'?'زراعة':'sowing'}</span></div>
+    <div class="vs">${icon('arrow')}<span>${L==='ar'?'قبل':'before'}</span></div>
+    <div class="c-card lock"><span class="s-art">${crop('berseem')}<span class="s-mark lock">${icon('lock')}</span></span><span class="c-name">${ctx.t(CROPS.berseem)}</span><span class="c-when">${icon('cut')}${ctx.date('2027-05-20',{noYear:true})}</span><span class="c-what">${L==='ar'?'آخر حشة · ثابت':'last cut · kept'}</span></div>
+  </div>`;}
+const def={
+  num:'04',title:'Promise Test: does the plan hold?',
+  states:[
+    {id:'result',name:'1 · Result: conflict (UH-001)',note:'Two pictures say it: maize sown 15 May (red ✕) before the berseem cut 20 May (lock). Then three short choices. (The day strip was removed 13 Nov: too crowded; “Why?” has the step diagram.)'},
+    {id:'checking',name:'2 · Checking (named operation)',note:'Say what is happening (“checking your four seasons”), no fake percentage. Stop still works.'},
+    {id:'why',name:'3 · “Why?” as four steps',note:'The day count as four pictures: last cut → field free → 7 prep days → earliest date (needs review). Next step uses the calendar icon.'},
+    {id:'failed',name:'4 · Check failed (network)',note:'Name the failed operation, keep every answer, offer Retry. Never show an old or invented result.'}
+  ],
+  progress:()=>null,
+  caption:false,
+  prompt(ctx){
+    if(ctx.state==='checking')return{ar:'بشيّك على المواسم الأربعة…',en:'Checking your four seasons…'};
+    if(ctx.state==='result')return SAY_SHORT;
+    if(ctx.state==='why')return SAY_WHY;
+    if(ctx.state==='failed')return{ar:'الفحص ماكملش. إجاباتك محفوظة. جرّب تاني.',en:'The check did not finish. Your answers are kept. Try again.'};
+  },
+  render(ctx){
+    const L=ctx.locale;
+    const banner=`<div class="banner rejected ${ctx.voice==='speaking'?'speaking':''}">${icon('reject')}<span>${L==='ar'?'الخطة فيها تعارض':'The plan has a conflict'}</span></div>`;
+    if(ctx.state==='checking')return `<div style="display:grid;gap:16px;align-content:center;justify-items:center;text-align:center;flex:1">
+      <div class="seq" aria-hidden="true">${['berseem','maize','wheat','sorghum'].map(c=>`<span class="portrait-sm">${crop(c)}</span>`).join('<span class="dots">···</span>')}</div>
+      <h2 class="question" role="status" style="max-width:none">${ctx.t(def.prompt(ctx))}</h2><button class="secondary" data-act="stopcheck">${icon('stop')}${L==='ar'?'وقّف':'Stop'}</button></div>`;
+    if(ctx.state==='failed')return `<div class="hero unknown"><span class="hero-ic">${icon('review')}</span><h2>${L==='ar'?'الفحص ماكملش':'The check did not finish'}</h2><p>${L==='ar'?'إجاباتك محفوظة':'Your answers are kept'}</p></div>
+      <div class="two-btns"><button class="primary" data-act="retry">${icon('repeat')}${L==='ar'?'جرّب تاني':'Try again'}</button><button class="secondary" data-act="back">${icon('back')}${ctx.t(Lab.UI.back)}</button></div>`;
+    if(ctx.state==='why')return banner+`<h2 class="question" style="font-size:24px">${L==='ar'?'أقرب ميعاد للذرة':'Earliest maize date'}</h2>
+      <ol class="steps">
+        <li class="lock"><span class="ic">${icon('cut')}</span><b>${ctx.date('2027-05-20',{noYear:true})}</b><span>${L==='ar'?'آخر حشة':'last cut'}</span></li>
+        <li><span class="ic">${icon('field')}</span><b>${ctx.date('2027-05-21',{noYear:true})}</b><span>${L==='ar'?'الأرض فاضية':'field free'}</span></li>
+        <li><span class="ic">${icon('calendar')}</span><b>${L==='ar'?'٧ أيام':'7 days'}</b><span>${L==='ar'?'تجهيز (افتراض)':'prep (assumed)'}</span></li>
+        <li class="review"><span class="ic">${icon('sow')}</span><b>${ctx.date('2027-05-28',{noYear:true})}</b><span>${L==='ar'?'محتاج مراجعة':'needs review'}</span></li>
+      </ol>
+      <button class="primary wide-btn" data-act="options">${icon('calendar')}${L==='ar'?'شوف المواعيد اللي ممكن نراجعها':'See dates we could check'}</button>`;
+    return `<div class="calm">${banner}${clash(ctx)}<div class="calm-end"><div class="three-btns">
+      <button class="secondary" data-act="why">${icon('help')}<span>${L==='ar'?'ليه؟':'Why?'}</span></button>
+      <button class="primary" data-act="options">${icon('calendar')}<span>${L==='ar'?'مواعيد تانية':'Other dates'}</span></button>
+      <button class="secondary" data-act="save">${icon('save')}<span>${L==='ar'?'احفظ':'Save'}</span></button></div></div></div>`;
+  },
+  utterances(ctx){
+    if(ctx.state==='result')return[
+      {label:'Ask why',say:{ar:'ليه؟',en:'Why?'},effect(ctx){ctx.go('why');}},
+      {label:'Ask what can change',say:{ar:'طب إيه اللي ممكن يتغيّر؟',en:'So what can change?'},effect(){location.href='lab-05-options.html';}},
+      {label:'Off-script request (no free advice)',say:{ar:'أزرع إيه بدل الذرة؟',en:'What should I plant instead of maize?'},effect(){return{ar:'مقدرش أنصح بمحصول من عندي. أقدر أوريك مواعيد تانية للمراجعة.',en:'I cannot recommend a crop on my own. I can show other dates to review.'};}}];
+    if(ctx.state==='why')return[{label:'Continue',say:{ar:'وريني المواعيد',en:'Show me the dates'},effect(){location.href='lab-05-options.html';}}];
+    if(ctx.state==='failed')return[{label:'Retry',say:{ar:'جرّب تاني',en:'Try again'},effect(ctx){ctx.go('checking');}}];
+    return[];
+  },
+  action(a,b,ctx){
+    if(a==='why'){ctx.go('why');return null;}
+    if(a==='options'){location.href='lab-05-options.html';return null;}
+    if(a==='save'){location.href='lab-08-card.html';return null;}
+    if(a==='retry'){ctx.go('checking');return null;}
+    if(a==='stopcheck'||a==='back'){location.href='lab-03-confirm.html';return null;}
+  },
+  notes:[
+    'Visual first (13 Nov feedback): the conflict is two crop pictures with their dates, a red ✕ on the maize and a lock on the berseem. The full sentence is spoken, not printed.',
+    'Numbers are digits everywhere on screen and in captions; months keep their names.',
+    'Three next steps, all visible: Why? / Other dates (calendar) / Save. There is no “Approve” for a rejected plan.',
+    'Off-script questions get a fixed template that redirects; the app never generates advice.',
+    'No ML weather here: a forecast never decides whether a plan holds (decisions 11 and 13 Nov).'
+  ]
+};
+Lab.page(def);
+})();
+</script>
+</body>
+</html>

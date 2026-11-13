@@ -30,6 +30,7 @@ evidence, never edited · **Archive** = superseded, history only.
 | Science | [science/reproducing.md](science/reproducing.md): how to rerun the scientific checks | Current | Refaat |
 | Science | [science/evidence-access.md](science/evidence-access.md): report hashes and local-only files | Current | Refaat |
 | Backend | [backend/architecture.md](backend/architecture.md): system boundaries, journey, milestones | Approved 11 Nov | Yahya |
+| Backend | [backend/voice-generation.md](backend/voice-generation.md): generating all app audio with ElevenLabs (gates, voices, run, checks) | Proposed 13 Nov | Yahya |
 | Backend | [backend/backend-design.md](backend/backend-design.md): modules, SQLite, ML bundle, voice, i18n (D1–D8) | Approved 12 Nov; needs `meg_core` update (Q3) | Yahya |
 | Backend | [backend/api-contracts.md](backend/api-contracts.md): wire types and endpoints (**§0 overrides**) | Approved 12 Nov | Yahya |
 | Backend | [backend/ml-contract.md](backend/ml-contract.md): **the ML ↔ backend forecast bundle contract** | Proposed 13 Nov | Yahya |
@@ -51,11 +52,14 @@ evidence, never edited · **Archive** = superseded, history only.
 | Design | [design/design.md](design/design.md): Season Path interaction, accessibility, components (§2 colours superseded) | Approved 11 Nov | Amr |
 | Design | [design/fieldlight.md](design/fieldlight.md): Fieldlight Hybrid visual rules and tokens | Approved 12 Nov (Q8) | Amr |
 | Design | [design/ux-phase-1.md](design/ux-phase-1.md): journey review and refinements | Approved 11 Nov | Amr |
+| Design | [design/voice-first.md](design/voice-first.md): voice rules, one-screen layout, Phase 4 page labs | Proposed 13 Nov | Amr |
 
 ## Reports (frozen, dated)
 
 | Report | Topic |
 |---|---|
+| [2026-11-13-ml-plan-review](reports/2026-11-13-ml-plan-review.md) | ML plan review: consistency, data/code, methodology |
+| [2026-11-13-voice-first-research](reports/2026-11-13-voice-first-research.md) | Voice-first UI evidence for low-literacy users; Web Speech on Android |
 | [validation_accessibility_alignment](reports/validation_accessibility_alignment.md) | Accessibility and challenge alignment |
 | [validation_models](reports/validation_models.md) | Why Chronos-2 + LoRA |
 | [validation_agronomy](reports/validation_agronomy.md) | Agronomy evidence for Sakha |

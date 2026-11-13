@@ -24,7 +24,7 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 | `ml/` | Shared-release builder (`tools/`), tests, future experiments | Builder + 3 tests |
 | `data/validation/` | NASA POWER / ET0 audit and regeneration scripts | Yes, 16 tests |
 | `data/local/` | Assembled data release (mostly git-ignored) | Partial, see `docs/status/ml-data.md` |
-| `work/ux-phase-2/`, `work/ux-phase-3/` | Standalone HTML wireframes and the Fieldlight prototype | Phase 2 tracked; Phase 3 awaits safe transfer |
+| `work/ux-phase-2/`, `-3/`, `-4/` | Standalone HTML wireframes, the Fieldlight prototype, voice-first page labs | Yes (design artifacts) |
 | `archive-snapshot/`, `work/*` (other) | Frozen evidence from the 13 Nov recovery snapshot | Don't edit |
 | `docs/` | Everything written. Start at `docs/README.md` | n/a |
 
@@ -68,6 +68,7 @@ python -I -S -m unittest discover -s data/validation -p "test_*.py" -v   # 16 te
 python -I -S -m unittest discover -s ml/tests -v                        # 3 tests
 node work/ux-phase-2/check-wireframes-v3.cjs                            # wireframe smoke check
 node work/ux-phase-3/check-hybrid.cjs                                   # Fieldlight prototype check
+node work/ux-phase-4/check-labs.cjs                                     # voice-first page labs check
 ```
 
 No app install/run commands exist yet. Add them here when the first app code lands.

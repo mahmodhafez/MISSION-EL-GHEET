@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 05 · Other dates & alternatives</title><link rel="stylesheet" href="lab.css"></head>
+<body>
+<script src="lab.js"></script>
+<script>
+(function(){
+const {icon,crop,CROPS}=Lab;
+// UH-001: zero feasible alternatives; R1 28 May / R2 1 June are needs_review investigations (reference-scenario.md §4).
+const R={r1:{date:'2027-05-28',why:{ar:'أول يوم بعد ٧ أيام تجهيز',en:'First day after 7 prep days'}},
+         r2:{date:'2027-06-01',why:{ar:'ميعاد إنت سمحت بيه',en:'A date you allowed'}}};
+const PLAN=[{crop:'berseem',iso:'2027-05-20',kind:'end',mark:'lock',cls:'lock'},{crop:'maize',iso:'2027-05-15',kind:'start',mark:'reject',cls:'reject'},{crop:'wheat',iso:'2027-11-20',kind:'start',mark:'lock',cls:'lock'},{crop:'sorghum',iso:'2028-06-01',kind:'start'}];
+function withDate(iso){return PLAN.map((p,i)=>i===1?{crop:'maize',iso,kind:'start',mark:'change',cls:'change'}:{...p});}
+const def={
+  num:'05',title:'Other dates & alternatives',
+  states:[
+    {id:'list',name:'1 · No sure alternative + 2 dates to check (UH-001)',note:'Honest answer first in a few words. Two date cards: maize picture, the date in big digits, an amber “needs review” badge. Nothing preselected, no “best”.'},
+    {id:'inspect',name:'2 · Look at 28 May: before / after + why review',note:'Your plan and the plan with this date. Only the maize card changes (amber). Below: why it needs review, from the planner’s unknown checks (harvest date invalidated: endpoint_mapping_missing; irrigation, soil, cultivar unknown). Looking changes nothing.'},
+    {id:'try',name:'3 · Try it: check again with this date',note:'Replaces the old “draft” screen (13 Nov feedback). One question: check the plan again with 28 May? Your plan is kept until the new check passes and you save.'},
+    {id:'layout',name:'4 · Layout only: when rules find alternatives',note:'For other scenarios the planner may return up to two feasible alternatives. Placeholders only; no values are invented.'}
+  ],
+  progress:()=>null,caption:false,
+  data:{pick:'r1'},
+  prompt(ctx){const r=R[ctx.data.pick];
+    if(ctx.state==='list')return{ar:'مفيش بديل أكيد لسه. فيه ميعادين للذرة نراجعهم: ٢٨ مايو و١ يونيو.',en:'No sure alternative yet. There are two maize dates to check: 28 May and 1 June.'};
+    if(ctx.state==='inspect'){const d=Lab.plain(Lab.date(r.date,'ar',{noYear:true})),e=Lab.plain(Lab.date(r.date,'en',{noYear:true}));return{ar:`لو الذرة ${d}: البرسيم والقمح يفضلوا زي ما هم. ميعاد حصاد الذرة يبقى مش معروف.`,en:`If maize is on ${e}: berseem and wheat stay as they are. The maize harvest date becomes unknown.`};}
+    if(ctx.state==='try'){const d=Lab.plain(Lab.date(R[ctx.data.pick].date,'ar',{noYear:true})),e=Lab.plain(Lab.date(R[ctx.data.pick].date,'en',{noYear:true}));return{ar:`نشيّك على الخطة تاني بالذرة يوم ${d}؟ خطتك الأصلية محفوظة.`,en:`Check the plan again with maize on ${e}? Your original plan is kept.`};}
+    if(ctx.state==='layout')return{ar:'ده شكل الشاشة لما القواعد تلاقي بدائل.',en:'This is how the screen looks when the rules find alternatives.'};
+  },
+  render(ctx){
+    const L=ctx.locale,d=ctx.data,r=R[d.pick];
+    if(ctx.state==='list')return `<div class="banner unknown">${icon('unknown')}<span>${L==='ar'?'مفيش بديل أكيد':'No sure alternative'}<small>${L==='ar'?'ده رد صحيح · خطتك محفوظة':'That is a real answer · your plan is kept'}</small></span></div>
+      <h2 class="question" style="font-size:22px">${L==='ar'?'مواعيد ذرة نراجعها':'Maize dates to check'}</h2>
+      <div class="date-cards">${Object.entries(R).map(([k,x])=>`<div class="date-card"><button class="hear" data-act="hear" aria-label="${L==='ar'?'اسمع':'Listen'}">${icon('speaker')}</button><span class="s-art">${crop('maize')}</span>
+        <span class="big-date">${icon('sow')}${ctx.date(x.date,{noYear:true})}</span><span class="yr">${ctx.num(2027)}</span>
+        <span class="badge review">${icon('review')}${L==='ar'?'محتاج مراجعة':'Needs review'}</span>
+        <button class="secondary" data-act="inspect" data-v="${k}">${icon('search')}${L==='ar'?'شوف':'Look'}</button></div>`).join('')}</div>
+      <ul class="scope-list"><li class="blocked">${icon('reject')}<span>${L==='ar'?'ذرة في الموسم ٤: ماتشيّكتش':'Maize in season 4: not checked'}<small>${L==='ar'?'مفيش بيانات كفاية · البحث مش كامل':'not enough data · search incomplete'}</small></span></li></ul>
+      <button class="secondary wide-btn" data-act="keep">${icon('save')}${L==='ar'?'سيب خطتي واحفظها':'Keep my plan and save it'}</button>`;
+    if(ctx.state==='inspect')return `<p class="strip-label">${L==='ar'?'خطتك':'Your plan'}</p>${Lab.strip(ctx,PLAN,{cls:'in compact'})}
+      <p class="strip-label">${icon('search')}${L==='ar'?'بالذرة':'With maize on'} ${ctx.date(r.date,{noYear:true})}</p>${Lab.strip(ctx,withDate(r.date),{cls:'in compact'})}
+      <p class="strip-label">${icon('review')}${L==='ar'?'ليه محتاج مراجعة؟':'Why it needs review'}</p>
+      <div class="facts four">
+        <span class="fact unk">${icon('cut')}؟<small>${L==='ar'?'حصاد الذرة':'maize harvest'}</small></span>
+        <span class="fact unk">${icon('drop')}؟<small>${L==='ar'?'المية':'water'}</small></span>
+        <span class="fact unk">${icon('soil')}؟<small>${L==='ar'?'التربة':'soil'}</small></span>
+        <span class="fact unk">${icon('sow')}؟<small>${L==='ar'?'الصنف':'variety'}</small></span></div>
+      <div class="two-btns"><button class="primary" data-act="try">${icon('check')}${L==='ar'?'جرّبه':'Try it'}</button><button class="secondary" data-act="list">${icon('back')}${ctx.t(Lab.UI.back)}</button></div>`;
+    if(ctx.state==='try')return `<h2 class="question">${L==='ar'?'نشيّك تاني بالميعاد ده؟':'Check again with this date?'}</h2>
+      ${Lab.strip(ctx,withDate(R[d.pick].date),{cls:'in'})}
+      <p class="keepnote">${icon('lock')}${L==='ar'?'خطتك الأصلية محفوظة لحد ما تحفظ الجديدة':'Your original plan is kept until you save a new one'}</p>
+      <a class="primary wide-btn" href="lab-04-check.html">${icon('repeat')}${L==='ar'?'شيّك على الخطة تاني':'Check the plan again'}</a>
+      <button class="secondary wide-btn" data-act="list">${icon('back')}${L==='ar'?'لأ، رجّع خطتي':'No, back to my plan'}</button>`;
+    // layout only
+    return `<div class="notice">${L==='ar'?'شكل بس: مش نتيجة. مفيش قيم حقيقية.':'Layout only: not a planner result. No real values.'}</div>
+      <div class="alts">${['A','B'].map(x=>`<div class="panel" style="display:grid;gap:8px;padding:10px"><div class="alt-head"><span class="badge feasible">${icon('feasible')}${L==='ar'?'ممكن بالشروط دي':'Feasible under stated conditions'} · ${x}</span><button class="hear" data-act="hear" aria-label="${L==='ar'?'اسمع الفرق':'Hear the difference'}">${icon('speaker')}</button></div>
+        ${Lab.strip(ctx,[0,1,2,3].map(i=>({crop:null,note:'…',cls:i===1?'change':''})),{cls:'in compact'})}</div>`).join('')}</div>
+      <p class="sub">${L==='ar'?'بحد أقصى ٢. صفر أو ١ رد صحيح. مفيش "أحسن".':'At most 2. Zero or 1 is a valid answer. No “best”.'}</p>`;
+  },
+  utterances(ctx){
+    if(ctx.state==='list')return[{label:'Pick by voice',say:{ar:'وريني ٢٨ مايو',en:'Show me 28 May'},effect(ctx){ctx.data.pick='r1';ctx.go('inspect');}},{label:'Asks for “the best”',say:{ar:'أنهي أحسن؟',en:'Which one is best?'},effect(){return{ar:'مقدرش أقول أنهي أحسن. الاتنين محتاجين مراجعة. أقدر أوريك إيه اللي بيتغيّر.',en:'I cannot say which is best. Both need review. I can show what changes.'};}}];
+    if(ctx.state==='inspect')return[{label:'Ambiguous “OK” does not adopt',say:{ar:'ماشي',en:'OK'},effect(){return{ar:'عايز تجرّب الميعاد ده؟ قول "جرّبه" أو دوس الزرار.',en:'Do you want to try this date? Say “try it” or press the button.'};}},{label:'Clear intent',say:{ar:'جرّبه',en:'Try it'},effect(ctx){ctx.go('try');}}];
+    if(ctx.state==='try')return[{label:'Check again',say:{ar:'شيّك',en:'Check it'},effect(){location.href='lab-04-check.html';}}];
+    return[];
+  },
+  action(a,b,ctx){
+    if(a==='inspect'){ctx.data.pick=b.dataset.v;ctx.go('inspect');return null;}
+    if(a==='list'||a==='back'){ctx.go('list');return null;}
+    if(a==='try'){ctx.go('try');return null;}
+    if(a==='keep'){location.href='lab-08-card.html';return null;}
+    return null;
+  },
+  notes:[
+    'Matches planner/candidate-generation output for UH-001: current rejected; review_investigations = 28 May and 1 June (needs_review); feasible_alternatives = 0; search INCOMPLETE because the season-4 maize choice is blocked (profile_binding_unavailable). The screen says so instead of implying a full search.',
+    '“Why it needs review” shows the planner’s top unknown checks as picture tiles. The full list (about 14 codes) belongs in the engineer details, not here.',
+    'Alternatives come only from the rules, at most two, each keeping every locked item. ML never proposes or ranks them.',
+    'UH-001 honestly has zero. The dates to check use the amber “needs review” badge and a neutral button: no green, no “recommended”.',
+    'Look → Try → Check again. “Try” starts a new Promise Test with the changed date; it is not approval. A bare “OK” does not adopt. (The old word “draft” confused review; it is gone from the screen.)',
+    'Before/after uses the same four season cards as everywhere else, so the one changed card stands out.',
+    'Design question for Amr: feasible-green (#245C45) is close to action-green (#17634B). The badge relies on words + check icon.'
+  ]
+};
+Lab.page(def);
+})();
+</script>
+</body>
+</html>

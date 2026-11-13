@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 00 · Voice controller</title><link rel="stylesheet" href="lab.css"></head>
+<body>
+<script src="lab.js"></script>
+<script>
+(function(){
+const {icon,crop,CROPS}=Lab;
+const EXPLAIN={
+  idle:{ar:'جاهز. الميكروفون مستني الضغطة. مفيش تسجيل غير لما تدوس.',en:'Ready. The mic waits for a tap. Nothing is recorded until you press it.'},
+  speaking:{ar:'التطبيق بيتكلّم. الكلام مكتوب فوق. دوسة على الميكروفون توقّف الكلام وتسمعك على طول.',en:'The app is talking. The words are shown above. Tapping the mic stops the speech and listens straight away.'},
+  asking:{ar:'أول مرة بس: بنقول ليه محتاجين الميكروفون قبل ما الموبايل يسأل.',en:'First time only: we say why we need the mic before the phone asks.'},
+  listening:{ar:'بيسمع. الحلقة بتنبض. دوسة تانية تقفل.',en:'Listening. The ring pulses. Tap again to finish.'},
+  processing:{ar:'بيفهم الكلام. شكل مختلف عن الاستماع علشان ماتتكلّمش في الوقت ده.',en:'Working it out. Looks different from listening so you do not keep talking.'},
+  implicit:{ar:'سمع إجابة واحدة: بيقولها بصوت عالي ويكمّل. زرار "غيّر" موجود.',en:'Heard one answer: says it back and moves on. A Change button stays visible.'},
+  explicit:{ar:'سمع كذا معلومة مرة واحدة: بيعرضهم ويسأل "صح؟" قبل ما يكمّل.',en:'Several facts at once: show them, ask “right?”, then move on.'},
+  nospeech:{ar:'ماحدش اتكلّم. مفيش حاجة اتأكدت ومفيش حاجة اتغيّرت.',en:'Nobody spoke. Nothing confirmed, nothing changed.'},
+  notunderstood:{ar:'مافهمش. بيدّي مثال قصير ويوري الصور.',en:'Did not understand. Gives a short example and points to the pictures.'},
+  fallback:{ar:'غلط مرتين: الصور بقت هي الطريق الأساسي. الميكروفون لسه موجود.',en:'Two misses: pictures become the main route. The mic is still there.'},
+  denied:{ar:'الميكروفون مرفوض: مش هنسأل تاني. الصور والصوت بيكمّلوا الرحلة كلها.',en:'Mic refused: we do not ask again. Pictures plus audio finish the whole journey.'},
+  audiooff:{ar:'الصوت مش شغال: الكلام المكتوب والصور موجودين. ده مش نفس رفض الميكروفون.',en:'Sound failed: text and pictures remain. This is different from a refused mic.'}
+};
+const def={
+  num:'00',title:'Voice controller & every voice state',
+  states:Object.keys(EXPLAIN).map(k=>({id:k,name:k,note:EXPLAIN[k].en})),
+  onShow(ctx){
+    const k=ctx.state;
+    if(k==='implicit'){ctx.lastHeard={chips:[{ar:'برسيم',en:'Berseem'},{ar:'علف للمواشي',en:'animal feed'}],snap:JSON.stringify(ctx.data)};}
+    else if(k==='explicit'){ctx.heard={said:{ar:'برسيم للمواشي لحد حشة عشرين مايو، وبعده ذرة',en:'Berseem for the animals until the 20 May cut, then maize'},chips:[{text:{ar:'برسيم · علف',en:'Berseem · feed'}},{text:{ar:'آخر حشة ٢٠ مايو',en:'Last cut 20 May'}},{missing:true,text:{ar:'السنة؟',en:'Year?'}},{text:{ar:'بعده: ذرة',en:'Then: maize'}}]};}
+    else if(k==='fallback'){ctx.misses=2;ctx.voice='fallback';}
+    else if(k==='denied'){ctx.micDenied=true;ctx.voice='denied';}
+    else if(k==='audiooff'){ctx.voice='audiooff';}
+    else if(k!=='implicit'&&k!=='explicit')ctx.voice=k;
+    if(k!=='denied')ctx.micDenied=false;
+  },
+  quiet:()=>true,
+  caption:false, // the explainer notice already says what is happening
+  prompt:()=>({ar:'هتزرع إيه في الموسم الأول؟',en:'What will you grow in season 1?'}),
+  progress:ctx=>ctx.phone?{crops:[null,null,null,null],now:0}:null,
+  render(ctx){
+    const L=ctx.locale;
+    return `<div class="notice">${ctx.t(EXPLAIN[ctx.state])}</div>${ctx.heard?'':`<h2 class="question">${ctx.t(def.prompt(ctx))}</h2>
+      <div class="tiles">${['berseem','maize','wheat','sorghum'].map(c=>`<div class="tile-wrap"><button class="tile" data-act="pick" aria-pressed="false"><span class="art">${crop(c)}</span>${ctx.t(CROPS[c])}</button><button class="hear" data-act="hear" aria-label="${L==='ar'?'اسمع':'Listen'}: ${ctx.t(CROPS[c])}">${icon('speaker')}</button></div>`).join('')}</div>`}`;
+  },
+  utterances:()=>[],
+  notes:[
+    'One dock, one place for all audio, at the bottom in thumb reach: [repeat/stop] [what is happening, in words] [mic].',
+    'Push-to-talk: tap to start, tap to finish. No always-listening. Android Chrome has no on-device Web Speech and continuous mode is unreliable (research note in the plan).',
+    'Every state is named in words, not only by colour or animation. Reduced motion removes the pulse.',
+    'Speaking and listening never overlap. Tapping the mic during speech stops it first (barge-in).',
+    'Mic permission is requested only on the first mic tap, after a one-line reason. Never on arrival. Never re-asked after a refusal.',
+    'Use this lab to review wording and look of each state. The dock is shared by every other lab.'
+  ]
+};
+Lab.page(def);
+})();
+</script>
+</body>
+</html>
