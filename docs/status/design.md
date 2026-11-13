@@ -17,6 +17,11 @@
 `design.md` §2 (sand/terracotta palette) is **superseded** by Fieldlight. Its interaction,
 accessibility and status-language sections still apply.
 
+**13 Nov:** `work/ux-phase-3/` restored to `main` from the handoff branch (`0122e92`). It had
+been dropped by a `/work/*` ignore rule. Content unchanged except two links to renamed docs
+(now `docs/design/fieldlight.md`, `docs/reports/phase-3-visual-options.md`). Verified:
+`check-hybrid.cjs` and `check-preview.cjs` pass. No browser check run.
+
 ## History of the design rounds
 
 V1 → V2 → V3 wireframes (12 Nov) → three visual options → Fieldlight Hybrid. Reviews:

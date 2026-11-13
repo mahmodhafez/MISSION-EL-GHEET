@@ -35,6 +35,7 @@ checkpoint-*/
 # Matching review previews are required by the offline parity checks.
 !/work/ux-phase-2/preview.html
 !/work/ux-phase-2/preview-v3.html
+!/work/ux-phase-3/
 wandb/
 mlruns/
 
