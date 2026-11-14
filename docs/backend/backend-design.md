@@ -2,11 +2,26 @@
 
 **Read this if…** you're writing backend code: module layout, SQLite, ML bundle, i18n, voice.
 
-Status: Approved  (D1–D8); §2 and §12 predate the `meg_core` decision, see status Q3 · Owner: Yahya. Last reviewed .
+Status: Approved (D1–D8); D6 superseded 14 Nov (Gemini). §2 and §12 are the original plan; **see "As built" below for what exists** · Owner: Yahya. Last reviewed 14 Nov 2026.
 
 Approved by the user on  (decisions D1–D8 below). This document defines the backend code structure, runtime data, persistence, the ML ↔ backend interface, and the voice and bilingual design. It is the implementation map for [ARCHITECTURE.md](architecture.md). Wire types live in [API_CONTRACTS.md](api-contracts.md). Planner semantics live in [PLANNER_SPEC.md](../planner/planner-spec.md). Where this document simplifies an earlier contract for the hackathon MVP, [API_CONTRACTS.md §0](api-contracts.md#0-mvp-revision-) records the change.
 
 Design goal: a backend that is correct, testable and small enough for two developers to build during the hackathon. Keep the scientific rules strict; keep the machinery around them simple.
+
+## As built (14 Nov 2026)
+
+What exists on `chore/final-integration`, where it differs from the plan below. Endpoint states: [status/backend.md](../status/backend.md).
+
+| Planned (below) | Built |
+|---|---|
+| Planner rules in `backend/app/planner/` (§2) | Planner lives in `packages/meg-core` (Amr + Astra). `backend/app/planner/` has only `adapter.py` (planner JSON codec, reviewed-KB release, per-request `bind_profiles`) and `answers.py` (app answers → snapshot) |
+| `backend/app` run from `backend/` | One package `backend.app`, run from the repo root (`uvicorn backend.app.main:app`), tests `pytest backend/tests` |
+| `data/release/` committed (D8) | Reviewed KB ships inside `meg_core` (hash-pinned); climate data in `refaat-data-ml/data` |
+| Deterministic parsers (D6) | Gemini strict extraction + validation (§8.3), untested with a key |
+| Replay in `backend/app/replay/` by Yahya | Built by Mahmoud, hardened by Amr; served at `POST /scenarios/{id}/replay` |
+| Templates in `data/release/content/` | `backend/app/i18n/messages.json` (+ `formatting.py`, `render.py`) |
+| pydantic-settings, uv | Plain dataclass `Settings` from `MEG_*` env / `backend/.env`; hashed `requirements.lock` + `pip.conf` (dependency rules) |
+| Default port 8000 | 8787 (8000 is often taken on dev machines) |
 
 ## Approved decisions
 
@@ -452,7 +467,7 @@ Returns `{"status": "ready", "audio_url": "/api/v1/audio/3fa1….mp3", "template
 
 - Errors use the envelope in API_CONTRACTS §6. A cross-season conflict is a `200` planning result, never an error.
 - Logs contain request ID, path, status, duration and error code. Never transcripts, audio or full scenario bodies.
-- Local development: Vite proxies `/api` to `uvicorn app.main:app --reload`. Demo: FastAPI serves the built frontend from one process.
+- Local development: Vite proxies `/api` to `uvicorn backend.app.main:app --port 8787` (run from the repo root; `MEG_API_URL` overrides). Demo: FastAPI serves the built frontend from one process (not built yet).
 
 ## 11. Testing
 

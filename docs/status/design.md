@@ -2,7 +2,7 @@
 
 **Read this if…** you're asking "which design is approved and what's still open?"
 
-**As of **, last commit `0122e92`. Owner: Amr. If this is far behind `git log`, trust git.
+**As of 2026-11-14**, branch `chore/final-integration`. Owner: Amr. If this is far behind `git log`, trust git.
 
 ---
 
@@ -43,11 +43,18 @@ been dropped by a `/work/*` ignore rule. Content unchanged except two links to r
   was incomplete; lab 02 asks the berseem sowing date. Planner output is still in progress, so this is a snapshot
   ([voice-first.md](../design/voice-first.md) §3a). `check-labs.cjs` and the headless run pass.
 
+- **14 Nov, the app:** the Phase 4 labs are now implemented as the React app (`frontend/`, see
+  [status/frontend.md](frontend.md)); the labs stay as the design reference. New since the labs: crops come from the reviewed
+  KB catalogue (8 offerable, all "needs review"), coloured drawings for rice, faba bean, sugar beet and Egyptian cotton
+  (placeholders for Moaaz's pictures), all crops on one screen (row tiles, 2 columns on phone, 4 on desktop), real Season
+  Replay cards. A four-agent visual review of all 22 screens plus an automated audit at 12 widths (360–1440 px, AR/EN) fixed
+  RTL icon mirroring, badges, spacing, gutters, dock captions and status colours; the audit is clean.
+
 ## History of the design rounds
 
 V1 → V2 → V3 wireframes (12 Nov) → three visual options → Fieldlight Hybrid. Reviews:
-[V2](../reports/-wireframe-v2-review.md), [V3](../reports/-wireframe-v3-review.md),
-[visual options](../reports/-phase-3-visual-options.md).
+[V2](../reports/wireframe-v2-review.md), [V3](../reports/wireframe-v3-review.md),
+[visual options](../reports/phase-3-visual-options.md).
 
 ## Not done
 

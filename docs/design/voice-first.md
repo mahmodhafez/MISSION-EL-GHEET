@@ -2,7 +2,7 @@
 
 **Read this if…** you're designing or building any screen's voice behaviour, or reviewing the Phase 4 labs.
 
-Status: Proposed 13 Nov 2026 by Yahya, needs Amr's review · Owner: Amr · Last reviewed 13 Nov 2026.
+Status: Proposed 13 Nov 2026 by Yahya, needs Amr's review; implemented in the app 14 Nov (`frontend/`) · Owner: Amr · Last reviewed 14 Nov 2026.
 
 Builds on [design.md](design.md) (interaction, accessibility, status language) and [fieldlight.md](fieldlight.md) (visuals); it changes neither. Evidence: [voice-first research report](../reports/2026-11-13-voice-first-research.md). Labs: [work/ux-phase-4/](../../work/ux-phase-4/index.html).
 
@@ -54,6 +54,14 @@ The farmer says or taps what they will grow in each of the four seasons and what
 - **The season is the headline** on every lab 02 question: a big winter (cloud) or summer (sun) card with “Season 1 of 4” and its years; the question sits smaller under it.
 - **Dates are limited to the season and to the future.** Month buttons show only the season's months, each with its year, so touch input never asks for a year; months and days before today are disabled. A spoken date outside the season or in the past gets a one-line reason. **Placeholder windows:** winter October→May, summer April→October. The planner spec says crop profiles set the supported dates, so these windows need the planner owner's sign-off (open question 6).
 - **The practice mic is the picture itself** (lab 01): tap, talk, tap again; the labs simulate the result and never open the real microphone.
+- **Many crops (reviewed KB, 8 offerable):** all crops on one screen, never paged: row tiles (picture | name | 44 px listen
+  button inset 8 px) in full rows, 2 columns below 820 px, 4 above. One "needs review" note beside the question instead of a
+  badge per tile. Research-only crops (watermelon, strawberry, cantaloupe, harankash) are not selectable (no planner profile);
+  showing them greyed as "still being studied" is an open option.
+- **Arabic direction:** Back and forward arrows mirror in RTL; Arabic year ranges keep the earlier year on the right; Arabic
+  decimals use "٫". Names never break inside a word; an icon stays on the same line as its date.
+- **Every width, not just two:** the layout is checked at 360, 390, 430, 600, 650, 700, 768, 820, 900 (short), 1024 (short),
+  1280 and 1440 px for clipped text, overlap, overflow, word breaks, buttons touching borders and scrolling.
 - Logo: `media/brand/mission-el-gheet-logo.svg` (plus cream-gold and currentColor variants), supplied by Yahya 13 Nov.
 - Targets stay at design.md sizes: 48 px minimum, 56–60 px primary, 84 px mic (76 px on phone).
 

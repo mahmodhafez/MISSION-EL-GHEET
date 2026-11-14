@@ -36,7 +36,7 @@ From the [ML plan](../ml/plan.md) (13 Nov):
 ## Not in git (must be transferred)
 
 `docs/VALIDATION_ARTIFACTS.zip` (468 MB), `ML_HANDOFF.zip`, the release CSVs. See
-[artifact transfer](../archive/handoff-/ARTIFACT_TRANSFER.md).
+[artifact transfer](../archive/handoff/ARTIFACT_TRANSFER.md).
 
 ## Known problems
 

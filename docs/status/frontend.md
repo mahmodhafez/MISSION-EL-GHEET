@@ -2,7 +2,7 @@
 
 **Read this if…** you're asking "is the React app built? what screens exist?"
 
-**As of 2026-11-14**, branch `frontend/app-shell` (from `chore/app-integration` = main + planner/candidate-generation + design/voice-first-labs). Owner(s): Yahya (implementation), Amr (final polish). Implementation pending unless explicitly verified below.
+**As of 2026-11-14**, branch `chore/final-integration` (all team work merged; PR to `main` pending review). Owner(s): Yahya (implementation), Amr (final polish).
 
 ---
 
@@ -10,12 +10,14 @@
 
 | # | Task | Notes |
 |---|---|---|
-| 1 | ~~HTTP adapter~~ done 14 Nov (`VITE_API_BASE`); still to do: types generated from the backend OpenAPI | Handwritten types for now |
-| 1b | Ask preparation days (and harvest dates) so the planner can compute “why” | Without them the server result has no `preparation_shortfall` |
-| 2 | Real speech output: pre-generated ElevenLabs files via `/speech/tts` (Moaaz generates and reviews) | Device voice, labelled, until then |
-| 3 | `/speech/interpret` (Gemini extraction) instead of the dev keyword stand-in | Backend design §8.3 |
-| 4 | Save/reload Evidence Card, replay and forecast against the backend | Currently honest "unavailable" states |
-| 5 | Opening long sentence (several seasons in one utterance) and "Change" undo per field | Lab 02 state 2 |
+| 1 | Ask preparation days and harvest dates, so the planner can compute “why” | Server results have no `preparation_shortfall` without them |
+| 2 | Real crop pictures from Moaaz + a farmer recognition test | Current drawings are placeholders |
+| 3 | Decide whether research-only crops show greyed as “still being studied” | Today they are hidden (not selectable) |
+| 4 | Speech on a real Android phone: recognition (ar-EG) and Gemini extraction with a key | Dev keyword stand-in is used when the server has no key |
+| 5 | Real audio: pre-generated ElevenLabs files via `/speech/tts` (Moaaz) | Device voice, labelled, until then |
+| 6 | Types generated from the backend OpenAPI; reload a saved card | Handwritten types; save works, reload not shown |
+| 7 | Opening long sentence (several seasons in one utterance) and per-field “Change” undo | Lab 02 state 2 |
+| 8 | Commit the UI audit as a repeatable check | Lives in a local scratch script (uses a Playwright copy outside the repo); adding it needs a vetted dev dependency |
 
 ## In flight
 

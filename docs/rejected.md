@@ -47,7 +47,7 @@ Last reviewed .
 
 | Idea | Status | Why | Date / source |
 |---|---|---|---|
-| Terracotta as the main action colour | Rejected | Reads like the "rejected" red | 12 Nov, [phase 3 options](reports/-phase-3-visual-options.md) |
+| Terracotta as the main action colour | Rejected | Reads like the "rejected" red | 12 Nov, [phase 3 options](reports/phase-3-visual-options.md) |
 | Dashboard tiles instead of arched season cards | Rejected | Fieldlight Hybrid keeps botanical arches | 13 Nov, [frontend handoff](planner/frontend-handoff.md) |
 | Drag as the only way to change a date | Rejected | Needs keyboard/touch alternatives and explicit confirmation | 11 Nov, [architecture](backend/architecture.md) |
-| Compulsory language-choice screen at start | Rejected | Arabic default + header switch | 12 Nov, [phase 3 options](reports/-phase-3-visual-options.md) |
+| Compulsory language-choice screen at start | Rejected | Arabic default + header switch | 12 Nov, [phase 3 options](reports/phase-3-visual-options.md) |

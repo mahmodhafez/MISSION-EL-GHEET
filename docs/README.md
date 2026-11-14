@@ -17,7 +17,7 @@ evidence, never edited · **Archive** = superseded, history only.
 | [rejected.md](rejected.md) | Ideas already turned down or deferred |
 | [glossary.md](glossary.md) | UH-001, P0, ET0, Astra… |
 | [rules/working.md](rules/working.md) · [rules/git.md](rules/git.md) · [rules/docs.md](rules/docs.md) | How to work, branch/commit/PR, write docs |
-- [rules/dependencies.md](rules/dependencies.md): supply-chain rules: 14-day minimum package age, exact pins, hashed locks, no install scripts.
+| [rules/dependencies.md](rules/dependencies.md) | Supply-chain rules: 14-day minimum package age, exact pins, hashed locks, no install scripts |
 
 ## Specs by area
 
@@ -32,8 +32,8 @@ evidence, never edited · **Archive** = superseded, history only.
 | Science | [science/evidence-access.md](science/evidence-access.md): report hashes and local-only files | Current | Refaat |
 | Backend | [backend/architecture.md](backend/architecture.md): system boundaries, journey, milestones | Approved 11 Nov | Yahya |
 | Backend | [backend/voice-generation.md](backend/voice-generation.md): generating all app audio with ElevenLabs (gates, voices, run, checks) | Proposed 13 Nov | Yahya |
-| Backend | [backend/backend-design.md](backend/backend-design.md): modules, SQLite, ML bundle, voice, i18n (D1–D8) | Approved 12 Nov; needs `meg_core` update (Q3) | Yahya |
-| Backend | [backend/api-contracts.md](backend/api-contracts.md): wire types and endpoints (**§0 overrides**) | Approved 12 Nov | Yahya |
+| Backend | [backend/backend-design.md](backend/backend-design.md): modules, SQLite, ML bundle, voice, i18n (D1–D8) | Approved 12 Nov; "As built" section 14 Nov | Yahya |
+| Backend | [backend/api-contracts.md](backend/api-contracts.md): wire types and endpoints (**§0 overrides; §0b = as implemented**) | Approved 12 Nov; §0b 14 Nov | Yahya |
 | Backend | [backend/ml-contract.md](backend/ml-contract.md): **the ML ↔ backend forecast bundle contract** | Proposed 13 Nov | Yahya |
 | Backend | [backend/core-integration.md](backend/core-integration.md): backend ↔ `meg_core` / `climate_data` calls | Proposed 13 Nov | Yahya |
 | Planner | [planner/blueprint.md](planner/blueprint.md): planner architecture, D01–D10, `meg_core` layout §9.1 | Proposed 13 Nov (Q5) | Amr / Karim |
@@ -59,7 +59,7 @@ evidence, never edited · **Archive** = superseded, history only.
 | Design | [design/design.md](design/design.md): Season Path interaction, accessibility, components (§2 colours superseded) | Approved 11 Nov | Amr |
 | Design | [design/fieldlight.md](design/fieldlight.md): Fieldlight Hybrid visual rules and tokens | Approved 12 Nov (Q8) | Amr |
 | Design | [design/ux-phase-1.md](design/ux-phase-1.md): journey review and refinements | Approved 11 Nov | Amr |
-| Design | [design/voice-first.md](design/voice-first.md): voice rules, one-screen layout, Phase 4 page labs | Proposed 13 Nov | Amr |
+| Design | [design/voice-first.md](design/voice-first.md): voice rules, one-screen layout, Phase 4 page labs | Proposed 13 Nov; implemented in the app 14 Nov | Amr |
 
 ## Reports (frozen, dated)
 
@@ -75,10 +75,10 @@ evidence, never edited · **Archive** = superseded, history only.
 | [validation_equations_review](reports/validation_equations_review.md) | Independent ET0 review |
 | [validation_model_execution](reports/validation_model_execution.md) | Actual LoRA training results |
 | [MISSION_EL_GHEET_Validation_Verdict](reports/MISSION_EL_GHEET_Validation_Verdict.md) | Overall readiness verdict |
-| [-scientific-validation-fixes](reports/-scientific-validation-fixes.md) | Science doc corrections |
-| [-pre-push-science-audit](reports/-pre-push-science-audit.md) | Pre-push checkpoint review |
-| [-wireframe-v2-review](reports/-wireframe-v2-review.md), [v3](reports/-wireframe-v3-review.md) | Wireframe iterations |
-| [-phase-3-visual-options](reports/-phase-3-visual-options.md) | Three visual identities compared |
+| [-scientific-validation-fixes](reports/scientific-validation-fixes.md) | Science doc corrections |
+| [-pre-push-science-audit](reports/pre-push-science-audit.md) | Pre-push checkpoint review |
+| [-wireframe-v2-review](reports/wireframe-v2-review.md), [v3](reports/wireframe-v3-review.md) | Wireframe iterations |
+| [-phase-3-visual-options](reports/phase-3-visual-options.md) | Three visual identities compared |
 
 The first seven are byte-identical copies of files in the validation ZIP (hashes in
 [evidence-access](science/evidence-access.md)), so their internal links point at the ZIP's
@@ -88,16 +88,16 @@ original layout.
 
 | Doc | Superseded by |
 |---|---|
-| [archive/project-status-.md](archive/project-status-.md) | `status/` |
-| [archive/handoff-.md](archive/handoff-.md) | `decisions.md`, `team.md` |
-| [archive/frontend-milestone-1-.md](archive/frontend-milestone-1-.md) | `status/frontend.md` (its event-start-gate research is still Q7) |
-| [archive/handoff-/](archive/handoff-/) | Recovery snapshot inventory, artifact transfer and Yahya's handoff |
+| [archive/project-status.md](archive/project-status.md) | `status/` |
+| [archive/handoff.md](archive/handoff.md) | `decisions.md`, `team.md` |
+| [archive/frontend-milestone-1.md](archive/frontend-milestone-1.md) | `status/frontend.md` (its event-start-gate research is still Q7) |
+| [archive/handoff/](archive/handoff/) | Recovery snapshot inventory, artifact transfer and Yahya's handoff |
 
 Older originals: branch `handoff/full-project-precleanup-` and `archive-snapshot/`.
 
 ## Old → new paths
 
 Docs moved on . If a script or an old note uses a former path, see
-[archive/path-map-.txt](archive/path-map-.txt).
+[archive/path-map.txt](archive/path-map.txt).
 
 - [13 November recovery and contract review](reports/2026-11-13-recovery.md): verified local subset, remaining contract decisions and implementation boundaries.

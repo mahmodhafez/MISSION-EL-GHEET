@@ -12,9 +12,9 @@ Last reviewed . Sources: the archived status and handoff files and the specs lin
 
 | Date | Decision | By | Detail |
 |---|---|---|---|
-| 11 Nov | Sakha (Kafr El-Sheikh) is the research locality. Published soil ≠ farmer's field. | User/Amr | [handoff](archive/handoff-.md) |
+| 11 Nov | Sakha (Kafr El-Sheikh) is the research locality. Published soil ≠ farmer's field. | User/Amr | [handoff](archive/handoff.md) |
 | 11 Nov | Keep all four crops (wheat, berseem, grain maize, grain sorghum) and all seven features (FR-01…07). Removing one needs Amr's approval. Sorghum stays evidence-gated. | User/Amr | [product](product/product.md) |
-| 11 Nov | PRODUCT, SCIENCE, DATA_SPEC, ML_EXPERIMENT approved as working specs. | User/Amr | [handoff](archive/handoff-.md) |
+| 11 Nov | PRODUCT, SCIENCE, DATA_SPEC, ML_EXPERIMENT approved as working specs. | User/Amr | [handoff](archive/handoff.md) |
 | 11 Nov | UH-001 (Uncle Hussein) is the reference case: P0 `rejected`, R1/R2 `needs_review`, zero feasible alternatives. | Team | [reference scenario](product/reference-scenario.md) |
 | 11 Nov | Egyptian Arabic + English voice is core. No speech provider or paid service chosen yet. | User/Amr | [product](product/product.md) |
 
@@ -51,6 +51,6 @@ Last reviewed . Sources: the archived status and handoff files and the specs lin
 
 | Date | Decision | By | Detail |
 |---|---|---|---|
-| 13 Nov | Cleanup happens on `cleanup/yahya-preintegration`; `handoff/full-project-precleanup-` stays frozen; nothing merges to `main` automatically. | Amr | [handoff](archive/handoff-/YAHYA_HANDOFF.md) |
+| 13 Nov | Cleanup happens on `cleanup/yahya-preintegration`; `handoff/full-project-precleanup-` stays frozen; nothing merges to `main` automatically. | Amr | [handoff](archive/handoff/YAHYA_HANDOFF.md) |
 | 13 Nov | Docs reorganised into `docs/<area>/`; one `AGENTS.md` for all agents; per-area status files; git rules in `rules/git.md`. | Yahya | this cleanup |
 | 14 Nov | **Dependency rules:** minimum release age 14 days for every package and tool (enforced by pnpm `minimum-release-age` and pip `uploaded-prior-to`), exact pins, hashed lock files, wheels only, no install scripts, pnpm pinned by hash via corepack. | Yahya | [rules/dependencies.md](rules/dependencies.md) |
