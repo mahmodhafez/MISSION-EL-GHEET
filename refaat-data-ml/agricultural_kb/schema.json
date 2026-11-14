@@ -1,0 +1,604 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MISSION EL GHEET agricultural KB v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kb_version",
+    "provenance",
+    "localities",
+    "crops",
+    "sources",
+    "evidence",
+    "rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "agricultural-kb/1"
+      ]
+    },
+    "kb_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ledger",
+        "evidence_register",
+        "source_manifest"
+      ],
+      "properties": {
+        "ledger": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_register": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_manifest": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "localities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locality_id",
+          "name",
+          "climate_site_id"
+        ],
+        "properties": {
+          "locality_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "climate_site_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "crops": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "crop_id",
+          "display_name",
+          "purpose",
+          "rule_ids"
+        ],
+        "properties": {
+          "crop_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+          },
+          "display_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rule_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "title",
+          "url",
+          "version"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https?://"
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence_id",
+          "source_ids",
+          "scientific_status",
+          "claim",
+          "locality",
+          "crop_context",
+          "units",
+          "locator",
+          "limitations",
+          "review_required",
+          "notes",
+          "source_opened",
+          "review_date"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "scientific_status": {
+            "type": "string",
+            "enum": [
+              "VERIFIED",
+              "CONDITIONAL",
+              "DERIVED",
+              "NOT APPLICABLE",
+              "UNVERIFIED",
+              "BLOCKED"
+            ]
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locality": {
+            "type": "string",
+            "minLength": 1
+          },
+          "crop_context": {
+            "type": "string",
+            "minLength": 1
+          },
+          "units": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "limitations": {
+            "type": "string",
+            "minLength": 1
+          },
+          "review_required": {
+            "type": "string",
+            "minLength": 1
+          },
+          "notes": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_opened": {
+            "type": "string",
+            "minLength": 1
+          },
+          "review_date": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "crop_ids",
+          "rule_type",
+          "rule_label",
+          "parameters",
+          "research_context",
+          "source_ids",
+          "evidence_ids",
+          "scientific_status",
+          "local_applicability",
+          "approval",
+          "enforcement",
+          "conditions",
+          "unresolved_requirements",
+          "source_activation_note",
+          "source_review_requirement",
+          "source_sign_off"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+          },
+          "crop_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "rule_type": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+          },
+          "rule_label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_text",
+              "units"
+            ],
+            "properties": {
+              "source_text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "units": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "research_context": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "locality",
+              "cultivar",
+              "season"
+            ],
+            "properties": {
+              "locality": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cultivar": {
+                "type": "string",
+                "minLength": 1
+              },
+              "season": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "scientific_status": {
+            "type": "string",
+            "enum": [
+              "VERIFIED",
+              "CONDITIONAL",
+              "DERIVED",
+              "NOT APPLICABLE",
+              "UNVERIFIED",
+              "BLOCKED"
+            ]
+          },
+          "local_applicability": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "locality_ids",
+              "reviewer",
+              "reference"
+            ],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "PENDING",
+                  "APPLICABLE",
+                  "NOT_APPLICABLE"
+                ]
+              },
+              "locality_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "reviewer": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              },
+              "reference": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              }
+            }
+          },
+          "approval": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "reviewer",
+              "approved_on",
+              "reference",
+              "scope_sha256"
+            ],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "PENDING",
+                  "APPROVED",
+                  "REJECTED",
+                  "REVOKED"
+                ]
+              },
+              "reviewer": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              },
+              "approved_on": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              },
+              "reference": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              },
+              "scope_sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "enforcement": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "constraint"
+            ],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "DISABLED",
+                  "ENABLED"
+                ]
+              },
+              "constraint": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "kind",
+                      "field",
+                      "lower",
+                      "upper",
+                      "units"
+                    ],
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "numeric_range"
+                        ]
+                      },
+                      "field": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+                      },
+                      "lower": {
+                        "type": "number"
+                      },
+                      "upper": {
+                        "type": "number"
+                      },
+                      "units": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "kind",
+                      "field",
+                      "start_month_day",
+                      "end_month_day"
+                    ],
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "calendar_window"
+                        ]
+                      },
+                      "field": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+                      },
+                      "start_month_day": {
+                        "type": "string",
+                        "pattern": "^[0-9]{2}-[0-9]{2}$"
+                      },
+                      "end_month_day": {
+                        "type": "string",
+                        "pattern": "^[0-9]{2}-[0-9]{2}$"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "kind",
+                      "field",
+                      "allowed"
+                    ],
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "category_set"
+                        ]
+                      },
+                      "field": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$"
+                      },
+                      "allowed": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 1,
+                        "uniqueItems": true
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "conditions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "unresolved_requirements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "source_activation_note": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_review_requirement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_sign_off": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "package": "project",
+  "dataset_version": "sakha-power-lst-20261110-et0-v1",
+  "started_utc": "2026-11-13T20:21:14.091027+00:00",
+  "python": "3.14.6",
+  "platform": "Windows 11",
+  "commands": [
+    {
+      "name": "verify_package",
+      "exit_code": 0,
+      "seconds": 0.13
+    },
+    {
+      "name": "public_unit_and_consumer_suite",
+      "exit_code": 0,
+      "seconds": 6.18,
+      "tests_run": 55,
+      "failed": 0,
+      "skipped": 0,
+      "passed_tests": [
+        "test_backend.ClimateConsumerTests.test_contract_signatures_and_json_serialization",
+        "test_backend.ClimateConsumerTests.test_daily_rows_flags_units_sources_and_copy_isolation",
+        "test_backend.ClimateConsumerTests.test_et0_and_temperature_inclusive_including_leap_day",
+        "test_backend.ClimateConsumerTests.test_fit_only_heat_threshold_and_inclusive_operator",
+        "test_backend.ClimateConsumerTests.test_leap_rules_exclude_anchor_for_every_plan_or_include_extra_day",
+        "test_backend.ClimateConsumerTests.test_paired_continuous_four_season_blocks_and_duration_accounting",
+        "test_backend.ClimateConsumerTests.test_partial_unavailable_and_invalid_dates",
+        "test_backend.ClimateConsumerTests.test_protected_commitments_must_be_comparable_and_inside_covered_years",
+        "test_backend.ClimateConsumerTests.test_references_have_separate_support_and_quantiles",
+        "test_backend.ClimateConsumerTests.test_release_identity_and_tampered_cache_refused",
+        "test_backend.ClimateConsumerTests.test_schema_mismatches_refused_and_planner_status_never_inferred",
+        "test_backend.ClimateConsumerTests.test_unknown_policy_missing_endpoint_and_overlap_do_not_produce_evidence",
+        "test_et0.DailyET0Tests.test_first_canonical_day_and_separate_sensitivities",
+        "test_et0.DailyET0Tests.test_invalid_and_missing_public_inputs",
+        "test_et0.DailyET0Tests.test_published_fao_examples_via_public_implementation",
+        "test_kb.AgriculturalKBTests.test_all_approval_scientific_and_applicability_states",
+        "test_kb.AgriculturalKBTests.test_dangling_duplicate_and_nonreciprocal_links_are_invalid",
+        "test_kb.AgriculturalKBTests.test_dated_named_and_scope_bound_approval_required",
+        "test_kb.AgriculturalKBTests.test_explicit_locality_and_all_conditions_required",
+        "test_kb.AgriculturalKBTests.test_import_is_byte_reproducible_and_preserves_research",
+        "test_kb.AgriculturalKBTests.test_linked_evidence_status_is_an_independent_gate",
+        "test_kb.AgriculturalKBTests.test_missing_invalid_json_and_structured_errors",
+        "test_kb.AgriculturalKBTests.test_missing_local_applicability_review_is_invalid",
+        "test_kb.AgriculturalKBTests.test_nonlocal_and_forage_sources_do_not_gain_sakha_applicability",
+        "test_kb.AgriculturalKBTests.test_original_27_rules_18_verified_four_crops_no_approval",
+        "test_kb.AgriculturalKBTests.test_pending_review_missing_evidence_and_constraint_block",
+        "test_kb.AgriculturalKBTests.test_portable_default_load_without_site_packages_or_models",
+        "test_kb.AgriculturalKBTests.test_queries_return_json_copies_and_include_shared_rules",
+        "test_kb.AgriculturalKBTests.test_scientific_verified_alone_and_approved_alone_cannot_activate",
+        "test_kb.AgriculturalKBTests.test_source_byte_tampering_rejected",
+        "test_kb.AgriculturalKBTests.test_stale_approval_after_rule_evidence_or_source_change",
+        "test_kb.AgriculturalKBTests.test_supported_constraint_shapes_and_invalid_boundaries",
+        "test_kb.AgriculturalKBTests.test_unknown_missing_wrong_types_and_forged_enforceability_rejected",
+        "test_ml.SeasonalReferenceTests.test_all_keyed_scoring_errors",
+        "test_ml.SeasonalReferenceTests.test_contexts_have_only_as_of_information_and_seven_disjoint_labels",
+        "test_ml.SeasonalReferenceTests.test_contiguous_schema_finite_numeric_and_date_validation",
+        "test_ml.SeasonalReferenceTests.test_descriptive_reference_separate_from_training",
+        "test_ml.SeasonalReferenceTests.test_exact_splits_and_leaps",
+        "test_ml.SeasonalReferenceTests.test_export_against_original_validation_metrics_for_each_target_and_lead",
+        "test_ml.SeasonalReferenceTests.test_leap_day_has_separate_phase_and_support",
+        "test_ml.SeasonalReferenceTests.test_modified_or_consumed_window_rejected",
+        "test_ml.SeasonalReferenceTests.test_new_year_circular_window",
+        "test_ml.SeasonalReferenceTests.test_schema_valid_value_tampering_changes_release_hash",
+        "test_p0.P0HandoffTests.test_combined_consumer_from_independent_folder_without_site_packages",
+        "test_p0.P0HandoffTests.test_original_delivery_all_hashes_and_schema_export_preserved",
+        "test_p0.P0HandoffTests.test_recipient_inventories_complete_and_no_experimental_weights",
+        "test_pipeline.AllRowRegressionTests.test_dates_partitions_and_source_provenance",
+        "test_pipeline.AllRowRegressionTests.test_original_archived_decimal_values_retained",
+        "test_pipeline.AllRowRegressionTests.test_recomputed_three_et0_paths_and_all_12_original_fixtures_per_snapshot",
+        "test_pipeline.AllRowRegressionTests.test_review_masks_and_extreme_values_remain",
+        "test_pipeline.IntegrityAndSchemaTests.test_all_six_archived_file_hashes",
+        "test_pipeline.IntegrityAndSchemaTests.test_duplicate_json_key_and_nonfinite_literals_rejected",
+        "test_pipeline.IntegrityAndSchemaTests.test_failed_or_repeat_build_preserves_destination",
+        "test_pipeline.IntegrityAndSchemaTests.test_invalid_observations_stop",
+        "test_pipeline.IntegrityAndSchemaTests.test_metadata_query_site_units_and_calendar"
+      ]
+    },
+    {
+      "name": "optimized_pipeline_guards",
+      "exit_code": 0,
+      "seconds": 2.71,
+      "tests_run": 9,
+      "failed": 0,
+      "skipped": 0,
+      "passed_tests": [
+        "test_pipeline.AllRowRegressionTests.test_dates_partitions_and_source_provenance",
+        "test_pipeline.AllRowRegressionTests.test_original_archived_decimal_values_retained",
+        "test_pipeline.AllRowRegressionTests.test_recomputed_three_et0_paths_and_all_12_original_fixtures_per_snapshot",
+        "test_pipeline.AllRowRegressionTests.test_review_masks_and_extreme_values_remain",
+        "test_pipeline.IntegrityAndSchemaTests.test_all_six_archived_file_hashes",
+        "test_pipeline.IntegrityAndSchemaTests.test_duplicate_json_key_and_nonfinite_literals_rejected",
+        "test_pipeline.IntegrityAndSchemaTests.test_failed_or_repeat_build_preserves_destination",
+        "test_pipeline.IntegrityAndSchemaTests.test_invalid_observations_stop",
+        "test_pipeline.IntegrityAndSchemaTests.test_metadata_query_site_units_and_calendar"
+      ]
+    },
+    {
+      "name": "rebuild_from_originals",
+      "exit_code": 0,
+      "seconds": 2.34
+    },
+    {
+      "name": "ml_onboarding_python_example",
+      "exit_code": 0,
+      "seconds": 0.41
+    },
+    {
+      "name": "ml_example",
+      "exit_code": 0,
+      "seconds": 0.44
+    },
+    {
+      "name": "ml_baseline",
+      "exit_code": 0,
+      "seconds": 0.38
+    },
+    {
+      "name": "optimized_kb_guards",
+      "exit_code": 0,
+      "seconds": 2.15,
+      "tests_run": 18,
+      "failed": 0,
+      "skipped": 0,
+      "passed_tests": [
+        "test_kb.AgriculturalKBTests.test_all_approval_scientific_and_applicability_states",
+        "test_kb.AgriculturalKBTests.test_dangling_duplicate_and_nonreciprocal_links_are_invalid",
+        "test_kb.AgriculturalKBTests.test_dated_named_and_scope_bound_approval_required",
+        "test_kb.AgriculturalKBTests.test_explicit_locality_and_all_conditions_required",
+        "test_kb.AgriculturalKBTests.test_import_is_byte_reproducible_and_preserves_research",
+        "test_kb.AgriculturalKBTests.test_linked_evidence_status_is_an_independent_gate",
+        "test_kb.AgriculturalKBTests.test_missing_invalid_json_and_structured_errors",
+        "test_kb.AgriculturalKBTests.test_missing_local_applicability_review_is_invalid",
+        "test_kb.AgriculturalKBTests.test_nonlocal_and_forage_sources_do_not_gain_sakha_applicability",
+        "test_kb.AgriculturalKBTests.test_original_27_rules_18_verified_four_crops_no_approval",
+        "test_kb.AgriculturalKBTests.test_pending_review_missing_evidence_and_constraint_block",
+        "test_kb.AgriculturalKBTests.test_portable_default_load_without_site_packages_or_models",
+        "test_kb.AgriculturalKBTests.test_queries_return_json_copies_and_include_shared_rules",
+        "test_kb.AgriculturalKBTests.test_scientific_verified_alone_and_approved_alone_cannot_activate",
+        "test_kb.AgriculturalKBTests.test_source_byte_tampering_rejected",
+        "test_kb.AgriculturalKBTests.test_stale_approval_after_rule_evidence_or_source_change",
+        "test_kb.AgriculturalKBTests.test_supported_constraint_shapes_and_invalid_boundaries",
+        "test_kb.AgriculturalKBTests.test_unknown_missing_wrong_types_and_forged_enforceability_rejected"
+      ]
+    },
+    {
+      "name": "backend_request_response",
+      "exit_code": 0,
+      "seconds": 0.7
+    },
+    {
+      "name": "backend_onboarding_python_example",
+      "exit_code": 0,
+      "seconds": 0.68
+    },
+    {
+      "name": "agricultural_kb_loader",
+      "exit_code": 0,
+      "seconds": 0.17
+    },
+    {
+      "name": "combined_backend_consumer",
+      "exit_code": 0,
+      "seconds": 0.68
+    }
+  ],
+  "checks": {
+    "byte_identical_rebuilt_files": {
+      "data/diagnostic_validation_targets.csv": true,
+      "data/fit_targets.csv": true,
+      "data/forecast_windows.csv": true,
+      "data/quality_flags.csv": true,
+      "data/release.json": true,
+      "data/sakha_daily.csv": true,
+      "data/source_manifest.json": true,
+      "provenance/source_manifest.json": true,
+      "reports/seasonal_screen_bounds.csv": true,
+      "reports/pipeline.json": true
+    },
+    "ml": {
+      "loader": {
+        "training_rows": 6574,
+        "validation_rows": 1096,
+        "origins": 36,
+        "first_issue": "2019-01-15",
+        "first_context_start": "2018-11-10",
+        "first_context_cutoff": "2019-01-08",
+        "context_days": 60,
+        "first_scored_dates": [
+          "2019-01-16",
+          "2019-01-17",
+          "2019-01-18",
+          "2019-01-19",
+          "2019-01-20",
+          "2019-01-21",
+          "2019-01-22"
+        ],
+        "prediction_rows": 504,
+        "mae": {
+          "tmax_c": 2.534365188507807,
+          "et0_mm_day": 0.583124450747929
+        }
+      },
+      "unique_issue_target_date_pairs": 252,
+      "byte_identical_baseline_files": {
+        "calendar_reference.csv": true,
+        "scored_predictions.csv": true,
+        "metrics.json": true
+      },
+      "metrics": {
+        "tmax_c": {
+          "mae": 2.534365188507807,
+          "rmse": 3.305463183133233,
+          "bias": 0.15511905200897702,
+          "interval_80_coverage": 0.7936507936507936,
+          "interval_mean_width": 8.013392709550404,
+          "mean_pinball_loss": 0.7852983023123765,
+          "unit": "degC",
+          "scored_target_days": 252,
+          "mae_by_lead_1_to_7": [
+            2.550138791402181,
+            2.365416897667779,
+            2.5015278657277427,
+            2.576527860429552,
+            2.604166719648573,
+            2.9804168277316623,
+            2.162361356947157
+          ]
+        },
+        "et0_mm_day": {
+          "mae": 0.583124450747929,
+          "rmse": 0.8052144814149734,
+          "bias": -0.11981442759907435,
+          "interval_80_coverage": 0.8174603174603174,
+          "interval_mean_width": 1.968981727531978,
+          "mean_pinball_loss": 0.1896629183790671,
+          "unit": "mm/day",
+          "scored_target_days": 252,
+          "mae_by_lead_1_to_7": [
+            0.577890028556188,
+            0.5857876439889272,
+            0.590567883518007,
+            0.518078174855974,
+            0.5945449305905236,
+            0.588863343000412,
+            0.6261391507254707
+          ]
+        }
+      }
+    },
+    "backend": {
+      "matches_shipped_example": true,
+      "byte_identical_example": true,
+      "eligible_anchors": [
+        2015,
+        2016
+      ],
+      "excluded_anchors": [
+        {
+          "anchor": 2024,
+          "reason": "incomplete_continuous_block",
+          "first": "2024-01-01",
+          "last": "2026-12-31",
+          "coverage": {
+            "expected_days": 1096,
+            "valid_days": 1035,
+            "fraction": 0.9443430656934306
+          }
+        }
+      ],
+      "climate_methods_exercised": 7,
+      "application_backend_exercised": false
+    },
+    "agricultural_kb": {
+      "status": "NO_LOCAL_SIGN_OFF",
+      "rules": 27,
+      "scientifically_verified": 18,
+      "locally_approved": 0,
+      "enforceable": 0,
+      "actual_team_backend_tested": false
+    }
+  },
+  "shipped_files_verified": 102,
+  "status": "VERIFIED AND TESTED",
+  "finished_utc": "2026-11-13T20:21:31.174905+00:00"
+}

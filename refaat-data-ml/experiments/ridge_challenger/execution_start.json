@@ -1,0 +1,12 @@
+{
+  "started_utc": "2026-11-13T21:35:45.955051+00:00",
+  "existing_experiment_files": {
+    "approval.json": "301c2bcc2d7c23d9512e227b9352b6701b225c10d814aba675b17bb06a8a3198",
+    "audit.json": "308cad3bbe33bc1bb7dd9702090aeb476d6f87f2f9eebd7218ae16245665c5fd",
+    "audit_proposal.py": "495e44a041586eb41cbb9a2191cf94976bfb9ed89c6e33c3b14b72b603be9074",
+    "config.json": "3978160d209fdfb4dc024d11a9efe1f81b52c19647d2b0d31d962f686ab8c1bc",
+    "README.md": "1777b4255fff83f48b57c548541b690f4f6cf2e5c8d120bf6ab28313d271af98"
+  },
+  "original_package_manifest_sha256": "a49cc1fcad1b1ed91d645ce1e6fc31346c45619d80bc1e1f8325e986244921ce",
+  "approved_config_sha256": "3978160d209fdfb4dc024d11a9efe1f81b52c19647d2b0d31d962f686ab8c1bc"
+}

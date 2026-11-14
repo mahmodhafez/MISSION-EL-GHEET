@@ -1,0 +1,320 @@
+{
+  "status": "PROPOSAL_PENDING_USER_APPROVAL",
+  "ridge_fitted": false,
+  "scaler_fitted": false,
+  "ridge_outputs": "NOT YET GENERATED",
+  "previous_frozen_ridge_spec_found": false,
+  "search_scope": "existing project paths/config filenames and recursive Python/JSON/Markdown text; only historical no-Ridge statements found",
+  "config_sha256": "3978160d209fdfb4dc024d11a9efe1f81b52c19647d2b0d31d962f686ab8c1bc",
+  "unchanged_package_files_verified_before_and_after": 105,
+  "input_sha256": {
+    "fit_targets.csv": "24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2",
+    "diagnostic_validation_targets.csv": "362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc",
+    "forecast_windows.csv": "8fc0c0aa99f57ee47910c3cf3bd49eeb6b4f9cccf692aa9a821d8e9e73311a44"
+  },
+  "python": "3.14.6",
+  "installed_packages": {
+    "scikit-learn": "1.9.0",
+    "numpy": "2.4.6",
+    "scipy": "1.18.0",
+    "threadpoolctl": "3.5.0",
+    "joblib": "1.5.3"
+  },
+  "training_issue_bounds_from_calendar": {
+    "first": "2001-03-08",
+    "last": "2018-12-24",
+    "count": 6501
+  },
+  "training_features_constructed": false,
+  "baseline_predictions_match_existing_climatology_reference_exactly": true,
+  "baseline_dates_identical": true,
+  "baseline_metrics": [
+    {
+      "model": "seasonal_climatology",
+      "target": "tmax_c",
+      "mae": 2.534365188507807,
+      "rmse": 3.305463183133233,
+      "bias": 0.15511905200897702,
+      "samples": 252
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "et0_mm_day",
+      "mae": 0.583124450747929,
+      "rmse": 0.8052144814149734,
+      "bias": -0.11981442759907435,
+      "samples": 252
+    },
+    {
+      "model": "persistence",
+      "target": "tmax_c",
+      "mae": 3.7901585631900363,
+      "rmse": 5.093053292882002,
+      "bias": 0.6873809761471219,
+      "samples": 252
+    },
+    {
+      "model": "persistence",
+      "target": "et0_mm_day",
+      "mae": 0.887812657488717,
+      "rmse": 1.2298534622918764,
+      "bias": -0.1269239191971128,
+      "samples": 252
+    }
+  ],
+  "baseline_metrics_by_lead": [
+    {
+      "model": "seasonal_climatology",
+      "target": "tmax_c",
+      "lead_from_issue": 1,
+      "mae": 2.550138791402181,
+      "rmse": 3.3288968256519165,
+      "bias": -0.28708341386583114,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "tmax_c",
+      "lead_from_issue": 2,
+      "mae": 2.365416897667779,
+      "rmse": 3.184769296382036,
+      "bias": 0.2526390817430284,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "tmax_c",
+      "lead_from_issue": 3,
+      "mae": 2.5015278657277427,
+      "rmse": 3.379350792540617,
+      "bias": 0.09708354208204481,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "tmax_c",
+      "lead_from_issue": 4,
+      "mae": 2.576527860429552,
+      "rmse": 3.3125232976147765,
+      "bias": 0.21180544959174263,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "tmax_c",
+      "lead_from_issue": 5,
+      "mae": 2.604166719648573,
+      "rmse": 3.371870059137474,
+      "bias": 0.3527777459886339,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "tmax_c",
+      "lead_from_issue": 6,
+      "mae": 2.9804168277316623,
+      "rmse": 3.6297101855745755,
+      "bias": 0.0406945546468099,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "tmax_c",
+      "lead_from_issue": 7,
+      "mae": 2.162361356947157,
+      "rmse": 2.884644230243083,
+      "bias": 0.4179164038764106,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "et0_mm_day",
+      "lead_from_issue": 1,
+      "mae": 0.577890028556188,
+      "rmse": 0.737453342994537,
+      "bias": -0.15413274698787266,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "et0_mm_day",
+      "lead_from_issue": 2,
+      "mae": 0.5857876439889272,
+      "rmse": 0.8585789550185656,
+      "bias": -0.23270564277966818,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "et0_mm_day",
+      "lead_from_issue": 3,
+      "mae": 0.590567883518007,
+      "rmse": 0.8566294389605615,
+      "bias": -0.16153863734669155,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "et0_mm_day",
+      "lead_from_issue": 4,
+      "mae": 0.518078174855974,
+      "rmse": 0.662997409418773,
+      "bias": -0.11032833655675252,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "et0_mm_day",
+      "lead_from_issue": 5,
+      "mae": 0.5945449305905236,
+      "rmse": 0.7227589387184704,
+      "bias": -0.10934635996818542,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "et0_mm_day",
+      "lead_from_issue": 6,
+      "mae": 0.588863343000412,
+      "rmse": 0.8162087473021551,
+      "bias": -0.05732859836684333,
+      "samples": 36
+    },
+    {
+      "model": "seasonal_climatology",
+      "target": "et0_mm_day",
+      "lead_from_issue": 7,
+      "mae": 0.6261391507254707,
+      "rmse": 0.9463828555126138,
+      "bias": -0.013320671187506782,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "tmax_c",
+      "lead_from_issue": 1,
+      "mae": 3.6883332464430065,
+      "rmse": 4.915140385488368,
+      "bias": 0.27833329306708443,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "tmax_c",
+      "lead_from_issue": 2,
+      "mae": 3.7341666221618652,
+      "rmse": 4.982575998253682,
+      "bias": 0.8030556042989095,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "tmax_c",
+      "lead_from_issue": 3,
+      "mae": 3.5977776845296225,
+      "rmse": 4.878326238330308,
+      "bias": 0.650000360276964,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "tmax_c",
+      "lead_from_issue": 4,
+      "mae": 3.452499787012736,
+      "rmse": 4.700528541491379,
+      "bias": 0.7313888072967529,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "tmax_c",
+      "lead_from_issue": 5,
+      "mae": 3.841666433546278,
+      "rmse": 4.985030552438895,
+      "bias": 0.8677778244018555,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "tmax_c",
+      "lead_from_issue": 6,
+      "mae": 4.219999631245931,
+      "rmse": 5.642381859690468,
+      "bias": 0.5511111153496636,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "tmax_c",
+      "lead_from_issue": 7,
+      "mae": 3.996666537390815,
+      "rmse": 5.478105165588801,
+      "bias": 0.929999828338623,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "et0_mm_day",
+      "lead_from_issue": 1,
+      "mae": 0.8813890318075815,
+      "rmse": 1.1326561103465607,
+      "bias": -0.1571794781419966,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "et0_mm_day",
+      "lead_from_issue": 2,
+      "mae": 0.8726903961764442,
+      "rmse": 1.2559461640284504,
+      "bias": -0.23440654079119363,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "et0_mm_day",
+      "lead_from_issue": 3,
+      "mae": 0.9077485899130503,
+      "rmse": 1.2634109638139932,
+      "bias": -0.16744360989994472,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "et0_mm_day",
+      "lead_from_issue": 4,
+      "mae": 0.7855180833074782,
+      "rmse": 1.057123063898638,
+      "bias": -0.11803712447484334,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "et0_mm_day",
+      "lead_from_issue": 5,
+      "mae": 0.8682081467575498,
+      "rmse": 1.1552424874510494,
+      "bias": -0.12043008208274841,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "et0_mm_day",
+      "lead_from_issue": 6,
+      "mae": 0.8873134089840783,
+      "rmse": 1.2268830181180193,
+      "bias": -0.06494017110930549,
+      "samples": 36
+    },
+    {
+      "model": "persistence",
+      "target": "et0_mm_day",
+      "lead_from_issue": 7,
+      "mae": 1.0118209454748366,
+      "rmse": 1.4744227884381458,
+      "bias": -0.026030427879757352,
+      "samples": 36
+    }
+  ],
+  "interpretation": "Baseline-only audit; no Ridge result, model selection or independent test evaluation"
+}

@@ -1,0 +1,62 @@
+{
+  "dataset_version": "sakha-power-lst-20261110-et0-v1",
+  "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+  "site_id": "sakha_31.10_30.95",
+  "latitude_deg_n": 31.1,
+  "longitude_deg_e": 30.95,
+  "grid_elevation_m": 4.96,
+  "community": "AG",
+  "time_standard": "LST",
+  "api_version": "v2.10.3",
+  "start_date": "2001-01-01",
+  "end_date": "2026-10-31",
+  "files": {
+    "sakha_daily.csv": {
+      "bytes": 1405240,
+      "sha256": "62a2450684b14e668bc06167e0c820bc6312b6deaab5a5b322a33ee8d5098d94"
+    },
+    "quality_flags.csv": {
+      "bytes": 811084,
+      "sha256": "db650082761b27205a0ef8ebae852a28984f5bd296a7b1a8c7d1cb39de0567a6"
+    },
+    "fit_targets.csv": {
+      "bytes": 237070,
+      "sha256": "24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2"
+    },
+    "diagnostic_validation_targets.csv": {
+      "bytes": 39550,
+      "sha256": "362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc"
+    },
+    "forecast_windows.csv": {
+      "bytes": 3075,
+      "sha256": "8fc0c0aa99f57ee47910c3cf3bd49eeb6b4f9cccf692aa9a821d8e9e73311a44"
+    },
+    "source_manifest.json": {
+      "bytes": 4702,
+      "sha256": "823a1588691e86f5eb9c4a0a83580c4621c271ce59fd0d1e8dafb04be570ece0"
+    }
+  },
+  "source_manifest": "source_manifest.json",
+  "partitions": {
+    "fit": [
+      "2001-01-01",
+      "2018-12-31",
+      6574
+    ],
+    "diagnostic_validation": [
+      "2019-01-01",
+      "2021-12-31",
+      1096
+    ],
+    "reserve_not_blind": [
+      "2022-01-01",
+      "2025-12-31",
+      1461
+    ],
+    "2026_quarantine": [
+      "2026-01-01",
+      "2026-10-31",
+      304
+    ]
+  }
+}

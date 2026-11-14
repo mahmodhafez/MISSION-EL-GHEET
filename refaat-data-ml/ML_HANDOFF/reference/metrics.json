@@ -1,0 +1,56 @@
+{
+  "dataset_version": "sakha-power-lst-20261110-et0-v1",
+  "site_id": "sakha_31.10_30.95",
+  "method": "seasonal_climatology/train_2001_2018/linear_quantiles_pm15_f32/v1",
+  "reference_start": "2001-01-01",
+  "reference_end": "2018-12-31",
+  "split": "diagnostic_validation",
+  "origin_count": 36,
+  "train_rows": 6574,
+  "validation_rows": 1096,
+  "source_sha256": {
+    "fit_targets.csv": "24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2",
+    "diagnostic_validation_targets.csv": "362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc",
+    "forecast_windows.csv": "8fc0c0aa99f57ee47910c3cf3bd49eeb6b4f9cccf692aa9a821d8e9e73311a44"
+  },
+  "metrics": {
+    "tmax_c": {
+      "mae": 2.534365188507807,
+      "rmse": 3.305463183133233,
+      "bias": 0.15511905200897702,
+      "interval_80_coverage": 0.7936507936507936,
+      "interval_mean_width": 8.013392709550404,
+      "mean_pinball_loss": 0.7852983023123765,
+      "unit": "degC",
+      "scored_target_days": 252,
+      "mae_by_lead_1_to_7": [
+        2.550138791402181,
+        2.365416897667779,
+        2.5015278657277427,
+        2.576527860429552,
+        2.604166719648573,
+        2.9804168277316623,
+        2.162361356947157
+      ]
+    },
+    "et0_mm_day": {
+      "mae": 0.583124450747929,
+      "rmse": 0.8052144814149734,
+      "bias": -0.11981442759907435,
+      "interval_80_coverage": 0.8174603174603174,
+      "interval_mean_width": 1.968981727531978,
+      "mean_pinball_loss": 0.1896629183790671,
+      "unit": "mm/day",
+      "scored_target_days": 252,
+      "mae_by_lead_1_to_7": [
+        0.577890028556188,
+        0.5857876439889272,
+        0.590567883518007,
+        0.518078174855974,
+        0.5945449305905236,
+        0.588863343000412,
+        0.6261391507254707
+      ]
+    }
+  }
+}
