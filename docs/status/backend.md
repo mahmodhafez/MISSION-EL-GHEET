@@ -9,6 +9,17 @@ behind `git log`, trust git.
 
 ## Built and verified
 
+- **2026-11-14, four crops only:** `/catalogue` `crop_ids` lists only crops with reviewed-KB evidence (wheat, berseem,
+  grain_maize, grain_sorghum). Each `crops[]` entry gains `kb_evidence`. Speech extraction uses the same list.
+  Verified: backend 81 passed and 1 skipped.
+
+- **2026-11-14, research notes:** promise-test and `GET /results/{id}` now return `rendered.research`, the reviewed-KB
+  findings for each crop the farmer entered. Covered: wheat C01–C04, maize C14/C16, sorghum C19/C20 and berseem C09; Kc
+  values and free-text guidance go to `other`. The farmer's date is placed before, inside or after the sourced window.
+  Status is unchanged. The new `research.*` templates are bilingual, and the Arabic is a draft. Verified: 4 new tests
+  (`backend/tests/test_research.py`); full suite 81 passed and 1 skipped. Contract addition pending Amr
+  ([api-contracts §0b](../backend/api-contracts.md)).
+
 FastAPI app, package `backend.app`, run from the repo root:
 `backend/.venv/bin/uvicorn backend.app.main:app --port 8787`. It wraps the real `meg_core` planner
 (`packages/meg-core`), Refaat's reviewed agricultural KB and Mahmoud/Amr's Season Replay.
@@ -49,7 +60,8 @@ FastAPI app, package `backend.app`, run from the repo root:
 | 3 | Approve Refaat's KB schema and Amr's adapter conventions (year/leap, topic map) | Formal sign-off still pending; code already uses them |
 | 4 | Audio input: `/speech/interpret` takes the recorded clip and sends it to Gemini (decided 14 Nov); then test with a key on real Egyptian Arabic recordings; verify the model ID | Backend design §8.2–8.3 |
 | 4a | Deploy: Render + Vercel + UptimeRobot, check the client address once, set provider spending caps | [hosting.md](../backend/hosting.md). Rate limits, body caps and the daily voice ceiling are **built** (14 Nov, `core/limits.py`, 8 tests) |
-| 4b | Demo: whole sentences vs. record-once-and-swap-the-changing-words, same voice. **Kit ready (14 Nov):** [`backend/scripts/voice_test/`](../../backend/scripts/voice_test/README.md), handed to Moaaz; decide from his blind score sheet | [voice-generation Q4 (d)](../backend/voice-generation.md#8-open-questions); 13 Nov "offline only" stands until decided |
+| 4a2 | Deploy: merge to `main`, then follow [hosting.md](../backend/hosting.md) (Render Blueprint → client-IP check → Vercel → CORS → UptimeRobot → phone smoke test) | Build/start commands and a full production-build journey rehearsed locally 14 Nov; not yet run on Render |
+| 4b | Generate the real voice (Moaaz): `build_voice.py --generate` with the chosen Egyptian voice, then a listening pass in the app; decide whether to commit the clips | [voice build](../../backend/scripts/voice_build/README.md); pipeline verified with fake audio 14 Nov |
 | 5 | Shared Pydantic contracts and OpenAPI → TypeScript types | Requests still carry planner JSON; frontend types are handwritten |
 | 6 | Forecast bundle reader (ML contract) | Optional; must not block P0 |
 | 7 | Voice audio: Moaaz generates and reviews with ElevenLabs once wording is final | [voice-generation.md](../backend/voice-generation.md) |

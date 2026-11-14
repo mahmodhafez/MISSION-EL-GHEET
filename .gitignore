@@ -113,3 +113,7 @@ Thumbs.db
 
 # Backend local database and runtime files
 /backend/var/
+
+# Generated voice clips (backend/scripts/voice_build); committing them is a pending decision
+/frontend/public/audio/
+/backend/scripts/voice_build/out/

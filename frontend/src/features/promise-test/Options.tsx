@@ -27,7 +27,7 @@ export function Options() {
   const dates = review.map((c) => directChanges(c)[0]?.value).filter(Boolean) as string[];
   const prompt = feasible.length
     ? { ar: `لقينا ${num(feasible.length, 'ar')} بديل ماشي بالشروط دي.`, en: `We found ${feasible.length} alternative${feasible.length > 1 ? 's' : ''} that hold under these conditions.` }
-    : { ar: `مفيش بديل أكيد لسه.${dates.length ? ` فيه ${num(dates.length, 'ar')} ميعاد نراجعهم: ${dates.map((d) => dateText(d, 'ar', { noYear: true })).join(' و')}.` : ''}`, en: `No sure alternative yet.${dates.length ? ` There ${dates.length > 1 ? 'are' : 'is'} ${dates.length} date${dates.length > 1 ? 's' : ''} to check: ${dates.map((d) => dateText(d, 'en', { noYear: true })).join(' and ')}.` : ''}` };
+    : { ar: `مفيش بديل أكيد لسه.${dates.length ? ` فيه ${num(dates.length, 'ar')} ميعاد نراجعهم: ${dates.map((d) => dateText(d, 'ar', { noYear: true })).join(' و ')}.` : ''}`, en: `No sure alternative yet.${dates.length ? ` There ${dates.length > 1 ? 'are' : 'is'} ${dates.length} date${dates.length > 1 ? 's' : ''} to check: ${dates.map((d) => dateText(d, 'en', { noYear: true })).join(' and ')}.` : ''}` };
   const coverage = state.plan.rendered?.coverage ?? [];
   const card = (c: Candidate, k: number, kind: 'f' | 'r') => {
     const { ch, plant } = label(c, state.seasons);

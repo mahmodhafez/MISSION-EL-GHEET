@@ -67,7 +67,7 @@ export function Practice() {
   const voice = useVoiceCtx();
   const v = voice.state;
   const heard = state.practiced;
-  const onTranscript = (text: string) => { dispatch({ type: 'set', patch: { practiced: true, heard: { chips: [{ ar: text, en: text }], undo: state.seasons } } }); voice.settle(); voice.speak({ ar: `برافو، سمعت: ${text}`, en: `Good, I heard: ${text}` }); };
+  const onTranscript = (text: string) => { dispatch({ type: 'set', patch: { practiced: true, heard: { chips: [{ ar: text, en: text }], undo: state.seasons } } }); voice.settle(); voice.speak({ ar: 'برافو، سمعتك. اللي سمعته مكتوب فوق.', en: 'Good, I heard you. What I heard is written above.' }); };
   const cls = heard ? 'ok' : v === 'listening' || v === 'asking' ? 'listening' : v === 'processing' ? 'processing' : '';
   const hint = heard ? t({ ar: 'سمعتك', en: 'I heard you' })
     : v === 'listening' ? t({ ar: 'سامعك… دوس لما تخلّص', en: 'Listening… tap when done' })

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createRecognizer } from '../services/speech/recognizer';
-import { createSpeaker } from '../services/speech/speaker';
+import { createSpeaker, type VoiceSource } from '../services/speech/speaker';
 import type { Bi, Locale } from '../i18n/format';
 
 export type VoiceState = 'idle' | 'speaking' | 'listening' | 'processing' | 'nospeech' | 'notunderstood' | 'denied' | 'unsupported' | 'asking' | 'audiooff' | 'fallback';
@@ -13,6 +13,7 @@ export function useVoice(locale: Locale) {
   const spk = useRef(createSpeaker());
   const [state, setState] = useState<VoiceState>(rec.current.supported ? 'idle' : 'unsupported');
   const [misses, setMisses] = useState(0);
+  const [source, setSource] = useState<VoiceSource | null>(null);
   const denied = useRef(false);
   const asked = useRef(false);
   const rest = useCallback((): VoiceState => (denied.current ? 'denied' : rec.current.supported ? 'idle' : 'unsupported'), []);
@@ -45,7 +46,7 @@ export function useVoice(locale: Locale) {
     cancelListen();
     if (!spk.current.available) { setState('audiooff'); return; }
     setState('speaking');
-    spk.current.speak(b[locale], locale === 'ar' ? 'ar-EG' : 'en-GB', () => setState((v) => (v === 'speaking' ? rest() : v)), () => setState('audiooff'));
+    setSource(spk.current.speak(b[locale], locale === 'ar' ? 'ar-EG' : 'en-GB', () => setState((v) => (v === 'speaking' ? rest() : v)), () => setState('audiooff')));
   }, [locale, rest]);
 
   const miss = useCallback((kind: 'nospeech' | 'notunderstood') => {
@@ -79,6 +80,6 @@ export function useVoice(locale: Locale) {
 
   useEffect(() => () => { cancelListen(); spk.current.stop(); }, [cancelListen]);
 
-  return { state, setState, misses, speak, stop, cancel, micTap, notUnderstood: () => miss('notunderstood'), settle: () => setState(rest()), deviceVoice: spk.current.available };
+  return { state, setState, misses, speak, stop, cancel, micTap, notUnderstood: () => miss('notunderstood'), settle: () => setState(rest()), deviceVoice: source === 'device' };
 }
 export type Voice = ReturnType<typeof useVoice>;
