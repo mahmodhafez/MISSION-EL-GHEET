@@ -40,6 +40,26 @@ choices and issues. The hash ignores fact `confirmation_status`, so a preview ta
 intake can be bound after the farmer confirms the same values. Generation itself still requires every fact
 to be confirmed. Malformed input raises `_validation.InputValidationError(code, field_paths)`.
 
+### Refaat KB adapter (proposed, 2026-11-14)
+
+`kb_adapter.adapt(crops=, enforceable_rules=, kb_version=, data_release=, site_id=, season_labels=) -> AdaptedKB`
+turns the dicts returned by Refaat's loader (`kb.get_crops()`, `kb.get_enforceable_rules(locality="sakha", ...)`,
+branch `feature/refaat-data-ml`) into a planner `KnowledgeBase`. It never imports Refaat's package and never reads files.
+
+- **Profiles.** One planner profile per crop. `profile_id = crop_id`, with Refaat's purpose verbatim.
+- **What becomes a rule.** Only rules the loader marks enforceable. A `calendar_window` on `sowing_date` becomes one
+  `SowingWindowRule` per season label. A `numeric_range` becomes `ge`/`le` `FactRule`s. A one-value `category_set`
+  becomes an `eq` `FactRule`.
+- **Everything else** goes to `unmapped` with a reason: not enforceable, topic mapping required, multi-value condition,
+  unsupported constraint, unknown crop, leap day or cross-year window. It never fails silently.
+- **Delivered release (`crop-research-20261111-v1`).** All 27 rules are pending sign-off, so the adapter yields 4
+  profiles and 0 rules. Every plan stays `needs_review`, and UH-001 is still `rejected` with
+  `sowing_before_protected_cut` (test `RealRefaatRelease`).
+- **Needs Yahya's approval.** Rule-type → topic map (only `sowing_window` → `sowing_support` today),
+  `field.<key>` condition paths, and the `winter-start-year-v1-proposed` year/leap policy.
+- **Open for Refaat.** Berseem purpose `forage_or_seed_requires_review` doesn't match a `forage` season. His C01
+  wheat window (10–30 Nov) differs from ledger W1 (15–30 Nov).
+
 ## What Milestone 2 does
 
 - **Permissions.** Explore only explicit `ExplorationChoice` / `DateRangeChoice` / `CatalogueChoice`
@@ -80,6 +100,7 @@ python -I -S -m unittest discover -s tests -v
 | `test_search_boundaries.py` | 18 | pass |
 | `test_manual_cli.py` | 2 | pass |
 | **Total** | **84** | **0 fail, 0 error, 0 skip** |
+| `test_kb_adapter.py` (2026-11-14, branch `planner/refaat-kb-adapter`) | 9 | pass with `MEG_AGRI_KB` set; 2 skip without it |
 
 Also checked: all 21 package/test/tool files parse with Python 3.12 grammar (`ast.parse(feature_version=(3, 12))`),
 `py_compile` passes and `git diff --check` is clean. **Python 3.12 runtime: not run.** No 3.12 interpreter is installed.

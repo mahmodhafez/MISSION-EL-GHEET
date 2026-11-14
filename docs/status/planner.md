@@ -18,6 +18,10 @@ Resume and run instructions: [implementation handoff](../planner/implementation-
 Milestone 2 worktree: `tmp/planner-candidate-generation` (branch `planner/candidate-generation`, from `2b83f5c`).
 M2 is committed as `a46500a` and pushed to `origin/planner/candidate-generation`. It is not merged and has no PR yet. The M1 worktree `tmp/planner-promise-test` is unchanged.
 
+Refaat KB adapter (2026-11-14, branch `planner/refaat-kb-adapter`, uncommitted): `kb_adapter.adapt` maps Refaat's
+enforceable rules into planner views. Verified: 93 tests pass with the real `agricultural_kb.json` (0 rules mapped,
+all 27 pending sign-off). The year policy and topic map await Yahya's approval.
+
 ## Built and verified
 
 - Built 2026-11-13: `packages/meg-core/src/meg_core/planner/constraints.py`, with private
