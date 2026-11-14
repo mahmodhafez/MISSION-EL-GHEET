@@ -52,6 +52,10 @@ before/after + why review → check again → summary + save; past weather and 7
   "needs review" note on the crop question; "Another crop" opens its own picture screen on "what may change"; Past weather
   shows real Season Replay cards (date, status, average Tmax, ET0 total) and one plain summary. Full journey verified
   against the running backend, both widths, no scrolling.
+- **Crops UI (14 Nov, later):** coloured drawings for rice, faba bean (pods), sugar beet and Egyptian cotton. With more than 4
+  crops every crop is visible at once, with no paging: row tiles (picture | name | 44px listen) in 2 columns on phone and 4 on
+  desktop; one "needs review" note beside the question; the "Another crop" picker uses the same layout. Verified: full journey
+  at 390×760 and 1280×820 with no scrolling. Drawings are placeholders for Moaaz's pictures and a farmer recognition test.
 - **Known gaps:** harvest dates for maize, wheat and sorghum are not asked (the fixture supplies illustrative ones); season month
   windows are placeholders (voice-first.md open question 6); crop pictures are drawings.
 

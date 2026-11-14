@@ -3,7 +3,7 @@ import { useApp } from '../../app/state';
 import { useVoiceCtx } from '../../app/voiceContext';
 import { Shell } from '../../components/Shell';
 import { Icon, CropArt } from '../../components/Icon';
-import { DatePicker, DateText, SeasonName, SeasonStrip, plantOf } from '../../components/parts';
+import { DatePicker, DateText, SeasonName, SeasonStrip, Tile, plantOf } from '../../components/parts';
 import { asksLastCut, plantsFrom } from '../../domain/catalogue';
 import { PLANT, PURPOSE } from '../../i18n/strings';
 import { MONTHS, num } from '../../i18n/format';
@@ -58,7 +58,6 @@ export function Permit() {
   const L = state.locale;
   const [adding, setAdding] = useState<{ season: number; ym?: { y: number; m: number } } | null>(null);
   const [cropFor, setCropFor] = useState<number | null>(null);
-  const [page, setPage] = useState(0);
   const perms = state.permissions;
   const get = (sid: string, field: Permission['field']) => perms.find((p) => p.season_id === sid && p.field === field)?.allowed_values ?? [];
   const setVals = (sid: string, field: Permission['field'], values: string[]) => {
@@ -85,17 +84,13 @@ export function Permit() {
   const plants = plantsFrom(state.cropIds);
   if (cropFor !== null) {
     const s = state.seasons[cropFor]; const others = plants.filter((pl) => pl.plant !== plantOf(s.crop_id));
-    const pages = Math.max(1, Math.ceil(others.length / 4)); const shown = others.slice((page % pages) * 4, (page % pages) * 4 + 4);
     const chosen = get(s.season_id, 'crop_id');
     return (
       <Shell prompt={{ ar: 'أنهي محصول ممكن نجرّبه بداله؟', en: 'Which crop may we try instead?' }}>
         <h2 className="question q-small">{t({ ar: `بدل ${PLANT[plantOf(s.crop_id)].def}`, en: `Instead of ${PLANT[plantOf(s.crop_id)].en.toLowerCase()}` })} · <SeasonName slot={state.slots[cropFor]} /></h2>
-        <div className="tiles four">{shown.map((pl) => { const id = pl.options[0].crop_id; return (
-          <div className="tile-wrap" key={id}><button className="tile" aria-pressed={chosen.includes(id)} onClick={() => toggle(s.season_id, 'crop_id', id)}><span className="art"><CropArt plant={pl.plant} /></span>{t(PLANT[pl.plant])}</button></div>); })}</div>
-        <div className={pages > 1 ? 'two-btns' : ''}>
-          {pages > 1 && <button className="secondary" onClick={() => setPage(page + 1)}><Icon name="plus" />{t({ ar: 'محاصيل تانية', en: 'More crops' })} {num((page % pages) + 1, L)}/{num(pages, L)}</button>}
-          <button className={`primary ${pages > 1 ? '' : 'wide-btn'}`} onClick={() => { setCropFor(null); setPage(0); }}><Icon name="check" />{t({ ar: 'تمام', en: 'Done' })}</button>
-        </div>
+        <div className={`tiles four ${others.length > 4 ? 'compact' : ''}`}>{others.map((pl) => { const id = pl.options[0].crop_id; return (
+          <Tile key={id} label={t(PLANT[pl.plant])} art={<CropArt plant={pl.plant} />} pressed={chosen.includes(id)} onClick={() => toggle(s.season_id, 'crop_id', id)} />); })}</div>
+        <button className="primary wide-btn" onClick={() => setCropFor(null)}><Icon name="check" />{t({ ar: 'تمام', en: 'Done' })}</button>
       </Shell>);
   }
   return (

@@ -67,6 +67,22 @@ export const CROP_ART: Record<string, string> = {
     <path d="M55 64Q86 56 100 76Q80 66 55 72Z" fill="#6DAA45" stroke="#3E7A2A" stroke-width="1.4"/>
     <path d="M55 108Q82 104 94 118Q76 110 55 114Z" fill="#6DAA45" stroke="#3E7A2A" stroke-width="1.4"/>
     ${[[55,10],[47,15],[63,15],[42,22],[52,21],[60,22],[68,22],[45,29],[55,28],[65,29],[49,36],[60,36],[55,42]].map(([x,y]: number[])=>`<circle cx="${x}" cy="${y+2}" r="5.2" fill="#A8492A" stroke="#6E2A14" stroke-width="1.2"/>`).join('')}`,
+  rice:`${[[30,0],[42,1],[55,0],[68,1],[80,0]].map(([x,f])=>`<path d="M${x} 116Q${x+(f?2:-2)} 80 ${x+(f?6:-6)} 46" stroke="#5E9E3E" stroke-width="2.4" fill="none" stroke-linecap="round"/>`).join('')}
+    <path d="M24 116Q20 92 10 78M86 116Q90 92 100 78M40 116Q34 96 22 90M70 116Q76 96 88 90" stroke="#6DAA45" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    ${[[24,46,-1],[48,47,1],[49,46,-1],[74,47,1],[74,46,-1]].map(([x,y,d])=>`<path d="M${x} ${y}Q${x+d*14} ${y-6} ${x+d*20} ${y+18}" stroke="#B88C2E" stroke-width="2" fill="none"/>`+[0,1,2,3,4].map(k=>`<ellipse cx="${x+d*(4+k*3.6)}" cy="${y-2+k*k*0.9}" rx="2.6" ry="4" transform="rotate(${d*(20+k*12)} ${x+d*(4+k*3.6)} ${y-2+k*k*0.9})" fill="#E6BC4E" stroke="#A9821F" stroke-width="1"/>`).join('')).join('')}`,
+  faba_bean:`<path d="M55 118V12" stroke="#4E8A32" stroke-width="3.5" stroke-linecap="round"/>
+    ${[[22,-1],[22,1],[36,-1],[36,1]].map(([y,d])=>`<ellipse cx="${55+d*11}" cy="${y}" rx="9" ry="5" transform="rotate(${d*-25} ${55+d*11} ${y})" fill="#7FA77A" stroke="#4E7A48" stroke-width="1.2"/>`).join('')}
+    <ellipse cx="55" cy="10" rx="5" ry="6" fill="#fff" stroke="#999" stroke-width="1"/><circle cx="55" cy="10" r="2" fill="#222"/>
+    <g transform="rotate(40 74 62)"><ellipse cx="74" cy="62" rx="22" ry="8" fill="#78B348" stroke="#3E7A2A" stroke-width="1.6"/><ellipse cx="60.8" cy="62" rx="3.74" ry="5" fill="#A7D37A"/><ellipse cx="69.6" cy="62" rx="3.74" ry="5" fill="#A7D37A"/><ellipse cx="78.4" cy="62" rx="3.74" ry="5" fill="#A7D37A"/><ellipse cx="87.2" cy="62" rx="3.74" ry="5" fill="#A7D37A"/></g><g transform="rotate(-40 36 80)"><ellipse cx="36" cy="80" rx="22" ry="8" fill="#78B348" stroke="#3E7A2A" stroke-width="1.6"/><ellipse cx="22.8" cy="80" rx="3.74" ry="5" fill="#A7D37A"/><ellipse cx="31.6" cy="80" rx="3.74" ry="5" fill="#A7D37A"/><ellipse cx="40.400000000000006" cy="80" rx="3.74" ry="5" fill="#A7D37A"/><ellipse cx="49.2" cy="80" rx="3.74" ry="5" fill="#A7D37A"/></g><g transform="rotate(35 74 98)"><ellipse cx="74" cy="98" rx="18" ry="8" fill="#78B348" stroke="#3E7A2A" stroke-width="1.6"/><ellipse cx="63.2" cy="98" rx="3.06" ry="5" fill="#A7D37A"/><ellipse cx="70.4" cy="98" rx="3.06" ry="5" fill="#A7D37A"/><ellipse cx="77.60000000000001" cy="98" rx="3.06" ry="5" fill="#A7D37A"/><ellipse cx="84.80000000000001" cy="98" rx="3.06" ry="5" fill="#A7D37A"/></g>`,
+  sugar_beet:`<path d="M14 66h82" stroke="#8B6B43" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="6 4"/>
+    <path d="M55 60Q28 44 22 14Q44 22 55 54Z" fill="#5E9E3E" stroke="#2F6A2A" stroke-width="1.5"/>
+    <path d="M55 60Q82 44 90 14Q66 24 55 54Z" fill="#5E9E3E" stroke="#2F6A2A" stroke-width="1.5"/>
+    <path d="M55 58Q50 30 56 6Q64 30 57 58Z" fill="#6DAA45" stroke="#2F6A2A" stroke-width="1.5"/>
+    <path d="M55 58C30 58 32 80 42 94C48 104 53 112 55 118C57 112 62 104 68 94C78 80 80 58 55 58Z" fill="#F1E6C8" stroke="#A8936A" stroke-width="2"/>
+    <path d="M44 74q4 3 0 6M66 80q-4 3 0 6M50 92q4 3 0 6" stroke="#C9B48A" stroke-width="1.4" fill="none"/>`,
+  cotton:`<path d="M55 118V40M55 80Q38 70 30 52M55 68Q72 60 80 42M55 96Q76 92 86 78" stroke="#7A5A3A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <path d="M30 100q-14-6-18 6q12 6 22 0z" fill="#6DAA45" stroke="#3E7A2A" stroke-width="1.3"/>
+    ${[[55,28,12],[28,42,10],[82,32,10],[88,70,9]].map(([x,y,r])=>`<path d="M${x-r} ${y+r*0.6}l${r*0.4} ${r*0.9}h${r*1.2}l${r*0.4}-${r*0.9}" fill="#8B6B43" stroke="#5E4426" stroke-width="1.2"/>`+[[-0.5,-0.2],[0.5,-0.2],[0,-0.75],[-0.3,0.35],[0.3,0.35]].map(([dx,dy])=>`<circle cx="${x+dx*r}" cy="${y+dy*r}" r="${r*0.55}" fill="#FFFFFF" stroke="#C9C2B4" stroke-width="1.2"/>`).join('')).join('')}`,
   fallow:'<g fill="none" stroke="#7A5C3A" stroke-width="2.6" stroke-linecap="round"><path d="M10 100h90M20 92h70M30 84h50"/></g>',
   unknown:'<g fill="none" stroke="#6B7B73" stroke-width="2.6" stroke-linecap="round"><circle cx="55" cy="60" r="34" stroke-dasharray="6 5"/><path d="M45 50a10 10 0 1 1 15 8c-3 2-5 4-5 8M55 76v2"/></g>'
 };

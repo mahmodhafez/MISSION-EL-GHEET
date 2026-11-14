@@ -5,7 +5,6 @@ import { Icon, CropArt } from '../../components/Icon';
 import { DatePicker, Hero, SeasonName, SeasonStrip, Tile, plantOf } from '../../components/parts';
 import { asksLastCut, cropView, plantsFrom } from '../../domain/catalogue';
 import { iso, monthsOf } from '../../domain/seasons';
-import { useState } from 'react';
 import { PLANT, PURPOSE, SEASON_KIND, UI } from '../../i18n/strings';
 import { MONTHS, dateText, num, type Bi } from '../../i18n/format';
 import type { SeasonEntry, Extraction } from '../../services/plannerClient';
@@ -39,9 +38,8 @@ export function Intake() {
   const slot = state.slots[Math.min(i, 3)];
   const entry = state.seasons[Math.min(i, 3)];
   const plants = plantsFrom(state.cropIds);
-  const [page, setPage] = useState(0);
-  const pages = Math.max(1, Math.ceil(plants.length / 4));
-  const shown = plants.slice((page % pages) * 4, (page % pages) * 4 + 4);
+  // More than 4 crops: show them all at once (row tiles on phone, 4×2 on desktop) instead of paging.
+  const many = plants.length > 4;
   const endDate = asksLastCut(entry.crop_id);
 
   const answer = (patch: Partial<SeasonEntry>, after: Field, heardChips?: Bi[]) => {
@@ -122,11 +120,8 @@ export function Intake() {
   } else if (field === 'crop') {
     prompt = { ar: `الموسم ${num(i + 1, 'ar')}، ${SEASON_KIND[slot.kind].ar}. هتزرع إيه؟`, en: `Season ${i + 1}, ${SEASON_KIND[slot.kind].en}. What will you grow?` };
     body = (<>{q({ ar: 'هتزرع إيه؟', en: 'What will you grow?' }, state.cropsPending && <span className="badge review q-note" title={t({ ar: 'كل المحاصيل لسه محتاجة مراجعة زراعية', en: 'Every crop still needs agricultural review' })}><Icon name="review" />{t(UI.needsReview)}</span>)}
-      <div className="tiles four">{shown.map((p) => <Tile key={p.plant} label={t(PLANT[p.plant])} art={<CropArt plant={p.plant} />} pressed={plantOf(entry.crop_id) === p.plant} onClick={() => pickPlant(p.plant)} />)}</div>
-      <div className={pages > 1 ? 'two-btns' : ''}>
-        {pages > 1 && <button className="secondary" onClick={() => setPage(page + 1)}><Icon name="plus" />{t(UI.moreCrops)} {num((page % pages) + 1, L)}/{num(pages, L)}</button>}
-        <button className={`secondary ${pages > 1 ? '' : 'wide-btn'}`} onClick={() => answer({ crop_id: 'unknown', purpose: null, sowing_date: null, last_cut_date: null }, 'crop')}><Icon name="unknown" />{t(PLANT.unknown)}</button>
-      </div></>);
+      <div className={`tiles four ${many ? 'compact' : ''}`}>{plants.map((p) => <Tile key={p.plant} label={t(PLANT[p.plant])} art={<CropArt plant={p.plant} />} pressed={plantOf(entry.crop_id) === p.plant} onClick={() => pickPlant(p.plant)} />)}</div>
+      <button className="secondary wide-btn" onClick={() => answer({ crop_id: 'unknown', purpose: null, sowing_date: null, last_cut_date: null }, 'crop')}><Icon name="unknown" />{t(PLANT.unknown)}</button></>);
   } else if (field === 'purpose') {
     const opts = plants.find((p) => p.plant === plantOf(entry.crop_id))?.options ?? [];
     prompt = { ar: `${plantName.def} علشان إيه؟`, en: `What is the ${plantName.en.toLowerCase()} for?` };
