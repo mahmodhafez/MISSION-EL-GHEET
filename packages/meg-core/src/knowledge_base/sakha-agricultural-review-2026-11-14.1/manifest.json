@@ -1,0 +1,9 @@
+{
+  "release": "sakha-agricultural-review-2026-11-14.1",
+  "site_id": "sakha",
+  "sha256": {
+    "agricultural_kb.json": "d7728edc98477e7885850e9e2b7835a6148cca212287840e8dea2e0561f10681",
+    "catalogue.json": "9fa4fbd07696c369d927a36a8a435dcda45e5c42f32b743781c57435ad25cf9f",
+    "review.json": "16060a619207926b4a741ef92ea636a007194c838bd15e5f7e64fa822748bf0c"
+  }
+}

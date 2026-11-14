@@ -1,5 +1,9 @@
 # Status: planner (`meg_core`)
 
+**Publication rerun, 2026-11-14.** The final package was reconciled and reapplied at `5644125`; 110 planner tests, 18 original KB tests and all three UH-001 commands passed. Legacy P0/backend discovery each returned one missing-module error. [Actual results and limits](../reports/2026-11-14-agricultural-kb-publication.md).
+
+**Scientific review, 2026-11-14.** The separate Refaat review release preserves C01–C27, documents eight expansion crops and exposes a pinned loader. All crop approvals are pending and zero scientific predicates enter the planner. On CPython 3.12.14, 110 integrated planner tests and 18 original KB tests passed. UH-001 rejected the current plan and returned two review cases, with zero feasible alternatives. [Scientific handoff](../planner/scientific-review/sakha-agricultural-review-2026-11-14.1/SCIENTIFIC-REVIEW.ar-EG.md) · [Test record](../planner/scientific-review/sakha-agricultural-review-2026-11-14.1/TEST-RESULTS.md)
+
 **Read this if…** you're asking "does the Promise Test / candidate search exist?"
 
 **As of 2026-11-13**, last commit `a46500a` (M2, pushed to `origin/planner/candidate-generation`; M1 is `2b83f5c`).

@@ -1,0 +1,83 @@
+{
+  "executed_at_utc": "2026-11-14T03:04:40.860975+00:00",
+  "python": "3.12.14",
+  "runs": [
+    {
+      "name": "planner-tests",
+      "working_directory": "packages/meg-core",
+      "command": "python -B -I -S -m unittest discover -s tests -v",
+      "exit_code": 0,
+      "ran": 110,
+      "passed": 110,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed_by_module": {
+        "test_constraint_edges": 16,
+        "test_constraints": 27,
+        "test_crop_catalogue": 11,
+        "test_generation": 21,
+        "test_kb_adapter": 9,
+        "test_manual_cli": 2,
+        "test_reviewed_release": 6,
+        "test_search_boundaries": 18
+      }
+    },
+    {
+      "name": "legacy-kb-tests",
+      "working_directory": "original input copy",
+      "command": "python -B -S -m unittest discover -s tests -p test_kb.py -v",
+      "exit_code": 0,
+      "ran": 18,
+      "passed": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed_by_module": {
+        "test_kb": 18
+      }
+    },
+    {
+      "name": "legacy-p0",
+      "working_directory": "original input copy",
+      "command": "python -B -S -m unittest discover -s tests -p test_p0.py -v",
+      "exit_code": 1,
+      "ran": 1,
+      "passed": 0,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed_by_module": {}
+    },
+    {
+      "name": "legacy-backend",
+      "working_directory": "original input copy",
+      "command": "python -B -S -m unittest discover -s tests -p test_backend.py -v",
+      "exit_code": 1,
+      "ran": 1,
+      "passed": 0,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed_by_module": {}
+    },
+    {
+      "name": "uh001-stock-check",
+      "working_directory": "packages/meg-core",
+      "command": "python -B -I -S tools/planner_cli.py check tools/fixtures/uh001.json --json",
+      "exit_code": 0
+    },
+    {
+      "name": "uh001-stock-plan",
+      "working_directory": "packages/meg-core",
+      "command": "python -B -I -S tools/planner_cli.py plan tools/fixtures/uh001.json --json",
+      "exit_code": 0
+    },
+    {
+      "name": "uh001-reviewed",
+      "working_directory": "packages/meg-core",
+      "command": "python -B -I -S tools/reviewed_uh001.py",
+      "exit_code": 0
+    }
+  ]
+}

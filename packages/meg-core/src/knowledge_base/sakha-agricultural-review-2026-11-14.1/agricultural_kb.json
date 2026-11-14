@@ -1,0 +1,2104 @@
+{
+  "schema_version": "agricultural-kb/1",
+  "kb_version": "sakha-agricultural-review-2026-11-14.1",
+  "provenance": {
+    "ledger": "sources/agriculture/MISSION_EL_GHEET_Crop_Rule_Ledger.csv",
+    "evidence_register": "sources/agriculture/MISSION_EL_GHEET_Evidence_Register.csv",
+    "source_manifest": "sources/agriculture/MANIFEST.json"
+  },
+  "localities": [
+    {
+      "locality_id": "sakha",
+      "name": "Sakha pilot review scope",
+      "climate_site_id": "sakha_31.10_30.95"
+    }
+  ],
+  "crops": [
+    {
+      "crop_id": "wheat",
+      "display_name": "Wheat",
+      "purpose": "grain",
+      "rule_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C25",
+        "C26",
+        "C27"
+      ]
+    },
+    {
+      "crop_id": "berseem",
+      "display_name": "Berseem",
+      "purpose": "forage_or_seed_requires_review",
+      "rule_ids": [
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C25",
+        "C26",
+        "C27"
+      ]
+    },
+    {
+      "crop_id": "grain_maize",
+      "display_name": "Grain maize",
+      "purpose": "grain",
+      "rule_ids": [
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C25",
+        "C26",
+        "C27"
+      ]
+    },
+    {
+      "crop_id": "grain_sorghum",
+      "display_name": "Grain sorghum",
+      "purpose": "grain",
+      "rule_ids": [
+        "C19",
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C27"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "SRC_170fd855c76f5800",
+      "title": "Influence of sowing dates on physiological traits, yield components and grains rot disease resistance in maize cultivars",
+      "url": "https://ejbo.journals.ekb.eg/article_431323_eb18351b1c7c0066f5edbfc44c76a117.pdf",
+      "version": "2025, Egyptian Journal of Botany, seasons 2023 and 2024"
+    },
+    {
+      "source_id": "SRC_25919ed02f082e4d",
+      "title": "Saffan et al., Adjusted Crop Coefficient for Wheat Using Energy Balance Systems in North Nile Delta of Egypt",
+      "url": "https://repo.mel.cgiar.org/items/d4f5dce4-d2b0-4e75-b45d-cd43ad0be2cd",
+      "version": "2025, Egyptian Journal of Soil Science 65, 1151–1165"
+    },
+    {
+      "source_id": "SRC_3ea7b5f667f210bb",
+      "title": "Elbatrawy, Kishk & Ghanem, Effect of sowing dates on productivity and seed quality on some wheat varieties",
+      "url": "https://ejar.journals.ekb.eg/article_287942_dd143a081e790ace299be24f44b54625.pdf",
+      "version": "2023, DOI 10.21608/EJAR.2023.191362.1333"
+    },
+    {
+      "source_id": "SRC_501ce496ca19e930",
+      "title": "Sakha forage sorghum sowing-date and nitrogen trial, International Journal of Chemical and Biochemical Sciences",
+      "url": "https://www.iscientific.org/wp-content/uploads/2024/08/72-ijcbs-23-24-11-72n.pdf",
+      "version": "2023, 24(11), 582–594"
+    },
+    {
+      "source_id": "SRC_656e0d2791e3ee51",
+      "title": "MISSION EL GHEET product-direction update, supplied message",
+      "url": "https://chatgpt.com/library?file_id=libfile_ae06a658c5048191b4c6edb6530aa64b&account_id=personal",
+      "version": "Uploaded November 2026"
+    },
+    {
+      "source_id": "SRC_75bef3faf8fbc5a4",
+      "title": "Shalaby et al., Effect of sowing date on grain yield and quality of some Egyptian bread wheat genotypes",
+      "url": "https://ejar.journals.ekb.eg/article_304893_21da8f1d78e960cb2200162e325c7679.pdf",
+      "version": "2023, DOI 10.21608/ejar.2023.191360.1332"
+    },
+    {
+      "source_id": "SRC_78fabec1fd8604d7",
+      "title": "Allen et al., FAO-56, ETc – Single crop coefficient",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "version": "1998, ch. 6, Tables 11–12, Eqs. 58, 62, 65–66"
+    },
+    {
+      "source_id": "SRC_8bbfb83d46a7befb",
+      "title": "Global Yield Gap Atlas, Egypt, weather and crop management",
+      "url": "https://yieldgap-test.containers.wur.nl/egypt",
+      "version": "Country methods, Table 1, accessed 11 Nov 2026"
+    },
+    {
+      "source_id": "SRC_9268724cb86c61cd",
+      "title": "Cairo University field study of four grain sorghum genotypes under different sowing dates in Egypt",
+      "url": "https://jpp.journals.ekb.eg/article_73070_83675855e68ca339b346d242513d7801.pdf",
+      "version": "2013, J. Plant Production 4, 763–772"
+    },
+    {
+      "source_id": "SRC_b2f3ad4ec1aa172f",
+      "title": "Gharib, El-Henawy & Meleha, Influence of Irrigation Regimes at Different Growth Stages on Development and Yield in Maize",
+      "url": "https://agro.journals.ekb.eg/article_1297_c956e32ac96917d33a09a177fa5514fb.pdf",
+      "version": "2016, Egyptian Journal of Agronomy 38, 509–530"
+    },
+    {
+      "source_id": "SRC_c653ac2ec4a65dbc",
+      "title": "MISSION EL GHEET submission proposal, supplied team document",
+      "url": "https://chatgpt.com/library?file_id=libfile_964e661189608191906ab3ddb3ba7654&account_id=personal",
+      "version": "Uploaded November 2026"
+    },
+    {
+      "source_id": "SRC_cd072cb0ee8fd6a2",
+      "title": "Mansoura University, Egyptian clover, forage crops course",
+      "url": "https://agrfac.mans.edu.eg/images/files/E-courses/Agr/forage/02.pdf",
+      "version": "Undated university teaching notes, Sowing Date and Harvesting"
+    },
+    {
+      "source_id": "SRC_f1cbfa56998ddb08",
+      "title": "Seif & Saad, Nutritive Value of Some Egyptian Clover Varieties as Affected by Various Levels of Phosphorus Fertilization",
+      "url": "https://jpp.journals.ekb.eg/article_64558_3a33deb13f40764f110a356916563654.pdf",
+      "version": "2014, J. Plant Production 5, 1331–1344"
+    },
+    {
+      "source_id": "SRC_f44db51f09bdfef5",
+      "title": "Sinai Journal of Applied Sciences, Fahl Egyptian clover sowing-date and seeding-rate experiment",
+      "url": "https://sinjas.journals.ekb.eg/article_301896_faa4300cb8fc57f96c8580f8b06b4100.pdf",
+      "version": "2023, vol. 12, 173–196"
+    },
+    {
+      "source_id": "SRC_f7a92d2408eb1de6",
+      "title": "Bughdady, Response of some sorghum cultivars to sowing dates and phosphorus fertilization under New Valley conditions",
+      "url": "https://www.curresweb.com/mejas/mejas/2016/1150-1159.pdf",
+      "version": "2016, Middle East Journal of Applied Sciences 6, 1150–1159"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E036",
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Sowing window. 10 Nov to 30 Nov",
+      "locality": "Nile Delta",
+      "crop_context": "Wheat / Bread wheat for grain",
+      "units": "calendar dates",
+      "locator": "Table 1, Nile Delta, Wheat",
+      "limitations": "Regional evidence. Match locality, variety and farm constraints.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C01. Candidate only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E037",
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Physiological maturity window. 15 Apr to 10 May",
+      "locality": "Nile Delta",
+      "crop_context": "Wheat / Bread wheat for grain",
+      "units": "calendar dates",
+      "locator": "Table 1, Wheat, harvest-window footnote",
+      "limitations": "Maturity differs from crop removal and field release.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C02. Candidate maturity window only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E038",
+      "source_ids": [
+        "SRC_75bef3faf8fbc5a4"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Trial sowing dates. 5 Nov, 5 Dec, 5 Jan. Highest-yield treatments differed by genotype.",
+      "locality": "Sakha",
+      "crop_context": "Wheat / Misr 3, Sakha 94, Gemmiza 12, Sids 14, Shandaweel 1 and five other genotypes",
+      "units": "calendar dates",
+      "locator": "Abstract, Methods and Conclusions",
+      "limitations": "Experimental dates are discrete treatments, not a continuous eligibility interval.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C03. Use to inform cultivar review",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E039",
+      "source_ids": [
+        "SRC_3ea7b5f667f210bb"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Time to physiological maturity. 15 Nov sowing yielded 152.0 and 153.3 days. 30 Nov sowing yielded 140.0 and 138.0 days.",
+      "locality": "Tag Al-Ezz, Dakahlia, Nile Delta",
+      "crop_context": "Wheat / Sakha 95 bread wheat",
+      "units": "days after sowing",
+      "locator": "Experimental site and Table 6, Sakha 95 rows",
+      "limitations": "Study-specific treatment means. Field release and sowing conditions differ.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C04. Candidate duration evidence",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E040",
+      "source_ids": [
+        "SRC_25919ed02f082e4d"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Local crop-coefficient evidence. Initial 0.43–0.68, development 0.75–1.02, mid 0.94–1.11, end 0.40–0.64",
+      "locality": "Sakha Research Station",
+      "crop_context": "Wheat / Pilot cultivar unspecified",
+      "units": "dimensionless ratio",
+      "locator": "Repository abstract, results",
+      "limitations": "Measured ETa divided by FAO ET₀. Wetting, cultivar, site conditions and stage mapping need confirmation. Full paper unavailable in this review.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C05. Candidate coefficients only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E041",
+      "source_ids": [
+        "SRC_78fabec1fd8604d7"
+      ],
+      "scientific_status": "CONDITIONAL",
+      "claim": "Standard Kc references. Spring wheat uses cereal-group initial 0.30, mid 1.15, end 0.25–0.40. For winter wheat on non-frozen soil FAO lists initial 0.70.",
+      "locality": "International FAO reference",
+      "crop_context": "Wheat / Spring-habit grain wheat versus winter-habit wheat",
+      "units": "dimensionless",
+      "locator": "Table 12, cereals, spring and winter wheat, footnote 10",
+      "limitations": "Winter sowing does not determine growth habit. Match moisture/harvest and initial wetting.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C06. Choose reviewed curve, never average rows",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E042",
+      "source_ids": [
+        "SRC_cd072cb0ee8fd6a2"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Sowing guidance. Early to mid-October preferred, with mid-September to end-October described as broader guidance",
+      "locality": "Egypt, Mansoura University guidance",
+      "crop_context": "Berseem / Egyptian clover forage",
+      "units": "calendar period",
+      "locator": "Sowing Date",
+      "limitations": "Check local weather, predecessor harvest and type. University guidance does not define Sakha cutoffs.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C07. Candidate only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E043",
+      "source_ids": [
+        "SRC_f44db51f09bdfef5"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Cutting type. Fahl single-cut, Meskawi multi-cut",
+      "locality": "Egypt",
+      "crop_context": "Berseem / Fahl versus Meskawi/Miscawi",
+      "units": "management category",
+      "locator": "Introduction, Fahl morphology and management",
+      "limitations": "Record intended forage or seed use. A seed crop can occupy the field beyond a forage cut.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C08. Verify farmer type before counting cuts",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E044",
+      "source_ids": [
+        "SRC_cd072cb0ee8fd6a2"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "First cut and interval guidance. First 50–55 days after sowing, then 25–30 between cuts",
+      "locality": "Egyptian guidance",
+      "crop_context": "Berseem / Regrowing forage types",
+      "units": "days",
+      "locator": "Harvesting",
+      "limitations": "Temperature, establishment, irrigation and regrowth matter. The teaching range cannot fix a promise date.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C09. Inform interview only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E045",
+      "source_ids": [
+        "SRC_f1cbfa56998ddb08"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Five-cut trial schedule. First at 50 days, then intervals 45, 40, 35, 30",
+      "locality": "Moshtohor, Qalyubia",
+      "crop_context": "Berseem / Gemiza 1, Sakha 4, Helali, Giza 6, Serw 1",
+      "units": "days",
+      "locator": "Materials and methods, harvest sequence",
+      "limitations": "Published management protocol, different from the university course. No universal cycle length.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C10. Inactivate as a general rule",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E046",
+      "source_ids": [
+        "SRC_f1cbfa56998ddb08"
+      ],
+      "scientific_status": "DERIVED",
+      "claim": "Time to final cut. 200 = 50 + 45 + 40 + 35 + 30",
+      "locality": "Moshtohor, Qalyubia",
+      "crop_context": "Berseem / Five-cut trial above",
+      "units": "elapsed days",
+      "locator": "Materials and methods, derived from the five intervals",
+      "limitations": "Final cut is not equivalent to first free day. No evidence here for a sixth cut or release interval.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C11. Trial context only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E047",
+      "source_ids": [
+        "SRC_656e0d2791e3ee51"
+      ],
+      "scientific_status": "CONDITIONAL",
+      "claim": "Lock and field release. Obtain protected cuts/dates, intended use, last cut, first free day and prep interval",
+      "locality": "Specific pilot field",
+      "crop_context": "Berseem / Farmer’s named variety and purpose",
+      "units": "dates and days",
+      "locator": "Sections 2–4, farmer commitments and conflicts",
+      "limitations": "Ceasing cutting early, grazing, regrowth or seed retention can change occupancy. Feed quantity unknown.",
+      "review_required": "Yes, and farmer confirmation",
+      "notes": "Crop ledger C12. Leave critical missing commitment unresolved",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E048",
+      "source_ids": [
+        "SRC_78fabec1fd8604d7"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Standard seasonal and cutting-cycle Kc. Averaged cuts 0.40/0.90/0.85. Individual cycles 0.40/1.15/1.10.",
+      "locality": "International FAO reference",
+      "crop_context": "Berseem / Berseem clover hay",
+      "units": "dimensionless",
+      "locator": "Table 12, Clover hay, Berseem, footnotes 13–14, Fig. 35",
+      "limitations": "Cycle points are after cut, full cover, before cut. Local fresh forage, timing and water regime require review.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C13. Seasonal ETc conditional, extra-cut savings unavailable",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E049",
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Sowing window. 15 Apr to 15 May",
+      "locality": "Nile Delta",
+      "crop_context": "Maize / Grain production, hybrid to be confirmed",
+      "units": "calendar dates",
+      "locator": "Table 1, Nile Delta, maize",
+      "limitations": "Atlas labels maize. Corroborate grain purpose with the Sakha grain trial and named hybrid.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C14. Candidate only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E050",
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Duration. Early about 100, medium/late 110–130",
+      "locality": "Nile Delta",
+      "crop_context": "Maize / Early and medium/late maturity groups",
+      "units": "days after sowing",
+      "locator": "Table 1, Nile Delta, maize and definitions",
+      "limitations": "Grain moisture, actual harvest and residue removal determine release.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C15. Apply only after hybrid/purpose review",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E051",
+      "source_ids": [
+        "SRC_170fd855c76f5800"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Sowing-date comparison. 15 May, 15 Jun and 15 Jul tested during 2023–24. SC168 performed best at 15 May within trial.",
+      "locality": "Sakha, Kafr El-Sheikh",
+      "crop_context": "Maize / SC131, SC168, TWC324 for grain",
+      "units": "calendar dates",
+      "locator": "Abstract and materials and methods",
+      "limitations": "Trial dates are not a general June–July window. Preserve study conditions.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C16. Context for hybrid review",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E052",
+      "source_ids": [
+        "SRC_78fabec1fd8604d7"
+      ],
+      "scientific_status": "CONDITIONAL",
+      "claim": "Standard Kc references. Initial cereal-group 0.30, mid 1.20, end 0.60 high-moisture grain or 0.35 drier field grain",
+      "locality": "International FAO reference",
+      "crop_context": "Maize / Field maize for grain",
+      "units": "dimensionless",
+      "locator": "Table 12, Maize field grain, footnote 11",
+      "limitations": "Wetting, height, stage durations and dry-down matter. Exclude sweet corn and silage rows.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C17. Select endpoints only for matched management",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E053",
+      "source_ids": [
+        "SRC_b2f3ad4ec1aa172f"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Local water regime and coefficients. 0.43, 0.54, 0.64, 0.58, 0.51 in five successive phases",
+      "locality": "Alwezaria, Kafr El-Sheikh",
+      "crop_context": "Maize / SC10 grain maize",
+      "units": "dimensionless",
+      "locator": "Table 9 and discussion, five phases from emergence to maturity",
+      "limitations": "Ratios reflect treatment and stage definitions. They do not directly fill the four FAO stages.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C18. Context for sensitivity only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E054",
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Nonlocal sowing/harvest evidence. 20 Apr to 15 May sowing and 1–30 Aug harvest",
+      "locality": "Upper Egypt",
+      "crop_context": "Grain sorghum / Sorghum in regional calendar",
+      "units": "calendar dates",
+      "locator": "Table 1, Upper Egypt, Sorghum",
+      "limitations": "Atlas does not specify this row for the Nile Delta or confirm the pilot cultivar.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C19. Keep out of Sakha eligibility",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E055",
+      "source_ids": [
+        "SRC_9268724cb86c61cd"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Experimental planting dates. 7 Apr, 27 Apr, 17 May, 6 Jun, 26 Jun",
+      "locality": "Giza, Cairo University",
+      "crop_context": "Grain sorghum / Shandaweel-1, -305, -306 and Dorado",
+      "units": "calendar dates",
+      "locator": "Abstract and Materials and methods",
+      "limitations": "Out-of-area trial. Paper differs between abstract and methods on the second study year. Dates of sowing agree.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C20. Research context only",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E056",
+      "source_ids": [
+        "SRC_f7a92d2408eb1de6"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Time to grain harvest. 91/85/76 and 92/86/74 for the three tested dates across the two years",
+      "locality": "El-Kharga, New Valley",
+      "crop_context": "Grain sorghum / Shandaweel-1, Shandaweel-2, Durado (author spelling)",
+      "units": "days after sowing",
+      "locator": "Materials and methods, harvest operations",
+      "limitations": "Experiment reports time to harvest. Population, climate, timing and soils differ from Sakha.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C21. No transfer to Sakha occupancy",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E057",
+      "source_ids": [
+        "SRC_501ce496ca19e930"
+      ],
+      "scientific_status": "NOT APPLICABLE",
+      "claim": "Crop-purpose exclusion. Sowing/cutting evidence concerns forage",
+      "locality": "Sakha, Kafr El-Sheikh",
+      "crop_context": "Grain sorghum / Sakha forage sorghum experiment",
+      "units": "purpose",
+      "locator": "Abstract and field methods",
+      "limitations": "Location matches but yield endpoint and cutting management differ from grain.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C22. Exclude forage rules from grain path",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E058",
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "scientific_status": "UNVERIFIED",
+      "claim": "Pilot sowing, occupancy and Kc activation. Local planting window, time to grain harvest, stage timing and release undetermined",
+      "locality": "Sakha",
+      "crop_context": "Grain sorghum / Locally suitable grain cultivar unidentified",
+      "units": "dates and days",
+      "locator": "Nile Delta versus Upper Egypt rows, compare C20–C22",
+      "limitations": "Regional national evidence and a local forage study do not establish a Sakha grain sequence.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C23. Inactive until local grain-specific evidence",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E059",
+      "source_ids": [
+        "SRC_78fabec1fd8604d7"
+      ],
+      "scientific_status": "VERIFIED",
+      "claim": "Standard Kc reference. Cereal-group initial 0.30, mid 1.00–1.10, end 0.55",
+      "locality": "International FAO reference",
+      "crop_context": "Grain sorghum / Grain, distinct from sweet or forage",
+      "units": "dimensionless",
+      "locator": "Table 12, sorghum grain",
+      "limitations": "Reviewed local stages, variety and moisture management absent.",
+      "review_required": "Yes",
+      "notes": "Crop ledger C24. Withhold Sakha ETc",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E060",
+      "source_ids": [
+        "SRC_c653ac2ec4a65dbc"
+      ],
+      "scientific_status": "UNVERIFIED",
+      "claim": "Preparation and harvest logistics. First free day and preparation duration currently unknown",
+      "locality": "Pilot field",
+      "crop_context": "All four / Named cultivar and field",
+      "units": "dates and elapsed days",
+      "locator": "Methodology 1, occupancy and preparation",
+      "limitations": "No cross-crop universal turnaround identified. Do not use zero as an automatic default.",
+      "review_required": "Yes, and farmer confirmation",
+      "notes": "Crop ledger C25. Critical missing input prevents eligibility",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E061",
+      "source_ids": [
+        "SRC_c653ac2ec4a65dbc"
+      ],
+      "scientific_status": "UNVERIFIED",
+      "claim": "Soil compatibility and irrigation access. No approved local numeric salinity, pH, drainage or texture exclusion. Canal and access constraints require confirmation.",
+      "locality": "Pilot field",
+      "crop_context": "All four / Field-specific soil and irrigation",
+      "units": "Method-specific units and dates",
+      "locator": "Methodology 1, soil restrictions and evidence source",
+      "limitations": "Keep laboratory measurement, farmer description and unknown separate. Irrigation water EC and soil-extract EC are different.",
+      "review_required": "Yes, and farmer confirmation",
+      "notes": "Crop ledger C26. Inactive thresholds, retain unresolved critical conditions",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    },
+    {
+      "evidence_id": "E062",
+      "source_ids": [
+        "SRC_c653ac2ec4a65dbc"
+      ],
+      "scientific_status": "CONDITIONAL",
+      "claim": "Rotation/sequence indicators. Track repeated cereal family and berseem legume placement",
+      "locality": "Pilot sequences",
+      "crop_context": "All four / Three cereals and one legume",
+      "units": "categorical indicators",
+      "locator": "Methodology 1, family repetition and legume placement",
+      "limitations": "A sequence indicator alone cannot quantify soil change, nitrogen gain or impose a universal ban.",
+      "review_required": "Yes for agronomic exclusions",
+      "notes": "Crop ledger C27. Display indicator, require evidence for binding restriction",
+      "source_opened": "Yes",
+      "review_date": "2026-11-11"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "C01",
+      "crop_ids": [
+        "wheat"
+      ],
+      "rule_type": "sowing_window",
+      "rule_label": "Sowing window",
+      "parameters": {
+        "source_text": "10 Nov to 30 Nov",
+        "units": "calendar dates"
+      },
+      "research_context": {
+        "locality": "Nile Delta",
+        "cultivar": "Bread wheat for grain",
+        "season": "Irrigated double cropping, regional calendar"
+      },
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "evidence_ids": [
+        "E036"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Regional evidence. Match locality, variety and farm constraints.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The Nile Delta model-input range and the old-land extension preference answer different questions. Only the latter is a candidate advisory for matching old-land grain wheat. The five-day difference has no demonstrated cultivar or year-specific cause.",
+        "Record target-season bulletin, old/new land, bread-wheat cultivar and meaning of the December exception. Keep the catalogue conflict closed to enforcement."
+      ],
+      "source_activation_note": "Candidate only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C02",
+      "crop_ids": [
+        "wheat"
+      ],
+      "rule_type": "physiological_maturity_window",
+      "rule_label": "Physiological maturity window",
+      "parameters": {
+        "source_text": "15 Apr to 10 May",
+        "units": "calendar dates"
+      },
+      "research_context": {
+        "locality": "Nile Delta",
+        "cultivar": "Bread wheat for grain",
+        "season": "Irrigated double cropping"
+      },
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "evidence_ids": [
+        "E037"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Maturity differs from crop removal and field release.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The Atlas explicitly defines its April–May harvest column for wheat as physiological maturity. W1 describes harvest indicators for old land. Neither defines the day a combine finishes or the field becomes available.",
+        "Obtain cultivar-specific maturity evidence, actual harvest, residue removal and first free day separately."
+      ],
+      "source_activation_note": "Candidate maturity window only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C03",
+      "crop_ids": [
+        "wheat"
+      ],
+      "rule_type": "trial_sowing_dates",
+      "rule_label": "Trial sowing dates",
+      "parameters": {
+        "source_text": "5 Nov, 5 Dec, 5 Jan. Highest-yield treatments differed by genotype.",
+        "units": "calendar dates"
+      },
+      "research_context": {
+        "locality": "Sakha",
+        "cultivar": "Misr 3, Sakha 94, Gemmiza 12, Sids 14, Shandaweel 1 and five other genotypes",
+        "season": "Two field seasons, local bread wheat experiment"
+      },
+      "source_ids": [
+        "SRC_75bef3faf8fbc5a4"
+      ],
+      "evidence_ids": [
+        "E038"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Experimental dates are discrete treatments, not a continuous eligibility interval.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "Three discrete treatments at Sakha tested ten genotypes over two seasons. Yield responses differed by genotype. A successful early treatment does not establish every intervening date.",
+        "Match the farmer’s grain cultivar and season to the trial and current extension map before proposing a date."
+      ],
+      "source_activation_note": "Use to inform cultivar review",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C04",
+      "crop_ids": [
+        "wheat"
+      ],
+      "rule_type": "time_to_physiological_maturity",
+      "rule_label": "Time to physiological maturity",
+      "parameters": {
+        "source_text": "15 Nov sowing yielded 152.0 and 153.3 days. 30 Nov sowing yielded 140.0 and 138.0 days.",
+        "units": "days after sowing"
+      },
+      "research_context": {
+        "locality": "Tag Al-Ezz, Dakahlia, Nile Delta",
+        "cultivar": "Sakha 95 bread wheat",
+        "season": "2020/21 and 2021/22"
+      },
+      "source_ids": [
+        "SRC_3ea7b5f667f210bb"
+      ],
+      "evidence_ids": [
+        "E039"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Study-specific treatment means. Field release and sowing conditions differ.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "Table 6 gives two season-specific means for each sowing treatment for Sakha 95. ‘Sakha’ here is the cultivar name. The experiment took place at Tag Al-Ezz in Dakahlia.",
+        "Confirm cultivar, end-point definition and matched local multi-date evidence before estimating maturity."
+      ],
+      "source_activation_note": "Candidate duration evidence",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C05",
+      "crop_ids": [
+        "wheat"
+      ],
+      "rule_type": "local_crop_coefficient_evidence",
+      "rule_label": "Local crop-coefficient evidence",
+      "parameters": {
+        "source_text": "Initial 0.43–0.68, development 0.75–1.02, mid 0.94–1.11, end 0.40–0.64",
+        "units": "dimensionless ratio"
+      },
+      "research_context": {
+        "locality": "Sakha Research Station",
+        "cultivar": "Pilot cultivar unspecified",
+        "season": "Three 2022/23 to 2024/25 seasons"
+      },
+      "source_ids": [
+        "SRC_25919ed02f082e4d"
+      ],
+      "evidence_ids": [
+        "E040"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Measured ETa divided by FAO ET₀. Wetting, cultivar, site conditions and stage mapping need confirmation. Full paper unavailable in this review.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "Energy-balance ETa divided by FAO reference ET0 produced four reported stage ranges at Sakha. They describe the measured management regime. They do not establish standard demand, delivered irrigation or a calendar.",
+        "Obtain the methods, stage boundaries, cultivar and field wetting schedule for a separate ETc assessment."
+      ],
+      "source_activation_note": "Candidate coefficients only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C06",
+      "crop_ids": [
+        "wheat"
+      ],
+      "rule_type": "standard_kc_references",
+      "rule_label": "Standard Kc references",
+      "parameters": {
+        "source_text": "Spring wheat uses cereal-group initial 0.30, mid 1.15, end 0.25–0.40. For winter wheat on non-frozen soil FAO lists initial 0.70.",
+        "units": "dimensionless"
+      },
+      "research_context": {
+        "locality": "International FAO reference",
+        "cultivar": "Spring-habit grain wheat versus winter-habit wheat",
+        "season": "Standard crop conditions"
+      },
+      "source_ids": [
+        "SRC_78fabec1fd8604d7"
+      ],
+      "evidence_ids": [
+        "E041"
+      ],
+      "scientific_status": "CONDITIONAL",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Winter sowing does not determine growth habit. Match moisture/harvest and initial wetting.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "FAO-56 distinguishes spring-habit and winter-habit wheat and harvest states. The planting season in Egypt cannot resolve growth habit. These are reference values for an optional water-demand calculation.",
+        "Confirm the habit of the named cultivar, stage lengths, wetting and harvest condition before any ETc use."
+      ],
+      "source_activation_note": "Choose reviewed curve, never average rows",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C07",
+      "crop_ids": [
+        "berseem"
+      ],
+      "rule_type": "sowing_guidance",
+      "rule_label": "Sowing guidance",
+      "parameters": {
+        "source_text": "Early to mid-October preferred, with mid-September to end-October described as broader guidance",
+        "units": "calendar period"
+      },
+      "research_context": {
+        "locality": "Egypt, Mansoura University guidance",
+        "cultivar": "Egyptian clover forage",
+        "season": "Forage course, Egyptian clover"
+      },
+      "source_ids": [
+        "SRC_cd072cb0ee8fd6a2"
+      ],
+      "evidence_ids": [
+        "E042"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Check local weather, predecessor harvest and type. University guidance does not define Sakha cutoffs.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The Mansoura forage course prefers early/mid-October. FAO describes a wider Egyptian practice period and fewer cuts from late sowing. The two sources differ in purpose of the calendar. Neither promises a Sakha November stand or May forage.",
+        "Ask whether this is multicut green forage, one-cut forage, seed or dual-purpose. Record actual sowing and type."
+      ],
+      "source_activation_note": "Candidate only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C08",
+      "crop_ids": [
+        "berseem"
+      ],
+      "rule_type": "cutting_type",
+      "rule_label": "Cutting type",
+      "parameters": {
+        "source_text": "Fahl single-cut, Meskawi multi-cut",
+        "units": "management category"
+      },
+      "research_context": {
+        "locality": "Egypt",
+        "cultivar": "Fahl versus Meskawi/Miscawi",
+        "season": "Winter forage, distinction repeated in Egyptian field literature"
+      },
+      "source_ids": [
+        "SRC_f44db51f09bdfef5"
+      ],
+      "evidence_ids": [
+        "E043"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Record intended forage or seed use. A seed crop can occupy the field beyond a forage cut.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "Fahl is a single-cut type and Meskawi a multicut type. The Fahl paper measured forage and seed separately. Its seed-yield treatments cannot parameterize a multicut forage plan.",
+        "Verify named cultivar, type, intended end product and whether regrowth is being retained for seed."
+      ],
+      "source_activation_note": "Verify farmer type before counting cuts",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C09",
+      "crop_ids": [
+        "berseem"
+      ],
+      "rule_type": "first_cut_and_interval_guidance",
+      "rule_label": "First cut and interval guidance",
+      "parameters": {
+        "source_text": "First 50–55 days after sowing, then 25–30 between cuts",
+        "units": "days"
+      },
+      "research_context": {
+        "locality": "Egyptian guidance",
+        "cultivar": "Regrowing forage types",
+        "season": "Course, harvest guidance"
+      },
+      "source_ids": [
+        "SRC_cd072cb0ee8fd6a2"
+      ],
+      "evidence_ids": [
+        "E044"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Temperature, establishment, irrigation and regrowth matter. The teaching range cannot fix a promise date.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The course intervals concern regrowing forage. Climate, establishment and regrowth explain why a teaching interval cannot validate that feed will be present on a protected date.",
+        "Obtain the last actual cut, next protected cut, stand status and any separate feed-quantity commitment."
+      ],
+      "source_activation_note": "Inform interview only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C10",
+      "crop_ids": [
+        "berseem"
+      ],
+      "rule_type": "five_cut_trial_schedule",
+      "rule_label": "Five-cut trial schedule",
+      "parameters": {
+        "source_text": "First at 50 days, then intervals 45, 40, 35, 30",
+        "units": "days"
+      },
+      "research_context": {
+        "locality": "Moshtohor, Qalyubia",
+        "cultivar": "Gemiza 1, Sakha 4, Helali, Giza 6, Serw 1",
+        "season": "Sown 24 Oct in 2010/11 and 2011/12"
+      },
+      "source_ids": [
+        "SRC_f1cbfa56998ddb08"
+      ],
+      "evidence_ids": [
+        "E045"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Published management protocol, different from the university course. No universal cycle length.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "Five cuts were deliberately imposed at Moshtohor after an October 24 sowing. The local Sakha protocol B2 used different elapsed days. These are independent observations.",
+        "Match type and management to the field. Record its intended cut sequence rather than reusing trial offsets."
+      ],
+      "source_activation_note": "Inactivate as a general rule",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C11",
+      "crop_ids": [
+        "berseem"
+      ],
+      "rule_type": "time_to_final_cut",
+      "rule_label": "Time to final cut",
+      "parameters": {
+        "source_text": "200 = 50 + 45 + 40 + 35 + 30",
+        "units": "elapsed days"
+      },
+      "research_context": {
+        "locality": "Moshtohor, Qalyubia",
+        "cultivar": "Five-cut trial above",
+        "season": "Same five-cut protocol as C10"
+      },
+      "source_ids": [
+        "SRC_f1cbfa56998ddb08"
+      ],
+      "evidence_ids": [
+        "E046"
+      ],
+      "scientific_status": "DERIVED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Final cut is not equivalent to first free day. No evidence here for a sixth cut or release interval.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The five stated intervals sum to 200 elapsed days from sowing to cut five in C10. The calculation is reproducible. It measures neither regrowth termination nor residue removal.",
+        "Record stand termination, removal and first usable day independently. Keep 200 in the historical calculation only."
+      ],
+      "source_activation_note": "Trial context only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C12",
+      "crop_ids": [
+        "berseem"
+      ],
+      "rule_type": "lock_and_field_release",
+      "rule_label": "Lock and field release",
+      "parameters": {
+        "source_text": "Obtain protected cuts/dates, intended use, last cut, first free day and prep interval",
+        "units": "dates and days"
+      },
+      "research_context": {
+        "locality": "Specific pilot field",
+        "cultivar": "Farmer’s named variety and purpose",
+        "season": "Farmer commitment and local operations"
+      },
+      "source_ids": [
+        "SRC_656e0d2791e3ee51"
+      ],
+      "evidence_ids": [
+        "E047"
+      ],
+      "scientific_status": "CONDITIONAL",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Ceasing cutting early, grazing, regrowth or seed retention can change occupancy. Feed quantity unknown.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "Farmer-confirmed cut and occupation are hard commitments in the Promise Test. The product requirement provides no biological cut schedule, delivery of a feed quantity, or cut-to-release interval.",
+        "Collect date with year, type, purpose, last cut, clearance, first free day and transition preparation. Preserve confirmed unknowns."
+      ],
+      "source_activation_note": "Leave critical missing commitment unresolved",
+      "source_review_requirement": "Yes, and farmer confirmation",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C13",
+      "crop_ids": [
+        "berseem"
+      ],
+      "rule_type": "standard_seasonal_and_cutting_cycle_kc",
+      "rule_label": "Standard seasonal and cutting-cycle Kc",
+      "parameters": {
+        "source_text": "Averaged cuts 0.40/0.90/0.85. Individual cycles 0.40/1.15/1.10.",
+        "units": "dimensionless"
+      },
+      "research_context": {
+        "locality": "International FAO reference",
+        "cultivar": "Berseem clover hay",
+        "season": "Standard hay management"
+      },
+      "source_ids": [
+        "SRC_78fabec1fd8604d7"
+      ],
+      "evidence_ids": [
+        "E048"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Cycle points are after cut, full cover, before cut. Local fresh forage, timing and water regime require review.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "FAO-56 gives separate Kc series for a season averaged over cuts and for a single hay cutting cycle. Applying both to the same interval double-counts the cutting effect.",
+        "Identify hay versus fresh forage, record cuts and stage boundaries and choose one justified coefficient method."
+      ],
+      "source_activation_note": "Seasonal ETc conditional, extra-cut savings unavailable",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C14",
+      "crop_ids": [
+        "grain_maize"
+      ],
+      "rule_type": "sowing_window",
+      "rule_label": "Sowing window",
+      "parameters": {
+        "source_text": "15 Apr to 15 May",
+        "units": "calendar dates"
+      },
+      "research_context": {
+        "locality": "Nile Delta",
+        "cultivar": "Grain production, hybrid to be confirmed",
+        "season": "Regional irrigated maize calendar"
+      },
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "evidence_ids": [
+        "E049"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Atlas labels maize. Corroborate grain purpose with the Sakha grain trial and named hybrid.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The Atlas regional maize window and ARC's old-land May preference have different scopes. The SC10 study includes a June 1 treatment at Sakha. None sets a universal June exclusion.",
+        "Match grain purpose, named hybrid and target-season extension. Keep May 28 and June 1 as investigations in UH-001."
+      ],
+      "source_activation_note": "Candidate only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C15",
+      "crop_ids": [
+        "grain_maize"
+      ],
+      "rule_type": "duration",
+      "rule_label": "Duration",
+      "parameters": {
+        "source_text": "Early about 100, medium/late 110–130",
+        "units": "days after sowing"
+      },
+      "research_context": {
+        "locality": "Nile Delta",
+        "cultivar": "Early and medium/late maturity groups",
+        "season": "Regional calendar harvest-window column"
+      },
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "evidence_ids": [
+        "E050"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Grain moisture, actual harvest and residue removal determine release.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The Atlas distinguishes early from medium/late maturity groups. ARC harvest guidance and SC10 product maturity describe different end points. A group duration cannot rebuild a moved crop's calendar.",
+        "Obtain named-hybrid local sow-to-harvest evidence and separately validate clearance and preparation."
+      ],
+      "source_activation_note": "Apply only after hybrid/purpose review",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C16",
+      "crop_ids": [
+        "grain_maize"
+      ],
+      "rule_type": "sowing_date_comparison",
+      "rule_label": "Sowing-date comparison",
+      "parameters": {
+        "source_text": "15 May, 15 Jun and 15 Jul tested during 2023–24. SC168 performed best at 15 May within trial.",
+        "units": "calendar dates"
+      },
+      "research_context": {
+        "locality": "Sakha, Kafr El-Sheikh",
+        "cultivar": "SC131, SC168, TWC324 for grain",
+        "season": "Two seasons"
+      },
+      "source_ids": [
+        "SRC_170fd855c76f5800"
+      ],
+      "evidence_ids": [
+        "E051"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Trial dates are not a general June–July window. Preserve study conditions.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "SC168 performed well at the May 15 treatment in this Sakha grain trial. SC131, SC168 and TWC324 are distinct from UH-001's SC10. Three tested dates do not create an eligibility interval.",
+        "Identify the farmer’s hybrid and its locally supported sowing and harvest response. Use M3 only for its own hybrid."
+      ],
+      "source_activation_note": "Context for hybrid review",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C17",
+      "crop_ids": [
+        "grain_maize"
+      ],
+      "rule_type": "standard_kc_references",
+      "rule_label": "Standard Kc references",
+      "parameters": {
+        "source_text": "Initial cereal-group 0.30, mid 1.20, end 0.60 high-moisture grain or 0.35 drier field grain",
+        "units": "dimensionless"
+      },
+      "research_context": {
+        "locality": "International FAO reference",
+        "cultivar": "Field maize for grain",
+        "season": "Standard conditions and specified harvest moisture"
+      },
+      "source_ids": [
+        "SRC_78fabec1fd8604d7"
+      ],
+      "evidence_ids": [
+        "E052"
+      ],
+      "scientific_status": "CONDITIONAL",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Wetting, height, stage durations and dry-down matter. Exclude sweet corn and silage rows.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "FAO-56 field grain maize has different end Kc for harvest at higher grain moisture versus dry field grain. Using the silage or sweet corn curve would change the production purpose.",
+        "Confirm grain end use, moisture target, stage dates and wetting before a separate ETc calculation."
+      ],
+      "source_activation_note": "Select endpoints only for matched management",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C18",
+      "crop_ids": [
+        "grain_maize"
+      ],
+      "rule_type": "local_water_regime_and_coefficients",
+      "rule_label": "Local water regime and coefficients",
+      "parameters": {
+        "source_text": "0.43, 0.54, 0.64, 0.58, 0.51 in five successive phases",
+        "units": "dimensionless"
+      },
+      "research_context": {
+        "locality": "Alwezaria, Kafr El-Sheikh",
+        "cultivar": "SC10 grain maize",
+        "season": "2012 and 2013, particular irrigation treatment"
+      },
+      "source_ids": [
+        "SRC_b2f3ad4ec1aa172f"
+      ],
+      "evidence_ids": [
+        "E053"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Ratios reflect treatment and stage definitions. They do not directly fill the four FAO stages.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "Gharib et al. report five coefficients for SC10 at Alwezaria, from emergence through grain maturity. The phase definitions and water-depletion treatments differ from the standard four-stage schedule.",
+        "Check the Table 9 treatment, ET0 method, actual wetting and phase dates. Keep the five-phase series intact."
+      ],
+      "source_activation_note": "Context for sensitivity only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C19",
+      "crop_ids": [
+        "grain_sorghum"
+      ],
+      "rule_type": "nonlocal_sowing_harvest_evidence",
+      "rule_label": "Nonlocal sowing/harvest evidence",
+      "parameters": {
+        "source_text": "20 Apr to 15 May sowing and 1–30 Aug harvest",
+        "units": "calendar dates"
+      },
+      "research_context": {
+        "locality": "Upper Egypt",
+        "cultivar": "Sorghum in regional calendar",
+        "season": "Regional summer calendar"
+      },
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "evidence_ids": [
+        "E054"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Atlas does not specify this row for the Nile Delta or confirm the pilot cultivar.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The sorghum calendar is in the Upper Egypt block of Table 1. The Delta block does not establish these sowing or harvest dates for a grain crop in Sakha.",
+        "Retain for Upper Egypt context and locate target-season Delta grain guidance."
+      ],
+      "source_activation_note": "Keep out of Sakha eligibility",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C20",
+      "crop_ids": [
+        "grain_sorghum"
+      ],
+      "rule_type": "experimental_planting_dates",
+      "rule_label": "Experimental planting dates",
+      "parameters": {
+        "source_text": "7 Apr, 27 Apr, 17 May, 6 Jun, 26 Jun",
+        "units": "calendar dates"
+      },
+      "research_context": {
+        "locality": "Giza, Cairo University",
+        "cultivar": "Shandaweel-1, -305, -306 and Dorado",
+        "season": "Irrigated clay-loam field study"
+      },
+      "source_ids": [
+        "SRC_9268724cb86c61cd"
+      ],
+      "evidence_ids": [
+        "E055"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Out-of-area trial. Paper differs between abstract and methods on the second study year. Dates of sowing agree.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The Giza experiment used five discrete sowing dates and four grain genotypes. The abstract and methods differ on the study years. No transfer to Sakha follows from the dates.",
+        "Resolve the paper’s year discrepancy before quantitative reuse and verify hybrid response locally."
+      ],
+      "source_activation_note": "Research context only",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C21",
+      "crop_ids": [
+        "grain_sorghum"
+      ],
+      "rule_type": "time_to_grain_harvest",
+      "rule_label": "Time to grain harvest",
+      "parameters": {
+        "source_text": "91/85/76 and 92/86/74 for the three tested dates across the two years",
+        "units": "days after sowing"
+      },
+      "research_context": {
+        "locality": "El-Kharga, New Valley",
+        "cultivar": "Shandaweel-1, Shandaweel-2, Durado (author spelling)",
+        "season": "2011 and 2012, sowings 1 Jul, 15 Jul, 1 Aug"
+      },
+      "source_ids": [
+        "SRC_f7a92d2408eb1de6"
+      ],
+      "evidence_ids": [
+        "E056"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Experiment reports time to harvest. Population, climate, timing and soils differ from Sakha.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The El-Kharga studies report elapsed time to grain harvest at three sowings in each season. These are observed treatment endpoints. No field-release or Sakha duration follows.",
+        "Obtain a local cultivar-specific harvest sequence and residue-removal date."
+      ],
+      "source_activation_note": "No transfer to Sakha occupancy",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C22",
+      "crop_ids": [
+        "grain_sorghum"
+      ],
+      "rule_type": "crop_purpose_exclusion",
+      "rule_label": "Crop-purpose exclusion",
+      "parameters": {
+        "source_text": "Sowing/cutting evidence concerns forage",
+        "units": "purpose"
+      },
+      "research_context": {
+        "locality": "Sakha, Kafr El-Sheikh",
+        "cultivar": "Sakha forage sorghum experiment",
+        "season": "Forage experiment 2022–23"
+      },
+      "source_ids": [
+        "SRC_501ce496ca19e930"
+      ],
+      "evidence_ids": [
+        "E057"
+      ],
+      "scientific_status": "NOT APPLICABLE",
+      "local_applicability": {
+        "status": "NOT_APPLICABLE",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Location matches but yield endpoint and cutting management differ from grain.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The original Sakha paper tested green forage yield and composition. Its cuts cannot supply a grain-harvest rule. A separate hybrid 888 grain experiment provides local context only.",
+        "Keep this evidence excluded for grain. Review independent grain studies under their own IDs."
+      ],
+      "source_activation_note": "Exclude forage rules from grain path",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C23",
+      "crop_ids": [
+        "grain_sorghum"
+      ],
+      "rule_type": "pilot_sowing_occupancy_and_kc_activation",
+      "rule_label": "Pilot sowing, occupancy and Kc activation",
+      "parameters": {
+        "source_text": "Local planting window, time to grain harvest, stage timing and release undetermined",
+        "units": "dates and days"
+      },
+      "research_context": {
+        "locality": "Sakha",
+        "cultivar": "Locally suitable grain cultivar unidentified",
+        "season": "Pilot grain purpose"
+      },
+      "source_ids": [
+        "SRC_8bbfb83d46a7befb"
+      ],
+      "evidence_ids": [
+        "E058"
+      ],
+      "scientific_status": "UNVERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Regional national evidence and a local forage study do not establish a Sakha grain sequence.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "Hybrid 888 was grown for grain at Sakha after barley in 2012 and 2013. This corrects an overly broad impression of absent local grain evidence. It leaves a transferable window, grain cultivar supply, stages and first free day unknown.",
+        "Confirm available grain hybrid, current extension scope, applicable cultivar calendar and post-harvest operations."
+      ],
+      "source_activation_note": "Inactive until local grain-specific evidence",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C24",
+      "crop_ids": [
+        "grain_sorghum"
+      ],
+      "rule_type": "standard_kc_reference",
+      "rule_label": "Standard Kc reference",
+      "parameters": {
+        "source_text": "Cereal-group initial 0.30, mid 1.00–1.10, end 0.55",
+        "units": "dimensionless"
+      },
+      "research_context": {
+        "locality": "International FAO reference",
+        "cultivar": "Grain, distinct from sweet or forage",
+        "season": "Standard, well-watered grain sorghum"
+      },
+      "source_ids": [
+        "SRC_78fabec1fd8604d7"
+      ],
+      "evidence_ids": [
+        "E059"
+      ],
+      "scientific_status": "VERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Reviewed local stages, variety and moisture management absent.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "FAO-56 lists grain sorghum separately from sweet/forage sorghum. Its reference coefficients concern standard growing conditions. No coefficient sets a sowing, harvest or release date.",
+        "Confirm purpose and variety and document local stage and moisture assumptions before optional ETc."
+      ],
+      "source_activation_note": "Withhold Sakha ETc",
+      "source_review_requirement": "Yes",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C25",
+      "crop_ids": [
+        "wheat",
+        "berseem",
+        "grain_maize",
+        "grain_sorghum"
+      ],
+      "rule_type": "preparation_and_harvest_logistics",
+      "rule_label": "Preparation and harvest logistics",
+      "parameters": {
+        "source_text": "First free day and preparation duration currently unknown",
+        "units": "dates and elapsed days"
+      },
+      "research_context": {
+        "locality": "Pilot field",
+        "cultivar": "Named cultivar and field",
+        "season": "Farmer equipment, harvest and agreed local practice"
+      },
+      "source_ids": [
+        "SRC_c653ac2ec4a65dbc"
+      ],
+      "evidence_ids": [
+        "E060"
+      ],
+      "scientific_status": "UNVERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "No cross-crop universal turnaround identified. Do not use zero as an automatic default.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "First free day and preparation are distinct field facts. Seven days in UH-001 is a scenario assumption. A harvest or final cut leaves equipment, residues and possible wet-field delays unresolved.",
+        "Collect previous occupation end, field clearance, next operations and duration for each transition, with provenance."
+      ],
+      "source_activation_note": "Critical missing input prevents eligibility",
+      "source_review_requirement": "Yes, and farmer confirmation",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C26",
+      "crop_ids": [
+        "wheat",
+        "berseem",
+        "grain_maize",
+        "grain_sorghum"
+      ],
+      "rule_type": "soil_compatibility_and_irrigation_access",
+      "rule_label": "Soil compatibility and irrigation access",
+      "parameters": {
+        "source_text": "No approved local numeric salinity, pH, drainage or texture exclusion. Canal and access constraints require confirmation.",
+        "units": "Method-specific units and dates"
+      },
+      "research_context": {
+        "locality": "Pilot field",
+        "cultivar": "Field-specific soil and irrigation",
+        "season": "Measured soil test or stated farmer information"
+      },
+      "source_ids": [
+        "SRC_c653ac2ec4a65dbc"
+      ],
+      "evidence_ids": [
+        "E061"
+      ],
+      "scientific_status": "UNVERIFIED",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "Keep laboratory measurement, farmer description and unknown separate. Irrigation water EC and soil-extract EC are different.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The product spec identifies input needs. Published station soil cannot establish this parcel’s measured pH, salinity, drainage or canal delivery. No reviewed exclusion threshold is available.",
+        "Collect field sample or explicit farmer report, drainage and actual water turns. Review any crop-specific threshold."
+      ],
+      "source_activation_note": "Inactive thresholds, retain unresolved critical conditions",
+      "source_review_requirement": "Yes, and farmer confirmation",
+      "source_sign_off": "Pending"
+    },
+    {
+      "rule_id": "C27",
+      "crop_ids": [
+        "wheat",
+        "berseem",
+        "grain_maize",
+        "grain_sorghum"
+      ],
+      "rule_type": "rotation_sequence_indicators",
+      "rule_label": "Rotation/sequence indicators",
+      "parameters": {
+        "source_text": "Track repeated cereal family and berseem legume placement",
+        "units": "categorical indicators"
+      },
+      "research_context": {
+        "locality": "Pilot sequences",
+        "cultivar": "Three cereals and one legume",
+        "season": "Reviewed rules and crop catalogue"
+      },
+      "source_ids": [
+        "SRC_c653ac2ec4a65dbc"
+      ],
+      "evidence_ids": [
+        "E062"
+      ],
+      "scientific_status": "CONDITIONAL",
+      "local_applicability": {
+        "status": "PENDING",
+        "locality_ids": [
+          "sakha"
+        ],
+        "reviewer": null,
+        "reference": null
+      },
+      "approval": {
+        "status": "PENDING",
+        "reviewer": null,
+        "approved_on": null,
+        "reference": null,
+        "scope_sha256": null
+      },
+      "enforcement": {
+        "status": "DISABLED",
+        "constraint": null
+      },
+      "conditions": {},
+      "unresolved_requirements": [
+        "A sequence indicator alone cannot quantify soil change, nitrogen gain or impose a universal ban.",
+        "Document local applicability, cultivar, purpose and field conditions.",
+        "Obtain named agronomic sign-off and review the structured planner constraint.",
+        "The sequence of cereal families and the position of berseem can be described. The indicators have no calibrated yield/N credit and no universal penalty or ban.",
+        "Collect prior field history and target successor. Require a crop-pair, site and endpoint-specific basis for any restriction."
+      ],
+      "source_activation_note": "Display indicator, require evidence for binding restriction",
+      "source_review_requirement": "Yes for agronomic exclusions",
+      "source_sign_off": "Pending"
+    }
+  ]
+}

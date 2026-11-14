@@ -1,0 +1,31 @@
+{
+  "check": "rejected",
+  "plan_current": "rejected",
+  "search": {
+    "status": "incomplete",
+    "raw_count": 5,
+    "materialized_count": 2,
+    "evaluated_count": 2,
+    "rejected_count": 0,
+    "needs_review_count": 2,
+    "feasible_count": 0,
+    "duplicate_count": 0,
+    "excluded_count": 0,
+    "blocked_count": 3,
+    "scope_choice_ids": [
+      "dates",
+      "s4-maize"
+    ],
+    "uninstantiated_choice_ids": [
+      "s4-maize"
+    ],
+    "limit_reason": "uninstantiated_choices",
+    "policy_version": "minimal-edits-v1-proposed",
+    "policy_approval": "pending_team_review"
+  },
+  "feasible": 0,
+  "investigated": [
+    "needs_review",
+    "needs_review"
+  ]
+}
