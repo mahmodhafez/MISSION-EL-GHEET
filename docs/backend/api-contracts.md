@@ -39,12 +39,12 @@ Where the running API differs from the text below, this section describes realit
 | `GET /results/{id}?locale=` | — | `{…, payload: {result, …}, current, rendered}` |
 | `POST /scenarios/{id}/evidence-cards` | `{result_id}` | `{card_id, scenario_id, revision, result_id, kind: review_draft, plan_status, data_release}`; 409 `result_not_current` |
 | `POST /scenarios/{id}/replay` | `{sow_dates[1..4], window_days=14, result_id?}` | `{status: ok, replay}` or `{status: unavailable, reason}`; 422 `invalid_replay_request` |
-| `POST /speech/interpret` | `{question_id, locale, transcript, season_order}` | `{status: ok, extraction}` (strict schema, backend design §8.3) / `no_match` / `unavailable` |
+| `POST /speech/interpret` | `{question_id, locale, transcript, season_order}` (today) · **proposed 14 Nov:** multipart audio clip + same fields | `{status: ok, extraction}` (strict schema, backend design §8.3) / `no_match` / `unavailable` |
 | `GET /forecast?action_dates=` | — | `{status: not_applicable|unavailable, reason}` |
 
 - `rendered` = `{locale, headline, conflicts[], why, options[], coverage[], review_reasons[], takeaway}`, each item
   `{code, version, text, speech}`. Stored results keep codes and params only.
-- `/speech/interpret` returns the validated extraction, not yet the proposed `proposals[]` list.
+- `/speech/interpret` returns the validated extraction, not yet the proposed `proposals[]` list. Audio input (Gemini hears the clip, backend design §8.2) is a proposed change, not built: clip ≤ 30 s and ≤ 256 KB (413 above). Public endpoints are rate-limited (429 + `Retry-After`, backend design §10a).
 - Errors: one envelope `{error: {code, message, field_paths}}`; KB out of scope 422, KB missing/altered 503.
 
 ## 1. Common conventions
@@ -195,7 +195,7 @@ Implement these with their feature milestones, not as first-slice boilerplate. E
 | `POST /scenarios/{id}/approvals` | Expected revision, PlanRef, evidence card ID, explicit Confirmation → approved record after transactional currentness/feasibility checks. |
 | `POST /scenarios/{id}/approval-revocations` | Expected revision, approval ID, explicit action → revoked record. Retain historical snapshot, revoke current authority. |
 | `POST /scenarios/{id}/commitment-changes` | Expected revision, complete proposed input, Confirmation, explicit acknowledgments `{commitment_id, previous_value, new_value}` → new confirmed snapshot. Validate all and only changed locks; recompute before new approval. |
-| `POST /speech/interpret` | `{question_id, answer_type, locale, transcript, context}` → SpeechProposal. Transcript only; no audio upload in the MVP. Not stored or logged. See BACKEND_DESIGN §8. |
+| `POST /speech/interpret` | `{question_id, answer_type, locale, transcript, context}` → SpeechProposal. Superseded 14 Nov: audio clip, sent to Gemini (backend design §8.2). Not stored or logged. See BACKEND_DESIGN §8. |
 | `POST /speech/tts` | `{locale, code, params}` → `{status, audio_url, template_version, voice, cached}` or `unavailable` with reason. No caller-supplied free text. See BACKEND_DESIGN §9. |
 | `GET /forecast` | `?action_dates=` (comma-separated ISO dates) → ForecastResult derived from the ML bundle. Replaces `POST /forecast-assessments` in the MVP. |
 

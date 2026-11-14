@@ -47,7 +47,9 @@ FastAPI app, package `backend.app`, run from the repo root:
 | 1 | Review and merge the `chore/final-integration` PR | Reviewers: Amr (planner, KB, replay, frontend), Refaat (data, KB), Mahmoud (replay) |
 | 2 | Ask preparation days and harvest dates in the app; map them in `from-answers` | Without them the planner cannot compute `preparation_shortfall` ("why"), unlike the fixture |
 | 3 | Approve Refaat's KB schema and Amr's adapter conventions (year/leap, topic map) | Formal sign-off still pending; code already uses them |
-| 4 | Test Gemini with a key and a set of real Egyptian Arabic recordings; verify the model ID | Backend design §8.3 |
+| 4 | Audio input: `/speech/interpret` takes the recorded clip and sends it to Gemini (decided 14 Nov); then test with a key on real Egyptian Arabic recordings; verify the model ID | Backend design §8.2–8.3 |
+| 4a | Rate limits + global daily ceilings + body/clip size caps before public hosting; set provider spending caps on the Gemini and ElevenLabs keys | Backend design §10a; **must be done before the judges' link goes out** |
+| 4b | Demo: whole sentences vs. record-once-and-swap-the-changing-words, same voice. **Kit ready (14 Nov):** [`backend/scripts/voice_test/`](../../backend/scripts/voice_test/README.md), handed to Moaaz; decide from his blind score sheet | [voice-generation Q4 (d)](../backend/voice-generation.md#8-open-questions); 13 Nov "offline only" stands until decided |
 | 5 | Shared Pydantic contracts and OpenAPI → TypeScript types | Requests still carry planner JSON; frontend types are handwritten |
 | 6 | Forecast bundle reader (ML contract) | Optional; must not block P0 |
 | 7 | Voice audio: Moaaz generates and reviews with ElevenLabs once wording is final | [voice-generation.md](../backend/voice-generation.md) |

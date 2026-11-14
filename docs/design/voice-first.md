@@ -40,6 +40,19 @@ The farmer says or taps what they will grow in each of the four seasons and what
 10. **No free advice.** Off-script questions ("what should I plant instead?", "which is best?", "how much should I irrigate?") get fixed templates that redirect.
 11. **Clarify ambiguous words with pictures,** e.g. "ذرة" → maize or sorghum. Never guess a crop, date, year or unit.
 
+## 2a. Filling in missing details (adopted 14 Nov, Yahya)
+
+Gemini fills only what the farmer said ([backend design §8.3](../backend/backend-design.md#83-interpretation-d6-gemini-extraction)); the app asks for the rest.
+
+1. **Ask for one missing thing at a time, by name,** in voice and on screen: "Which month did you sow the wheat?", never "some information is missing".
+2. **Never ask again for something already given.** If one sentence gives crop and date, both questions are skipped.
+3. **"I don't know" is an answer.** It is recorded as `unknown` and the app moves on; it is not re-asked.
+4. **Show what was understood** as chips while asking for the gap, each tappable to change.
+5. **Ask specific questions, accept extra details.** Prompts name one thing; anything else the farmer volunteers is kept.
+6. **Cover the wait.** While Gemini works, the dock shows "working it out" with a short sound or animation, so silence never looks broken.
+
+Misses, ambiguous words and the final confirm follow rules 5, 6 and 11 above.
+
 ## 3. Layout rules (proposed)
 
 - **One step = one screen. No scrolling** at 390×760 (phone) or in an 820-px-tall desktop frame. Raised by Yahya 13 Nov after Phase 3 needed a lot of scrolling.

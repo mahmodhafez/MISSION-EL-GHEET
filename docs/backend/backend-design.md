@@ -354,8 +354,8 @@ Stored results hold `{code, params}`. On read, the API adds the rendered forms:
 Question (question_id, answer_type) → play prompt audio
    │
    ├─ tap a picture/choice ───────────────────────────────┐
-   └─ press mic → disclose transmission → browser STT     │
-        (ar-EG or en-US) → transcript                     │
+   └─ press mic → disclose transmission → record clip     │
+        (push-to-talk, ar-EG or en)                       │
            │                                              │
      POST /speech/interpret                               │
            ▼                                              ▼
@@ -370,19 +370,24 @@ Question (question_id, answer_type) → play prompt audio
 
 - Touch and voice produce the same proposed field.
 - Recognition never confirms. Confirmation is always a separate action after the full readback. Silence never confirms.
-- Raw audio never reaches the backend in the MVP. Only the transcript is sent, and it is not stored or logged.
+- The audio clip goes to the backend and on to Gemini (§8.2, decided 14 Nov 2026). It is not stored or logged by us.
 
 ### 8.2 Speech recognition (D5)
 
-The MVP uses the browser Web Speech API with `lang = "ar-EG"` or `"en-US"`. The frontend wraps it in a `SpeechRecognizer` interface (`start`, `stop`, `onResult`, `onError`) so a server-side provider can replace it without changing screens.
+~~The MVP uses the browser Web Speech API.~~ **Superseded 14 Nov 2026 (Yahya): Gemini hears the audio itself.** One model call does recognition and extraction, so Egyptian Arabic is understood by Gemini rather than by Chrome's recogniser. Not built yet.
+
+- **Browser:** `MediaRecorder` records one push-to-talk clip (voice-first §2 rule 1), mono Opus in WebM/Ogg at about 24 kbit/s.
+- **Clip length (Yahya, 14 Nov 2026):** recording stops by itself at **15 s** for a single answer and **30 s** for the opening sentence (several seasons at once), with a short tone and the dock saying it stopped. Clips under **0.5 s** are dropped as accidental taps and never sent. At 24 kbit/s, 30 s is about 90 KB; the backend rejects any upload over **256 KB** with 413. These limits sit far below Gemini's request size limit (inline data up to about 20 MB; check Google's current audio docs when wiring). The frontend keeps the `SpeechRecognizer` interface (`start`, `stop`, `onResult`, `onError`) so screens don't change.
+- **Backend:** `POST /speech/interpret` receives the clip (multipart) with `question_id`, `locale` and `context`, sends it to Gemini as inline audio with the §8.3 instruction and schema, validates the reply as in §8.3, and discards the audio. The key stays on the server.
+- **Optional `heard` field:** Gemini may return the words it heard, used only for the on-screen "I heard …" line; never spoken back as a fact and never trusted over the validated fields.
 
 | Situation | Behaviour |
 |---|---|
-| API missing (e.g. Firefox, some iOS) | Hide the mic button; touch and prompt audio remain |
+| `MediaRecorder` or mic missing | Hide the mic button; touch and prompt audio remain |
 | Permission denied | Do not re-prompt; continue with touch |
-| No result or timeout | Offer repeat, choices or help; nothing advances |
+| Empty clip, timeout, Gemini error | `no_match`: offer repeat, choices or help; nothing advances |
 
-Chrome's implementation sends audio to Google. The microphone disclosure must say so before permission is requested (PRIVACY_ASSUMPTIONS.md).
+The microphone disclosure must say the recording is sent to Google to be understood, before permission is requested. Abuse limits on this endpoint: §10a. Still open: whether Web Speech stays as a fallback when the backend is unreachable.
 
 ### 8.3 Interpretation (D6, Gemini extraction)
 
@@ -395,7 +400,7 @@ Decided 14 Nov 2026 (Yahya): **Gemini extracts the facts the farmer said; it nev
  "transcript": "عشرين مايو", "context": {"season_order": 1, "issue_date": "2026-11-14"}}
 ```
 
-**What the backend sends to Gemini:** the transcript, the current `question_id`, the allowed values from the data-release catalogue (crop IDs, purposes) and this fixed instruction: *extract only what the speaker said; return `null` for every field that was not said; never guess a year, unit, crop or date; never add advice or text outside the schema.* Structured output is required (`response_mime_type: application/json` with the schema below), temperature 0.
+**What the backend sends to Gemini:** the audio clip (§8.2; the transcript in the dev adapter), the current `question_id`, the allowed values from the data-release catalogue (crop IDs, purposes) and this fixed instruction: *extract only what the speaker said; return `null` for every field that was not said; never guess a year, unit, crop or date; never add advice or text outside the schema.* Structured output is required (`response_mime_type: application/json` with the schema below), temperature 0.
 
 **Extraction schema (strict; every field nullable, no extra keys):**
 
@@ -427,9 +432,9 @@ Decided 14 Nov 2026 (Yahya): **Gemini extracts the facts the farmer said; it nev
 **Response:** the existing `SpeechProposal`, one per extracted field. **Proposed contract change (Yahya, shared-contract owner; Amr reviews frontend impact):** `POST /speech/interpret` returns `{"proposals": [SpeechProposal, ...], "ambiguous": [...], "off_topic": bool}` so one sentence can fill several fields (lab 02 “opening sentence”). Single-field answers return a list of one.
 
 - Recognition and extraction never confirm. The readback and the separate explicit confirm (§8.1) are unchanged.
-- The transcript is sent to Google for extraction and is not stored or logged by us. Check the Gemini API data terms for the tier we use; the mic disclosure must say the words are sent to Google to be understood.
+- The audio is sent to Google for recognition and extraction and is not stored or logged by us. Check the Gemini API data terms for the tier we use; the mic disclosure must say the words are sent to Google to be understood.
 - Test before relying on it: a set of real Egyptian Arabic recordings per answer type, scored field by field (correct, wrong, null when said, value when not said). No accuracy figure exists yet.
-- Open: send the audio itself to Gemini instead of the browser transcript (would replace D5 and the “no audio upload” rule). Not decided.
+- ~~Open: send the audio itself to Gemini.~~ Decided 14 Nov 2026 (Yahya): yes, see §8.2.
 
 ## 9. Voice output (D7)
 
@@ -468,6 +473,34 @@ Returns `{"status": "ready", "audio_url": "/api/v1/audio/3fa1….mp3", "template
 - Errors use the envelope in API_CONTRACTS §6. A cross-season conflict is a `200` planning result, never an error.
 - Logs contain request ID, path, status, duration and error code. Never transcripts, audio or full scenario bodies.
 - Local development: Vite proxies `/api` to `uvicorn backend.app.main:app --port 8787` (run from the repo root; `MEG_API_URL` overrides). Demo: FastAPI serves the built frontend from one process (not built yet).
+
+## 10a. Public hosting and abuse limits
+
+Decided 14 Nov 2026 (Yahya): **the app is hosted publicly for the NASA Space Apps judges with no password or sign-in.** Anyone with the link can use it, so every endpoint that costs money (Gemini, and ElevenLabs if speech is ever generated live) or writes to disk is limited. **Goal: a judge never hits a limit; someone scripting the API gets cut off, and the bill has a hard ceiling.** No CAPTCHA or sign-up, because they would get in the judges' way.
+
+**Sizing.** One full journey (four seasons, changes, confirm, alternatives) is about 10–30 voice turns and under 100 API calls. Limits are set at several times that, per IP, so a judge replaying the demo several times, or several judges behind one venue Wi-Fi, stay well inside.
+
+| Endpoint | Per-IP limit | Global ceiling | When hit |
+|---|---|---|---|
+| `POST /speech/interpret` (Gemini) | 20 / minute, 300 / day | 3,000 calls / day | 429 → dock says "too many tries, use the pictures"; touch still completes everything |
+| `POST /speech/tts` | 60 / minute (file lookups are cheap). Live generation, if adopted: 30 new sentences / hour | ElevenLabs character budget / day | Fall back to device voice, labelled |
+| `POST /scenarios`, revisions, evidence cards (SQLite writes) | 30 / minute, 500 / day | DB size cap; scenarios older than 30 days pruned | 429 |
+| Planner, replay, catalogue, results (CPU only) | 120 / minute | n/a | 429 |
+| Everything | Body ≤ 64 KB JSON, 256 KB audio (413) | Provider calls time out after 10 s | `no_match` / `unavailable` |
+
+All numbers are starting values, set by `MEG_*` settings so they can change without a deploy. Watch real use in the first days and adjust.
+
+**How:**
+- **In-process limiter**, a small token-bucket middleware in `core/` keyed by client IP and route group. One uvicorn worker is enough for the judging load, so no Redis. Counters reset on restart, but the global daily ceilings are persisted in SQLite so a restart doesn't reset the budget. Write it ourselves rather than add a package, unless one passes the [dependency rules](../rules/dependencies.md).
+- **Client IP:** behind the host's proxy, trust `X-Forwarded-For` only from that proxy; otherwise use the socket address, so the header can't be spoofed to dodge limits.
+- **429 responses** use the existing error envelope with a `Retry-After` header ([API contracts](api-contracts.md), 429 row). The frontend never retries automatically.
+- **Hard spending caps at the providers too:** a Google Cloud budget alert and API quota on the Gemini key, and a monthly character limit on the ElevenLabs key. The app's ceilings are the first line; the provider caps are the backstop if the app's logic fails.
+- **Keys** live only in the server environment, never in the frontend bundle or the repo. CORS allows only the app's own origin.
+- **No free text to providers:** `/speech/interpret` accepts only an audio clip plus known `question_id`s; `/speech/tts` accepts only template codes and typed params (§9). Neither can be used as a general-purpose Gemini or TTS proxy.
+- **Privacy:** audio and transcripts are not logged. Rate-limit logs keep a hashed IP and counts only.
+- **Budget exhausted ≠ broken:** when a ceiling is hit, voice degrades to pictures and device voice; the Promise Test and every screen keep working.
+
+Not built yet.
 
 ## 11. Testing
 
