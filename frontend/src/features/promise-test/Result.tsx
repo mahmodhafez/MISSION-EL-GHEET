@@ -12,7 +12,7 @@ export function Checking() {
   const { state, dispatch, client, t } = useApp();
   useEffect(() => {
     let live = true;
-    client.promiseTest(snapshotOf(state)).then((plan) => {
+    client.promiseTest(snapshotOf(state), { locale: state.locale, firstWinterYear: state.slots[0].startYear }).then((plan) => {
       if (!live) return; // stale response guard: a newer request or navigation wins
       dispatch({ type: 'set', patch: { plan, pick: 0 } });
       dispatch({ type: 'go', route: plan.status === 'ok' ? 'result' : 'failed' });
@@ -56,6 +56,7 @@ export function Result() {
   const voice = useVoiceCtx();
   if (state.plan?.status !== 'ok') return null;
   const cur = state.plan.result.current;
+  const rendered = state.plan.rendered;
   const pair = conflictPair(cur);
   const idx = (sid: string | null) => state.seasons.findIndex((s) => s.season_id === sid);
   const sow = pair ? state.seasons[idx(pair.sowSeason)] : null;
@@ -87,12 +88,15 @@ export function Result() {
     : cur.status === 'needs_review' ? <Banner kind="review" icon="review">{t({ ar: 'محتاج مراجعة زراعية', en: 'Needs agricultural review' })}</Banner>
     : <Banner kind="feasible" icon="feasible">{t({ ar: 'ماشية بالشروط الموضّحة', en: 'Feasible under stated conditions' })}</Banner>;
   const hasOptions = state.journey === 'explore';
+  // Backend-owned wording (D4) when the server sent it: screen keeps pictures, voice reads the template speech.
+  const said = rendered?.conflicts[0] ?? rendered?.headline;
+  if (said) prompt = { ar: said.speech, en: said.speech };
   return (
     <Shell prompt={prompt} onTranscript={undefined}>
       <div className="calm">
         {banner}<DevBadge />{body}
         <div className="calm-end"><div className="three-btns">
-          {prepSteps(cur) ? <button className="secondary" onClick={() => dispatch({ type: 'go', route: 'why' })}><Icon name="help" /><span>{t({ ar: 'ليه؟', en: 'Why?' })}</span></button> : <span />}
+          {prepSteps(cur) || rendered?.why ? <button className="secondary" onClick={() => dispatch({ type: 'go', route: 'why' })}><Icon name="help" /><span>{t({ ar: 'ليه؟', en: 'Why?' })}</span></button> : <span />}
           {hasOptions ? <button className="primary" onClick={() => dispatch({ type: 'go', route: 'options' })}><Icon name="calendar" /><span>{t({ ar: 'مواعيد تانية', en: 'Other dates' })}</span></button> : <span />}
           <button className="secondary" onClick={() => { voice.stop(); dispatch({ type: 'go', route: 'summary' }); }}><Icon name="save" /><span>{t({ ar: 'احفظ', en: 'Save' })}</span></button>
         </div></div>
@@ -107,7 +111,8 @@ export function Why() {
   const st = prepSteps(state.plan.result.current);
   if (!st) return null;
   const L = state.locale;
-  const prompt = { ar: `${st.cutDate ? `آخر حشة ${dateText(st.cutDate, 'ar', { noYear: true })}. ` : ''}الأرض تفضى ${dateText(st.releaseDate, 'ar', { noYear: true })}. بعد ${num(st.days, 'ar')} أيام تجهيز، أقرب ميعاد ${dateText(st.earliest, 'ar')}. ده عدّ أيام بس، ومحتاج مراجعة زراعية.`,
+  const why = state.plan.rendered?.why;
+  const prompt = why ? { ar: why.speech, en: why.speech } : { ar: `${st.cutDate ? `آخر حشة ${dateText(st.cutDate, 'ar', { noYear: true })}. ` : ''}الأرض تفضى ${dateText(st.releaseDate, 'ar', { noYear: true })}. بعد ${num(st.days, 'ar')} أيام تجهيز، أقرب ميعاد ${dateText(st.earliest, 'ar')}. ده عدّ أيام بس، ومحتاج مراجعة زراعية.`,
     en: `${st.cutDate ? `Last cut ${dateText(st.cutDate, 'en', { noYear: true })}. ` : ''}The field is free on ${dateText(st.releaseDate, 'en', { noYear: true })}. After ${st.days} preparation days, the earliest date is ${dateText(st.earliest, 'en')}. That is only day counting and needs agricultural review.` };
   return (
     <Shell prompt={prompt}>

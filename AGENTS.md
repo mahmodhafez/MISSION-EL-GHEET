@@ -74,15 +74,16 @@ node work/ux-phase-2/check-wireframes-v3.cjs                            # wirefr
 node work/ux-phase-3/check-hybrid.cjs                                   # Fieldlight prototype check
 node work/ux-phase-4/check-labs.cjs                                     # voice-first page labs check
 python -I -S -m unittest discover -s packages/meg-core/tests -v         # planner: 84 tests
-cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm dev   # app at http://127.0.0.1:5173 (dev adapter)
+cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm dev   # app at http://127.0.0.1:5173 (dev adapter, no server)
+cd frontend && VITE_API_BASE=/api/v1 corepack pnpm dev                 # app against the backend (proxied to :8787)
 cd frontend && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build   # 12 unit tests
 python3 -I scripts/check_dependency_age.py                              # lock files: hashes + 14-day minimum age
 python3 -m venv backend/.venv && cp backend/pip.conf backend/.venv/pip.conf && backend/.venv/bin/pip install --require-hashes --no-deps --only-binary :all: -r backend/requirements.lock
-cd backend && .venv/bin/python -m pytest -q                            # backend: 12 tests incl. UH-001 golden
-cd backend && .venv/bin/uvicorn app.main:app --port 8000                # API at http://127.0.0.1:8000/api/v1 (docs at /docs)
+cd backend && .venv/bin/python -m pytest -q                            # backend: 20 tests incl. UH-001 golden
+cd backend && .venv/bin/uvicorn app.main:app --port 8787                # API at http://127.0.0.1:8787/api/v1 (docs at /docs)
 ```
 
-The frontend runs on a labelled dev adapter until the backend serves `/api/v1`.
+The frontend uses the backend when `VITE_API_BASE` is set, otherwise a labelled dev adapter (real planner export for UH-001 only).
 
 ## Facts worth knowing on day one
 

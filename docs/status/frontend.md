@@ -10,7 +10,8 @@
 
 | # | Task | Notes |
 |---|---|---|
-| 1 | HTTP adapter for `/api/v1` replacing the dev adapter; types generated from the backend OpenAPI | Screens use `PlannerClient` only, so no screen changes |
+| 1 | ~~HTTP adapter~~ done 14 Nov (`VITE_API_BASE`); still to do: types generated from the backend OpenAPI | Handwritten types for now |
+| 1b | Ask preparation days (and harvest dates) so the planner can compute “why” | Without them the server result has no `preparation_shortfall` |
 | 2 | Real speech output: pre-generated ElevenLabs files via `/speech/tts` (Moaaz generates and reviews) | Device voice, labelled, until then |
 | 3 | `/speech/interpret` (Gemini extraction) instead of the dev keyword stand-in | Backend design §8.3 |
 | 4 | Save/reload Evidence Card, replay and forecast against the backend | Currently honest "unavailable" states |
@@ -42,6 +43,10 @@ before/after + why review → check again → summary + save; past weather and 7
 - **Supply chain (14 Nov):** pnpm 10.34.9 pinned by hash via corepack; `.npmrc` `minimum-release-age` 14 days; lockfile
   re-resolved under that rule (173 packages, all with integrity hashes, none with install scripts). `scripts/check_dependency_age.py`
   passes. Typecheck, 12 tests and build pass on the new lockfile. Rules: [dependencies.md](../rules/dependencies.md).
+- **HTTP mode (14 Nov):** `src/services/http/httpAdapter.ts` sends answers to `POST /scenarios/from-answers`, runs the Promise Test
+  with `?locale`, saves review cards, re-renders on language switch, and plays the backend's `speech` wording. Verified with a
+  headless click-through of the full UH-001 journey against the running backend (390×760 and 1280×820): real result, backend
+  wording for “not checked”, card saved; no errors, overflow or scrolling. Without a Gemini key the dev keyword stand-in is used.
 - **Known gaps:** harvest dates for maize, wheat and sorghum are not asked (the fixture supplies illustrative ones); season month
   windows are placeholders (voice-first.md open question 6); crop pictures are drawings.
 

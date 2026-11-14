@@ -21,7 +21,16 @@ export interface IntakeSnapshot {
 }
 
 export type Unavailable = { status: 'unavailable'; reason: string };
-export type PlanResponse = { status: 'ok'; source: 'dev-export' | 'server'; data_release: string; result: PlanningResult } | Unavailable;
+/** Backend-rendered wording for one locale (design D4): `text` for the screen, `speech` for audio. */
+export interface Rendered { code: string; version: number; text: string; speech: string }
+export interface RenderedResult {
+  locale: 'ar-EG' | 'en';
+  headline: Rendered | null; conflicts: Rendered[]; why: Rendered | null;
+  options: (Rendered & { candidate_id: string })[]; coverage: Rendered[]; review_reasons: Rendered[]; takeaway: Rendered | null;
+}
+export type PlanResponse =
+  | { status: 'ok'; source: 'dev-export' | 'server'; data_release: string; result: PlanningResult; rendered?: RenderedResult; result_id?: string }
+  | Unavailable;
 export type ForecastResponse = { status: 'available' | 'stale' | 'not_applicable' | 'unavailable'; reason?: string };
 export type SaveResponse = { status: 'saved'; card_id: string } | Unavailable;
 
@@ -39,7 +48,9 @@ export type InterpretResponse = { status: 'ok'; extraction: Extraction } | { sta
 export interface PlannerClient {
   readonly kind: 'dev' | 'http';
   catalogue(): Promise<{ data_release: string; crop_ids: string[] }>;
-  promiseTest(snapshot: IntakeSnapshot): Promise<PlanResponse>;
+  promiseTest(snapshot: IntakeSnapshot, ctx: { locale: Locale; firstWinterYear: number }): Promise<PlanResponse>;
+  /** Re-render a stored result in another language without re-running the planner (server only). */
+  relocalise?(resultId: string, locale: Locale): Promise<RenderedResult | null>;
   replay(snapshot: IntakeSnapshot): Promise<Unavailable>;
   forecast(snapshot: IntakeSnapshot): Promise<ForecastResponse>;
   saveEvidence(snapshot: IntakeSnapshot): Promise<SaveResponse>;

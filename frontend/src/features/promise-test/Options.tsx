@@ -28,6 +28,7 @@ export function Options() {
   const prompt = feasible.length
     ? { ar: `لقينا ${num(feasible.length, 'ar')} بديل ماشي بالشروط دي.`, en: `We found ${feasible.length} alternative${feasible.length > 1 ? 's' : ''} that hold under these conditions.` }
     : { ar: `مفيش بديل أكيد لسه.${dates.length ? ` فيه ${num(dates.length, 'ar')} ميعاد نراجعهم: ${dates.map((d) => dateText(d, 'ar', { noYear: true })).join(' و')}.` : ''}`, en: `No sure alternative yet.${dates.length ? ` There ${dates.length > 1 ? 'are' : 'is'} ${dates.length} date${dates.length > 1 ? 's' : ''} to check: ${dates.map((d) => dateText(d, 'en', { noYear: true })).join(' and ')}.` : ''}` };
+  const coverage = state.plan.rendered?.coverage ?? [];
   const card = (c: Candidate, k: number, kind: 'f' | 'r') => {
     const { ch, plant } = label(c, state.seasons);
     return (
@@ -47,7 +48,13 @@ export function Options() {
       {!feasible.length && <Banner kind="unknown" icon="unknown">{t({ ar: 'مفيش بديل أكيد', en: 'No sure alternative' })}<small>{t({ ar: 'ده رد صحيح · خطتك محفوظة', en: 'That is a real answer · your plan is kept' })}</small></Banner>}
       {feasible.length > 0 && <div className="date-cards">{feasible.map((c, k) => card(c, k, 'f'))}</div>}
       {review.length > 0 && <><h2 className="question" style={{ fontSize: 22 }}>{t({ ar: 'مواعيد نراجعها', en: 'Dates to check' })}</h2><div className="date-cards">{review.map((c, k) => card(c, k, 'r'))}</div></>}
-      {(blocked.length > 0 || r.search.status === 'incomplete') && (
+      {coverage.length > 0 && (
+        <ul className="scope-list">{(() => {
+          const main = coverage.filter((c) => c.code !== 'search_incomplete');
+          const note = coverage.find((c) => c.code === 'search_incomplete');
+          return (main.length ? main : coverage.slice(0, 1)).map((c, k) => <li key={k} className="blocked"><Icon name="reject" /><span>{c.text}{note && main.length > 0 && k === 0 && <small>{note.text}</small>}</span></li>);
+        })()}</ul>)}
+      {coverage.length === 0 && (blocked.length > 0 || r.search.status === 'incomplete') && (
         <ul className="scope-list">
           {blocked.map((b) => {
             const sid = b.season_ids[0]; const perm = state.permissions.find((p) => p.season_id === sid && b.choice_ids.length);

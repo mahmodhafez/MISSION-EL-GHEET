@@ -31,7 +31,7 @@ describe('dev adapter', () => {
     expect(signatureOf(uh001)).toEqual(exportDoc.signature);
   });
   it('returns the real planner export for UH-001', async () => {
-    const r = await createDevClient().promiseTest(uh001);
+    const r = await createDevClient().promiseTest(uh001, { locale: 'en', firstWinterYear: 2026 });
     expect(r.status).toBe('ok');
     if (r.status === 'ok') {
       expect(r.source).toBe('dev-export');
@@ -42,7 +42,7 @@ describe('dev adapter', () => {
   });
   it('never invents a result for any other plan', async () => {
     const other = { ...uh001, seasons: uh001.seasons.map((s, i) => (i === 1 ? { ...s, sowing_date: '2027-05-16' } : s)) };
-    expect(await createDevClient().promiseTest(other)).toEqual({ status: 'unavailable', reason: 'planner_not_connected' });
+    expect(await createDevClient().promiseTest(other, { locale: 'en', firstWinterYear: 2026 })).toEqual({ status: 'unavailable', reason: 'planner_not_connected' });
   });
   it('save, replay are honest about not being connected', async () => {
     const c = createDevClient();

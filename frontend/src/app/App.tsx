@@ -23,6 +23,12 @@ export function App({ client }: { client: PlannerClient }) {
   const [state, dispatch] = useReducer(reducer, undefined, () => initialState());
   const voice = useVoice(state.locale);
   useEffect(() => { client.catalogue().then((c) => dispatch({ type: 'set', patch: { cropIds: c.crop_ids, dataRelease: c.data_release } })); }, [client]);
+  // Language switch: re-render the stored server result in the new language (planner not re-run).
+  useEffect(() => {
+    const p = state.plan;
+    if (p?.status !== 'ok' || !p.result_id || !client.relocalise || p.rendered?.locale === (state.locale === 'ar' ? 'ar-EG' : 'en')) return;
+    client.relocalise(p.result_id, state.locale).then((rendered) => { if (rendered) dispatch({ type: 'set', patch: { plan: { ...p, rendered } } }); });
+  }, [state.locale, state.plan, client]);
   useEffect(() => { document.documentElement.lang = state.locale; document.documentElement.dir = state.locale === 'ar' ? 'rtl' : 'ltr'; }, [state.locale]);
   const ctx = useMemo(() => ({ state, dispatch, client, t: (b: Bi) => b[state.locale] }), [state, client]);
   const Screen = SCREENS[state.route];

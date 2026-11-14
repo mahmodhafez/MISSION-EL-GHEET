@@ -26,13 +26,15 @@ export function Summary() {
     ? { ar: `حشة يوم ${dateText(pair.cutDate, 'ar', { noYear: true })} ثابتة في الخطة. ميعاد ${PLANT[plantOf(sow.crop_id)].def} الحالي متعارض معاها. مفيش بديل أكيد لسه. هنحفظ خطتك والنقط اللي محتاجة مراجعة.`,
         en: `The cut on ${dateText(pair.cutDate, 'en', { noYear: true })} is kept in the plan. The current ${PLANT[plantOf(sow.crop_id)].en.toLowerCase()} date conflicts with it. There is no sure alternative yet. We will save your plan and the points that need review.` }
     : { ar: 'ده ملخص خطتك.', en: 'This is your plan summary.' };
+  const serverTakeaway = state.plan?.status === 'ok' ? state.plan.rendered?.takeaway : null;
+  const spokenTakeaway: Bi = serverTakeaway ? { ar: serverTakeaway.speech, en: serverTakeaway.speech } : takeaway;
   const doSave = async () => { voice.stop(); setSave('saving'); setSave(await client.saveEvidence(snapshotOf(state))); };
   const items = state.seasons.map((s) => ({ cropId: s.crop_id, date: s.last_cut_date ?? (s.sowing_date !== 'unknown' ? s.sowing_date : null), kind: (s.last_cut_date ? 'end' : 'start') as 'end' | 'start', mark: bad.has(s.season_id) ? ('reject' as const) : undefined, cls: bad.has(s.season_id) ? 'reject' : '' }));
   return (
     <Shell prompt={{ ar: `ده ملخص خطتك. تحب نحفظها للمراجعة؟ الحفظ مش معناه موافقة.`, en: 'This is your plan summary. Save it for review? Saving does not mean approval.' }}>
       <div className="calm">
         <div className="alt-head"><h2 className="question" style={{ fontSize: 24 }}>{t({ ar: 'ملخص خطتك', en: 'Your plan' })}</h2>
-          <button className="hear" aria-label={t({ ar: 'اسمع الملخص', en: 'Hear the summary' })} onClick={() => voice.speak(takeaway)}><Icon name="speaker" /></button></div>
+          <button className="hear" aria-label={t({ ar: 'اسمع الملخص', en: 'Hear the summary' })} onClick={() => voice.speak(spokenTakeaway)}><Icon name="speaker" /></button></div>
         <SeasonStrip inline compact items={items} />
         {problem && <Banner kind={cur?.status === 'rejected' ? 'rejected' : 'review'} icon={cur?.status === 'rejected' ? 'reject' : 'review'}>{t(problem)}</Banner>}
         <div className="chips-row" style={{ justifyContent: 'flex-start' }}>
