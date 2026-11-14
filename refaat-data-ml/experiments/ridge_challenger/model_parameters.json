@@ -1,0 +1,1161 @@
+{
+  "artifact_version": "ridge-direct-json/1",
+  "config_sha256": "3978160d209fdfb4dc024d11a9efe1f81b52c19647d2b0d31d962f686ab8c1bc",
+  "configuration": {
+    "specification_id": "sakha-ridge-direct-calendar-history-v1",
+    "scope": "ONE fixed Ridge challenger; approval is recorded separately in approval.json",
+    "dataset_version": "sakha-power-lst-20261110-et0-v1",
+    "site_id": "sakha_31.10_30.95",
+    "data_paths_relative_to_project_root": {
+      "training": "data/fit_targets.csv",
+      "diagnostic_validation": "data/diagnostic_validation_targets.csv",
+      "windows": "data/forecast_windows.csv",
+      "release": "data/release.json"
+    },
+    "input_sha256": {
+      "fit_targets.csv": "24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2",
+      "diagnostic_validation_targets.csv": "362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc",
+      "forecast_windows.csv": "8fc0c0aa99f57ee47910c3cf3bd49eeb6b4f9cccf692aa9a821d8e9e73311a44"
+    },
+    "targets": [
+      "tmax_c",
+      "et0_mm_day"
+    ],
+    "training": {
+      "start": "2001-01-01",
+      "end": "2018-12-31",
+      "daily_rows": 6574,
+      "issue_frequency_days": 1,
+      "first_issue": "2001-03-08",
+      "last_issue": "2018-12-24",
+      "examples_per_target_per_lead": 6501,
+      "shared_issue_set_across_all_leads": true,
+      "require_full_context_and_all_seven_labels_in_training": true,
+      "sample_weight": null,
+      "shuffle": false,
+      "validation_refit": false
+    },
+    "validation": {
+      "start": "2019-01-01",
+      "end": "2021-12-31",
+      "daily_rows": 1096,
+      "issues": "exact existing windows; 15th of every month in 2019-2021",
+      "origin_count": 36,
+      "samples_per_target": 252,
+      "samples_per_target_per_lead": 36,
+      "earlier_validation_observations_allowed_in_later_contexts": true,
+      "restriction": "Use only observations with dates <= that issue's cutoff; never refit model/scaler on validation"
+    },
+    "forecast": {
+      "availability_lag_days": 7,
+      "context_days": 60,
+      "context_start_relative_to_issue_days": -66,
+      "context_end_relative_to_issue_days": -7,
+      "leads_from_issue": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "steps_from_cutoff": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "design": "separate direct model for each target and issue lead",
+      "model_count": 14,
+      "lead_representation": "model index h; target-date calendar features use D+h; no numeric lead feature or recursive predictions"
+    },
+    "features": {
+      "count": 10,
+      "notation": "D=issue; C=D-7; h in 1..7; T=D+h; z_v(t)=float64(float32(observed v(t)))",
+      "calendar_phase": "p(T)=(date(2000,T.month,T.day)-date(2000,1,1)).days; p in 0..365",
+      "ordered_definitions": [
+        {
+          "name": "target_annual_sin",
+          "formula": "sin(2*pi*p(T)/366)",
+          "available": "deterministic target date known at D"
+        },
+        {
+          "name": "target_annual_cos",
+          "formula": "cos(2*pi*p(T)/366)",
+          "available": "deterministic target date known at D"
+        },
+        {
+          "name": "tmax_last",
+          "formula": "z_tmax_c(C)",
+          "available": "C=D-7"
+        },
+        {
+          "name": "tmax_mean_7",
+          "formula": "sum(z_tmax_c(C-i), i=0..6)/7",
+          "available": "C-6..C, inclusive"
+        },
+        {
+          "name": "tmax_mean_30",
+          "formula": "sum(z_tmax_c(C-i), i=0..29)/30",
+          "available": "C-29..C, inclusive"
+        },
+        {
+          "name": "tmax_mean_60",
+          "formula": "sum(z_tmax_c(C-i), i=0..59)/60",
+          "available": "C-59..C, inclusive"
+        },
+        {
+          "name": "et0_last",
+          "formula": "z_et0_mm_day(C)",
+          "available": "C=D-7"
+        },
+        {
+          "name": "et0_mean_7",
+          "formula": "sum(z_et0_mm_day(C-i), i=0..6)/7",
+          "available": "C-6..C, inclusive"
+        },
+        {
+          "name": "et0_mean_30",
+          "formula": "sum(z_et0_mm_day(C-i), i=0..29)/30",
+          "available": "C-29..C, inclusive"
+        },
+        {
+          "name": "et0_mean_60",
+          "formula": "sum(z_et0_mm_day(C-i), i=0..59)/60",
+          "available": "C-59..C, inclusive"
+        }
+      ],
+      "rolling_aggregation": "math.fsum in float64 over chronological values, divided by window size",
+      "matrix_dtype": "float64",
+      "feature_selection": "none",
+      "interactions_or_extra_harmonics": false,
+      "future_weather_qc_or_other_covariates": false
+    },
+    "preprocessing": {
+      "estimator": "sklearn.preprocessing.StandardScaler",
+      "parameters": {
+        "copy": true,
+        "with_mean": true,
+        "with_std": true
+      },
+      "scope": "one fitted scaler per target/lead pipeline; only that model's 6501 training feature rows",
+      "formula": "(x_j-mu_j)/s_j; mu and variance fitted on training rows only; variance uses ddof=0",
+      "constant_feature_scale": 1.0,
+      "source_precision": "quantize historical observations and labels with existing climate_data.climatology.float32; promote to float64 for arithmetic/fitting",
+      "label_transform": "identity after float32 quantization; physical target units",
+      "inverse_label_transform": "not applicable",
+      "missing_data_policy": "fail on absent, duplicate, noncontiguous, fill or nonfinite data; no imputation, partial rolling windows, interpolation or row dropping",
+      "outlier_policy": "retain validated extremes and review-flagged observations; no QC features or filtering",
+      "prediction_postprocessing": "none; retain and report any negative ET0 prediction without clipping"
+    },
+    "ridge": {
+      "estimator": "sklearn.linear_model.Ridge",
+      "parameters": {
+        "alpha": 1.0,
+        "fit_intercept": true,
+        "copy_X": true,
+        "max_iter": null,
+        "tol": 0.0001,
+        "solver": "svd",
+        "positive": false,
+        "random_state": null
+      },
+      "objective": "sum_i((y_i-intercept-X_scaled_i*coef)^2) + alpha*sum_j(coef_j^2)",
+      "parameter_policy": "fixed before Ridge fitting; no RidgeCV, search, alternate feature sets, early stopping or validation-driven changes"
+    },
+    "execution": {
+      "hardware": "CPU",
+      "blas_thread_limit": 1,
+      "thread_limit_method": "threadpoolctl.threadpool_limits(limits=1)",
+      "random_operations": "none",
+      "python_observed": "3.14.6",
+      "packages_pinned_to_observed_environment": {
+        "scikit-learn": "1.9.0",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "threadpoolctl": "3.5.0",
+        "joblib": "1.5.3"
+      },
+      "environment_changes": "none before approval; record interpreter, OS, package versions and BLAS details at the approved run",
+      "repeat_prediction_check": "same configuration, no candidate selection; compare within absolute tolerance 1e-10 in the same pinned environment"
+    },
+    "comparison": {
+      "models": [
+        "seasonal_climatology",
+        "persistence",
+        "ridge"
+      ],
+      "climatology": "existing research=True 2001-2018, circular 366-day +/-15-slot empirical median; unchanged",
+      "persistence": "float64(float32(value of the same target at C=D-7)) repeated for h=1..7",
+      "scorer": "climate_data.evaluation.score_predictions",
+      "aggregation": "climate_data.evaluation.distribution_scores for overall and each lead",
+      "prediction_slot": "q50 is only the existing point-prediction API field; Ridge is not asserted to estimate a calibrated median",
+      "outputs": [
+        "mae",
+        "rmse",
+        "bias_prediction_minus_actual",
+        "samples"
+      ],
+      "per_lead_outputs": [
+        "mae",
+        "rmse",
+        "bias_prediction_minus_actual",
+        "samples"
+      ],
+      "comparison_key": [
+        "issue",
+        "target_date",
+        "variable"
+      ],
+      "baseline_reproduction_absolute_tolerance": 3e-06,
+      "intervals": "no Ridge/persistence quantiles or prediction intervals",
+      "success_rule": "Report each target separately: lower MAE is the primary comparison; separately report RMSE and absolute bias; improvement=baseline-ridge and percent=100*(baseline-ridge)/baseline for MAE/RMSE",
+      "lead_stability": "report all seven lead deltas and number of leads with lower MAE/RMSE; do not infer statistical significance",
+      "interpretation": "diagnostic validation only, not independent test performance or production readiness"
+    },
+    "excluded_periods": [
+      "2022-2025 inspected reserve",
+      "all 2026 including consumed July-October test"
+    ],
+    "planned_outputs_after_approval": {
+      "features.py": "NOT YET GENERATED",
+      "train.py": "NOT YET GENERATED",
+      "evaluate.py": "NOT YET GENERATED",
+      "model_parameters.json": "NOT YET GENERATED",
+      "predictions.csv": "NOT YET GENERATED",
+      "metrics.csv": "NOT YET GENERATED",
+      "comparison_report.md": "NOT YET GENERATED",
+      "tests/": "NOT YET GENERATED"
+    }
+  },
+  "input_sha256": {
+    "fit_targets.csv": "24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2"
+  },
+  "feature_names": [
+    "target_annual_sin",
+    "target_annual_cos",
+    "tmax_last",
+    "tmax_mean_7",
+    "tmax_mean_30",
+    "tmax_mean_60",
+    "et0_last",
+    "et0_mean_7",
+    "et0_mean_30",
+    "et0_mean_60"
+  ],
+  "models": [
+    {
+      "target": "tmax_c",
+      "lead_from_issue": 1,
+      "step_from_cutoff": 8,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007012874138849198,
+          -0.010267036515432782,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5016513288912495,
+          0.4981940786662559,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7082734845321047,
+          0.7058286468161065,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.08129280885456788,
+          -5.133037059754484,
+          0.31691538481478004,
+          0.08521051144471546,
+          3.6576888536374685,
+          -1.284555846332712,
+          -0.4504100706369313,
+          -0.8171434699565219,
+          -2.900714525801744,
+          3.4465495677161786
+        ],
+        "intercept": 30.40140286248903,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "tmax_c",
+      "lead_from_issue": 2,
+      "step_from_cutoff": 9,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007170164007204255,
+          -0.010174416009202903,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.501520608037686,
+          0.4983244619693001,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7081811971788619,
+          0.7059210026407347,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.04284412810428783,
+          -5.045976790229197,
+          0.1676226776988436,
+          0.07048473529425564,
+          3.80584098345134,
+          -1.4842854103201704,
+          -0.20283812276430793,
+          -0.8525918575981318,
+          -2.9065947154429255,
+          3.5312621043287424
+        ],
+        "intercept": 30.40138132743448,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "tmax_c",
+      "lead_from_issue": 3,
+      "step_from_cutoff": 10,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007325840744384255,
+          -0.010079109061069921,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5013874904985514,
+          0.498457253119363,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7080872054334489,
+          0.7060150516238043,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.06026975815697607,
+          -5.0297549422087,
+          0.07105659176423298,
+          0.10842914642579064,
+          3.9033969087504086,
+          -1.6551796813104174,
+          -0.18029990099751567,
+          -0.7287167255457568,
+          -3.1507211556820165,
+          3.794680739078397
+        ],
+        "intercept": 30.39976619130158,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "tmax_c",
+      "lead_from_issue": 4,
+      "step_from_cutoff": 11,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007479858471740202,
+          -0.009981143758428913,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5012521327167601,
+          0.49859229576975767,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7079916191006501,
+          0.7061106823790146,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.06816330208632151,
+          -4.99190026527993,
+          -0.027123165424447482,
+          0.22633073713468999,
+          3.9131716996384243,
+          -1.7999382940064725,
+          0.015131648731201281,
+          -0.8542332492096568,
+          -3.224227686598606,
+          3.9685233166378593
+        ],
+        "intercept": 30.398080296964636,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "tmax_c",
+      "lead_from_issue": 5,
+      "step_from_cutoff": 12,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007632171799540887,
+          -0.009880548972104207,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5011146937808185,
+          0.4987294309248085,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7078945499019035,
+          0.7062077816937509,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.08222989582134256,
+          -4.926509754684594,
+          0.18321457008455755,
+          0.15002419163360975,
+          3.860247574715237,
+          -1.9233937140295216,
+          0.01670295255091016,
+          -0.8866064555214666,
+          -3.139408774151986,
+          4.041273256617051
+        ],
+        "intercept": 30.396379020173434,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "tmax_c",
+      "lead_from_issue": 6,
+      "step_from_cutoff": 13,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007782735840349518,
+          -0.00977735434784106,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5009753352374967,
+          0.4988684971272997,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7077961113466905,
+          0.7063062346654599,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.043586317416649895,
+          -4.972444221277857,
+          0.20741752907995026,
+          0.2563347043291916,
+          3.722160981607239,
+          -2.0072466256536896,
+          -0.3852625407996992,
+          -0.6088892093229403,
+          -2.928702042973263,
+          3.9700178268596407
+        ],
+        "intercept": 30.3957375803832,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "tmax_c",
+      "lead_from_issue": 7,
+      "step_from_cutoff": 14,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007931506222252173,
+          -0.009671590297568923,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5008342209014844,
+          0.4990093306486682,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7076964186015671,
+          0.7064059248397258,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.007473530069702278,
+          -4.92579059535413,
+          0.009765904656799716,
+          0.5168520210339924,
+          3.625297263649831,
+          -2.158701125385983,
+          -0.413346057932999,
+          -0.5151780892127957,
+          -2.852540846400461,
+          4.026028641793036
+        ],
+        "intercept": 30.395056146710658,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "et0_mm_day",
+      "lead_from_issue": 1,
+      "step_from_cutoff": 8,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007012874138849198,
+          -0.010267036515432782,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5016513288912495,
+          0.4981940786662559,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7082734845321047,
+          0.7058286468161065,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.5183083987185662,
+          -1.6969203347655955,
+          0.030011213853123095,
+          0.004663099033489584,
+          0.45464536283975704,
+          -0.1005372667786467,
+          -0.02153061847130723,
+          -0.14735507734080508,
+          -0.08961163148094953,
+          0.5975444202407492
+        ],
+        "intercept": 5.580648511551914,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "et0_mm_day",
+      "lead_from_issue": 2,
+      "step_from_cutoff": 9,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007170164007204255,
+          -0.010174416009202903,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.501520608037686,
+          0.4983244619693001,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7081811971788619,
+          0.7059210026407347,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.5073877471708408,
+          -1.7040353340987333,
+          0.025988272580630634,
+          -0.005537699401636538,
+          0.44643633733408716,
+          -0.0920518090836297,
+          -0.0021769692902743948,
+          -0.16174765310967357,
+          -0.016845357418462797,
+          0.5265883469945616
+        ],
+        "intercept": 5.580519568102306,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "et0_mm_day",
+      "lead_from_issue": 3,
+      "step_from_cutoff": 10,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007325840744384255,
+          -0.010079109061069921,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5013874904985514,
+          0.498457253119363,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7080872054334489,
+          0.7060150516238043,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.49595386856924173,
+          -1.7223719882980588,
+          0.010832660685544917,
+          -0.010807156910329406,
+          0.4368977567897795,
+          -0.07386034961314752,
+          0.0035580402170175235,
+          -0.11698268825318252,
+          -0.0318836591061134,
+          0.48749531236659316
+        ],
+        "intercept": 5.580291916280324,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "et0_mm_day",
+      "lead_from_issue": 4,
+      "step_from_cutoff": 11,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007479858471740202,
+          -0.009981143758428913,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5012521327167601,
+          0.49859229576975767,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7079916191006501,
+          0.7061106823790146,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.49350724495004256,
+          -1.7454143391382124,
+          0.015380123453595292,
+          -0.0018077461846707614,
+          0.42975598046549296,
+          -0.07691292874799213,
+          -0.05098786736121005,
+          -0.055483025165185974,
+          -0.05321116897187047,
+          0.47800151013040026
+        ],
+        "intercept": 5.579988051122789,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "et0_mm_day",
+      "lead_from_issue": 5,
+      "step_from_cutoff": 12,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007632171799540887,
+          -0.009880548972104207,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5011146937808185,
+          0.4987294309248085,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7078945499019035,
+          0.7062077816937509,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.49101073820152663,
+          -1.7276247561805795,
+          0.04618897741675803,
+          -0.03319642310733983,
+          0.4284934849540542,
+          -0.08436323053666783,
+          0.019676033118983773,
+          -0.05729819941917182,
+          -0.08938613351011439,
+          0.4796265030213385
+        ],
+        "intercept": 5.579693617325279,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "et0_mm_day",
+      "lead_from_issue": 6,
+      "step_from_cutoff": 13,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007782735840349518,
+          -0.00977735434784106,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5009753352374967,
+          0.4988684971272997,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7077961113466905,
+          0.7063062346654599,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.4995929390215093,
+          -1.7590108109875668,
+          0.07149927807884472,
+          -0.035191544368847354,
+          0.40515267952863643,
+          -0.08075398412002259,
+          -0.11331543042010309,
+          0.060302982418579974,
+          -0.12530621834921846,
+          0.5020108873020945
+        ],
+        "intercept": 5.579466987079782,
+        "solver": "svd"
+      }
+    },
+    {
+      "target": "et0_mm_day",
+      "lead_from_issue": 7,
+      "step_from_cutoff": 14,
+      "training_rows": 6501,
+      "feature_count": 10,
+      "scaler": {
+        "mean": [
+          -0.007931506222252173,
+          -0.009671590297568923,
+          30.408347947508386,
+          30.410497287116666,
+          30.407616316582125,
+          30.395685254743242,
+          5.583140294756491,
+          5.584025448310964,
+          5.584855696963422,
+          5.583804131766294
+        ],
+        "var": [
+          0.5008342209014844,
+          0.4990093306486682,
+          54.59758412915006,
+          49.06734643344793,
+          45.20578822910262,
+          41.858001632406456,
+          5.643651261903662,
+          5.192332173024766,
+          4.944249801476662,
+          4.600775084616347
+        ],
+        "scale": [
+          0.7076964186015671,
+          0.7064059248397258,
+          7.389017805442754,
+          7.0048088077725525,
+          6.723524985385465,
+          6.469776010991915,
+          2.375637022338148,
+          2.278668947658866,
+          2.2235669096019266,
+          2.144941743874725
+        ]
+      },
+      "ridge": {
+        "coef": [
+          0.49904843795467335,
+          -1.7547336941167877,
+          0.025266255709269658,
+          0.0037132118009651845,
+          0.39451706424884003,
+          -0.09393588357563253,
+          -0.09721834822460027,
+          0.09062146786637325,
+          -0.15359248223991284,
+          0.5201658110720667
+        ],
+        "intercept": 5.579131480135057,
+        "solver": "svd"
+      }
+    }
+  ],
+  "training_first_issue": "2001-03-08",
+  "training_last_issue": "2018-12-24",
+  "fit_calls": 14,
+  "validation_rows_used_for_fit": 0,
+  "started_utc": "2026-11-13T21:42:14.691208+00:00",
+  "finished_utc": "2026-11-13T21:42:16.164448+00:00",
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "scikit-learn": "1.9.0",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "threadpoolctl": "3.5.0",
+      "joblib": "1.5.3"
+    },
+    "threadpools_during_fit": [
+      {
+        "user_api": "blas",
+        "internal_api": "mkl",
+        "prefix": "mkl_rt",
+        "version": "2025.0-Product",
+        "num_threads": 1,
+        "threading_layer": "intel",
+        "architecture": null
+      },
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "prefix": "vcomp",
+        "version": null,
+        "num_threads": 1,
+        "threading_layer": null,
+        "architecture": null
+      },
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "prefix": "libiomp",
+        "version": null,
+        "num_threads": 12,
+        "threading_layer": null,
+        "architecture": null
+      }
+    ]
+  },
+  "implementation_sha256": {
+    "audit_proposal.py": "495e44a041586eb41cbb9a2191cf94976bfb9ed89c6e33c3b14b72b603be9074",
+    "common.py": "d7e01282d1bc89c5a72d73bdc1f95dc1450f7b658034fbdd7f553ea6556988e9",
+    "evaluate.py": "2347d2d6eb56de8bcb1ad832f5d36841101f0d889fd88dd99b37293e63d2d6dd",
+    "features.py": "f4eb2c6d4957703f900d40e440df8ae8c276359dab0622a20aa4c51d1bc9cb12",
+    "run_tests.py": "51383796b5c6ef5ace06de9b2d24fa3b124b91f5ec26162a21736fa5253b02bf",
+    "train.py": "415d98391d8e4f1f31a9c0b9683a9a950349b46eab52f4f24191b87aea0f7fe2"
+  },
+  "all_pipelines_json_roundtrip_max_abs_error": 0.0
+}

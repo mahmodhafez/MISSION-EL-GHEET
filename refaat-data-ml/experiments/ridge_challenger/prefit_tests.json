@@ -1,0 +1,14 @@
+{
+  "phase": "prefit",
+  "recorded_utc": "2026-11-13T21:40:48.778673+00:00",
+  "commands": [
+    {
+      "command": "python -B -m unittest discover -s experiments/ridge_challenger/tests -p test_features.py -v",
+      "exit_code": 0,
+      "tests_run": 11,
+      "output": "test_all_training_examples_and_labels_within_authorized_bounds (test_features.FeatureAndBoundaryTests.test_all_training_examples_and_labels_within_authorized_bounds) ... ok\ntest_approval_and_exact_hash (test_features.FeatureAndBoundaryTests.test_approval_and_exact_hash) ... ok\ntest_calendar_leap_and_year_wrap (test_features.FeatureAndBoundaryTests.test_calendar_leap_and_year_wrap) ... ok\ntest_exact_feature_order_and_fixed_estimator (test_features.FeatureAndBoundaryTests.test_exact_feature_order_and_fixed_estimator) ... ok\ntest_hand_calculated_history_statistics_and_float32 (test_features.FeatureAndBoundaryTests.test_hand_calculated_history_statistics_and_float32) ... ok\ntest_rejects_fill_nonfinite_and_invalid_leads (test_features.FeatureAndBoundaryTests.test_rejects_fill_nonfinite_and_invalid_leads) ... ok\ntest_rejects_missing_duplicate_future_and_unordered_context (test_features.FeatureAndBoundaryTests.test_rejects_missing_duplicate_future_and_unordered_context) ... ok\ntest_training_features_are_as_of_for_every_issue (test_features.FeatureAndBoundaryTests.test_training_features_are_as_of_for_every_issue) ... ok\ntest_training_loader_needs_no_validation_file (test_features.FeatureAndBoundaryTests.test_training_loader_needs_no_validation_file) ... ok\ntest_training_rejects_boundary_extension_and_gaps (test_features.FeatureAndBoundaryTests.test_training_rejects_boundary_extension_and_gaps) ... ok\ntest_validation_future_perturbations_do_not_change_features (test_features.FeatureAndBoundaryTests.test_validation_future_perturbations_do_not_change_features) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 33.940s\n\nOK\n"
+    }
+  ],
+  "status": "PASSED",
+  "tests_run": 11
+}

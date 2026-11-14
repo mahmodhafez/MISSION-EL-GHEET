@@ -1,0 +1,44 @@
+{
+  "source_archive": "VALIDATION_ARTIFACTS.zip",
+  "source_archive_sha256": "d284b3162a2dd5bbde8bcb37ae3090adcf080a5d044a4e25b2c96836b4cee95f",
+  "source_member": "work/validation_2026-11-10/model_test/adaptation200/results.json",
+  "source_member_sha256": "4a3bf54946bf17ad6ce996ea879c70c7358e4089364a8f4bf1f86d83740526e3",
+  "json_path": "baseline_scores.seasonal_climatology",
+  "absolute_tolerance": 0.000003,
+  "metrics": {
+    "tmax_c": {
+      "mae": 2.534365188507807,
+      "rmse": 3.305463183133233,
+      "bias": 0.15511905200897702,
+      "mae_by_lead_1_to_7": [
+        2.550138791402181,
+        2.365416897667779,
+        2.5015278657277427,
+        2.576527860429552,
+        2.604166719648573,
+        2.9804168277316623,
+        2.162361356947157
+      ],
+      "interval_80_coverage": 0.7936507936507936,
+      "interval_mean_width": 8.013392709550404,
+      "mean_pinball_loss": 0.7852983023123765
+    },
+    "et0_mm_day": {
+      "mae": 0.583124450747929,
+      "rmse": 0.8052144814149734,
+      "bias": -0.11981442759907435,
+      "mae_by_lead_1_to_7": [
+        0.577890028556188,
+        0.5857876439889272,
+        0.590567883518007,
+        0.518078174855974,
+        0.5945449305905236,
+        0.588863343000412,
+        0.6261391507254707
+      ],
+      "interval_80_coverage": 0.8174603174603174,
+      "interval_mean_width": 1.968981727531978,
+      "mean_pinball_loss": 0.1896629183790671
+    }
+  }
+}

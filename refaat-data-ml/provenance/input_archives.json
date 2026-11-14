@@ -1,0 +1,156 @@
+{
+  "archives": [
+    {
+      "name": "VALIDATION_ARTIFACTS.zip",
+      "bytes": 468781522,
+      "sha256": "d284b3162a2dd5bbde8bcb37ae3090adcf080a5d044a4e25b2c96836b4cee95f"
+    },
+    {
+      "name": "MISSION_EL_GHEET_AUDIT.zip",
+      "bytes": 1188214,
+      "sha256": "af5e26c4df08a51174f177ceaab5f8c2dd6423b0bb38c1dd1274affd2d9757df"
+    }
+  ],
+  "members": [
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/power_sakha_2001_2025_LST.json",
+      "local": "sources/power_sakha_2001_2025_LST.json",
+      "sha256": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf",
+      "bytes": 1214288
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/power_sakha_2026_Jan_Oct_LST.json",
+      "local": "sources/power_sakha_2026_Jan_Oct_LST.json",
+      "sha256": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700",
+      "bytes": 41487
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/power_provenance.json",
+      "local": "sources/power_provenance.json",
+      "sha256": "d90f33792704b02da5c5bd4a5d36dd884ded503132fdd2d18d39df25727cd469",
+      "bytes": 2312
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/power_provenance_2026_Jan_Oct.json",
+      "local": "sources/power_provenance_2026_Jan_Oct.json",
+      "sha256": "01e22774c32c1ccca2820dc2eac9294f288433cdc0d65a4be920b729d24ec1d8",
+      "bytes": 2347
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/weather_et0.csv",
+      "local": "sources/weather_et0.csv",
+      "sha256": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8",
+      "bytes": 1017464
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/weather_et0_2026_Jan_Oct.csv",
+      "local": "sources/weather_et0_2026_Jan_Oct.csv",
+      "sha256": "c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e",
+      "bytes": 33936
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/audit_weather.py",
+      "local": "sources/original/audit_weather.py",
+      "sha256": "905a700d542c5a3e2dc7dd136e21acd7a84469d1ff940efa0836bbb63e7ee0e0",
+      "bytes": 9503
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/weather_audit.json",
+      "local": "sources/original/weather_audit.json",
+      "sha256": "015fdc25d91781075b9aa9ae61c7f43a068b606d862d4df4ff0dac4af70d7809",
+      "bytes": 6608
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/weather_audit_2026_Jan_Oct.json",
+      "local": "sources/original/weather_audit_2026_Jan_Oct.json",
+      "sha256": "bd2d8dae1085c79a42c52502b97cf6f84ea67bd370961f28cc2df1f3943ca473",
+      "bytes": 5976
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/model_test/evaluation_protocol.json",
+      "local": "provenance/experiment/evaluation_protocol.json",
+      "sha256": "68b3285bb1a0f716e57e1168a1039f8110d9d4649e4e31f0930f7ca5a51a91d9",
+      "bytes": 1723
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/model_test/checkpoint_provenance.json",
+      "local": "provenance/experiment/checkpoint_provenance.json",
+      "sha256": "64481dc1fc58a1059a257916b07b71bb0e6818ff185f61e17ba90b7334f90014",
+      "bytes": 966
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/model_test/artifact_verification.json",
+      "local": "provenance/experiment/artifact_verification.json",
+      "sha256": "d7908a4a52bcb4d6d1d394628d53db3260dfda1a2c2084b369237ec48f1e7520",
+      "bytes": 428
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/model_test/adaptation200/results.json",
+      "local": "provenance/experiment/adaptation200_results.json",
+      "sha256": "4a3bf54946bf17ad6ce996ea879c70c7358e4089364a8f4bf1f86d83740526e3",
+      "bytes": 6633
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/model_test/smoke20_verified/results.json",
+      "local": "provenance/experiment/smoke20_verified_results.json",
+      "sha256": "8febc124eb1a56945108c297b25af4c686c3997c30955851d2dd963a4654048c",
+      "bytes": 6632
+    },
+    {
+      "archive": "VALIDATION_ARTIFACTS.zip",
+      "member": "work/validation_2026-11-10/model_test/smoke20/results.json",
+      "local": "provenance/experiment/smoke20_results.json",
+      "sha256": "c26c2d4b9d0e76328e3bc50cedd9d292a4cb32b41fa3dba08223202472f5745e",
+      "bytes": 7071
+    },
+    {
+      "archive": "MISSION_EL_GHEET_AUDIT.zip",
+      "member": "evidence/source_manifest.json",
+      "local": "sources/audit_source_manifest.json",
+      "sha256": "823a1588691e86f5eb9c4a0a83580c4621c271ce59fd0d1e8dafb04be570ece0",
+      "bytes": 4702
+    },
+    {
+      "archive": "MISSION_EL_GHEET_AUDIT.zip",
+      "member": "evidence/forecast_windows.csv",
+      "local": "sources/original/forecast_windows.csv",
+      "sha256": "e27e469ce32855c8ab8be567f5d901a29de39fe80b7b91b8a22f904bc881517e",
+      "bytes": 4265
+    },
+    {
+      "archive": "MISSION_EL_GHEET_AUDIT.zip",
+      "member": "evidence/replayed_metrics.csv",
+      "local": "provenance/experiment/archived_scores.csv",
+      "sha256": "43aa3ab094fe2fc2c7e3fcfc08fb9d8946a473f39b2a6d02086af474b7fd1736",
+      "bytes": 3097
+    },
+    {
+      "archive": "MISSION_EL_GHEET_AUDIT.zip",
+      "member": "evidence/model.json",
+      "local": "provenance/experiment/audited_runs.json",
+      "sha256": "b2dd625698aecba53a2e203f725644ccc0b149e29130af62b97ba0614c30a806",
+      "bytes": 2696
+    },
+    {
+      "archive": "MISSION_EL_GHEET_AUDIT.zip",
+      "member": "06_ET0_AND_PREPROCESSING_AUDIT.md",
+      "local": "sources/original/audit_method_notes.md",
+      "sha256": "6931708f8ca6c4c371ba301baf3b0172a5d3f6e3472d7c745c7f173600b2b77a",
+      "bytes": 6883
+    }
+  ]
+}

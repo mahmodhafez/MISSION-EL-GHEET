@@ -1,0 +1,147 @@
+{
+  "specification_id": "sakha-ridge-direct-calendar-history-v1",
+  "scope": "ONE fixed Ridge challenger; approval is recorded separately in approval.json",
+  "dataset_version": "sakha-power-lst-20261110-et0-v1",
+  "site_id": "sakha_31.10_30.95",
+  "data_paths_relative_to_project_root": {
+    "training": "data/fit_targets.csv",
+    "diagnostic_validation": "data/diagnostic_validation_targets.csv",
+    "windows": "data/forecast_windows.csv",
+    "release": "data/release.json"
+  },
+  "input_sha256": {
+    "fit_targets.csv": "24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2",
+    "diagnostic_validation_targets.csv": "362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc",
+    "forecast_windows.csv": "8fc0c0aa99f57ee47910c3cf3bd49eeb6b4f9cccf692aa9a821d8e9e73311a44"
+  },
+  "targets": ["tmax_c", "et0_mm_day"],
+  "training": {
+    "start": "2001-01-01",
+    "end": "2018-12-31",
+    "daily_rows": 6574,
+    "issue_frequency_days": 1,
+    "first_issue": "2001-03-08",
+    "last_issue": "2018-12-24",
+    "examples_per_target_per_lead": 6501,
+    "shared_issue_set_across_all_leads": true,
+    "require_full_context_and_all_seven_labels_in_training": true,
+    "sample_weight": null,
+    "shuffle": false,
+    "validation_refit": false
+  },
+  "validation": {
+    "start": "2019-01-01",
+    "end": "2021-12-31",
+    "daily_rows": 1096,
+    "issues": "exact existing windows; 15th of every month in 2019-2021",
+    "origin_count": 36,
+    "samples_per_target": 252,
+    "samples_per_target_per_lead": 36,
+    "earlier_validation_observations_allowed_in_later_contexts": true,
+    "restriction": "Use only observations with dates <= that issue's cutoff; never refit model/scaler on validation"
+  },
+  "forecast": {
+    "availability_lag_days": 7,
+    "context_days": 60,
+    "context_start_relative_to_issue_days": -66,
+    "context_end_relative_to_issue_days": -7,
+    "leads_from_issue": [1, 2, 3, 4, 5, 6, 7],
+    "steps_from_cutoff": [8, 9, 10, 11, 12, 13, 14],
+    "design": "separate direct model for each target and issue lead",
+    "model_count": 14,
+    "lead_representation": "model index h; target-date calendar features use D+h; no numeric lead feature or recursive predictions"
+  },
+  "features": {
+    "count": 10,
+    "notation": "D=issue; C=D-7; h in 1..7; T=D+h; z_v(t)=float64(float32(observed v(t)))",
+    "calendar_phase": "p(T)=(date(2000,T.month,T.day)-date(2000,1,1)).days; p in 0..365",
+    "ordered_definitions": [
+      {"name": "target_annual_sin", "formula": "sin(2*pi*p(T)/366)", "available": "deterministic target date known at D"},
+      {"name": "target_annual_cos", "formula": "cos(2*pi*p(T)/366)", "available": "deterministic target date known at D"},
+      {"name": "tmax_last", "formula": "z_tmax_c(C)", "available": "C=D-7"},
+      {"name": "tmax_mean_7", "formula": "sum(z_tmax_c(C-i), i=0..6)/7", "available": "C-6..C, inclusive"},
+      {"name": "tmax_mean_30", "formula": "sum(z_tmax_c(C-i), i=0..29)/30", "available": "C-29..C, inclusive"},
+      {"name": "tmax_mean_60", "formula": "sum(z_tmax_c(C-i), i=0..59)/60", "available": "C-59..C, inclusive"},
+      {"name": "et0_last", "formula": "z_et0_mm_day(C)", "available": "C=D-7"},
+      {"name": "et0_mean_7", "formula": "sum(z_et0_mm_day(C-i), i=0..6)/7", "available": "C-6..C, inclusive"},
+      {"name": "et0_mean_30", "formula": "sum(z_et0_mm_day(C-i), i=0..29)/30", "available": "C-29..C, inclusive"},
+      {"name": "et0_mean_60", "formula": "sum(z_et0_mm_day(C-i), i=0..59)/60", "available": "C-59..C, inclusive"}
+    ],
+    "rolling_aggregation": "math.fsum in float64 over chronological values, divided by window size",
+    "matrix_dtype": "float64",
+    "feature_selection": "none",
+    "interactions_or_extra_harmonics": false,
+    "future_weather_qc_or_other_covariates": false
+  },
+  "preprocessing": {
+    "estimator": "sklearn.preprocessing.StandardScaler",
+    "parameters": {"copy": true, "with_mean": true, "with_std": true},
+    "scope": "one fitted scaler per target/lead pipeline; only that model's 6501 training feature rows",
+    "formula": "(x_j-mu_j)/s_j; mu and variance fitted on training rows only; variance uses ddof=0",
+    "constant_feature_scale": 1.0,
+    "source_precision": "quantize historical observations and labels with existing climate_data.climatology.float32; promote to float64 for arithmetic/fitting",
+    "label_transform": "identity after float32 quantization; physical target units",
+    "inverse_label_transform": "not applicable",
+    "missing_data_policy": "fail on absent, duplicate, noncontiguous, fill or nonfinite data; no imputation, partial rolling windows, interpolation or row dropping",
+    "outlier_policy": "retain validated extremes and review-flagged observations; no QC features or filtering",
+    "prediction_postprocessing": "none; retain and report any negative ET0 prediction without clipping"
+  },
+  "ridge": {
+    "estimator": "sklearn.linear_model.Ridge",
+    "parameters": {
+      "alpha": 1.0,
+      "fit_intercept": true,
+      "copy_X": true,
+      "max_iter": null,
+      "tol": 0.0001,
+      "solver": "svd",
+      "positive": false,
+      "random_state": null
+    },
+    "objective": "sum_i((y_i-intercept-X_scaled_i*coef)^2) + alpha*sum_j(coef_j^2)",
+    "parameter_policy": "fixed before Ridge fitting; no RidgeCV, search, alternate feature sets, early stopping or validation-driven changes"
+  },
+  "execution": {
+    "hardware": "CPU",
+    "blas_thread_limit": 1,
+    "thread_limit_method": "threadpoolctl.threadpool_limits(limits=1)",
+    "random_operations": "none",
+    "python_observed": "3.14.6",
+    "packages_pinned_to_observed_environment": {
+      "scikit-learn": "1.9.0",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "threadpoolctl": "3.5.0",
+      "joblib": "1.5.3"
+    },
+    "environment_changes": "none before approval; record interpreter, OS, package versions and BLAS details at the approved run",
+    "repeat_prediction_check": "same configuration, no candidate selection; compare within absolute tolerance 1e-10 in the same pinned environment"
+  },
+  "comparison": {
+    "models": ["seasonal_climatology", "persistence", "ridge"],
+    "climatology": "existing research=True 2001-2018, circular 366-day +/-15-slot empirical median; unchanged",
+    "persistence": "float64(float32(value of the same target at C=D-7)) repeated for h=1..7",
+    "scorer": "climate_data.evaluation.score_predictions",
+    "aggregation": "climate_data.evaluation.distribution_scores for overall and each lead",
+    "prediction_slot": "q50 is only the existing point-prediction API field; Ridge is not asserted to estimate a calibrated median",
+    "outputs": ["mae", "rmse", "bias_prediction_minus_actual", "samples"],
+    "per_lead_outputs": ["mae", "rmse", "bias_prediction_minus_actual", "samples"],
+    "comparison_key": ["issue", "target_date", "variable"],
+    "baseline_reproduction_absolute_tolerance": 0.000003,
+    "intervals": "no Ridge/persistence quantiles or prediction intervals",
+    "success_rule": "Report each target separately: lower MAE is the primary comparison; separately report RMSE and absolute bias; improvement=baseline-ridge and percent=100*(baseline-ridge)/baseline for MAE/RMSE",
+    "lead_stability": "report all seven lead deltas and number of leads with lower MAE/RMSE; do not infer statistical significance",
+    "interpretation": "diagnostic validation only, not independent test performance or production readiness"
+  },
+  "excluded_periods": ["2022-2025 inspected reserve", "all 2026 including consumed July-October test"],
+  "planned_outputs_after_approval": {
+    "features.py": "NOT YET GENERATED",
+    "train.py": "NOT YET GENERATED",
+    "evaluate.py": "NOT YET GENERATED",
+    "model_parameters.json": "NOT YET GENERATED",
+    "predictions.csv": "NOT YET GENERATED",
+    "metrics.csv": "NOT YET GENERATED",
+    "comparison_report.md": "NOT YET GENERATED",
+    "tests/": "NOT YET GENERATED"
+  }
+}
