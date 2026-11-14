@@ -11,7 +11,11 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from ..core.errors import ApiError
 from ..planner.adapter import InputValidationError, run_promise_test
+from ..planner.answers import Answers, to_payload
+from ..i18n.render import render_result
 from ..speech.extraction import is_empty, validate
+
+Locale = Literal["ar-EG", "en"]
 
 router = APIRouter(prefix="/api/v1")
 
@@ -93,6 +97,14 @@ def create_scenario(body: ScenarioInputBody, req: Request):
     return _app(req).store.create_scenario(_app(req).release.data_release, payload)
 
 
+@router.post("/scenarios/from-answers", status_code=201)
+def create_from_answers(body: Answers, req: Request):
+    """App answers → planner snapshot (unknowns explicit, nothing assumed) → stored scenario."""
+    payload = to_payload(body, _app(req).release)
+    _check_decodes(req, payload)
+    return _app(req).store.create_scenario(_app(req).release.data_release, payload)
+
+
 @router.get("/scenarios/{sid}")
 def get_scenario(sid: str, req: Request):
     return _scenario_or_404(req, sid)
@@ -110,24 +122,26 @@ def revise(sid: str, body: RevisionBody, req: Request):
 
 
 @router.post("/scenarios/{sid}/promise-test")
-def promise_test(sid: str, req: Request):
+def promise_test(sid: str, req: Request, locale: Locale = "ar-EG"):
     s = _app(req)
     sc = _scenario_or_404(req, sid)
     try:
         out = run_promise_test(sc["input"], s.release)
     except InputValidationError as e:
         raise ApiError(422, e.code, "The planner refused this input.", list(e.field_paths)) from None
-    rid = s.store.add_result(sid, sc["revision"], "promise_test", s.release.data_release, out)
-    return {"result_id": rid, "scenario_id": sid, "revision": sc["revision"], "data_release": s.release.data_release, **out}
+    rid = s.store.add_result(sid, sc["revision"], "promise_test", s.release.data_release, out)  # codes + params only
+    rendered = render_result(out["result"], sc["input"]["snapshot"]["input"], locale)
+    return {"result_id": rid, "scenario_id": sid, "revision": sc["revision"], "data_release": s.release.data_release, **out, "rendered": rendered}
 
 
 @router.get("/results/{rid}")
-def get_result(rid: str, req: Request):
+def get_result(rid: str, req: Request, locale: Locale = "ar-EG"):
     r = _app(req).store.get_result(rid)
     if r is None:
         raise ApiError(404, "result_not_found")
     sc = _app(req).store.get_scenario(r["scenario_id"])
-    return {**r, "current": sc is not None and sc["revision"] == r["revision"]}
+    rendered = render_result(r["payload"]["result"], sc["input"]["snapshot"]["input"], locale) if sc else None
+    return {**r, "current": sc is not None and sc["revision"] == r["revision"], "rendered": rendered}
 
 
 @router.post("/scenarios/{sid}/evidence-cards", status_code=201)

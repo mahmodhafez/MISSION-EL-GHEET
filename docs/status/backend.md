@@ -16,6 +16,8 @@ FastAPI app in `backend/app/` around the real `meg_core` planner (`packages/meg-
 | `POST /scenarios`, `GET /scenarios/{id}`, `POST /scenarios/{id}/revisions` (`expected_revision`, 409 on conflict) | Real, SQLite (3 tables, WAL) |
 | `POST /scenarios/{id}/promise-test`, `GET /results/{id}` (with `current`) | Real planner: scope preview → explicit confirmation → `service.plan`; stored |
 | `POST /scenarios/{id}/evidence-cards`, `GET /evidence-cards/{id}` | Saves a **review draft**; plan status unchanged; refuses a result from an old revision |
+| `POST /scenarios/from-answers` | Real. App answers → planner snapshot: farmer facts `farmer_report`, catalogue profile `derived`, everything not collected an explicit confirmed unknown (`not_collected`); locks → commitments, permissions → exploration choices |
+| `?locale=ar-EG|en` on `promise-test` and `GET /results/{id}` | Real (D4). `rendered`: headline, conflicts, why, options, coverage, review reasons, takeaway; each `{code, version, text, speech}` from `app/i18n/messages.json`; text has digits, speech spells numbers in Egyptian Arabic words. Stored results keep codes only |
 | `POST /speech/interpret` | Gemini strict extraction + backend validation when `MEG_GEMINI_API_KEY` is set; otherwise `unavailable` |
 | `POST /scenarios/{id}/replay`, `GET /forecast`, `POST /speech/tts` | Honest statuses: `unavailable` / `not_applicable` / `not_generated` until replay, bundle and audio exist |
 
@@ -24,7 +26,12 @@ FastAPI app in `backend/app/` around the real `meg_core` planner (`packages/meg-
 - **Data release:** the UH-001 planner fixture KB, labelled `runtime_release: false`. No runtime agronomy KB exists yet (Refaat).
 - **ML parts** (replay, forecast, new crops) are stubbed by agreement (14 Nov): new crops arrive through the KB; the 8-crop
   expansion on `planner/crop-expansion-assessment` is research-only and not wired.
-- **Verified:** `pytest` 12 passed, including the golden test that the API result for UH-001 equals the planner CLI output
+- **14 Nov update:** answers mapping + templates. UH-001 entered through the app gives rejected (`sowing_before_protected_cut`),
+  review dates 28 May and 1 June, 0 feasible, search incomplete. **No `preparation_shortfall`/“why”** because the app does not ask
+  preparation days (the fixture does); also not asked: harvest dates, field facts, feed requirement. `pytest` 20 passed.
+  End-to-end: the frontend in HTTP mode ran the whole UH-001 journey against uvicorn (phone + desktop) and saved a real review card.
+  Arabic template wording and spoken numbers are drafts for native review.
+- **Verified (first slice):** `pytest` 12 passed, including the golden test that the API result for UH-001 equals the planner CLI output
   (rejected, `sowing_before_protected_cut`, cut preserved, 0 feasible, 2 needs_review, search incomplete). A live uvicorn run
   answered health and the UH-001 Promise Test the same way. Not verified: a real Gemini call (no key used), load, auth.
 - **Supply chain:** `backend/requirements.lock` (exact + sha256, 23 packages incl. pip 26.2.2), `backend/pip.conf`
