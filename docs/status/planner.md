@@ -23,6 +23,11 @@ Crop expansion (2026-11-14, branch `planner/crop-expansion-assessment`, not merg
 preservation and team review only. All eight crops remain unapproved; none is runtime-eligible or produces a verified feasible recommendation.
 It awaits Refaat's source review and Amr's policy decisions (purpose changes, search budget, multi-year rotation input).
 
+Twelve-crop catalogue (2026-11-14, branch `planner/twelve-crop-catalogue`, uncommitted): Refaat KB adapter +
+`crop_catalogue` with four separate capability levels. 104 tests pass with Refaat's real KB. No crop is feasibility-eligible,
+and 0 of Refaat's 27 rules are enforceable. Wheat window conflict and berseem purpose are gated pending Refaat's decisions.
+See [handoff](../planner/implementation-handoff.md#refaat-kb-adapter-and-twelve-crop-catalogue-proposed-2026-11-14).
+
 ## Built and verified
 
 - Built 2026-11-13: `packages/meg-core/src/meg_core/planner/constraints.py`, with private

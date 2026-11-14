@@ -1,0 +1,323 @@
+{
+  "schema_version": "crop-catalogue/0.1-proposed",
+  "catalogue_version": "sakha-crop-catalogue-2026-11-14-proposed1",
+  "status": "proposed_not_runtime_release",
+  "approval": "Amr 2026-11-14: preservation and team review only; no crop approved for feasible recommendations",
+  "references": {
+    "refaat_kb": "crop-research-20261111-v1",
+    "kb_extension": "sakha-crop-expansion-2026-11-14-proposed1",
+    "ledger": "sakha-ledger-2026-11-12-draft1"
+  },
+  "levels": [
+    "research_record",
+    "runtime_profile",
+    "review_candidate",
+    "feasibility_eligible"
+  ],
+  "crops": [
+    {
+      "crop_id": "wheat",
+      "scientific_name": "Triticum aestivum",
+      "names": {
+        "ar-EG": "قمح",
+        "en": "Wheat"
+      },
+      "purpose": "grain",
+      "level": "review_candidate",
+      "origin": "refaat_kb",
+      "approval": "pending",
+      "evidence_refs": [
+        "refaat_kb:crop-research-20261111-v1#C01-C06",
+        "ledger:W1-W3"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "conflict:wheat-sowing-window"
+      ]
+    },
+    {
+      "crop_id": "berseem",
+      "scientific_name": "Trifolium alexandrinum",
+      "names": {
+        "ar-EG": "برسيم",
+        "en": "Berseem"
+      },
+      "purpose": "forage_or_seed_requires_review",
+      "level": "runtime_profile",
+      "origin": "refaat_kb",
+      "approval": "pending",
+      "evidence_refs": [
+        "refaat_kb:crop-research-20261111-v1#C07-C13",
+        "ledger:B1-B2"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "purpose_forage_or_seed_unresolved"
+      ]
+    },
+    {
+      "crop_id": "grain_maize",
+      "scientific_name": "Zea mays",
+      "names": {
+        "ar-EG": "ذرة شامية",
+        "en": "Grain maize"
+      },
+      "purpose": "grain",
+      "level": "review_candidate",
+      "origin": "refaat_kb",
+      "approval": "pending",
+      "evidence_refs": [
+        "refaat_kb:crop-research-20261111-v1#C14-C18",
+        "ledger:M1-M4"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending"
+      ]
+    },
+    {
+      "crop_id": "grain_sorghum",
+      "scientific_name": "Sorghum bicolor",
+      "names": {
+        "ar-EG": "ذرة رفيعة",
+        "en": "Grain sorghum"
+      },
+      "purpose": "grain",
+      "level": "review_candidate",
+      "origin": "refaat_kb",
+      "approval": "pending",
+      "evidence_refs": [
+        "refaat_kb:crop-research-20261111-v1#C19-C24",
+        "ledger:S1-S2"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending"
+      ]
+    },
+    {
+      "crop_id": "rice",
+      "scientific_name": "Oryza sativa",
+      "names": {
+        "ar-EG": "أرز",
+        "en": "Rice"
+      },
+      "purpose": "grain",
+      "level": "review_candidate",
+      "origin": "kb_extension",
+      "approval": "pending",
+      "evidence_refs": [
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#rice_legal_area_gate",
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#rice_sakha_nursery_2024_2025"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "legal_permission_field_fact_required",
+        "cultivar_duration_conflicting"
+      ]
+    },
+    {
+      "crop_id": "sugar_beet",
+      "scientific_name": "Beta vulgaris",
+      "names": {
+        "ar-EG": "بنجر السكر",
+        "en": "Sugar beet"
+      },
+      "purpose": "sugar",
+      "level": "review_candidate",
+      "origin": "kb_extension",
+      "approval": "pending",
+      "evidence_refs": [
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#sugar_beet_alhamul_2021_2023",
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#sugar_beet_kfs_2022_2024",
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#sugar_beet_sakha_2022_2024"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "factory_contract_field_fact_required",
+        "delivery_lag_unknown"
+      ]
+    },
+    {
+      "crop_id": "egyptian_cotton",
+      "scientific_name": "Gossypium barbadense",
+      "names": {
+        "ar-EG": "قطن مصري",
+        "en": "Egyptian cotton"
+      },
+      "purpose": "fibre",
+      "level": "review_candidate",
+      "origin": "kb_extension",
+      "approval": "pending",
+      "evidence_refs": [
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#cotton_sakha_2022_2023",
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#cotton_variety_map_2026",
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#cotton_stalk_uprooting_deadline"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "markaz_variety_field_fact_required",
+        "picking_count_unknown"
+      ]
+    },
+    {
+      "crop_id": "faba_bean",
+      "scientific_name": "Vicia faba",
+      "names": {
+        "ar-EG": "فول بلدي",
+        "en": "Faba bean"
+      },
+      "purpose": "grain",
+      "level": "review_candidate",
+      "origin": "kb_extension",
+      "approval": "pending",
+      "evidence_refs": [
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#faba_sakha_sowing_1nov",
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#faba_sakha1_release"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "harvest_date_unknown",
+        "abstract_only_sources"
+      ]
+    },
+    {
+      "crop_id": "watermelon",
+      "scientific_name": "Citrullus lanatus",
+      "names": {
+        "ar-EG": "بطيخ",
+        "en": "Watermelon"
+      },
+      "purpose": "fresh_fruit",
+      "level": "research_record",
+      "origin": "kb_extension",
+      "approval": "pending",
+      "evidence_refs": [
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#watermelon_egypt_summer_window",
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#watermelon_wilt_rotation"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "national_scope_only",
+        "multi_year_rotation_needs_field_history",
+        "salinity_condition_unmeasured"
+      ]
+    },
+    {
+      "crop_id": "strawberry",
+      "scientific_name": "Fragaria x ananassa",
+      "names": {
+        "ar-EG": "فراولة",
+        "en": "Strawberry"
+      },
+      "purpose": "fresh_fruit",
+      "level": "research_record",
+      "origin": "kb_extension",
+      "approval": "pending",
+      "evidence_refs": [
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#strawberry_egypt_calendar",
+        "kb_extension:sakha-crop-expansion-2026-11-14-proposed1#strawberry_salinity_rotation"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "no_open_field_local_evidence",
+        "spans_summer_winter_boundary",
+        "salt_sensitive"
+      ]
+    },
+    {
+      "crop_id": "cantaloupe",
+      "scientific_name": "Cucumis melo",
+      "names": {
+        "ar-EG": "كنتالوب",
+        "en": "Cantaloupe"
+      },
+      "purpose": "fresh_fruit",
+      "level": "research_record",
+      "origin": "assessment",
+      "approval": "pending",
+      "evidence_refs": [
+        "assessment:crop-expansion-assessment.md#cantaloupe"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "not_representable:cultivar_group_unspecified",
+        "no_local_calendar"
+      ]
+    },
+    {
+      "crop_id": "harankash",
+      "scientific_name": "Physalis spp. (species unresolved)",
+      "names": {
+        "ar-EG": "حرنكش",
+        "en": "Harankash"
+      },
+      "purpose": "fresh_fruit",
+      "level": "research_record",
+      "origin": "assessment",
+      "approval": "pending",
+      "evidence_refs": [
+        "assessment:crop-expansion-assessment.md#harankash"
+      ],
+      "blockers": [
+        "field_release_and_preparation_unknown",
+        "local_agronomic_sign_off_pending",
+        "not_representable:species_identity_unresolved",
+        "no_local_calendar"
+      ]
+    }
+  ],
+  "profile_proposals": [
+    {
+      "profile_id": "berseem-forage-proposed",
+      "crop_id": "berseem",
+      "purpose": "forage",
+      "status": "proposed",
+      "evidence_refs": [
+        "refaat_kb:crop-research-20261111-v1#C07/E042 (Mansoura Univ., Egyptian clover forage course)",
+        "refaat_kb:crop-research-20261111-v1#C08/E043 (Fahl single-cut vs Meskawi multi-cut forage)",
+        "ledger:B1 (FAO Egyptian Clover 2014, multicut Miskawi forage)"
+      ],
+      "decision_required": "Refaat: confirm forage (not seed) use and the Fahl or Meskawi type for Sakha; seed purpose stays unsupported"
+    }
+  ],
+  "conflicts": [
+    {
+      "conflict_id": "wheat-sowing-window",
+      "crop_id": "wheat",
+      "topic": "sowing_support",
+      "status": "unresolved_pending_signoff",
+      "blocks_refaat_rule_ids": [
+        "C01"
+      ],
+      "claims": [
+        {
+          "origin": "refaat_kb",
+          "rule_id": "C01",
+          "evidence_id": "E036",
+          "text": "10 Nov to 30 Nov",
+          "scope": "Nile Delta regional calendar; bread wheat for grain; irrigated double cropping",
+          "source": "Global Yield Gap Atlas, Egypt, Table 1 (WUR test host yieldgap-test.containers.wur.nl), accessed 2026-11-11"
+        },
+        {
+          "origin": "ledger",
+          "assertion_id": "wheat_oldland_preferred_window",
+          "source_id": "W1",
+          "text": "15-30 Nov preferred; conditional extension to 10 Dec",
+          "scope": "Old land, Lower and Upper Egypt, grain wheat",
+          "source": "Ministry/ARC extension bulletin 1449, 2025/26, printed p. 9"
+        }
+      ],
+      "note": "Different authority (regional modelling calendar vs official extension recommendation). Neither is chosen; neither may become a runtime rule until reviewed."
+    }
+  ]
+}

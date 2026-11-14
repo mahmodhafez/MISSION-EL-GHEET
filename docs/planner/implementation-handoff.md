@@ -40,6 +40,57 @@ choices and issues. The hash ignores fact `confirmation_status`, so a preview ta
 intake can be bound after the farmer confirms the same values. Generation itself still requires every fact
 to be confirmed. Malformed input raises `_validation.InputValidationError(code, field_paths)`.
 
+## Refaat KB adapter and twelve-crop catalogue (proposed, 2026-11-14)
+
+Branch `planner/twelve-crop-catalogue` (worktree `tmp/planner-crop-catalogue`), built on `planner/crop-expansion-assessment`.
+The adapter was copied byte-identical from the uncommitted worktree `tmp/planner-kb-adapter`, which was left untouched.
+**Nothing here is scientifically approved.** Refaat's delivered KB (`crop-research-20261111-v1`) has 27 rules and
+0 approved or enforceable ones.
+
+| Call | Purpose |
+|---|---|
+| `kb_adapter.adapt(crops=, enforceable_rules=, kb_version=, data_release=, site_id=, season_labels=)` | Loader output → planner `KnowledgeBase`. Only rules Refaat's loader marks enforceable become rules. Everything else goes to `unmapped` with a reason. |
+| `crop_catalogue.load_catalogue(doc)` | Validates [crop-catalogue.v0.1-proposed.json](crop-catalogue.v0.1-proposed.json). Refuses `feasibility_eligible` without approval, unknown levels, duplicates and non-proposed status. |
+| `crop_catalogue.build_planner_kb(catalogue, refaat_crops=, enforceable_rules=, ...)` | Refaat profiles + proposed runtime profiles. Rules come only from the adapter. Rules in an unresolved conflict are held back. |
+| `crop_catalogue.exploration_crop_ids(catalogue, purpose)` | Crops that may be **offered** for one purpose. The farmer must still confirm the scope. |
+
+**Capability levels.** Each level is a separate approval.
+
+| Level | Crops | Meaning |
+|---|---|---|
+| research record only | watermelon, strawberry, cantaloupe, harankash | Never a planner profile, so never shown in `available_crop_ids` and blocked if requested. |
+| runtime profile | berseem (Refaat record, purpose `forage_or_seed_requires_review`) | Can bind only to a season of that exact purpose. |
+| review candidate | wheat, grain maize, grain sorghum, rice, sugar beet, Egyptian cotton, faba bean; berseem via `berseem-forage-proposed` | May be offered. Without approved rules every result is `needs_review` or blocked. |
+| feasibility eligible | none | Needs recorded approval. |
+
+**Resolved as gates, not as science.**
+
+- **Wheat window.** Refaat C01/E036 says "10 Nov to 30 Nov": a Global Yield Gap Atlas regional Nile-Delta calendar,
+  read from a WUR *test* host. Ledger W1 says 15–30 Nov plus a conditional 10 Dec, from ARC bulletin 1449 2025/26 for
+  old land. Different authorities. Both are kept verbatim as conflict `wheat-sowing-window`, and C01 is held from
+  enforcement even if signed until the conflict is resolved.
+- **Berseem purpose.** C07/E042 (Mansoura forage course) and C08/E043 (Fahl/Meskawi forage types) plus ledger B1 support
+  a forage-specific *proposal*, `berseem-forage-proposed` (purpose `forage`, evidence `proposed`). Refaat must confirm
+  forage vs seed and the Fahl or Meskawi type. Seed stays unsupported, and Refaat's own record is unchanged.
+
+**Tests (2026-11-14, CPython 3.13.14).** `python -I -S -m unittest discover -s tests` in `packages/meg-core`:
+
+- With `MEG_AGRI_KB` set to Refaat's `agricultural_kb.json`: **104 pass** (84 original + 9 adapter + 11 catalogue).
+- Without it: 104 run, 3 skip.
+- UH-001 on catalogue profiles: still `rejected` (`sowing_before_protected_cut`), May 28 / Jun 1 `needs_review`,
+  20 May cut unchanged, release unknown, 0 feasible.
+- Mutation checks confirmed both gates can fail.
+
+**Search (P1, measured on the real engine).** Purpose filtering cuts grain-season offers to 4 crops and forage to 0.
+Every case ran in ≤15 ms. With crop locks removed, crops lacking sowing evidence are blocked, and blocked combinations
+**consume the 256 budget** (254/256 in one case), so the result reads `candidate_budget` rather than "evidence missing".
+Proposed separately, not implemented: report an evidence-blocked value once in the scope preview instead of once per
+combination. No engine change was made.
+
+**Awaiting Yahya.** Rule-type → topic map (only `sowing_window` → `sowing_support`), `field.<key>` paths, and the
+`winter-start-year-v1-proposed` year/leap convention. All are internal proposals, not a published contract. Note that
+crops that become planner profiles appear in the frontend through `scope.available_crop_ids`.
+
 ## What Milestone 2 does
 
 - **Permissions.** Explore only explicit `ExplorationChoice` / `DateRangeChoice` / `CatalogueChoice`
@@ -80,6 +131,7 @@ python -I -S -m unittest discover -s tests -v
 | `test_search_boundaries.py` | 18 | pass |
 | `test_manual_cli.py` | 2 | pass |
 | **Total** | **84** | **0 fail, 0 error, 0 skip** |
+| `test_kb_adapter.py` + `test_crop_catalogue.py` (2026-11-14) | 9 + 11 | pass with `MEG_AGRI_KB`; 3 skip without it |
 
 Also checked: all 21 package/test/tool files parse with Python 3.12 grammar (`ast.parse(feature_version=(3, 12))`),
 `py_compile` passes and `git diff --check` is clean. **Python 3.12 runtime: not run.** No 3.12 interpreter is installed.
