@@ -19,8 +19,10 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 
 | Path | What lives there | Real code yet? |
 |---|---|---|
-| `backend/` | FastAPI app (`app/`), tests | Milestone 1 (real planner, SQLite); see `docs/status/backend.md` |
-| `frontend/` | React app (`src/features/*`): voice-first flow on a dev adapter | Yes, see `docs/status/frontend.md` |
+| `backend/` | FastAPI app (package `backend.app`, run from the repo root), Season Replay, tests | Yes: reviewed KB, real planner, replay, SQLite; see `docs/status/backend.md` |
+| `packages/meg-core/` | Planner (Promise Test, candidate generation), reviewed Sakha agricultural KB, 12-crop catalogue | Yes, 118 tests; see `docs/status/planner.md` |
+| `refaat-data-ml/` | Refaat's climate data release, `ClimateStore`, agricultural KB sources, Ridge experiment, handoffs | Yes; 43/46 tests (3 need local raw NASA files) |
+| `frontend/` | React app (`src/features/*`): voice-first flow; backend via `VITE_API_BASE`, else a dev adapter | Yes, see `docs/status/frontend.md` |
 | `ml/` | Shared-release builder (`tools/`), tests, future experiments | Builder + 3 tests |
 | `data/validation/` | NASA POWER / ET0 audit and regeneration scripts | Yes, 16 tests |
 | `data/local/` | Assembled data release (mostly git-ignored) | Partial, see `docs/status/ml-data.md` |
@@ -73,14 +75,15 @@ python -I -S -m unittest discover -s ml/tests -v                        # 3 test
 node work/ux-phase-2/check-wireframes-v3.cjs                            # wireframe smoke check
 node work/ux-phase-3/check-hybrid.cjs                                   # Fieldlight prototype check
 node work/ux-phase-4/check-labs.cjs                                     # voice-first page labs check
-python -I -S -m unittest discover -s packages/meg-core/tests -v         # planner: 84 tests
+python -I -S -m unittest discover -s packages/meg-core/tests -v         # planner: 118 tests (3 skipped)
 cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm dev   # app at http://127.0.0.1:5173 (dev adapter, no server)
 cd frontend && VITE_API_BASE=/api/v1 corepack pnpm dev                 # app against the backend (proxied to :8787)
 cd frontend && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build   # 12 unit tests
 python3 -I scripts/check_dependency_age.py                              # lock files: hashes + 14-day minimum age
 python3 -m venv backend/.venv && cp backend/pip.conf backend/.venv/pip.conf && backend/.venv/bin/pip install --require-hashes --no-deps --only-binary :all: -r backend/requirements.lock
-cd backend && .venv/bin/python -m pytest -q                            # backend: 20 tests incl. UH-001 golden
-cd backend && .venv/bin/uvicorn app.main:app --port 8787                # API at http://127.0.0.1:8787/api/v1 (docs at /docs)
+backend/.venv/bin/python -m pytest -q backend/tests                    # backend: 69 tests (from the repo root)
+backend/.venv/bin/uvicorn backend.app.main:app --port 8787              # API at http://127.0.0.1:8787/api/v1 (docs at /docs)
+(cd refaat-data-ml && python3 -m unittest discover -s tests)           # Refaat data/KB: 43/46 (3 need local NASA files)
 ```
 
 The frontend uses the backend when `VITE_API_BASE` is set, otherwise a labelled dev adapter (real planner export for UH-001 only).

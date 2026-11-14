@@ -697,3 +697,26 @@ details.more summary{cursor:pointer;font-weight:600;min-height:32px}
 @media (min-width:1000px){.tiles.four .tile{min-height:140px;padding:10px}}
 .app-main{gap:14px}
 @media (max-width:600px){.tile{padding:8px 6px}.tile .art{width:58px;height:58px}.tile .art svg{width:50px;height:56px}}
+/* Review badge on crop tiles (reviewed KB: no crop has agronomic sign-off) */
+.tile .tile-badge{font-size:13px;font-weight:600;padding:1px 8px}
+.tile .tile-badge svg{display:none}
+@media (max-width:600px){.tile .tile-badge{font-size:11px;padding:0 6px}}
+/* Season Replay windows */
+.replay-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.replay-card{display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;text-align:center}
+.replay-card .big-date{display:flex;gap:4px;align-items:center;font-size:20px;font-weight:700;white-space:nowrap}
+.replay-card .big-date svg{width:18px;height:18px}
+.replay-card .m{display:flex;gap:6px;align-items:center;font-size:15px}
+.replay-card .m svg{width:18px;height:18px;color:var(--muted)}
+.replay-card .badge{font-size:13px}
+.replay-sum{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:16px}
+.replay-sum li{background:#fff;border-inline-start:4px solid #2C7A78;border-radius:8px;padding:6px 10px}
+@media (max-width:600px){.replay-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.replay-card{padding:6px 4px}.replay-card .big-date{font-size:16px}.replay-card .m{font-size:13px}.replay-sum{font-size:14px}}
+@media (max-width:600px){.replay-sum li:nth-child(n+2){display:none}.replay-card .badge{font-size:11px;padding:1px 4px}}
+.q-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px}
+.q-note{font-size:14px;font-weight:600;padding:2px 8px}
+.q-note svg{width:16px;height:16px}
+@media (max-width:600px){.tile{padding:6px 6px}.tile .art{width:52px;height:52px}.tile .art svg{width:44px;height:50px}.q-note{font-size:12px}}
+@media (min-width:1000px){.tiles.four .tile{min-height:118px;padding:8px}.tiles.four .tile .art{width:76px;height:76px}.tiles.four .tile .art svg{width:60px;height:66px}}
+@media (max-width:600px){.season-hero strong{font-size:18px}.season-hero .sh-ic{width:38px;height:38px}}
+@media (max-width:600px){.two-btns>.secondary,.two-btns>.primary{white-space:nowrap;font-size:15px;min-height:52px;gap:6px}.two-btns svg{width:20px;height:20px}}

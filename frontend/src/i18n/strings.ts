@@ -11,10 +11,14 @@ export const PLANT: Record<PlantArt, Bi & { def: string }> = {
   maize: { ar: 'ذرة شامية', en: 'Maize', def: 'الذرة الشامية' },
   wheat: { ar: 'قمح', en: 'Wheat', def: 'القمح' },
   sorghum: { ar: 'ذرة رفيعة', en: 'Sorghum', def: 'الذرة الرفيعة' },
+  rice: { ar: 'أرز', en: 'Rice', def: 'الأرز' },
+  faba_bean: { ar: 'فول بلدي', en: 'Faba bean', def: 'الفول البلدي' },
+  sugar_beet: { ar: 'بنجر سكر', en: 'Sugar beet', def: 'بنجر السكر' },
+  cotton: { ar: 'قطن مصري', en: 'Egyptian cotton', def: 'القطن المصري' },
   unknown: { ar: 'لسه مش عارف', en: "I don't know yet", def: '' },
 };
 
-export const PURPOSE: Record<Purpose, Bi> = { forage: { ar: 'علف للمواشي', en: 'animal feed' }, grain: { ar: 'حبوب', en: 'grain' } };
+export const PURPOSE: Record<Purpose, Bi> = { forage: { ar: 'علف للمواشي', en: 'animal feed' }, grain: { ar: 'حبوب', en: 'grain' }, sugar: { ar: 'سكر', en: 'sugar' }, fibre: { ar: 'تيلة', en: 'fibre' } };
 
 export const SEASON_KIND: Record<'winter' | 'summer', Bi> = { winter: { ar: 'شتوي', en: 'Winter' }, summer: { ar: 'صيفي', en: 'Summer' } };
 
@@ -35,6 +39,8 @@ export const UI = {
   practice: { ar: 'مثال تجريبي — مش بيانات حقيقية', en: 'Practice example, not real data' },
   devData: { ar: 'نتيجة تجريبية من المخطِّط (UH-001)', en: 'Dev data: planner export (UH-001)' },
   deviceVoice: { ar: 'صوت الموبايل', en: 'Device voice' },
+  needsReview: { ar: 'محتاج مراجعة', en: 'Needs review' },
+  moreCrops: { ar: 'محاصيل تانية', en: 'More crops' },
 } satisfies Record<string, Bi>;
 
 export const VOICE_STATE: Record<string, [Bi, Bi]> = {

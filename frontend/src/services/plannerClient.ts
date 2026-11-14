@@ -31,6 +31,14 @@ export interface RenderedResult {
 export type PlanResponse =
   | { status: 'ok'; source: 'dev-export' | 'server'; data_release: string; result: PlanningResult; rendered?: RenderedResult; result_id?: string }
   | Unavailable;
+/** Season Replay (backend /replay): equal 14-day windows per sowing date; statuses echoed from the Promise Test. */
+export interface ReplayWindow { window_id: string; sow_date: string; planner_status: string }
+export interface Replay {
+  status: string; label: { ar: string; en: string }; windows: ReplayWindow[];
+  layer_a_historical: { years_used: number[]; windows: Record<string, { across_years: Record<string, { mean: number | null } | undefined> }> };
+  farmer_summary: { kind: string; ar: string; en: string }[];
+}
+export type ReplayResponse = { status: 'ok'; replay: Replay } | Unavailable;
 export type ForecastResponse = { status: 'available' | 'stale' | 'not_applicable' | 'unavailable'; reason?: string };
 export type SaveResponse = { status: 'saved'; card_id: string } | Unavailable;
 
@@ -47,11 +55,12 @@ export type InterpretResponse = { status: 'ok'; extraction: Extraction } | { sta
 
 export interface PlannerClient {
   readonly kind: 'dev' | 'http';
-  catalogue(): Promise<{ data_release: string; crop_ids: string[] }>;
+  /** `pending`: no crop in this release has agronomic sign-off, so tiles show a "needs review" badge. */
+  catalogue(): Promise<{ data_release: string; crop_ids: string[]; pending?: boolean }>;
   promiseTest(snapshot: IntakeSnapshot, ctx: { locale: Locale; firstWinterYear: number }): Promise<PlanResponse>;
   /** Re-render a stored result in another language without re-running the planner (server only). */
   relocalise?(resultId: string, locale: Locale): Promise<RenderedResult | null>;
-  replay(snapshot: IntakeSnapshot): Promise<Unavailable>;
+  replay(snapshot: IntakeSnapshot): Promise<ReplayResponse>;
   forecast(snapshot: IntakeSnapshot): Promise<ForecastResponse>;
   saveEvidence(snapshot: IntakeSnapshot): Promise<SaveResponse>;
   interpret(req: { question_id: string; locale: Locale; transcript: string; season_order: number }): Promise<InterpretResponse>;

@@ -47,7 +47,7 @@ export function createDevClient(): PlannerClient {
       if (!same(signatureOf(snapshot), exportDoc.signature)) return { status: 'unavailable', reason: 'planner_not_connected' };
       return { status: 'ok', source: 'dev-export', data_release: exportDoc.data_release, result: exportDoc.result as unknown as PlanningResult };
     },
-    async replay() {
+    async replay(): Promise<{ status: 'unavailable'; reason: string }> {
       return { status: 'unavailable', reason: 'replay_not_connected' };
     },
     async forecast() {

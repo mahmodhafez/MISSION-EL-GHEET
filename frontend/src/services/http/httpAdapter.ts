@@ -1,4 +1,5 @@
-import type { ForecastResponse, InterpretResponse, IntakeSnapshot, PlannerClient, PlanResponse, RenderedResult, SaveResponse, Unavailable } from '../plannerClient';
+import type { ForecastResponse, InterpretResponse, IntakeSnapshot, PlannerClient, PlanResponse, RenderedResult, ReplayResponse, SaveResponse, Unavailable } from '../plannerClient';
+import type { PlanningResult } from '../types';
 import type { Locale } from '../../i18n/format';
 import { devExtract } from '../dev/devAdapter';
 
@@ -9,7 +10,7 @@ import { devExtract } from '../dev/devAdapter';
 const apiLocale = (l: Locale) => (l === 'ar' ? 'ar-EG' : 'en');
 
 export function createHttpClient(base = '/api/v1'): PlannerClient {
-  let last: { scenarioId: string; resultId: string } | null = null;
+  let last: { scenarioId: string; resultId: string; result: PlanningResult; snapshot: IntakeSnapshot } | null = null;
 
   async function call<T>(path: string, init?: RequestInit): Promise<T> {
     const r = await fetch(base + path, { ...init, headers: { 'Content-Type': 'application/json', ...(init?.headers ?? {}) } });
@@ -22,8 +23,8 @@ export function createHttpClient(base = '/api/v1'): PlannerClient {
   return {
     kind: 'http',
     async catalogue() {
-      const c = await call<{ data_release: string; crop_ids: string[] }>('/catalogue');
-      return { data_release: c.data_release, crop_ids: c.crop_ids };
+      const c = await call<{ data_release: string; crop_ids: string[]; crops?: { approval: string }[] }>('/catalogue');
+      return { data_release: c.data_release, crop_ids: c.crop_ids, pending: (c.crops ?? []).some((x) => x.approval !== 'approved') };
     },
     async promiseTest(s: IntakeSnapshot, ctx): Promise<PlanResponse> {
       try {
@@ -34,16 +35,27 @@ export function createHttpClient(base = '/api/v1'): PlannerClient {
         const sc = await call<{ id: string }>('/scenarios/from-answers', { method: 'POST', body: JSON.stringify(answers) });
         const out = await call<Record<string, unknown>>(
           `/scenarios/${sc.id}/promise-test?locale=${apiLocale(ctx.locale)}`, { method: 'POST' });
-        last = { scenarioId: sc.id, resultId: out.result_id as string };
+        last = { scenarioId: sc.id, resultId: out.result_id as string, result: out.result as PlanningResult, snapshot: s };
         return { status: 'ok', source: 'server', data_release: out.data_release as string, result: out.result as never, rendered: out.rendered as RenderedResult, result_id: out.result_id as string };
       } catch (e) { return fail(e); }
     },
     async relocalise(resultId, locale) {
       try { return (await call<{ rendered: RenderedResult | null }>(`/results/${resultId}?locale=${apiLocale(locale)}`)).rendered; } catch { return null; }
     },
-    async replay(): Promise<Unavailable> {
+    async replay(): Promise<ReplayResponse> {
       if (!last) return { status: 'unavailable', reason: 'no_scenario' };
-      try { return await call<Unavailable>(`/scenarios/${last.scenarioId}/replay`, { method: 'POST' }); } catch (e) { return fail(e); }
+      // Compare the season the options change (its current date first) with the option dates; else the planned sowings.
+      const changed = [...last.result.review_investigations, ...last.result.feasible_alternatives]
+        .map((c) => c.changes.find((x) => x.direct && x.field === 'sowing_date')).filter((x) => x?.after.value);
+      const season = changed[0] ? last.snapshot.seasons.find((x) => x.season_id === changed[0]!.season_id) : undefined;
+      const base = season?.sowing_date && season.sowing_date !== 'unknown' ? [season.sowing_date] : [];
+      const dates = changed.length
+        ? [...base, ...changed.map((c) => String(c!.after.value))]
+        : last.snapshot.seasons.map((x) => x.sowing_date).filter((d): d is string => !!d && d !== 'unknown');
+      if (!dates.length) return { status: 'unavailable', reason: 'no_sowing_dates' };
+      try {
+        return await call<ReplayResponse>(`/scenarios/${last.scenarioId}/replay`, { method: 'POST', body: JSON.stringify({ sow_dates: [...new Set(dates)].slice(0, 4), result_id: last.resultId }) });
+      } catch (e) { return fail(e); }
     },
     async forecast(s): Promise<ForecastResponse> {
       const dates = s.seasons.map((x) => x.sowing_date).filter((d): d is string => !!d && d !== 'unknown');

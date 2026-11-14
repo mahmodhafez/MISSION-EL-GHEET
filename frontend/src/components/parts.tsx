@@ -78,12 +78,12 @@ export function Hero({ icon, sub, unknown, title, text, children }: { icon: stri
 }
 
 /** Picture tile with its own listen button (never nested in the answer button). */
-export function Tile({ label, art, pressed, onClick }: { label: string; art: ReactNode; pressed?: boolean; onClick: () => void }) {
+export function Tile({ label, art, pressed, badge, onClick }: { label: string; art: ReactNode; pressed?: boolean; badge?: string; onClick: () => void }) {
   const voice = useVoiceCtx();
   const { t } = useApp();
   return (
     <div className="tile-wrap">
-      <button className="tile" aria-pressed={!!pressed} onClick={onClick}><span className="art">{art}</span>{label}</button>
+      <button className="tile" aria-pressed={!!pressed} onClick={onClick}><span className="art">{art}</span>{label}{badge && <span className="badge review tile-badge">{badge}</span>}</button>
       <button className="hear" aria-label={`${t(UI.listen)}: ${label}`} onClick={() => voice.speak({ ar: label, en: label })}><Icon name="speaker" /></button>
     </div>
   );

@@ -47,6 +47,11 @@ before/after + why review → check again → summary + save; past weather and 7
   with `?locale`, saves review cards, re-renders on language switch, and plays the backend's `speech` wording. Verified with a
   headless click-through of the full UH-001 journey against the running backend (390×760 and 1280×820): real result, backend
   wording for “not checked”, card saved; no errors, overflow or scrolling. Without a Gemini key the dev keyword stand-in is used.
+- **Final integration (14 Nov):** crops come from the reviewed KB catalogue (8 offerable; names for rice, faba bean, sugar beet,
+  Egyptian cotton; purposes sugar/fibre; unknown picture until Moaaz draws them), 4 per screen with "More crops", one
+  "needs review" note on the crop question; "Another crop" opens its own picture screen on "what may change"; Past weather
+  shows real Season Replay cards (date, status, average Tmax, ET0 total) and one plain summary. Full journey verified
+  against the running backend, both widths, no scrolling.
 - **Known gaps:** harvest dates for maize, wheat and sorghum are not asked (the fixture supplies illustrative ones); season month
   windows are placeholders (voice-first.md open question 6); crop pictures are drawings.
 
