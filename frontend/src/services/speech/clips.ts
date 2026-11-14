@@ -96,13 +96,15 @@ export function createClipPlayer() {
     play(locale: string, keys: string[], done: () => void, failed: () => void) {
       const my = ++token;
       const els = keys.map((k) => { const a = new Audio(`${base}/${locale}/${k}.mp3`); a.preload = 'auto'; return a; });
+      // A broken clip reports twice (error event and rejected play()); fail once, then ignore this playback.
+      const fail = () => { if (my === token) { token++; current = null; failed(); } };
       const next = (i: number) => {
         if (my !== token) return;
         if (i >= els.length) { current = null; done(); return; }
         current = els[i];
         current.onended = () => next(i + 1);
-        current.onerror = () => { if (my === token) { current = null; failed(); } };
-        current.play().catch(() => { if (my === token) { current = null; failed(); } });
+        current.onerror = fail;
+        current.play().catch(fail);
       };
       next(0);
     },

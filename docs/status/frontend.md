@@ -55,6 +55,11 @@ before/after + why review → check again → summary + save; past weather and 7
   fallback, English), 30 unit tests, typecheck, build (75 clips in `dist/audio/ar`), `vite preview` serves them as
   `audio/mpeg`; all 81 delivered clips probed (mp3 44.1 kHz mono 128 kbps, loudness, silences). **Not heard by a person
   in the app yet.**
+  Browser test (headless Chromium against the production build): all 75 clips fetch as `audio/mpeg`, decode, play to the
+  end, none silent. Arabic click-through: welcome, both option "listen" buttons, Help and the practice prompt each played
+  their clip to the end with no device voice; the first intake question (has a number) used the device voice with the
+  "صوت الموبايل" label; with the welcome clip forced to 404 it fell back to the device voice once, labelled. That test
+  found the fallback speaking twice (a broken clip fires both `error` and a rejected `play()`); fixed in `clips.ts`.
 - **What research says (2026-11-14):** the result screen shows the backend's optional `rendered.research` (sourced findings from the reviewed Sakha KB) for every status, as the main content of "needs review" (the review list stays, compact, below it): calm caveat, per-crop note cards with title, text and a `where · source` link with locator, a window band with the farmer's date marker (RTL-aware, amber when before/after, never red), trial-date chips, a collapsed "More from the sources (English)" list, and the empty-seasons hint with an Add crops button to intake. `src/features/promise-test/Research.tsx`, `research.ts`; types in `plannerClient.ts`. Without `research` (dev adapter) the screen is unchanged; no voice change (appending would break recorded-clip matching). Verified: typecheck, 26 unit tests (4 new: render en + ar-EG of the contract's wheat example, timeline math), build. Not yet checked against the live backend or in a browser.
 - **Mic fix (2026-11-14):** the mic no longer turns on by itself after other taps. The delayed first-tap start is cancelled by any
   other tap, speech, or navigation; Back, language switch and screen changes close an open mic; events from aborted listens are

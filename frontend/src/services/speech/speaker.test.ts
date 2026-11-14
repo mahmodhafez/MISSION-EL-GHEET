@@ -18,7 +18,7 @@ class FakeAudio {
   constructor(public src: string) {}
   play() {
     FakeAudio.played.push(this.src);
-    if (FakeAudio.fail) return Promise.reject(new Error('404'));
+    if (FakeAudio.fail) { queueMicrotask(() => this.onerror?.()); return Promise.reject(new Error('404')); } // browsers report both
     queueMicrotask(() => this.onended?.());
     return Promise.resolve();
   }
