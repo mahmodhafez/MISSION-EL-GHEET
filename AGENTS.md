@@ -81,7 +81,7 @@ cd frontend && VITE_API_BASE=/api/v1 corepack pnpm dev                 # app aga
 cd frontend && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build   # 16 unit tests
 python3 -I scripts/check_dependency_age.py                              # lock files: hashes + 14-day minimum age
 python3 -m venv backend/.venv && cp backend/pip.conf backend/.venv/pip.conf && backend/.venv/bin/pip install --require-hashes --no-deps --only-binary :all: -r backend/requirements.lock
-backend/.venv/bin/python -m pytest -q backend/tests                    # backend: 69 tests (from the repo root)
+backend/.venv/bin/python -m pytest -q backend/tests                    # backend: 77 tests (from the repo root)
 backend/.venv/bin/uvicorn backend.app.main:app --port 8787              # API at http://127.0.0.1:8787/api/v1 (docs at /docs)
 (cd refaat-data-ml && python3 -m unittest discover -s tests)           # Refaat data/KB: 43/46 (3 need local NASA files)
 ```

@@ -9,6 +9,7 @@ from typing import Literal
 from fastapi import APIRouter, Query, Request
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..core.limits import resolved_ip
 from ..core.errors import ApiError
 from ..planner.adapter import InputValidationError, KBError, run_promise_test
 from ..replay import ClimateDataError, ClimateInputError, compare_sowing_windows
@@ -62,7 +63,8 @@ def health(req: Request):
     s = _app(req)
     return {"status": "ok", "data_release": s.release.data_release, "runtime_release": False,
             "forecast_bundle": "present" if s.settings.forecast_bundle.exists() else "missing",
-            "speech_interpreter": "configured" if s.settings.gemini_api_key else "not_configured"}
+            "speech_interpreter": "configured" if s.settings.gemini_api_key else "not_configured",
+            **({"client_ip": resolved_ip(req.scope, s.settings.limits.proxy_hops)} if s.settings.debug_client_ip else {})}
 
 
 @router.get("/catalogue")

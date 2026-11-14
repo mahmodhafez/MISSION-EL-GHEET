@@ -1,0 +1,25 @@
+# Render Blueprint: the backend API on Render's free plan (docs/backend/hosting.md).
+# The frontend is on Vercel (frontend/vercel.json). Secrets are set in the Render dashboard, never here.
+services:
+  - type: web
+    name: mission-el-gheet-api
+    runtime: python
+    plan: free
+    region: frankfurt            # closest Render region to Egypt
+    branch: main
+    autoDeploy: true
+    buildCommand: pip install --require-hashes --no-deps --only-binary :all: -r backend/requirements.lock
+    # One worker: the abuse-limit counters live in memory (backend design §10a).
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.3"
+      - key: PIP_CONFIG_FILE
+        value: backend/pip.conf
+      - key: MEG_PROXY_HOPS        # check after the first deploy with MEG_DEBUG_CLIENT_IP=1 (hosting.md step 3)
+        value: "1"
+      - key: MEG_CORS_ORIGINS      # the Vercel URL, e.g. https://mission-el-gheet.vercel.app
+        sync: false
+      - key: MEG_GEMINI_API_KEY    # optional; without it voice uses the labelled keyword stand-in
+        sync: false

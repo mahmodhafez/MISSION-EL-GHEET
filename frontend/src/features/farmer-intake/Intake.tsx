@@ -61,6 +61,7 @@ export function Intake() {
   const onTranscript = async (text: string) => {
     const r = await client.interpret({ question_id: `s${i + 1}_${field}`, locale: L, transcript: text, season_order: i + 1 });
     voice.settle();
+    if (r.status === 'busy') return voice.setState('fallback'); // server limit: pictures become the route
     if (r.status !== 'ok') return voice.notUnderstood();
     const ex: Extraction = r.extraction;
     if (ex.off_topic) return voice.speak({ ar: 'مقدرش أنصح بمحصول من عندي. قولّي إنت هتزرع إيه.', en: 'I cannot recommend a crop myself. Tell me what you will grow.' });

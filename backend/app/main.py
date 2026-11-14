@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .api.v1 import router
 from .core import errors
 from .core.config import Settings
+from .core.limits import LimitMiddleware
 from .planner.adapter import load_release
 from .speech.gemini import GeminiExtractor
 from .store.db import Store
@@ -22,6 +23,8 @@ def create_app(settings: Settings | None = None, extractor=None) -> FastAPI:
     app.state.store = Store(settings.db_path)
     app.state.extractor = extractor if extractor is not None else (
         GeminiExtractor(settings.gemini_api_key, settings.gemini_model) if settings.gemini_api_key else None)
+    # Abuse limits (backend design §10a) sit inside CORS, so 429/413 replies still carry CORS headers.
+    app.add_middleware(LimitMiddleware, limits=settings.limits, store=app.state.store)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins), allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
     errors.install(app)
     app.include_router(router)

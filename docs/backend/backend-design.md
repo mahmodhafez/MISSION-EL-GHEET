@@ -491,8 +491,8 @@ Decided 14 Nov 2026 (Yahya): **the app is hosted publicly for the NASA Space App
 All numbers are starting values, set by `MEG_*` settings so they can change without a deploy. Watch real use in the first days and adjust.
 
 **How:**
-- **In-process limiter**, a small token-bucket middleware in `core/` keyed by client IP and route group. One uvicorn worker is enough for the judging load, so no Redis. Counters reset on restart, but the global daily ceilings are persisted in SQLite so a restart doesn't reset the budget. Write it ourselves rather than add a package, unless one passes the [dependency rules](../rules/dependencies.md).
-- **Client IP:** behind the host's proxy, trust `X-Forwarded-For` only from that proxy; otherwise use the socket address, so the header can't be spoofed to dodge limits.
+- **In-process limiter**, a small token-bucket middleware in `core/` keyed by client IP and route group. One uvicorn worker is enough for the judging load, so no Redis. Counters reset on restart, but the global daily ceilings are persisted in SQLite so a restart doesn't reset the budget. Written ourselves, no new package.
+- **Client IP:** `MEG_PROXY_HOPS=N` takes the Nth address from the right of `X-Forwarded-For` (proxies append, so a client-sent value can't be used); 0 uses the socket address. Checked once per deployment ([hosting.md](hosting.md) step 3).
 - **429 responses** use the existing error envelope with a `Retry-After` header ([API contracts](api-contracts.md), 429 row). The frontend never retries automatically.
 - **Hard spending caps at the providers too:** a Google Cloud budget alert and API quota on the Gemini key, and a monthly character limit on the ElevenLabs key. The app's ceilings are the first line; the provider caps are the backstop if the app's logic fails.
 - **Keys** live only in the server environment, never in the frontend bundle or the repo. CORS allows only the app's own origin.
@@ -500,7 +500,7 @@ All numbers are starting values, set by `MEG_*` settings so they can change with
 - **Privacy:** audio and transcripts are not logged. Rate-limit logs keep a hashed IP and counts only.
 - **Budget exhausted ≠ broken:** when a ceiling is hit, voice degrades to pictures and device voice; the Promise Test and every screen keep working.
 
-Not built yet.
+**Built 14 Nov 2026:** `core/limits.py` (per-client limits, body caps, daily voice ceiling in the `usage` table), tested in `backend/tests/test_limits.py`. Not built: DB pruning (the free host wipes the file on redeploy anyway) and live-TTS limits (no live TTS yet). Deployment steps: [hosting.md](hosting.md).
 
 ## 11. Testing
 

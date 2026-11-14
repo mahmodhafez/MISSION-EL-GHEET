@@ -31,6 +31,7 @@ evidence, never edited · **Archive** = superseded, history only.
 | Science | [science/reproducing.md](science/reproducing.md): how to rerun the scientific checks | Current | Refaat |
 | Science | [science/evidence-access.md](science/evidence-access.md): report hashes and local-only files | Current | Refaat |
 | Backend | [backend/architecture.md](backend/architecture.md): system boundaries, journey, milestones | Approved 11 Nov | Yahya |
+| Backend | [backend/hosting.md](backend/hosting.md): deploying for the judges (Vercel + Render + UptimeRobot), limits, checks | Approved 14 Nov | Yahya |
 | Backend | [backend/voice-generation.md](backend/voice-generation.md): generating all app audio with ElevenLabs (gates, voices, run, checks) | Proposed 13 Nov | Yahya |
 | Backend | [backend/backend-design.md](backend/backend-design.md): modules, SQLite, ML bundle, voice, i18n (D1–D8) | Approved 12 Nov; "As built" section 14 Nov | Yahya |
 | Backend | [backend/api-contracts.md](backend/api-contracts.md): wire types and endpoints (**§0 overrides; §0b = as implemented**) | Approved 12 Nov; §0b 14 Nov | Yahya |

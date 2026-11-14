@@ -51,7 +51,8 @@ export interface Extraction {
   ambiguous: { path: string; said: string; options: string[] }[];
   off_topic: boolean;
 }
-export type InterpretResponse = { status: 'ok'; extraction: Extraction } | { status: 'no_match' };
+/** `busy`: the server's abuse limits said wait (429); the screen switches to pictures, it never retries by itself. */
+export type InterpretResponse = { status: 'ok'; extraction: Extraction } | { status: 'no_match' } | { status: 'busy' };
 
 export interface PlannerClient {
   readonly kind: 'dev' | 'http';

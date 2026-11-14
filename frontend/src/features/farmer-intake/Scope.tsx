@@ -138,6 +138,7 @@ export function ScopeReadback() {
   const onTranscript = async (text: string) => {
     const r = await client.interpret({ question_id: 'confirm_scope', locale: L, transcript: text, season_order: 1 });
     voice.settle();
+    if (r.status === 'busy') return voice.setState('fallback');
     if (r.status === 'ok' && r.extraction.answer.confirm) return confirm();
     if (r.status === 'ok' && r.extraction.answer.yes_no === 'yes') return voice.speak({ ar: 'علشان أتأكد: قول "أكّد" أو دوس الزرار.', en: 'To be sure: say “confirm” or press the button.' });
     voice.notUnderstood();

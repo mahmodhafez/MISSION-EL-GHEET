@@ -32,7 +32,7 @@ FastAPI app, package `backend.app`, run from the repo root:
   Errors: out-of-scope site 422, missing/altered KB 503. The UH-001 planner fixture stays selectable for the golden test.
 - **Bilingual templates (D4):** `app/i18n/messages.json`; each rendered item is `{code, version, text, speech}`; text uses
   digits, speech spells numbers in Egyptian Arabic words (draft for native review).
-- **Verified (14 Nov):** `pytest backend/tests` 69 passed (incl. UH-001 golden = planner CLI; UH-001 answers on the reviewed
+- **Verified (14 Nov):** `pytest backend/tests` 77 passed (8 new: rate limits, body caps, daily voice ceiling, spoof-safe client address; incl. UH-001 golden = planner CLI; UH-001 answers on the reviewed
   KB = rejected `sowing_before_protected_cut`, 28 May / 1 Jun `needs_review`, 0 feasible, search incomplete; replay echoes
   statuses); planner 118 OK. The full UH-001 browser journey against the running backend passed at 12 widths, AR/EN.
 - **Supply chain:** `backend/requirements.lock` (exact + sha256, 23 packages incl. pip 26.2.2), `backend/pip.conf`
@@ -48,7 +48,7 @@ FastAPI app, package `backend.app`, run from the repo root:
 | 2 | Ask preparation days and harvest dates in the app; map them in `from-answers` | Without them the planner cannot compute `preparation_shortfall` ("why"), unlike the fixture |
 | 3 | Approve Refaat's KB schema and Amr's adapter conventions (year/leap, topic map) | Formal sign-off still pending; code already uses them |
 | 4 | Audio input: `/speech/interpret` takes the recorded clip and sends it to Gemini (decided 14 Nov); then test with a key on real Egyptian Arabic recordings; verify the model ID | Backend design §8.2–8.3 |
-| 4a | Rate limits + global daily ceilings + body/clip size caps before public hosting; set provider spending caps on the Gemini and ElevenLabs keys | Backend design §10a; **must be done before the judges' link goes out** |
+| 4a | Deploy: Render + Vercel + UptimeRobot, check the client address once, set provider spending caps | [hosting.md](../backend/hosting.md). Rate limits, body caps and the daily voice ceiling are **built** (14 Nov, `core/limits.py`, 8 tests) |
 | 4b | Demo: whole sentences vs. record-once-and-swap-the-changing-words, same voice. **Kit ready (14 Nov):** [`backend/scripts/voice_test/`](../../backend/scripts/voice_test/README.md), handed to Moaaz; decide from his blind score sheet | [voice-generation Q4 (d)](../backend/voice-generation.md#8-open-questions); 13 Nov "offline only" stands until decided |
 | 5 | Shared Pydantic contracts and OpenAPI → TypeScript types | Requests still carry planner JSON; frontend types are handwritten |
 | 6 | Forecast bundle reader (ML contract) | Optional; must not block P0 |

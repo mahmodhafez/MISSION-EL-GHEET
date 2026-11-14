@@ -76,7 +76,11 @@ export function createHttpClient(base = '/api/v1'): PlannerClient {
         // No Gemini key on this server: the labelled dev keyword extractor keeps voice usable in development.
         if (r.status === 'unavailable') return devExtract(req.transcript, req.season_order);
         return { status: 'no_match' };
-      } catch { return devExtract(req.transcript, req.season_order); }
+      } catch (e) {
+        const code = (e as { code?: string })?.code;
+        if (code === 'rate_limited' || code === 'daily_budget_reached') return { status: 'busy' };
+        return devExtract(req.transcript, req.season_order);
+      }
     },
   };
 }

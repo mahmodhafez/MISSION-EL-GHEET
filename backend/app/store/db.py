@@ -42,6 +42,16 @@ class Store:
         finally:
             conn.close()
 
+    # daily ceilings (public deployment, backend design §10a)
+    def take_daily(self, kind: str, ceiling: int) -> bool:
+        """Count one use of `kind` today (UTC); False once today's ceiling is reached."""
+        day = now()[:10]
+        with self.tx() as c:
+            c.execute("INSERT INTO usage VALUES (?,?,0) ON CONFLICT(day, kind) DO NOTHING", (day, kind))
+            row = c.execute("UPDATE usage SET count = count + 1 WHERE day=? AND kind=? AND count < ? RETURNING count",
+                            (day, kind, ceiling)).fetchone()
+        return row is not None
+
     # scenarios
     def create_scenario(self, data_release: str, payload: dict) -> dict:
         sid, t = new_id("scn"), now()

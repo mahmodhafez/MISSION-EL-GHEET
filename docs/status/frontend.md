@@ -38,6 +38,7 @@ before/after + why review → check again → summary + save; past weather and 7
   UH-001 text is hard-coded in the result screens.
 - **Speech:** Web Speech recognition (ar-EG / en-US) push-to-talk; device voice for output, labelled; a dev keyword extractor
   returns the Gemini schema shape until `/speech/interpret` exists.
+- **Hosting (2026-11-14):** `frontend/vercel.json` for Vercel (root `frontend/`, `VITE_API_BASE` = Render URL); voice turns that hit a server limit (429) switch to the pictures instead of retrying. Not deployed yet: [hosting.md](../backend/hosting.md).
 - **UI fixes from Yahya's review (2026-11-14):** season names sit above the season cards (no longer cut by the arch) with one
   year format; "What may change" cards are compact (two small add buttons, removable chosen chips); "needs review" result shows
   the plan, "no clash between the dates" and a labelled list of what still needs review; the explore result says what the search
