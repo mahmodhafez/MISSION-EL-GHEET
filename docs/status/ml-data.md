@@ -17,6 +17,15 @@ From the [ML plan](../ml/plan.md) (13 Nov):
 
 ## Built and verified
 
+- 2026-11-14, branch `climate/season-replay-hardening` (uncommitted), base Mahmoud's `2a4e4bc`:
+  - **Season Replay** gives a planting-window comparison. Layer A is historical NASA POWER 2001–2025 and Layer B is
+    Refaat's evaluated 2001–2018 climatology.
+  - **Verified on the real release:** UH-001 numbers match an independent CSV recomputation (≤1e-14), and the
+    climatology matches Refaat's module on 366/366 slots.
+  - **Tests:** 46 backend tests and 84 planner tests pass.
+  - **Fixed:** invented crop dates, hardcoded verdicts and a git-writing data loader were removed.
+  - **Not yet:** the FastAPI route, data shipping and Vercel. See the [audit](../reviews/season-replay-final-audit.md).
+
 | Thing | Path | Verified |
 |---|---|---|
 | NASA POWER / ET0 audit + regeneration scripts | `data/validation/` | 16 tests pass (13 Nov, Linux, Python 3.12.3); **13 skip** without the validation ZIP. With the ZIP: 16/16 pass (Amr, 12–13 Nov, Windows, 3.13.5) |
