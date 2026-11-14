@@ -737,3 +737,81 @@ details.more summary{cursor:pointer;font-weight:600;min-height:32px}
   .tiles.compact .tile .art{width:44px;height:48px}
   .tiles.compact .tile .art svg{width:36px;height:42px}
 }
+
+/* ===== UI audit fixes (14 Nov): every width 360–1440 px, both languages ===== */
+/* Crop grid: columns follow the available width; tiles may shrink, names wrap instead of being cut. */
+.tiles .tile-wrap{min-width:0}
+.tiles .tile{min-width:0;overflow-wrap:anywhere}
+.tiles.compact{grid-template-columns:repeat(auto-fill,minmax(168px,1fr))}
+@media (max-width:600px){
+  .tiles.compact{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .tiles.compact .tile{padding-inline-end:48px;padding-inline-start:4px;gap:4px;font-size:14px}
+  [dir="rtl"] .tiles.compact .tile{padding:4px 4px 4px 48px}
+  .tiles.compact .tile .art{width:40px;height:46px}
+  .tiles.compact .tile .art svg{width:34px;height:40px}
+}
+/* "What must stay?" desktop arched cards: content is never hidden behind the card edge. */
+.path.wide li{overflow:visible}
+.path li .txt{min-width:0}
+.path li .when{overflow-wrap:anywhere}
+/* Season strip names: wrap rather than truncate. */
+.strip .s-name{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25;overflow-wrap:anywhere}
+/* Short screens (landscape tablets, small laptops): compact vertical rhythm, targets stay ≥48px. */
+@media (max-height:800px){
+  .app-main{gap:10px;padding-block:10px}
+  .strip{padding-block:4px}
+  .strip .s-art{width:40px !important;height:44px !important}
+  .strip .s-art svg{width:32px !important;height:38px !important}
+  .strip .s-yr{display:none}
+  .season-hero{padding:4px 10px}
+  .season-hero .sh-ic{width:40px;height:40px}
+  .season-hero strong{font-size:20px}
+  .question{font-size:24px}
+  .dense-grid button{min-height:48px}
+  .days{gap:6px}
+  .perm .s-art{width:48px;height:52px}
+  .perm .was{display:none}
+  .date-card .s-art{width:48px;height:52px}
+  .date-card .s-art svg{width:38px;height:44px}
+  .date-card{padding:6px}
+  .banner{padding:6px 10px;font-size:19px}
+  .dock{padding-block:6px}
+  .mic{width:72px;height:72px}
+}
+/* "What must stay?" rows on tablets and short screens: compact rows, season name inline */
+@media (min-width:601px) and (max-width:999px),(max-height:800px){
+  .path.short{gap:6px}
+  .path.short li{grid-template-columns:52px minmax(0,1fr) auto;padding:4px 10px;gap:10px;line-height:1.35}
+  .path.short li .portrait{width:52px;height:58px;border-radius:26px 26px 6px 6px}
+  .path.short li .portrait svg{width:42px;height:48px}
+  .path.short li h3{font-size:18px}
+  .path.short li .txt>.meta{display:none}
+  .path.short li .when{font-size:15px}
+}
+@media (max-height:800px) and (min-width:1000px){
+  .path.wide.short li{flex-direction:row;text-align:start;border-radius:12px;padding:4px 10px;align-items:center}
+  .path.wide.short li .portrait{width:52px !important;height:58px !important;border-radius:26px 26px 6px 6px !important;margin:0 !important}
+  .path.wide.short li .txt{align-items:flex-start}
+  .path.wide.short{grid-template-columns:1fr 1fr}
+}
+@media (max-height:800px){
+  .replay-sum li:nth-child(n+2){display:none}
+  .date-card .yr{display:none}
+  .facts .fact{padding:4px 2px}
+}
+/* Visual review fixes: never break inside a word; keep icon + date on one line */
+.tiles .tile{overflow-wrap:normal;word-break:normal;hyphens:none}
+.path li .when{overflow-wrap:normal;white-space:nowrap}
+.strip .s-name{overflow-wrap:normal}
+@media (max-width:380px){.tiles.compact .tile{font-size:13px;gap:3px}.tiles.compact .tile .art{width:36px;height:42px}.tiles.compact .tile .art svg{width:30px;height:36px}}
+/* Listen button sits fully inside the tile with an even 8px gap from the border; the name keeps clear of it */
+.tiles.compact .tile-wrap .hear{inset-inline-end:8px}
+.tiles.compact .tile{padding-inline-end:60px}
+[dir="rtl"] .tiles.compact .tile{padding:4px 6px 4px 60px}
+@media (max-width:600px){
+  .tiles.compact .tile{padding-inline-end:58px}
+  [dir="rtl"] .tiles.compact .tile{padding:4px 4px 4px 58px}
+}
+/* Full rows only (8 crops → 2×4 or 4×2, no orphan cell): 2 columns below 820px, 4 from 820px */
+.tiles.compact{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:820px){.tiles.compact{grid-template-columns:repeat(4,minmax(0,1fr))}}
