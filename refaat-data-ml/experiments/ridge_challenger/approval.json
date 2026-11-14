@@ -1,0 +1,12 @@
+{
+  "status": "APPROVED_AND_FROZEN",
+  "specification_id": "sakha-ridge-direct-calendar-history-v1",
+  "config_file": "config.json",
+  "config_sha256": "3978160d209fdfb4dc024d11a9efe1f81b52c19647d2b0d31d962f686ab8c1bc",
+  "approved": true,
+  "approved_by": "user",
+  "approval_reference": "Explicit user approval in this conversation: 10 features, 14 direct models, alpha=1.0, training-only StandardScaler; execute exactly one challenger.",
+  "recorded_utc": "2026-11-13T21:35:45.956829+00:00",
+  "execution_status_file": "run_summary.json",
+  "restriction": "Config bytes are frozen. Fit and evaluation must reject any SHA-256 mismatch; no changes after fitting begins."
+}

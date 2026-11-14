@@ -2,40 +2,65 @@
 
 **Read this if…** you're asking "is the API built? what's next on the backend?"
 
-**As of **, last commit `0122e92`. Owner: Yahya. If this is far behind `git log`, trust git.
+**As of 2026-11-14**, branch `chore/final-integration` (pushed; PR to `main` pending review). Owner: Yahya. If this is far
+behind `git log`, trust git.
 
 ---
+
+## Built and verified
+
+FastAPI app, package `backend.app`, run from the repo root:
+`backend/.venv/bin/uvicorn backend.app.main:app --port 8787`. It wraps the real `meg_core` planner
+(`packages/meg-core`), Refaat's reviewed agricultural KB and Mahmoud/Amr's Season Replay.
+
+| Endpoint (`/api/v1`) | State |
+|---|---|
+| `GET /health` | Real: data release, forecast bundle present/missing, speech interpreter configured or not |
+| `GET /catalogue[?first_winter_year]` | Real: `catalogue_view` of the reviewed KB. 8 offerable crops (wheat, berseem forage, maize, sorghum, rice, faba bean, sugar beet, Egyptian cotton), all `approval: pending`; 4 research records (watermelon, strawberry, cantaloupe, harankash) not offerable |
+| `POST /scenarios/from-answers` | Real: app answers → planner snapshot. Farmer facts `farmer_report`; profile bound later by exact crop + purpose; everything the app does not collect is an explicit confirmed unknown (`not_collected`); locks → commitments; permissions → exploration choices |
+| `POST /scenarios`, `GET /scenarios/{id}`, `POST /scenarios/{id}/revisions` | Real: planner-shaped input; `expected_revision`, 409 on conflict; SQLite (3 tables, WAL) |
+| `POST /scenarios/{id}/promise-test?locale=` | Real planner: per-request KB for the scenario's season labels → `bind_profiles` → scope preview → explicit confirmation → `service.plan`. Stored as codes + params; response adds `rendered` |
+| `GET /results/{id}?locale=` | Real: stored result, `current` flag, re-rendered in the requested language without re-running the planner |
+| `POST /scenarios/{id}/evidence-cards`, `GET /evidence-cards/{id}` | Real: saves a `review_draft`; plan status unchanged; refuses a result from an old revision |
+| `POST /scenarios/{id}/replay` | Real: `compare_sowing_windows` (14-day windows, NASA POWER 2001–2025 + Refaat climatology), statuses echoed from the stored Promise Test, never changed |
+| `POST /speech/interpret` | Real code: Gemini strict extraction + deterministic validation when `MEG_GEMINI_API_KEY` is set; otherwise `unavailable`. **Not tested with a real key** |
+| `GET /forecast` | Honest status only: `not_applicable` outside 7 days, else `unavailable` (no bundle reader yet) |
+| `POST /speech/tts` | Lookup only (D7): `not_generated` until ElevenLabs audio exists |
+
+- **Reviewed KB:** `sakha-agricultural-review-2026-11-14.1`, hash-checked at load (`MEG_DATA_RELEASE_PATH=reviewed`, the
+  default). 27 rules, **0 enforceable** (no local sign-off), so every plan is `rejected` or `needs_review`, never `feasible`.
+  Errors: out-of-scope site 422, missing/altered KB 503. The UH-001 planner fixture stays selectable for the golden test.
+- **Bilingual templates (D4):** `app/i18n/messages.json`; each rendered item is `{code, version, text, speech}`; text uses
+  digits, speech spells numbers in Egyptian Arabic words (draft for native review).
+- **Verified (14 Nov):** `pytest backend/tests` 77 passed (8 new: rate limits, body caps, daily voice ceiling, spoof-safe client address; incl. UH-001 golden = planner CLI; UH-001 answers on the reviewed
+  KB = rejected `sowing_before_protected_cut`, 28 May / 1 Jun `needs_review`, 0 feasible, search incomplete; replay echoes
+  statuses); planner 118 OK. The full UH-001 browser journey against the running backend passed at 12 widths, AR/EN.
+- **Supply chain:** `backend/requirements.lock` (exact + sha256, 23 packages incl. pip 26.2.2), `backend/pip.conf`
+  (14-day minimum age, wheels only, hashes required). Rules: [dependencies.md](../rules/dependencies.md).
+- **Handoffs applied:** [KB integration](../agronomy/yahya-kb-integration-handoff.md) (Amr) and
+  [Season Replay integration](../climate/season-replay-integration-handoff.md) (Mahmoud/Amr), both on `chore/final-integration`.
 
 ## Next up
 
 | # | Task | Notes |
 |---|---|---|
-| 0 | Get [ML contract](../backend/ml-contract.md) reviewed by Amr/Refaat/Mahmoud; deliver `contracts/forecast_bundle.v1.schema.json` + examples | Unblocks the ML team |
-| 1 | Reconcile [backend design](../backend/backend-design.md) with `meg_core` ([blueprint §9.1](../planner/blueprint.md)) | Backend becomes thin adapters around `meg_core` planner/climate. Resolve Q3, Q4 in [overview](README.md). |
-| 2 | Fold API §0 into the body of [api-contracts.md](../backend/api-contracts.md) | Remove superseded `plan_version`, idempotency, sessions, old endpoint names. Q6. |
-| 3 | Skeleton: `pyproject` (uv), `core/`, `schemas/`, SQLite store, `/health`, `/catalogue`, OpenAPI export → TS types | Backend design §12 step 1 |
-| 4 | Scenario endpoints + `promise-test` with storage; bilingual template rendering | §12 step 4; needs planner P0 evaluator |
-| 5 | Replay, then evidence cards; `/speech/interpret`, `/speech/tts`; forecast from bundle | §12 steps 5–8 |
-
-## In flight
-
-Docs cleanup on branch `cleanup/yahya-preintegration` (not merged).
-
-## Built and verified
-
-Nothing. `backend/app/*` and `backend/tests/` contain only `.gitkeep`.
-
-## Designed and approved, not built
-
-- Architecture (11 Nov), backend design D1–D8 (12 Nov), API contracts v1 + §0 MVP revision (12 Nov).
-- 5 first-slice endpoints + later reserved endpoints, error envelope, 3-table SQLite.
-- [Core integration contract](../backend/core-integration.md): how the backend calls `meg_core` and Refaat's `climate_data`.
+| 1 | Review and merge the `chore/final-integration` PR | Reviewers: Amr (planner, KB, replay, frontend), Refaat (data, KB), Mahmoud (replay) |
+| 2 | Ask preparation days and harvest dates in the app; map them in `from-answers` | Without them the planner cannot compute `preparation_shortfall` ("why"), unlike the fixture |
+| 3 | Approve Refaat's KB schema and Amr's adapter conventions (year/leap, topic map) | Formal sign-off still pending; code already uses them |
+| 4 | Audio input: `/speech/interpret` takes the recorded clip and sends it to Gemini (decided 14 Nov); then test with a key on real Egyptian Arabic recordings; verify the model ID | Backend design §8.2–8.3 |
+| 4a | Deploy: Render + Vercel + UptimeRobot, check the client address once, set provider spending caps | [hosting.md](../backend/hosting.md). Rate limits, body caps and the daily voice ceiling are **built** (14 Nov, `core/limits.py`, 8 tests) |
+| 4b | Demo: whole sentences vs. record-once-and-swap-the-changing-words, same voice. **Kit ready (14 Nov):** [`backend/scripts/voice_test/`](../../backend/scripts/voice_test/README.md), handed to Moaaz; decide from his blind score sheet | [voice-generation Q4 (d)](../backend/voice-generation.md#8-open-questions); 13 Nov "offline only" stands until decided |
+| 5 | Shared Pydantic contracts and OpenAPI → TypeScript types | Requests still carry planner JSON; frontend types are handwritten |
+| 6 | Forecast bundle reader (ML contract) | Optional; must not block P0 |
+| 7 | Voice audio: Moaaz generates and reviews with ElevenLabs once wording is final | [voice-generation.md](../backend/voice-generation.md) |
 
 ## Known problems
 
-- Backend design §2 module tree and §12 build order predate the `meg_core` decision (13 Nov).
-- API contracts mix superseded and current text (see Q6).
+- 4.6 MB of CSVs and two ZIPs under `refaat-data-ml/` are committed, against the no-data-in-git rule (Refaat to decide).
+- Four KB rules cite only private team documents (Amr's review F3); harmless while nothing is enforced.
+- `api-contracts.md` body still mixes superseded text (Q6); §0b records what is actually implemented.
+- No auth or sessions (MVP decision); a remote demo must serve synthetic scenarios only.
 
 ## Open questions
 
-See Q3, Q4, Q6, Q11 in the [overview](README.md).
+See Q4, Q6 in the [overview](README.md).

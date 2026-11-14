@@ -1,0 +1,26 @@
+{
+  "status": "proposal_for_Amr_review_not_approved",
+  "recommended": "ledger",
+  "themes": {
+    "earth": {"canvas":"#FFF7E8","surface":"#FFFCF5","ink":"#342B25","muted":"#64564B","action":"#963F2D","actionHover":"#7D3224","secondary":"#4D5C35","accent":"#E7B94F","wash":"#F2E8D8","border":"#89766A","focus":"#153F70","radius":18},
+    "light": {"canvas":"#F4F8F3","surface":"#FFFFFF","ink":"#16352B","muted":"#496459","action":"#17634B","actionHover":"#104D3A","secondary":"#254D62","accent":"#D6E7A3","wash":"#E6F0E7","border":"#6C8175","focus":"#1849AD","radius":10},
+    "ledger": {"canvas":"#F7F3E8","surface":"#FFFEFA","ink":"#202D48","muted":"#536078","action":"#293E69","actionHover":"#1D2F53","secondary":"#76531E","accent":"#D9AD47","wash":"#ECEEEB","border":"#788296","focus":"#854513","radius":6}
+  },
+  "semantic": {
+    "protected":{"ink":"#283F73","surface":"#EDF0FA","meaning":"retained commitment, not feasibility"},
+    "feasible":{"ink":"#245C45","surface":"#EAF3EC","meaning":"only with current supported completed checks; no UH-001 example"},
+    "rejected":{"ink":"#9C3027","surface":"#FBEDE9","meaning":"demonstrated conflict"},
+    "review":{"ink":"#805000","surface":"#FFF2D5","meaning":"agricultural review required"},
+    "unknown":{"ink":"#4D5864","surface":"#EEF1F4","meaning":"missing fact or unavailable evidence; never zero"},
+    "saved":{"ink":"#283F73","surface":"#EDF0FA","meaning":"storage only; double rule, not plan approval"},
+    "history":{"ink":"#244B53","surface":"#ECF4F3","border":"#647E87","meaning":"historical regional evidence; solid archive rule"},
+    "outlook":{"ink":"#574168","surface":"#F2EDF6","border":"#796386","meaning":"future probabilistic concept; dashed boundary, currently unavailable"},
+    "disabled":{"ink":"#555C64","surface":"#E9ECEE","meaning":"unavailable control with visible reason"}
+  },
+  "onAction":"#FFFFFF",
+  "typography":{"bodyArabic":20,"bodyEnglish":18,"bodyLineArabic":1.7,"bodyLineEnglish":1.6,"support":16,"metadataNonessential":12,"questionMobile":30,"questionDesktop":40,"essentialDate":24,"control":18,"familyLedger":["Readex","Tahoma","Arial","sans-serif"],"weights":[400,500,600],"arabicTracking":0},
+  "space":[4,8,12,16,20,24,32,40,48,64],
+  "controls":{"minimumTarget":48,"standardHeight":56,"primaryHeight":60,"voiceHeight":96,"minimumGap":8,"focusOutline":3,"focusSeparation":2},
+  "layout":{"mobileGutter":20,"desktopGutter":36,"maximumContent":1160,"stackBelow":700,"sideBySideReviewAbove":1080},
+  "motion":{"selectionMs":120,"disclosureMs":160,"reducedMotion":"immediate state changes; no spatial motion","phase3":"static composition; no decorative animation"}
+}

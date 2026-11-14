@@ -44,7 +44,7 @@ python -I -S data/validation/regenerate_et0.py --source data/local/power_sakha_2
 python -I -S data/validation/regenerate_et0.py --source data/local/power_sakha_2026_Jan_Oct_LST.json --period 2026 --output-dir work/et0-from-raw/2026
 ```
 
-Existing output folders are rejected; choose another fresh path for a repeat. Do not delete or overwrite the only evidence copy. For a fresh acquisition, retain the original bytes and new provenance as described in [SCIENTIFIC_VALIDATION_FIXES.md](../reports/-scientific-validation-fixes.md); compare hashes before attempting frozen replay. The wrapper intentionally rejects revised inputs. Refresh policy/production data-release expansion needs separate review.
+Existing output folders are rejected; choose another fresh path for a repeat. Do not delete or overwrite the only evidence copy. For a fresh acquisition, retain the original bytes and new provenance as described in [SCIENTIFIC_VALIDATION_FIXES.md](../reports/scientific-validation-fixes.md); compare hashes before attempting frozen replay. The wrapper intentionally rejects revised inputs. Refresh policy/production data-release expansion needs separate review.
 
 Expected CSV SHA256:
 

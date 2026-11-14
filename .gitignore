@@ -35,6 +35,8 @@ checkpoint-*/
 # Matching review previews are required by the offline parity checks.
 !/work/ux-phase-2/preview.html
 !/work/ux-phase-2/preview-v3.html
+!/work/ux-phase-3/
+!/work/ux-phase-4/
 wandb/
 mlruns/
 
@@ -108,3 +110,6 @@ Thumbs.db
 
 # Preserve folder placeholders, including in local output folders
 !.gitkeep
+
+# Backend local database and runtime files
+/backend/var/

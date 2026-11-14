@@ -1,0 +1,18 @@
+[project]
+name = "mission-el-gheet-backend"
+version = "0.1.0"
+description = "FastAPI adapter around the meg_core planner (MISSION EL GHEET)"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi==0.162.0",
+  "starlette==1.10.0",
+  "uvicorn==0.54.0",
+  "pydantic==2.14.2",
+  "httpx==0.28.1",
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.2.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

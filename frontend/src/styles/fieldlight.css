@@ -1,0 +1,927 @@
+/* Fieldlight Hybrid voice-first styles, ported from work/ux-phase-4/lab.css (14 Nov 2026).
+   Tokens follow docs/design/fieldlight.md. Phone rules use a 600px breakpoint instead of the lab phone frame. */
+/* UX Phase 4 voice-first labs. Shared styles. Tokens follow docs/design/fieldlight.md. */
+@font-face{font-family:Readex;src:url('/fonts/readexpro.ttf') format('truetype');font-weight:160 700;font-display:swap}
+@font-face{font-family:NotoArabic;src:url('/fonts/notosansarabic.ttf') format('truetype');font-weight:100 900;font-display:swap}
+:root{
+  --canvas:#F4F8F3;--surface:#FFFFFF;--ink:#16352B;--muted:#496459;--action:#17634B;--action-hover:#104D3A;
+  --accent:#D6E7A3;--portrait:#EDF3E4;--focus:#1849AD;--line:#6C8175;--divider:#D7E0D6;
+  --protected:#283F73;--protected-bg:#EDF0FA;--rejected:#9C3027;--rejected-bg:#FBEDE9;
+  --review:#805000;--review-bg:#FFF2D5;--unknown:#4D5864;--unknown-bg:#EEF1F4;
+  --feasible:#245C45;--feasible-bg:#EAF3EC;--voice-bg:#E6F0E7;
+  --lab:#202735;--lab-bg:#E3E8E2;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:Readex,Tahoma,Arial,sans-serif;line-height:1.55}
+button,select{font:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* ---------- App frame ---------- */
+.stage{background:var(--canvas);border:1px solid #B9C6BC;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-height:720px;position:relative}
+.stage[lang="ar"]{font-family:NotoArabic,Tahoma,Arial,sans-serif}
+.app-head{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--surface);border-bottom:1px solid var(--divider)}
+.app-head .spacer{flex:1}
+.chip-btn{min-height:48px;min-width:48px;padding:6px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);display:inline-flex;gap:8px;align-items:center;justify-content:center;cursor:pointer;font-size:17px}
+.chip-btn svg{width:24px;height:24px}
+.chip-btn[disabled]{color:#6B7B73;border-style:dashed;cursor:not-allowed}
+/* Season progress strip: four numbered dots, always visible */
+.progress{display:flex;gap:6px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--divider);align-items:center;flex-wrap:wrap}
+.progress ol{display:flex;gap:6px;list-style:none;margin:0;padding:0;flex:1}
+.progress li{flex:1;min-width:0;display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:10px;background:var(--portrait);font-size:15px;border:2px solid transparent}
+.progress li .n{width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:14px;flex:none}
+.progress li.now{border-color:var(--action);background:#fff}
+.progress li.done .n{background:var(--action);color:#fff;border-color:var(--action)}
+.progress li .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.progress .step{font-size:15px;color:var(--muted);width:100%}
+.app-main{flex:1;padding:20px 18px 24px;display:flex;flex-direction:column;gap:18px}
+.question{font-size:30px;line-height:1.5;font-weight:600;margin:0;max-width:24ch}
+.sub{font-size:19px;color:var(--muted);margin:0;max-width:44ch}
+.stage[lang="ar"] .sub{font-size:20px}
+/* Caption: what the app is saying right now */
+.caption{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--divider);border-inline-start:5px solid var(--action);border-radius:12px;padding:12px 14px;font-size:19px}
+.caption svg{flex:none;width:28px;height:28px;color:var(--action);margin-top:2px}
+.caption.speaking{background:#F3F9F4}
+.caption .who{display:block;font-size:14px;color:var(--muted)}
+/* Answer tiles: picture + name + speaker */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px 10px;min-height:170px;border:2px solid var(--line);border-radius:20px;background:var(--surface);cursor:pointer;color:var(--ink);font-size:20px;font-weight:600;text-align:center}
+.tile .art{width:96px;height:96px;border-radius:48px 48px 10px 10px;background:var(--portrait);display:grid;place-items:center}
+.tile .art svg{width:76px;height:84px}
+.tile small{font-size:15px;font-weight:400;color:var(--muted)}
+.tile[aria-pressed="true"]{border:3px solid var(--action);background:#F3F9F4}
+.tile[aria-pressed="true"]::after{content:"✓";position:absolute;inset-block-start:8px;inset-inline-end:10px;width:30px;height:30px;border-radius:50%;background:var(--action);color:#fff;display:grid;place-items:center;font-size:18px}
+.tile.heard{border-style:dashed;border-color:var(--action)}
+.tile.unknown .art{background:var(--unknown-bg)}
+/* Generic panels and statuses */
+.panel{background:var(--surface);border:1px solid var(--divider);border-radius:12px;padding:16px}
+.status{display:flex;gap:12px;align-items:flex-start;border-radius:12px;padding:14px 16px;border:1px solid;border-inline-start-width:6px}
+.status svg{flex:none;width:30px;height:30px}
+.status strong{display:block;font-size:21px}
+.status p{margin:4px 0 0;font-size:18px}
+.status.protected{color:var(--protected);background:var(--protected-bg)}
+.status.rejected{color:var(--rejected);background:var(--rejected-bg)}
+.status.review{color:var(--review);background:var(--review-bg)}
+.status.unknown{color:var(--unknown);background:var(--unknown-bg)}
+.status.feasible{color:var(--feasible);background:var(--feasible-bg)}
+.status p,.status li{color:var(--ink)}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid}
+.badge svg{width:18px;height:18px}
+.badge.protected{color:var(--protected);background:var(--protected-bg)}
+.badge.rejected{color:var(--rejected);background:var(--rejected-bg)}
+.badge.review{color:var(--review);background:var(--review-bg)}
+.badge.unknown{color:var(--unknown);background:var(--unknown-bg)}
+.badge.feasible{color:var(--feasible);background:var(--feasible-bg)}
+.badge.sim{color:#5A3E00;background:#FFF7E0;border-style:dashed}
+/* Four-season path (vertical; arches stay on the portraits) */
+.path{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.path li{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.path li .portrait{width:64px;height:72px;border-radius:32px 32px 8px 8px;background:var(--portrait);display:grid;place-items:center;position:relative}
+.path li .portrait svg{width:48px;height:56px}
+.path li .portrait .n{position:absolute;inset-block-start:-6px;inset-inline-start:-6px;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:14px}
+.path li h3{margin:0;font-size:21px}
+.path li .meta{font-size:17px;color:var(--muted)}
+.path li .when{font-size:17px;font-weight:600}
+.path li bdi{white-space:nowrap}
+.path li .row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.path li .txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.path li .end{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.path li.empty{border-style:dashed;background:transparent}
+.path li.empty .portrait{background:var(--unknown-bg)}
+.path li.current{border:3px solid var(--action)}
+.path li.conflict{border:2px solid var(--rejected)}
+/* Desktop summary: Fieldlight arched season cards in one row, equal heights, aligned content */
+/* Readback groups */
+.readback{display:grid;gap:10px}
+.rb{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center;background:var(--surface);border:1px solid var(--divider);border-radius:12px;padding:12px 14px}
+.rb .k{font-size:16px;color:var(--muted)}
+.rb .v{font-size:21px;font-weight:600}
+.rb .acts{display:flex;gap:6px}
+.rb.now{border:3px solid var(--action)}
+.rb.unknown .v{color:var(--unknown)}
+/* Primary actions */
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.primary{min-height:60px;padding:10px 22px;border-radius:12px;border:2px solid var(--action);background:var(--action);color:#fff;font-size:20px;font-weight:600;cursor:pointer;display:inline-flex;gap:10px;align-items:center}
+.primary:hover{background:var(--action-hover)}
+.primary svg,.secondary svg{width:26px;height:26px}
+.secondary{min-height:60px;padding:10px 20px;border-radius:12px;border:2px solid var(--action);background:var(--surface);color:var(--action);font-size:20px;font-weight:600;cursor:pointer;display:inline-flex;gap:10px;align-items:center}
+.primary[disabled]{background:#9AA9A1;border-color:#9AA9A1;cursor:not-allowed}
+/* ---------- Voice dock: bottom, thumb reach, one place for all audio ---------- */
+.dock{position:sticky;bottom:0;background:var(--voice-bg);border-top:1px solid var(--line);padding:12px 14px calc(12px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.dock .side{display:flex;gap:8px}
+.dock .side.end{justify-content:flex-end}
+.mic{width:84px;height:84px;border-radius:50%;border:3px solid var(--action);background:var(--action);color:#fff;display:grid;place-items:center;cursor:pointer;position:relative}
+.mic svg{width:44px;height:44px}
+.mic .ring{position:absolute;inset:-9px;pointer-events:none;border-radius:50%;border:4px solid var(--action);opacity:0}
+.mic.listening{background:#fff;color:var(--action)}
+.mic.listening .ring{opacity:1}
+.mic.processing{background:#fff;color:var(--muted);border-color:var(--muted)}
+.mic.off{background:#fff;color:#6B7B73;border:3px dashed #6B7B73}
+/* speaking: the mic stays filled (tap = answer now); only listening is white with a ring */
+.mic svg,.mic-big svg{pointer-events:none}
+.dock-state{grid-column:1/-1;text-align:center;font-size:18px;font-weight:600;min-height:28px}
+.dock-state small{display:block;font-weight:400;font-size:15px;color:var(--muted)}
+.round{width:64px;height:64px;border-radius:50%;border:2px solid var(--action);background:#fff;color:var(--action);display:grid;place-items:center;cursor:pointer}
+.round svg{width:30px;height:30px}
+.round-label{font-size:14px;text-align:center;color:var(--ink)}
+.dock .ctl{display:flex;flex-direction:column;align-items:center;gap:2px}
+/* Heard proposal sheet */
+.heard{border:2px dashed var(--action);border-radius:12px;background:#fff;padding:14px 16px}
+.heard .q{font-size:15px;color:var(--muted)}
+.heard .said{font-size:19px;font-style:italic;margin:4px 0 10px}
+.heard .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.heard .chip{font-size:18px;font-weight:600;padding:6px 12px;border-radius:10px;background:var(--portrait);border:1px solid var(--line)}
+.heard .chip.missing{background:var(--unknown-bg);color:var(--unknown);border-style:dashed}
+/* Date inset for Promise Test */
+.inset{background:var(--surface);border:2px solid var(--rejected);border-radius:12px;padding:16px}
+.timeline{display:grid;grid-template-columns:repeat(17,1fr);gap:2px;margin:12px 0 6px;direction:ltr}
+.timeline div{height:34px;background:var(--portrait);border-radius:3px;position:relative}
+.timeline .berseem{background:#BFD49B}
+.timeline .prep{background:repeating-linear-gradient(45deg,#E8E2CF 0 6px,#F6F2E6 6px 12px)}
+.timeline .clash{background:repeating-linear-gradient(45deg,var(--rejected) 0 4px,var(--rejected-bg) 4px 9px)}
+.timeline .maize{outline:3px solid var(--rejected);outline-offset:-3px}
+.timeline .ok{background:#fff;outline:2px dashed var(--review);outline-offset:-2px}
+.tl-labels{display:flex;justify-content:space-between;font-size:15px;color:var(--muted);direction:ltr}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:16px;margin-top:8px}
+.legend i{display:inline-block;width:18px;height:14px;border-radius:3px;vertical-align:middle;margin-inline-end:6px}
+details.more{background:var(--surface);border:1px solid var(--divider);border-radius:12px;padding:12px 14px;font-size:17px}
+details.more summary{cursor:pointer;font-weight:600;min-height:32px}
+.bars{display:grid;gap:6px;margin-top:8px}
+.bars .bar{display:grid;grid-template-columns:110px 1fr 70px;gap:8px;align-items:center;font-size:16px}
+.bars .bar span.track{height:18px;background:var(--portrait);border-radius:4px;position:relative}
+.bars .bar span.fill{position:absolute;inset-block:0;inset-inline-start:0;background:#5E8F7A;border-radius:4px}
+/* Implicit confirmation strip: what was heard, with undo */
+.implicit{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:18px}
+.implicit>svg{width:24px;height:24px;color:var(--action);flex:none}
+.implicit>span{flex:1}
+.implicit .who{color:var(--muted);font-size:15px;margin-inline-end:6px}
+/* Tap-to-hear speaker inside tiles */
+.tile-wrap{position:relative;display:flex}
+.tile-wrap .tile{flex:1}
+/* listen button: top corner opposite the selection tick, so the picture+name stay centred */
+.tile-wrap .hear{position:absolute;inset-block-start:8px;inset-inline-start:8px}
+.hear{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--action);cursor:pointer}
+.hear svg{width:24px;height:24px}
+/* After repeated misses / mic denied: pictures become the primary route */
+.fallback .tiles .tile{border-color:var(--action);box-shadow:0 0 0 3px var(--accent)}
+/* ---------- One step = one screen (no scrolling) ----------
+   Phone mode is a fixed 390x760 frame (typical Android viewport). The main area may scroll only as a
+   last resort; check.cjs reports any step that needs it. */
+.stage{height:100dvh;min-height:0;max-width:960px;margin-inline:auto;border-radius:0;border-block:0}
+.split .tiles{grid-template-columns:repeat(auto-fit,minmax(104px,1fr))}
+.app-main{overflow:auto;min-height:0}
+.split{display:grid;gap:18px}
+/* One-row dock at every width: [repeat/stop] [what is happening] [mic]. Saves ~70px per screen. */
+.dock{grid-template-columns:auto minmax(0,1fr) auto;padding:10px 16px;gap:14px}
+.dock .dock-state{grid-column:2;grid-row:1;text-align:start}
+.dock .side:not(.end){grid-column:1;grid-row:1}
+.dock>.ctl{grid-column:3;grid-row:1}
+.dock .side.end:empty{display:none}
+.wide-btn{width:100%;justify-content:center}
+.dense-grid{display:grid;gap:8px}
+.dense-grid button{min-height:52px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-size:19px;cursor:pointer}
+.months{grid-template-columns:repeat(3,1fr)}
+.days{grid-template-columns:repeat(7,1fr)}
+.notice{font-size:15px;color:#5A3E00;background:#FFF7E0;border:1px dashed #A67C00;border-radius:10px;padding:8px 12px}
+@media (prefers-reduced-motion:no-preference){
+  .mic.listening .ring{animation:pulse 1.4s ease-out infinite}
+  .caption.speaking svg{animation:fade 1s ease-in-out infinite alternate}
+}
+@keyframes pulse{from{transform:scale(.92);opacity:.9}to{transform:scale(1.12);opacity:0}}
+@keyframes fade{from{opacity:1}to{opacity:.45}}
+/* Narrow side column (season context beside a question): stacked text, icon-only change */
+.path.side li h3 .meta{display:block;font-weight:400;font-size:16px}
+.path.side li h3 .sep{display:none}
+.path.side li .end .lbl{display:none}
+.path.side li .end .chip-btn{padding:4px}
+.path.side li h3{font-size:19px}
+.path.side li .when,.path.side li .meta{font-size:15px}
+/* Readback list (lab 03): current group open, others one line */
+.rb-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.rb-row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--divider);border-radius:12px;padding:6px 10px;min-height:52px}
+.rb-row .rb-title{flex:1;font-size:18px;font-weight:600;min-width:0}
+.rb-row .rb-title .meta{font-weight:400;color:var(--muted)}
+.rb-row .rb-mark{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);font-size:15px;flex:none}
+.rb-row .rb-mark svg{width:20px;height:20px}
+.rb-row.ok .rb-mark{background:var(--action);color:#fff;border-color:var(--action)}
+.rb-row.now{align-items:flex-start;border:3px solid var(--action);padding:12px}
+.rb-row .rb-body{flex:1;display:grid;gap:4px;min-width:0}
+.rb-line{font-size:18px}
+.rb-line b{white-space:nowrap}
+.rb-line .unk{display:inline-flex;gap:6px;align-items:center;color:var(--unknown);background:var(--unknown-bg);border:1px dashed var(--unknown);border-radius:8px;padding:2px 8px}
+.rb-line .unk svg{width:20px;height:20px}
+.rb-q{font-size:20px;font-weight:600;margin:8px 0 0}
+.rb-row .badge{justify-self:start}
+.rb-row .actions{margin-top:8px}
+.portrait-sm{width:56px;height:62px;border-radius:28px 28px 6px 6px;background:var(--portrait);display:grid;place-items:center;flex:none}
+.portrait-sm svg{width:42px;height:48px}
+.chip-btn.icon-only{padding:4px;min-width:48px}
+.rb-row .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rb-row .actions .primary,.rb-row .actions .secondary{justify-content:center;padding:8px 10px}
+.rb-row.now.speaking{box-shadow:0 0 0 4px var(--accent)}
+.rb-list{gap:6px}
+.rb-row{min-height:48px;padding:2px 8px}
+.rb-row .chip-btn.icon-only{min-height:48px;min-width:48px}
+.rb-line .unk{margin-block:2px;font-size:16px}
+/* Next-step row (wraps on phone into 1 + 2) */
+.choice-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.choice-row>*{justify-content:center;text-align:center}
+.status.speaking{box-shadow:0 0 0 4px var(--accent)}
+.inset .tl-labels{font-size:14px}
+.seq{display:flex;align-items:center;gap:6px;direction:ltr}
+.seq .dots{color:var(--muted);font-size:22px}
+.tl-days{display:grid;grid-template-columns:repeat(17,1fr);gap:2px;direction:ltr;font-size:14px;color:var(--ink);font-weight:600}
+.tl-days span{white-space:nowrap;text-align:center;overflow:visible}
+/* Options (lab 05) */
+.opt-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.option{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 12px}
+.option .txt{display:flex;flex-direction:column;gap:4px;align-items:flex-start;min-width:0}
+.option strong{font-size:19px}
+.option .meta{font-size:16px;color:var(--muted)}
+.option .secondary{min-height:52px;padding:6px 16px}
+.diff{display:grid;gap:8px}
+.diff-col{border-radius:12px;padding:10px 12px;border:1px solid}
+.diff-col h3{display:flex;gap:6px;align-items:center;margin:0 0 4px;font-size:18px}
+.diff-col h3 svg{width:22px;height:22px}
+.diff-col ul{margin:0;padding-inline-start:20px;font-size:17px}
+.diff-col.keep{color:var(--protected);background:var(--protected-bg)}
+.diff-col.change{color:var(--ink);background:var(--surface);border-color:var(--line)}
+.diff-col.unknown{color:var(--unknown);background:var(--unknown-bg);border-style:dashed}
+.diff-col li{color:var(--ink)}
+.cmp{display:grid;gap:10px}
+.cmp-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:6px}
+.cmp-card h3{margin:0;font-size:20px}
+.cmp-card p{margin:0;font-size:17px}
+.mini-path{display:flex;gap:6px}
+.portrait-sm.ph{width:40px;height:44px;font-size:15px;color:var(--muted);border:1px dashed var(--line);background:var(--unknown-bg)}
+.ph-text{color:var(--muted)}
+/* Past weather (06) */
+.src{display:flex;gap:8px;align-items:center;font-size:16px;color:var(--ink);border-inline-start:4px solid #2C7A78;background:#fff;padding:6px 10px;border-radius:8px}
+.src svg{width:22px;height:22px;flex:none;color:#2C7A78}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.two .panel{padding:10px 12px}
+.two h3{display:flex;gap:6px;align-items:center;margin:0 0 4px;font-size:18px}
+.two h3 svg{width:22px;height:22px}
+.two ul{margin:0;padding-inline-start:20px;font-size:17px}
+.choice-row.two-btn{grid-template-columns:1fr 1fr}
+.frame{display:grid;gap:10px}
+.frame-row>span{font-weight:600;font-size:17px}
+.frame-bars{display:grid;gap:4px;margin-top:4px}
+.frame-bar{display:grid;grid-template-columns:90px 1fr auto;gap:8px;align-items:center;font-size:15px}
+.frame-bar .track{height:16px;border:1px dashed var(--line);border-radius:4px;background:#fff}
+.frame-bar em{color:var(--muted);font-style:normal}
+.kv{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px;font-size:16px}
+.kv b{display:inline-block;min-width:80px}
+/* Outlook (07) */
+.status.dashed{border-style:dashed}
+.week{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.week li{display:grid;grid-template-columns:70px 1fr auto;gap:8px;align-items:center;font-size:16px;border:1px dashed var(--line);border-radius:8px;padding:4px 8px;background:#fff}
+.week .range{height:12px;background:var(--unknown-bg);border-radius:6px;position:relative}
+.week em{font-style:normal;color:var(--muted)}
+.meta{color:var(--muted);font-size:15px}
+/* Evidence card (08) */
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:8px}
+.card-status{display:flex;flex-wrap:wrap;gap:6px}
+.badge.saved{color:var(--ink);background:#fff;border-color:var(--ink)}
+.card-row{display:flex;gap:8px;align-items:flex-start;font-size:17px}
+.card-row svg{width:22px;height:22px;flex:none;margin-top:3px}
+.card-row.protected{color:var(--protected)}
+.card-row.protected span{color:var(--ink)}
+.card-foot{font-size:14px;color:var(--muted);border-top:1px solid var(--divider);padding-top:6px}
+/* ===== Round 2 (13 Nov feedback): visual first, less text ===== */
+/* Button content always centred */
+.primary,.secondary{justify-content:center;text-align:center}
+.primary{text-decoration:none}
+/* Logo slot on the first screen */
+.logo{width:150px;height:150px;object-fit:contain}
+.logo-ph{display:grid;place-items:center;width:140px;height:150px;border-radius:70px 70px 12px 12px;background:var(--portrait)}
+.logo-ph svg{width:100px;height:110px}
+.start{display:grid;gap:16px;align-content:center;justify-items:center;text-align:center;flex:1}
+.start .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:min(100%,360px)}
+.start .actions>*{min-width:0}
+/* Season strip: four arched mini cards, same at every width */
+.strip{list-style:none;margin:0;padding:8px 10px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;background:var(--surface);border-bottom:1px solid var(--divider)}
+.strip li{min-width:0;display:flex}
+.strip .s-card{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 4px 8px;border:2px solid var(--divider);border-radius:44px 44px 12px 12px;background:var(--canvas);color:var(--ink);font:inherit;text-align:center;line-height:1.3}
+.strip button.s-card{cursor:pointer;min-height:48px}
+.strip button.s-card:hover{border-color:var(--action)}
+.strip .s-card[aria-current]{border:3px solid var(--action);background:#fff;box-shadow:0 0 0 3px var(--accent)}
+.strip .s-season{display:flex;gap:3px;align-items:center;font-size:13px;color:var(--muted);white-space:nowrap}
+.strip .s-season svg{width:15px;height:15px;flex:none}
+.strip .s-art{width:52px;height:56px;border-radius:26px 26px 6px 6px;background:var(--portrait);display:grid;place-items:center;position:relative;margin:2px 0}
+.strip .s-art svg{width:40px;height:46px}
+.strip .empty .s-art{background:var(--unknown-bg)}
+.strip .s-name{font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.strip .s-when{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 4px;font-size:14px;font-weight:600}
+.strip .s-when svg{width:15px;height:15px;color:var(--muted)}
+.strip .s-when.muted{color:var(--muted);font-weight:400}
+.strip .s-date{white-space:nowrap}
+.strip .s-yr{font-size:12px;font-weight:400;color:var(--muted);width:100%}
+.s-mark{position:absolute;inset-block-start:-6px;inset-inline-end:-10px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;border:2px solid #fff}
+.s-mark svg{width:15px;height:15px}
+.s-mark.lock{background:var(--protected)}
+.s-mark.reject{background:var(--rejected)}
+.s-mark.review{background:var(--review)}
+.s-mark.done{background:var(--action)}
+.s-mark.change{background:var(--review)}
+.strip li.reject .s-card{border-color:var(--rejected);background:var(--rejected-bg)}
+.strip li.review .s-card,.strip li.change .s-card{border-color:var(--review);background:var(--review-bg)}
+.strip li.lock .s-card{border-color:var(--protected)}
+.strip li.dim .s-card{opacity:.75}
+/* In-page strip (summary): no bar background, bigger art on desktop */
+.strip.in{background:none;border:0;padding:0}
+.strip-label{display:flex;align-items:center;gap:6px;font-size:16px;font-weight:600;margin:0 0 -6px}
+.strip-label svg{width:20px;height:20px}
+/* Short headline + season tag */
+.q-head{display:flex;flex-direction:column;gap:4px}
+.q-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;font-size:16px;color:var(--muted);background:var(--surface);border:1px solid var(--divider);border-radius:999px;padding:2px 10px}
+.q-tag svg{width:18px;height:18px}
+/* Tiles whose art is an icon (purpose, intent) */
+.tile .art.ic svg{width:60px;height:60px;color:var(--ink)}
+.tiles.two{grid-template-columns:1fr 1fr}
+/* Intent pictures: a filled season row vs an empty one */
+.intent-art{display:flex;gap:4px;align-items:flex-end;position:relative;padding:6px}
+.intent-art .mini{width:30px;height:36px;border-radius:15px 15px 4px 4px;background:var(--portrait);display:grid;place-items:center;border:1px solid var(--divider)}
+.intent-art .mini svg{width:24px;height:28px}
+.intent-art.empty .mini{background:#fff;border:2px dashed var(--line)}
+.intent-art .badge-ic{position:absolute;inset-inline-end:-10px;inset-block-start:-12px;width:46px;height:46px;border-radius:50%;background:var(--action);color:#fff;display:grid;place-items:center;border:3px solid #fff}
+.intent-art .badge-ic svg{width:26px;height:26px}
+/* Big status banner: icon + few words */
+.banner{display:flex;align-items:center;gap:12px;border-radius:14px;padding:10px 14px;border:1px solid;border-inline-start-width:6px;font-size:22px;font-weight:600}
+.banner svg{width:34px;height:34px;flex:none}
+.banner small{display:block;font-size:16px;font-weight:400;color:var(--ink)}
+.banner.rejected{color:var(--rejected);background:var(--rejected-bg)}
+.banner.review{color:var(--review);background:var(--review-bg)}
+.banner.unknown{color:var(--unknown);background:var(--unknown-bg)}
+.banner.protected{color:var(--protected);background:var(--protected-bg)}
+.banner.feasible{color:var(--feasible);background:var(--feasible-bg)}
+/* Clash pair (lab 04): two pictures and the dates that collide */
+.clash{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.clash .c-card{display:flex;flex-direction:column;align-items:center;gap:2px;border:2px solid;border-radius:60px 60px 14px 14px;padding:8px 6px 10px;text-align:center;background:#fff}
+.clash .c-card.lock{border-color:var(--protected)}
+.clash .c-card.reject{border-color:var(--rejected);background:var(--rejected-bg)}
+.clash .c-card .s-art{width:64px;height:70px;border-radius:32px 32px 8px 8px;background:var(--portrait);display:grid;place-items:center;position:relative}
+.clash .c-card .s-art svg{width:48px;height:56px}
+.clash .c-name{font-size:18px;font-weight:600}
+.clash .c-when{display:flex;align-items:center;gap:4px;font-size:20px;font-weight:700;white-space:nowrap}
+.clash .c-when svg{width:20px;height:20px}
+.clash .c-what{font-size:15px;color:var(--muted)}
+.clash .vs{display:grid;justify-items:center;gap:2px;color:var(--rejected);font-weight:700;font-size:16px;text-align:center}
+.clash .vs svg{width:34px;height:34px}
+/* Step diagram (lab 04 why): icon chain with dates */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.steps li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 4px;position:relative}
+.steps li .ic{width:48px;height:48px;border-radius:50%;background:var(--portrait);display:grid;place-items:center}
+.steps li .ic svg{width:28px;height:28px}
+.steps li b{font-size:18px;white-space:nowrap}
+.steps li span{font-size:15px;color:var(--muted);line-height:1.3}
+.steps li.lock{border-color:var(--protected)}
+.steps li.lock .ic{background:var(--protected-bg);color:var(--protected)}
+.steps li.review{border:2px dashed var(--review);background:var(--review-bg)}
+.steps li.review .ic{background:#fff;color:var(--review)}
+/* Date cards (lab 05) */
+.date-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.date-card{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;background:#fff;border:2px solid var(--review);border-radius:60px 60px 14px 14px;padding:10px 8px 12px;position:relative}
+.date-card .s-art{width:64px;height:70px;border-radius:32px 32px 8px 8px;background:var(--review-bg);display:grid;place-items:center}
+.date-card .s-art svg{width:48px;height:56px}
+.date-card .big-date{display:flex;align-items:center;gap:6px;font-size:24px;font-weight:700;white-space:nowrap}
+.date-card .big-date svg{width:22px;height:22px}
+.date-card .yr{font-size:15px;color:var(--muted)}
+.date-card .badge{font-size:14px}
+.date-card .secondary{min-height:52px;width:100%;margin-top:4px}
+.date-card .hear{position:absolute;inset-block-start:6px;inset-inline-start:6px}
+.legend-row{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:15px;align-items:center}
+.legend-row span{display:inline-flex;gap:6px;align-items:center}
+.legend-row .s-mark{position:static;width:22px;height:22px;border:0}
+.legend-row .s-mark svg{width:13px;height:13px}
+.two-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.three-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.three-btns>*,.two-btns>*{min-width:0;padding-inline:8px}
+.keepnote{display:flex;gap:8px;align-items:center;font-size:16px;color:var(--protected)}
+.keepnote svg{width:20px;height:20px}
+/* Facts row (lab 03): field facts as small picture tiles; unknown is dashed */
+.facts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.fact{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 2px;font-size:15px;font-weight:600;min-width:0;line-height:1.25}
+.fact svg{width:26px;height:26px;color:var(--muted)}
+.fact small{font-size:12px;font-weight:400;color:var(--muted)}
+.fact.unk{border:2px dashed var(--unknown);background:var(--unknown-bg);color:var(--unknown)}
+.fact.assume{border:2px dashed var(--review);background:var(--review-bg)}
+.lock-btn{min-height:48px;min-width:48px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:4px 12px;border-radius:12px;border:2px solid var(--protected);background:#fff;color:var(--protected);font-size:17px;font-weight:600;cursor:pointer}
+.lock-btn svg{width:22px;height:22px}
+.lock-btn[aria-pressed="true"]{background:var(--protected);color:#fff}
+.path li.locked{border:2px solid var(--protected);background:var(--protected-bg)}
+.path li .when svg{width:18px;height:18px;vertical-align:-3px;margin-inline-end:4px;color:var(--muted)}
+/* Big icon state (06/07): one picture, few words */
+.hero{display:grid;justify-items:center;text-align:center;gap:10px;padding:8px 0}
+.hero .hero-ic{width:110px;height:110px;border-radius:55px 55px 14px 14px;display:grid;place-items:center;background:var(--portrait);position:relative}
+.hero .hero-ic svg{width:64px;height:64px}
+.hero.unknown .hero-ic{background:var(--unknown-bg);color:var(--unknown);border:2px dashed var(--unknown)}
+.hero h2{margin:0;font-size:26px}
+.hero p{margin:0;font-size:18px;color:var(--muted);max-width:30ch}
+.hero .hero-ic .sub-ic{position:absolute;inset-inline-end:-10px;inset-block-end:-6px;width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid currentColor;display:grid;place-items:center}
+.hero .hero-ic .sub-ic svg{width:22px;height:22px}
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.ichip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:#fff;font-size:16px}
+.ichip svg{width:20px;height:20px}
+.ichip.no{border-style:dashed;color:var(--muted)}
+.ichip.no svg{color:var(--rejected)}
+.ichip.src svg{color:#2C7A78}
+/* Meters (06): five dots, empty = not connected */
+.meters{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.meters li{display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--divider);border-radius:12px;padding:6px 10px}
+.meters .s-art{width:44px;height:48px;border-radius:22px 22px 6px 6px;background:var(--portrait);display:grid;place-items:center}
+.meters .s-art svg{width:34px;height:38px}
+.meters .who{font-size:16px;font-weight:600;line-height:1.3}
+.meters .who small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.meter{display:flex;align-items:center;gap:3px}
+.meter svg{width:22px;height:22px;color:var(--muted);margin-inline-end:2px}
+.meter i{width:12px;height:12px;border-radius:50%;border:1.5px dashed var(--line);background:#fff}
+/* Week (07): seven day tiles */
+.days7{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.days7 li{display:flex;flex-direction:column;align-items:center;gap:4px;border:1.5px dashed var(--line);border-radius:12px;padding:8px 2px;background:#fff;font-size:15px;text-align:center}
+.days7 li svg{width:28px;height:28px;color:var(--muted)}
+.days7 li em{font-style:normal;color:var(--muted);font-size:14px}
+/* Status pair (08): plan status and save status, side by side */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair .banner{font-size:17px;padding:8px 10px}
+.pair .banner svg{width:26px;height:26px}
+.pair .banner small{font-size:13px;color:var(--muted)}
+.banner.saved{color:var(--ink);background:#fff;border-color:var(--ink)}
+/* marks keep their own size inside any art box */
+.s-art .s-mark svg,.strip .s-art .s-mark svg,.clash .c-card .s-art .s-mark svg{width:15px;height:15px}
+.clash .c-card .s-mark{width:28px;height:28px}
+.stage[dir="rtl"] .vs svg{transform:scaleX(-1)}
+/* compact strip: no season line or year (used when the same seasons show twice) */
+.strip.compact .s-season,.strip.compact .s-yr{display:none}
+.strip.compact .s-card{padding-top:8px}
+/* lab 03 fits one screen */
+.alt-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.alts{display:grid;gap:8px}
+.legend-row .nowrap{white-space:nowrap}
+.legend-row svg{width:22px;height:22px}
+/* Calm screens: one idea, generous space */
+.calm{display:flex;flex-direction:column;gap:22px;flex:1}
+.calm .calm-end{margin-top:auto;display:grid;gap:12px}
+.calm .strip.in .s-art{width:60px;height:66px}
+.calm .strip.in .s-art svg{width:46px;height:54px}
+.calm .strip.in .s-name{font-size:17px}
+.app-main:has(.calm){padding-bottom:20px}
+.s-art .s-mark>svg{width:15px!important;height:15px!important}
+/* Practice mic (lab 01): the big picture is the mic button */
+.mic-big{width:140px;height:140px;border-radius:70px 70px 18px 18px;border:3px solid var(--action);background:var(--portrait);color:var(--action);display:grid;place-items:center;cursor:pointer;position:relative}
+.mic-big svg{width:70px;height:70px}
+.mic-big .ring{position:absolute;inset:-10px;pointer-events:none;border-radius:80px 80px 24px 24px;border:4px solid var(--action);opacity:0}
+.mic-big.listening{background:var(--action);color:#fff}
+.mic-big.listening .ring{opacity:1}
+.mic-big.processing{border-color:var(--muted);color:var(--muted)}
+.mic-big.ok{background:var(--feasible-bg);border-color:var(--feasible);color:var(--feasible)}
+.mic-hint{font-size:18px;font-weight:600;color:var(--action);min-height:28px}
+@media (prefers-reduced-motion:no-preference){.mic-big.listening .ring{animation:pulse 1.4s ease-out infinite}}
+/* Season hero (lab 02): the season is the headline, the question sits under it */
+.season-hero{display:flex;align-items:center;gap:14px;border-radius:16px;padding:10px 14px;border:2px solid}
+.season-hero.w{background:#E9F0F4;border-color:#9FB4C2}
+.season-hero.s{background:#FDF5E2;border-color:#D8BE7E}
+.season-hero .sh-ic{width:56px;height:56px;border-radius:28px 28px 8px 8px;background:#fff;display:grid;place-items:center;flex:none}
+.season-hero .sh-ic svg{width:36px;height:36px}
+.season-hero .sh-n{display:block;font-size:15px;color:var(--muted)}
+.season-hero strong{display:block;font-size:26px;line-height:1.3}
+.season-hero .sh-crop{margin-inline-start:auto;width:52px;height:56px;border-radius:26px 26px 6px 6px;background:#fff;display:grid;place-items:center}
+.season-hero .sh-crop svg{width:40px;height:46px}
+.question.q-small{font-size:24px}
+/* Season-limited date grids: month carries its year; past dates are disabled */
+.months.win{grid-template-columns:repeat(4,1fr)}
+.dense-grid button small{display:block;font-size:13px;color:var(--muted);line-height:1.2}
+.dense-grid button:disabled{background:var(--unknown-bg);color:#8A969F;border-style:dashed;cursor:not-allowed;text-decoration:line-through}
+.dense-grid button:disabled small{color:#8A969F}
+.msg{display:flex;gap:8px;align-items:center;font-size:17px;border:1px dashed var(--unknown);background:var(--unknown-bg);color:var(--ink);border-radius:10px;padding:6px 10px}
+.msg svg{width:22px;height:22px;flex:none;color:var(--unknown)}
+.date-card{border-radius:20px}
+.date-card .hear{inset-block-start:8px;inset-inline-start:8px}
+/* Lab 03 permissions: picture | what may change | choice chips */
+.perm{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.perm .s-art{width:60px;height:66px;border-radius:30px 30px 8px 8px;background:var(--portrait);display:grid;place-items:center}
+.perm .s-art svg{width:46px;height:54px}
+.perm b{display:block;font-size:19px}
+.perm .was{display:block;font-size:15px;color:var(--muted)}
+.pchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.pchip{min-height:48px;display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:999px;border:2px dashed var(--line);background:#fff;color:var(--ink);font-size:18px;font-weight:600;cursor:pointer;white-space:nowrap}
+.pchip svg{width:20px;height:20px}
+.pchip[aria-pressed="true"]{border:2px solid var(--review);background:var(--review-bg)}
+/* Scope readback: searched / cannot be checked / unknown */
+.scope-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.scope-list li{display:flex;align-items:center;gap:10px;border-radius:12px;padding:8px 12px;font-size:18px;font-weight:600;background:#fff;border:1px solid var(--line)}
+.scope-list li svg{width:24px;height:24px;flex:none}
+.scope-list li small{display:block;font-size:14px;font-weight:400;color:var(--muted)}
+.scope-list li.ok{border-color:var(--review);background:var(--review-bg)}
+.scope-list li.ok svg{color:var(--review)}
+.scope-list li.blocked{border:2px dashed var(--rejected);color:var(--ink)}
+.scope-list li.blocked svg{color:var(--rejected)}
+.scope-list li.unk{border:2px dashed var(--unknown);background:var(--unknown-bg);font-weight:400}
+.scope-list li.unk svg{color:var(--unknown)}
+.facts.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+/* ===== Phone (was the lab phone frame) ===== */
+@media (max-width:600px){
+.progress li .lbl{display:none}
+.question{font-size:26px}
+.split>aside.ctx-only{display:none}
+.app-main{padding:12px 14px;gap:12px}
+.question{font-size:24px;line-height:1.45}
+.sub{font-size:17px}
+.tiles{grid-template-columns:1fr 1fr;gap:10px}
+.tile{min-height:0;padding:12px 8px;font-size:18px;gap:6px}
+.tile .art{width:64px;height:64px;border-radius:36px 36px 8px 8px}
+.tile .art svg{width:56px;height:62px}
+.tile-wrap .hear{width:40px;height:40px;inset-block-start:6px}
+.dock{padding:8px 10px;gap:10px}
+.dock .round-label{display:none}
+.mic{width:76px;height:76px}
+.mic svg{width:36px;height:36px}
+.round{width:52px;height:52px}
+.dock-state{font-size:16px;min-height:0}
+.dock-state small{font-size:14px}
+.round-label{font-size:13px}
+.app-head{padding:6px 8px}
+.chip-btn{min-height:48px;padding:4px 10px;font-size:15px}
+.progress{padding:6px 10px}
+.progress .step{font-size:14px}
+.caption{font-size:17px;padding:8px 10px}
+.path li{grid-template-columns:52px minmax(0,1fr) auto;padding:4px 10px;gap:10px;line-height:1.4}
+.path li .portrait{width:52px;height:58px;border-radius:26px 26px 6px 6px}
+.path li .when,.path li .meta{font-size:15px}
+.path li .portrait svg{width:44px;height:50px}
+.path li h3{font-size:18px}
+.path li .end .lbl{display:none}
+.path li .end .chip-btn{padding:4px}
+.path{gap:8px}
+.path li .meta{font-size:15px}
+.primary,.secondary{min-height:56px;font-size:18px;padding:8px 16px}
+.dense-grid button{min-height:48px;font-size:17px}
+.rb-row .rb-title{font-size:16px}
+.rb-line{font-size:16px}
+.rb-row .badge{font-size:13px;padding:2px 6px}
+.rb-row:not(.now) .badge span,.rb-row:not(.now) .badge{font-size:0;gap:0;padding:4px}
+.rb-row:not(.now) .badge svg{width:18px;height:18px}
+.rb-row.now{padding:8px 10px}
+.rb-row .actions .primary,.rb-row .actions .secondary{min-height:52px}
+.rb-list{gap:4px}
+.rb-row .rb-body{gap:2px}
+.choice-row{grid-template-columns:1fr 1fr}
+.choice-row>:first-child{grid-column:1/-1}
+.status{padding:8px 10px}
+.status strong{font-size:18px}
+.status p{font-size:16px}
+.inset{padding:10px}
+.legend{font-size:14px;gap:8px}
+.timeline div{height:26px}
+.option{gap:8px;padding:6px 8px}
+.option .secondary{padding:6px 12px}
+.option .badge{font-size:14px;padding:2px 8px}
+.option .meta{font-size:14px}
+.cmp-card .mini-path{display:none}
+.cmp + .sub{font-size:15px}
+.option strong{font-size:17px}
+.diff-col{padding:6px 10px}
+.diff-col ul{font-size:15px}
+.diff-col h3{font-size:16px}
+.cmp-card{padding:8px;gap:4px}
+.choice-row.two-btn>:first-child{grid-column:auto}
+.card{padding:8px 10px;gap:6px}
+.card-row{font-size:15px}
+.two ul{font-size:15px}
+.heard{padding:8px 10px}
+.heard .said{font-size:17px;margin:2px 0 6px}
+.heard .chips{gap:6px;margin-bottom:8px}
+.heard .chip{font-size:16px;padding:4px 8px}
+.logo,.logo-ph{width:120px;height:124px}
+.strip{gap:5px;padding:6px 8px}
+.strip .s-card{padding:4px 2px 6px;border-radius:36px 36px 10px 10px}
+.strip .s-art{width:42px;height:46px}
+.strip .s-art svg{width:34px;height:38px}
+.strip .s-name{font-size:14px}
+.strip .s-season{font-size:11px}
+.strip .s-season svg{width:13px;height:13px}
+.strip .s-when{font-size:12px}
+.strip .s-when svg{width:12px;height:12px}
+.strip .s-yr{font-size:11px}
+.s-mark{width:22px;height:22px;inset-inline-end:-8px}
+.s-mark svg{width:13px;height:13px}
+.tile .art.ic svg{width:44px;height:44px}
+.intent-art .mini{width:24px;height:30px}
+.intent-art .mini svg{width:18px;height:22px}
+.intent-art .badge-ic{width:38px;height:38px}
+.banner{font-size:19px;padding:8px 10px}
+.banner svg{width:28px;height:28px}
+.banner small{font-size:14px}
+.clash .c-card .s-art{width:50px;height:54px}
+.clash .c-card .s-art svg{width:38px;height:44px}
+.clash .c-when{font-size:17px}
+.clash .c-name{font-size:16px}
+.steps{gap:4px}
+.steps li{padding:8px 2px}
+.steps li .ic{width:38px;height:38px}
+.steps li .ic svg{width:22px;height:22px}
+.steps li b{font-size:15px}
+.steps li span{font-size:12px}
+.date-card .s-art{width:50px;height:54px}
+.date-card .s-art svg{width:38px;height:44px}
+.date-card .big-date{font-size:20px}
+.date-card{padding:8px 6px 10px}
+.three-btns .primary,.three-btns .secondary{flex-direction:column;gap:2px;font-size:16px;min-height:72px}
+.fact{font-size:13px}
+.fact svg{width:22px;height:22px}
+.lock-btn{padding:4px 8px;font-size:15px}
+.hero h2{font-size:22px}
+.hero .hero-ic{width:90px;height:90px}
+.hero .hero-ic svg{width:52px;height:52px}
+.meter i{width:9px;height:9px}
+.meter svg{width:18px;height:18px}
+.days7{grid-template-columns:repeat(4,1fr)}
+.path.short li .txt>.meta{display:none}
+.facts{gap:4px}
+.fact{padding:4px 2px}
+.fact svg{width:20px;height:20px}
+.strip .s-sy{display:none}
+.mic-big{width:120px;height:120px}
+.season-hero{padding:6px 10px;gap:10px}
+.season-hero .sh-ic{width:44px;height:44px}
+.season-hero .sh-ic svg{width:28px;height:28px}
+.season-hero strong{font-size:20px}
+.season-hero .sh-n{font-size:13px}
+.question.q-small{font-size:20px}
+.dense-grid button small{font-size:11px}
+.months.win button{font-size:15px;padding:2px}
+.perm{padding:8px}
+.perm .s-art{width:48px;height:54px}
+.perm .s-art svg{width:36px;height:42px}
+.perm b{font-size:17px}
+.pchip{font-size:16px;padding:4px 10px}
+.scope-list li{font-size:16px;padding:6px 10px}
+}
+
+/* ===== Desktop ===== */
+@media (min-width:1000px){
+  .path.wide{grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch}
+  .path.wide li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:0 12px 12px;border-radius:120px 120px 14px 14px;overflow:hidden}
+  .path.wide li .portrait{width:calc(100% + 24px);height:128px;border-radius:120px 120px 0 0;margin-bottom:6px}
+  .path.wide li .portrait svg{width:70px;height:80px}
+  .path.wide li .portrait .n{inset-block-start:auto;inset-block-end:8px;inset-inline-start:50%;transform:translateX(-50%)}
+  .path.wide li .txt{align-items:center;flex:1}
+  .path.wide li h3 .meta{display:block;font-weight:400}
+  .path.wide li .end{align-items:center;margin-top:8px}
+}
+@media (min-width:1000px){.split{grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);align-items:start}}
+@media (min-width:1000px){.diff{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1000px){.cmp{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){
+  .strip{gap:12px;padding-inline:16px}
+  .strip .s-art{width:64px;height:68px;border-radius:32px 32px 8px 8px}
+  .strip .s-art svg{width:48px;height:56px}
+  .strip .s-name{font-size:18px}
+  .strip .s-season{font-size:14px}
+  .strip.in{padding:0}
+}
+@media (min-width:1000px){.tiles.four{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:1000px){.path.wide.short li .portrait{height:92px}.path.wide.short li .portrait svg{width:56px;height:64px}}
+@media (min-width:1000px){.alts{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
+@media (min-width:1000px){.days{grid-template-columns:repeat(8,1fr)}}
+
+/* App fit fixes (14 Nov e2e run): no scrolling on crop question and permissions */
+@media (max-width:600px){
+  .perm .was{display:none}
+  .perm{padding:6px 8px}
+  .pchips{gap:6px;margin-top:4px}
+  .pchip{min-height:44px}
+  .season-hero{padding:4px 10px}
+  .app-main{gap:10px}
+}
+@media (min-width:1000px){.tiles.four .tile{min-height:140px;padding:10px}}
+.app-main{gap:14px}
+@media (max-width:600px){.tile{padding:8px 6px}.tile .art{width:58px;height:58px}.tile .art svg{width:50px;height:56px}}
+/* Review badge on crop tiles (reviewed KB: no crop has agronomic sign-off) */
+.tile .tile-badge{font-size:13px;font-weight:600;padding:1px 8px}
+.tile .tile-badge svg{display:none}
+@media (max-width:600px){.tile .tile-badge{font-size:11px;padding:0 6px}}
+/* Season Replay windows */
+.replay-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.replay-card{display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;text-align:center}
+.replay-card .big-date{display:flex;gap:4px;align-items:center;font-size:20px;font-weight:700;white-space:nowrap}
+.replay-card .big-date svg{width:18px;height:18px}
+.replay-card .m{display:flex;gap:6px;align-items:center;font-size:15px}
+.replay-card .m svg{width:18px;height:18px;color:var(--muted)}
+.replay-card .badge{font-size:13px}
+.replay-sum{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:16px}
+.replay-sum li{background:#fff;border-inline-start:4px solid #2C7A78;border-radius:8px;padding:6px 10px}
+@media (max-width:600px){.replay-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.replay-card{padding:6px 4px}.replay-card .big-date{font-size:16px}.replay-card .m{font-size:13px}.replay-sum{font-size:14px}}
+@media (max-width:600px){.replay-sum li:nth-child(n+2){display:none}.replay-card .badge{font-size:11px;padding:1px 4px}}
+.q-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px}
+.q-note{font-size:14px;font-weight:600;padding:2px 8px}
+.q-note svg{width:16px;height:16px}
+@media (max-width:600px){.tile{padding:6px 6px}.tile .art{width:52px;height:52px}.tile .art svg{width:44px;height:50px}.q-note{font-size:12px}}
+@media (min-width:1000px){.tiles.four .tile{min-height:118px;padding:8px}.tiles.four .tile .art{width:76px;height:76px}.tiles.four .tile .art svg{width:60px;height:66px}}
+@media (max-width:600px){.season-hero strong{font-size:18px}.season-hero .sh-ic{width:38px;height:38px}}
+@media (max-width:600px){.two-btns>.secondary,.two-btns>.primary{white-space:nowrap;font-size:15px;min-height:52px;gap:6px}.two-btns svg{width:20px;height:20px}}
+
+/* Many crops (reviewed catalogue, 8+): all visible at once, no paging. Row tiles (picture | name) with the
+   44px listen button on the outer edge: 2 columns on phone, 4 on desktop. */
+.tiles.compact{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.tiles.compact .tile{flex-direction:row;justify-content:flex-start;min-height:64px;padding:4px 48px 4px 6px;font-size:17px;line-height:1.25;text-align:start;gap:8px}
+[dir="rtl"] .tiles.compact .tile{padding:4px 6px 4px 48px}
+.tiles.compact .tile .art{width:52px;height:56px;flex:none;border-radius:26px 26px 6px 6px}
+.tiles.compact .tile .art svg{width:44px;height:50px}
+.tiles.compact .tile-wrap .hear{width:44px;height:44px;inset-block-start:50%;transform:translateY(-50%);inset-inline-start:auto;inset-inline-end:2px}
+.tiles.compact .tile[aria-pressed="true"]::after{inset-block-start:2px;inset-inline-end:auto;inset-inline-start:2px;width:22px;height:22px;font-size:14px}
+.q-row{max-width:none}
+@media (max-width:600px){
+  .tiles.compact{grid-template-columns:1fr 1fr;gap:6px}
+  .tiles.compact .tile{min-height:56px;font-size:15px;gap:6px}
+  .tiles.compact .tile .art{width:44px;height:48px}
+  .tiles.compact .tile .art svg{width:36px;height:42px}
+}
+
+/* ===== UI audit fixes (14 Nov): every width 360–1440 px, both languages ===== */
+/* Crop grid: columns follow the available width; tiles may shrink, names wrap instead of being cut. */
+.tiles .tile-wrap{min-width:0}
+.tiles .tile{min-width:0;overflow-wrap:anywhere}
+.tiles.compact{grid-template-columns:repeat(auto-fill,minmax(168px,1fr))}
+@media (max-width:600px){
+  .tiles.compact{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .tiles.compact .tile{padding-inline-end:48px;padding-inline-start:4px;gap:4px;font-size:14px}
+  [dir="rtl"] .tiles.compact .tile{padding:4px 4px 4px 48px}
+  .tiles.compact .tile .art{width:40px;height:46px}
+  .tiles.compact .tile .art svg{width:34px;height:40px}
+}
+/* "What must stay?" desktop arched cards: content is never hidden behind the card edge. */
+.path.wide li{overflow:visible}
+.path li .txt{min-width:0}
+.path li .when{overflow-wrap:anywhere}
+/* Season strip names: wrap rather than truncate. */
+.strip .s-name{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25;overflow-wrap:anywhere}
+/* Short screens (landscape tablets, small laptops): compact vertical rhythm, targets stay ≥48px. */
+@media (max-height:800px){
+  .app-main{gap:10px;padding-block:10px}
+  .strip{padding-block:4px}
+  .strip .s-art{width:40px !important;height:44px !important}
+  .strip .s-art svg{width:32px !important;height:38px !important}
+  .strip .s-yr{display:none}
+  .season-hero{padding:4px 10px}
+  .season-hero .sh-ic{width:40px;height:40px}
+  .season-hero strong{font-size:20px}
+  .question{font-size:24px}
+  .dense-grid button{min-height:48px}
+  .days{gap:6px}
+  .perm .s-art{width:48px;height:52px}
+  .perm .was{display:none}
+  .date-card .s-art{width:48px;height:52px}
+  .date-card .s-art svg{width:38px;height:44px}
+  .date-card{padding:6px}
+  .banner{padding:6px 10px;font-size:19px}
+  .dock{padding-block:6px}
+  .mic{width:72px;height:72px}
+}
+/* "What must stay?" rows on tablets and short screens: compact rows, season name inline */
+@media (min-width:601px) and (max-width:999px),(max-height:800px){
+  .path.short{gap:6px}
+  .path.short li{grid-template-columns:52px minmax(0,1fr) auto;padding:4px 10px;gap:10px;line-height:1.35}
+  .path.short li .portrait{width:52px;height:58px;border-radius:26px 26px 6px 6px}
+  .path.short li .portrait svg{width:42px;height:48px}
+  .path.short li h3{font-size:18px}
+  .path.short li .txt>.meta{display:none}
+  .path.short li .when{font-size:15px}
+}
+@media (max-height:800px) and (min-width:1000px){
+  .path.wide.short li{flex-direction:row;text-align:start;border-radius:12px;padding:4px 10px;align-items:center}
+  .path.wide.short li .portrait{width:52px !important;height:58px !important;border-radius:26px 26px 6px 6px !important;margin:0 !important}
+  .path.wide.short li .txt{align-items:flex-start}
+  .path.wide.short{grid-template-columns:1fr 1fr}
+}
+@media (max-height:800px){
+  .replay-sum li:nth-child(n+2){display:none}
+  .date-card .yr{display:none}
+  .facts .fact{padding:4px 2px}
+}
+/* Visual review fixes: never break inside a word; keep icon + date on one line */
+.tiles .tile{overflow-wrap:normal;word-break:normal;hyphens:none}
+.path li .when{overflow-wrap:normal;white-space:nowrap}
+.strip .s-name{overflow-wrap:normal}
+@media (max-width:380px){.tiles.compact .tile{font-size:13px;gap:3px}.tiles.compact .tile .art{width:36px;height:42px}.tiles.compact .tile .art svg{width:30px;height:36px}}
+/* Listen button sits fully inside the tile with an even 8px gap from the border; the name keeps clear of it */
+.tiles.compact .tile-wrap .hear{inset-inline-end:8px}
+.tiles.compact .tile{padding-inline-end:60px}
+[dir="rtl"] .tiles.compact .tile{padding:4px 6px 4px 60px}
+@media (max-width:600px){
+  .tiles.compact .tile{padding-inline-end:58px}
+  [dir="rtl"] .tiles.compact .tile{padding:4px 4px 4px 58px}
+}
+/* Full rows only (8 crops → 2×4 or 4×2, no orphan cell): 2 columns below 820px, 4 from 820px */
+.tiles.compact{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:820px){.tiles.compact{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* ===== Parallel visual review fixes (14 Nov) ===== */
+/* Icons inside text stay inline (Tailwind preflight makes svg block). */
+svg{display:inline-block;vertical-align:middle}
+/* Direction-carrying icons mirror in Arabic (Back, forward arrow). */
+[dir="rtl"] .i-back,[dir="rtl"] .i-arrow{transform:scaleX(-1)}
+[dir="rtl"] .vs .i-arrow{transform:scaleX(-1)}
+/* Status badges on pictures: fixed size, icon always inside the circle, at every width. */
+.s-mark{width:24px !important;height:24px !important;inset-block-start:-6px !important;inset-inline-end:-8px !important;display:grid !important;place-items:center;overflow:hidden;flex:none;z-index:1}
+.strip .s-art .s-mark > svg,.clash .s-art .s-mark > svg,.s-art .s-mark > svg{width:14px !important;height:14px !important}
+/* Season strip: same height on every step (date + year lines always reserved); short year shown on phone. */
+.strip .s-when{white-space:nowrap;flex-wrap:nowrap}
+.strip .s-when .s-yr{display:block;width:100%}
+.strip .s-when{flex-wrap:wrap}
+.strip .s-date{white-space:nowrap}
+@media (max-width:600px){.strip .s-sy{display:inline !important}.strip .s-season{font-size:10.5px;gap:2px}.strip{padding:6px 10px;gap:6px}}
+/* One gutter for header, strip and content. */
+.app-head{padding-inline:18px}
+@media (max-width:600px){.app-head{padding-inline:14px}}
+/* Voice dock: captions kept on phone, labels on one baseline, short status line. */
+.dock{align-items:end}
+.dock .ctl{justify-content:flex-end}
+.dock .dock-state{align-self:center}
+.dock-state small{text-wrap:balance}
+@media (max-width:600px){.dock .round-label{display:block !important;font-size:11px}.dock-state{font-size:15px}.dock-state small{font-size:12px;line-height:1.25}.mic{width:64px;height:64px}.mic svg{width:30px;height:30px}.round{width:48px;height:48px}}
+/* Actions sit at the bottom of the screen (thumb reach); main content centred in the space above. */
+.push-end{margin-top:auto !important}
+.calm > .clash,.calm > .strip.in{margin-block:auto}
+.hero h2{font-weight:700}
+.hero p.mic-hint{font-weight:400}
+/* Wide primary buttons do not stretch across desktop screens. */
+@media (min-width:700px){.wide-btn,.two-btns,.three-btns,.date-cards,.perm,.scope-list,.replay-sum,.facts{max-width:640px;margin-inline:auto;width:100%}}
+/* Headings may use the full width; the season part never splits. */
+.question.q-small{max-width:none}
+.nowrap{white-space:nowrap}
+/* Permission chips: add-actions are solid green outlines; chosen values a green tint (amber means "needs review"). */
+.pchip.add{border:2px solid var(--action);color:var(--action);background:#fff}
+.pchip[aria-pressed="true"]{border:2px solid var(--feasible);background:var(--feasible-bg);color:var(--feasible)}
+@media (max-width:400px){.two-btns.stack-narrow{grid-template-columns:1fr}.two-btns.stack-narrow > *{white-space:normal}}
+/* Unknown banner title in ink (grey reads as disabled). */
+.banner.unknown{color:var(--ink)}
+.banner.unknown svg{color:var(--unknown)}
+/* Saved: a clear success state the same height as the Save button. */
+.banner.saved{background:var(--feasible-bg);color:var(--feasible);border-color:var(--feasible);min-height:58px}
+/* Date cards keep their year; badges never wrap. */
+.date-card .yr{display:block !important}
+.replay-card .badge,.date-card .badge{white-space:nowrap}
+.ichip.no svg{color:var(--muted)}
+.replay-sum li{max-width:70ch}
+/* Day grid always 7 columns; past days/months: grey and dashed, no strike-through over digits. */
+@media (min-width:1000px){.days{grid-template-columns:repeat(7,1fr) !important}}
+.dense-grid button:disabled{text-decoration:none;opacity:.7}
+/* "What must stay?": centred desktop cards hide the separator dot; type on its own line. */
+@media (min-width:1000px) and (min-height:801px){.path.wide li h3 .sep{display:none}.path.wide li h3 .meta{display:block;font-weight:400}.path.wide li .when{justify-content:center}}
+/* Intent pictures scale with the tile at every width. */
+.tiles.two .tile{min-height:180px}
+.intent-art .mini{width:clamp(22px,5vw,44px);height:clamp(28px,6vw,54px)}
+.intent-art .mini svg{width:80%;height:80%}
+.intent-art .badge-ic{width:clamp(30px,6vw,48px);height:clamp(30px,6vw,48px);inset-inline-end:-6px;inset-block-start:-8px}
+.intent-art{padding:10px 8px}
+/* Crop-picker labels readable on small phones. */
+@media (max-width:380px){.tiles.compact .tile{font-size:14px}}
+/* Strip: the season label carries the years, so dates show day + month only; one reserved line keeps every card the same height. */
+.strip .s-when{flex-wrap:nowrap}
+@media (max-height:800px) and (min-width:820px){.days{grid-template-columns:repeat(8,1fr) !important}.date-card .secondary{min-height:48px}}
+@media (max-width:819px){.tiles.compact .tile{min-height:56px}.tiles.compact{gap:6px}}
+@media (max-width:400px){.two-btns.stack-narrow{grid-template-columns:1fr 1fr}.two-btns.stack-narrow > *{white-space:normal;font-size:14px;line-height:1.2;padding-inline:6px}}
+@media (min-width:820px) and (max-height:900px){.days{grid-template-columns:repeat(8,1fr) !important}}
+@media (max-height:720px){.app-main{gap:8px}.date-cards{gap:8px}}
+@media (max-width:819px){.tiles.compact .tile .art{width:42px;height:46px}.tiles.compact .tile .art svg{width:34px;height:40px}.tiles.compact .tile{padding-block:3px}}
+@media (max-width:400px){.q-row{gap:4px 6px}.q-note{font-size:11px;padding:1px 6px}.q-note svg{width:13px;height:13px}.question.q-small{font-size:19px}}
+/* Button rows share the full width whatever the number of buttons; only button rows are capped on desktop. */
+.three-btns{display:flex;gap:8px}
+.three-btns > *{flex:1 1 0;min-width:0}
+@media (min-width:700px){.perm,.scope-list,.date-cards,.replay-sum,.facts{max-width:none;margin-inline:0}}
+.strip-label{font-size:17px;font-weight:700;margin-top:4px}@media (max-height:800px){.strip-label{font-size:15px;margin-top:0}}
+
+/* 14 Nov (Yahya review): season label above the arch, compact "what may change" cards, clear needs-review box. */
+.strip li{flex-direction:column;align-items:stretch;gap:3px}
+.strip li > .s-season{justify-content:center;line-height:1.2}
+.strip .s-card{border-radius:30px 30px 12px 12px}
+.perm{grid-template-columns:auto minmax(0,1fr);gap:4px 12px;padding:10px 12px;align-items:center}
+.perm .s-art{width:48px;height:52px;border-radius:24px 24px 6px 6px}
+.perm .s-art svg{width:36px;height:42px}
+.perm-head b{display:block;font-size:18px;line-height:1.25}
+.perm .was{display:flex !important;flex-wrap:wrap;align-items:center;gap:0 4px;font-size:14px;color:var(--muted)}
+.perm .was svg{width:14px;height:14px}
+.perm .pchips.chosen,.perm .perm-add{grid-column:1/-1}
+.perm .pchips.chosen{margin:4px 0 0;gap:6px}
+.perm .pchip{min-height:40px;font-size:16px;padding:2px 10px;gap:4px}
+.perm .pchip svg{width:16px;height:16px}
+.perm-add{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.padd{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:4px 8px;border-radius:12px;border:1px solid var(--line);background:var(--canvas);color:var(--action);font:inherit;font-size:16px;font-weight:600;cursor:pointer;white-space:nowrap}
+.padd:hover{border-color:var(--action)}
+.padd svg{width:16px;height:16px}
+.review-box{background:var(--surface);border:1px solid var(--divider);border-radius:14px;padding:14px 16px;display:grid;gap:10px}
+.review-box p{margin:0}
+.ok-line{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600;color:var(--feasible)}
+.ok-line svg{width:22px;height:22px}
+.rv-head{font-size:16px;color:var(--ink)}
+.rv-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.rv-list li{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:8px 10px;border:2px dashed var(--unknown);background:var(--unknown-bg);border-radius:12px}
+.rv-list .ic{grid-row:1/3;width:36px;height:36px;display:grid;place-items:center}
+.rv-list .ic svg{width:26px;height:26px;color:var(--unknown)}
+.rv-list b{font-size:17px}
+.rv-list span:not(.ic){font-size:14px;color:var(--muted)}
+.calm .found{display:flex;align-items:center;gap:8px;margin:0;font-size:16px;font-weight:600}
+.calm .found svg{width:20px;height:20px;flex:none}
+.calm > .review-box{max-width:640px;width:100%;margin-inline:auto}

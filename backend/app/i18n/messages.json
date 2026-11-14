@@ -1,0 +1,148 @@
+{
+  "_note": "Backend-owned templates (design D4). {name} = formatted param; dates come in two forms ({x} text, spoken in speech). Arabic is a DRAFT for native Egyptian review. Bump `version` on any wording change (cache key for pre-generated audio).",
+  "crop": {
+    "berseem": {
+      "ar-EG": "البرسيم",
+      "en": "the berseem"
+    },
+    "grain_maize": {
+      "ar-EG": "الذرة الشامية",
+      "en": "the maize"
+    },
+    "grain_sorghum": {
+      "ar-EG": "الذرة الرفيعة",
+      "en": "the sorghum"
+    },
+    "wheat": {
+      "ar-EG": "القمح",
+      "en": "the wheat"
+    },
+    "_unknown": {
+      "ar-EG": "المحصول",
+      "en": "the crop"
+    },
+    "rice": {
+      "ar-EG": "الأرز",
+      "en": "the rice"
+    },
+    "faba_bean": {
+      "ar-EG": "الفول البلدي",
+      "en": "the faba bean"
+    },
+    "sugar_beet": {
+      "ar-EG": "بنجر السكر",
+      "en": "the sugar beet"
+    },
+    "egyptian_cotton": {
+      "ar-EG": "القطن المصري",
+      "en": "the cotton"
+    }
+  },
+  "messages": {
+    "status.rejected": {
+      "version": 1,
+      "ar-EG": "الخطة فيها تعارض.",
+      "en": "The plan has a conflict."
+    },
+    "status.needs_review": {
+      "version": 1,
+      "ar-EG": "الخطة محتاجة مراجعة زراعية.",
+      "en": "The plan needs agricultural review."
+    },
+    "status.feasible": {
+      "version": 1,
+      "ar-EG": "الخطة ماشية بالشروط اللي اتقالت. ده مش وعد بمحصول.",
+      "en": "The plan holds under the stated conditions. That is not a promise of a harvest."
+    },
+    "sowing_before_protected_cut": {
+      "version": 1,
+      "ar-EG": "زراعة {crop} يوم {sowing_date} قبل حشة {cut_crop} اللي ثبّتها يوم {protected_cut_date}. الحشة هتفضل.",
+      "en": "Sowing {crop} on {sowing_date} comes before the {cut_crop_bare} cut you kept on {protected_cut_date}. The cut stays."
+    },
+    "preparation_shortfall": {
+      "version": 1,
+      "ar-EG": "الأرض تفضى يوم {release_date}. بعد {preparation_days} تجهيز، أقرب ميعاد {earliest_sowing_date}. ده عدّ أيام بس، ومحتاج مراجعة زراعية.",
+      "en": "The field is free on {release_date}. After {preparation_days} of preparation, the earliest date is {earliest_sowing_date}. That is only day counting and needs agricultural review."
+    },
+    "field_occupied": {
+      "version": 1,
+      "ar-EG": "الأرض لسه مشغولة لما {crop} بتتزرع.",
+      "en": "The field is still occupied when {crop} is sown."
+    },
+    "season_order_conflict": {
+      "version": 1,
+      "ar-EG": "المواسم متلخبطة في الترتيب.",
+      "en": "The seasons are out of order."
+    },
+    "protected_commitment_mismatch": {
+      "version": 1,
+      "ar-EG": "حاجة إنت ثبّتها اتغيّرت.",
+      "en": "Something you locked has changed."
+    },
+    "investigation": {
+      "version": 1,
+      "ar-EG": "لو {crop} {new_date}: اللي عليه قفل بيفضل. ميعاد الحصاد يبقى مش معروف، فمحتاج مراجعة زراعية.",
+      "en": "If {crop} is on {new_date}: everything locked stays. The harvest date becomes unknown, so it needs agricultural review."
+    },
+    "no_feasible_alternative": {
+      "version": 1,
+      "ar-EG": "مفيش بديل أكيد لسه. خطتك محفوظة زي ما هي.",
+      "en": "No sure alternative yet. Your plan is kept as it is."
+    },
+    "dates_to_check": {
+      "version": 1,
+      "ar-EG": "فيه {count} ميعاد نراجعهم.",
+      "en": "There are {count} dates to check."
+    },
+    "profile_binding_unavailable": {
+      "version": 1,
+      "ar-EG": "{crop} في الموسم {season_number}: ماتشيّكش، مفيش بيانات كفاية.",
+      "en": "{crop_cap} in season {season_number}: not checked, there is not enough data."
+    },
+    "search_incomplete": {
+      "version": 1,
+      "ar-EG": "البحث مش كامل.",
+      "en": "The search is incomplete."
+    },
+    "takeaway.conflict": {
+      "version": 1,
+      "ar-EG": "حشة {cut_crop} يوم {protected_cut_date} ثابتة في الخطة. ميعاد {crop} الحالي متعارض معاها. {alternatives} هنحفظ خطتك والنقط اللي محتاجة مراجعة.",
+      "en": "The {cut_crop_bare} cut on {protected_cut_date} is kept in the plan. The current {crop_bare} date conflicts with it. {alternatives} We will save your plan and the points that need review."
+    },
+    "reason.endpoint_mapping_missing": {
+      "version": 1,
+      "ar-EG": "ميعاد الحصاد",
+      "en": "harvest date"
+    },
+    "reason.irrigation_availability_unknown": {
+      "version": 1,
+      "ar-EG": "المية",
+      "en": "water"
+    },
+    "reason.soil_suitability_unknown": {
+      "version": 1,
+      "ar-EG": "التربة",
+      "en": "soil"
+    },
+    "reason.cultivar_availability_unknown": {
+      "version": 1,
+      "ar-EG": "الصنف",
+      "en": "variety"
+    },
+    "reason.forage_quantity_unknown": {
+      "version": 1,
+      "ar-EG": "كمية العلف",
+      "en": "feed amount"
+    },
+    "reason.sowing_support_unverified": {
+      "version": 1,
+      "ar-EG": "ميعاد الزراعة",
+      "en": "sowing date"
+    },
+    "reason.preparation_requirement_unverified": {
+      "version": 1,
+      "ar-EG": "أيام التجهيز",
+      "en": "preparation days"
+    }
+  }
+}

@@ -1,8 +1,10 @@
 # MISSION EL GHEET four-season planner specification
 
+Ownership confirmed by Amr, 2026-11-13: [team roster](../team.md) supersedes older assignments. This update changes ownership only; shared API approval remains pending.
+
 **Read this if…** you're implementing Promise Test rules, date logic or candidate search.
 
-Status: Approved source copy,  · Owner: Karim. Last reviewed .
+Status: Approved source copy,  · Owner: Amr + Astra. Last reviewed .
 
 Scientific and algorithm handoff, . The first implementation can check commitments and calendar conflicts, enumerate permitted investigations and explain unresolved eligibility. The evidence release described here supports **zero real feasible alternatives for UH-001**. Implementation and field acceptance remain pending.
 
@@ -198,10 +200,55 @@ Only UH-001 uses the project agronomy fixture. Positive algorithm fixtures below
 
 ### Handoff after implementation authorization
 
-1. **Yahya and Karim** agree the v1 Pydantic boundary and register proposed rule/parameter identifiers with Amr and Refaat. Use the existing types and generated OpenAPI/TypeScript. Pin a demo catalogue/source manifest including all four crops and unresolved states. Refaat reviews source scope and any proposed hard threshold or endpoint mapping.
-2. **Karim** implement the pure evaluator first in the approved planner module. Keep date/lock rules separate from source-backed profile evaluators, with explicit applicability checks and source IDs. Run the interval, structural, unknown and protected-lock tests and UH-001 P0 regression. Supply authored Arabic/English template keys and typed parameters. Separate status reduction and explanation rendering from the rule predicates.
+1. **Yahya and Amr + Astra** agree the v1 Pydantic boundary and register proposed rule/parameter identifiers with Amr and Refaat. Use the existing types and generated OpenAPI/TypeScript. Pin a demo catalogue/source manifest including all four crops and unresolved states. Refaat reviews source scope and any proposed hard threshold or endpoint mapping.
+2. **Amr + Astra** implement the pure evaluator first in the approved planner module. Keep date/lock rules separate from source-backed profile evaluators, with explicit applicability checks and source IDs. Run the interval, structural, unknown and protected-lock tests and UH-001 P0 regression. Supply authored Arabic/English template keys and typed parameters. Separate status reduction and explanation rendering from the rule predicates.
 3. **Yahya** wire the five `/api/v1` domain endpoints in the approved order of dependencies: catalogue, create confirmed scenario, retrieve current scenario, confirm revision, then Promise Test. Use SQLite transactions and server-controlled refs. Run stale/currentness, idempotency, lock and fixture schema tests. First vertical slice acceptance is actual backend P0 rejection, retained cut, review reasons and zero feasible alternatives in both languages. If enumeration is deferred in that slice, report `incomplete` explicitly.
-4. **Karim** implement normalization, candidate generation, endpoint invalidation, full four-season recheck, deduplication and selection. Run the exact R1/R2 walkthrough and synthetic positive/downstream cases. Benchmark the proposed deterministic budget and document any versioned adjustment. **Yahya** persist candidate refs and connect candidate selection to a new explicit confirmation and reevaluation.
+4. **Amr + Astra** implement normalization, candidate generation, endpoint invalidation, full four-season recheck, deduplication and selection. Run the exact R1/R2 walkthrough and synthetic positive/downstream cases. Benchmark the proposed deterministic budget and document any versioned adjustment. **Yahya** persist candidate refs and connect candidate selection to a new explicit confirmation and reevaluation.
 5. **Yahya** add replay and Evidence Card integration at the approved later milestones using the prepared release from **Refaat**. Run symmetric mapping/coverage tests, the numerical regression fixtures and API/card currentness checks. Keep Chronos isolated. Real eligibility publication depends on the five [evidence gates](agronomy-evidence.md#evidence-gates-for-a-real-feasible-option). If no complete second case is sourced, use the labelled synthetic cases for engineering verification and report the evidence gap.
 
 This specification is sufficient to implement the initial deterministic conflict and review slice when authorized. A real feasible recommendation requires complete, scoped evidence for all four seasons and each relevant transition. The engineering fixtures and scientific release must remain distinguishable at the API and presentation boundaries.
+
+### Milestone 1 implementation boundary (2026-11-13)
+
+The implementation is `meg_core.planner.constraints.evaluate(plan: tuple[SeasonInput, ...],
+snapshot: ScenarioSnapshot, kb: KnowledgeBase) -> PlanEvaluation`, under
+`packages/meg-core/src/`. With that source directory on Python's import path:
+
+```python
+from meg_core.planner.constraints import evaluate
+result = evaluate(plan, snapshot, kb)
+```
+
+Shared schemas and the KB loader were absent on the fetched integration baseline. The types
+currently live in private `planner/_types.py`; they are immutable computation views, not a
+published JSON/Pydantic contract. No `meg_core/contracts/` implementation or loader is supplied.
+The views retain the documented result fields and use `Explanation.params` per API §0; Yahya
+owns the final spelling and shared-model binding. `plan_ref` stays `None` until the adapter
+binds the correct current/candidate reference. The adapter also maps season labels to private
+`winter-YYYY` / `summer-YYYY` keys (winter start year), agricultural context to `field.*` paths,
+and preparation to full civil days (`day`). No implicit unit conversion occurs.
+
+The engine accepts exact-calendar, inclusive-window, fact-requirement, transition-preparation
+and predecessor rules. Verified sources and applicable scope are required for positive support
+or agronomic failure. Preferences cannot supply eligibility coverage. Draft rules remain unknown;
+missing topics cannot be removed by an empty registry. Source hashes and release approval are
+Refaat's loader responsibilities, not a second implementation inside the evaluator. There is
+no generic expression interpreter, built-in crop duration, or enabled real rotation prohibition.
+Hard quantified production requirements stay unresolved until a supported predicate is agreed.
+
+Malformed inputs raise private `planner._validation.InputValidationError` with `code` and
+`field_paths`; they never become agricultural review outcomes. Private result mappings are
+immutable; the shared-model adapter must map fields explicitly (including `dict(explanation.params)`),
+not assume these dataclasses are the final wire serializer. Forecast invariance must additionally
+be tested at Yahya's real adapter; only structural core independence is tested now.
+
+Focused test command from the worktree root, with an available Python 3.12+ executable:
+
+```sh
+python -I -S -m unittest discover -s packages/meg-core/tests -v
+```
+
+The tests add only this package's `src/` directory to the import path and require no installed
+third-party packages. See [planner status](../status/planner.md) for the interpreter actually used,
+test count, evidence limitations and integration gates. Milestone 2 generation and
+`meg_core.planner.service.plan(snapshot, kb, policy)` remain separate future work.

@@ -2,11 +2,26 @@
 
 **Read this if…** you're writing backend code: module layout, SQLite, ML bundle, i18n, voice.
 
-Status: Approved  (D1–D8); §2 and §12 predate the `meg_core` decision, see status Q3 · Owner: Yahya. Last reviewed .
+Status: Approved (D1–D8); D6 superseded 14 Nov (Gemini). §2 and §12 are the original plan; **see "As built" below for what exists** · Owner: Yahya. Last reviewed 14 Nov 2026.
 
 Approved by the user on  (decisions D1–D8 below). This document defines the backend code structure, runtime data, persistence, the ML ↔ backend interface, and the voice and bilingual design. It is the implementation map for [ARCHITECTURE.md](architecture.md). Wire types live in [API_CONTRACTS.md](api-contracts.md). Planner semantics live in [PLANNER_SPEC.md](../planner/planner-spec.md). Where this document simplifies an earlier contract for the hackathon MVP, [API_CONTRACTS.md §0](api-contracts.md#0-mvp-revision-) records the change.
 
 Design goal: a backend that is correct, testable and small enough for two developers to build during the hackathon. Keep the scientific rules strict; keep the machinery around them simple.
+
+## As built (14 Nov 2026)
+
+What exists on `chore/final-integration`, where it differs from the plan below. Endpoint states: [status/backend.md](../status/backend.md).
+
+| Planned (below) | Built |
+|---|---|
+| Planner rules in `backend/app/planner/` (§2) | Planner lives in `packages/meg-core` (Amr + Astra). `backend/app/planner/` has only `adapter.py` (planner JSON codec, reviewed-KB release, per-request `bind_profiles`) and `answers.py` (app answers → snapshot) |
+| `backend/app` run from `backend/` | One package `backend.app`, run from the repo root (`uvicorn backend.app.main:app`), tests `pytest backend/tests` |
+| `data/release/` committed (D8) | Reviewed KB ships inside `meg_core` (hash-pinned); climate data in `refaat-data-ml/data` |
+| Deterministic parsers (D6) | Gemini strict extraction + validation (§8.3), untested with a key |
+| Replay in `backend/app/replay/` by Yahya | Built by Mahmoud, hardened by Amr; served at `POST /scenarios/{id}/replay` |
+| Templates in `data/release/content/` | `backend/app/i18n/messages.json` (+ `formatting.py`, `render.py`) |
+| pydantic-settings, uv | Plain dataclass `Settings` from `MEG_*` env / `backend/.env`; hashed `requirements.lock` + `pip.conf` (dependency rules) |
+| Default port 8000 | 8787 (8000 is often taken on dev machines) |
 
 ## Approved decisions
 
@@ -17,7 +32,7 @@ Design goal: a backend that is correct, testable and small enough for two develo
 | D3 | ML connects through a precomputed, schema-validated `forecast_bundle.json`. The backend never imports PyTorch or model code. |
 | D4 | Prompts, explanations, readbacks and takeaways are backend-owned templates with `text` and `speech` variants. UI labels stay in the frontend. |
 | D5 | Speech recognition starts with the browser Web Speech API (`ar-EG`, `en-US`). A server-side provider such as Azure can be added behind the same interface later. |
-| D6 | Transcript interpretation is deterministic, one parser per answer type, driven by an editable lexicon. No LLM in the MVP. |
+| D6 | ~~Transcript interpretation is deterministic, one parser per answer type, driven by an editable lexicon. No LLM in the MVP.~~ **Superseded 14 Nov (Yahya):** a Gemini Flash model extracts the answer fields from the transcript into a strict JSON schema, with `null` for anything not said. The backend validates every value; Gemini only proposes. See §8.3. |
 | D7 | Text-to-speech uses pre-generated prompt audio plus a cached backend endpoint behind a provider adapter. The provider remains to be selected. |
 | D8 | A runtime data release is committed under `data/release/`, hashed in a manifest, and loaded and validated once at startup. |
 
@@ -339,8 +354,8 @@ Stored results hold `{code, params}`. On read, the API adds the rendered forms:
 Question (question_id, answer_type) → play prompt audio
    │
    ├─ tap a picture/choice ───────────────────────────────┐
-   └─ press mic → disclose transmission → browser STT     │
-        (ar-EG or en-US) → transcript                     │
+   └─ press mic → disclose transmission → record clip     │
+        (push-to-talk, ar-EG or en)                       │
            │                                              │
      POST /speech/interpret                               │
            ▼                                              ▼
@@ -355,61 +370,78 @@ Question (question_id, answer_type) → play prompt audio
 
 - Touch and voice produce the same proposed field.
 - Recognition never confirms. Confirmation is always a separate action after the full readback. Silence never confirms.
-- Raw audio never reaches the backend in the MVP. Only the transcript is sent, and it is not stored or logged.
+- The audio clip goes to the backend and on to Gemini (§8.2, decided 14 Nov 2026). It is not stored or logged by us.
 
 ### 8.2 Speech recognition (D5)
 
-The MVP uses the browser Web Speech API with `lang = "ar-EG"` or `"en-US"`. The frontend wraps it in a `SpeechRecognizer` interface (`start`, `stop`, `onResult`, `onError`) so a server-side provider can replace it without changing screens.
+~~The MVP uses the browser Web Speech API.~~ **Superseded 14 Nov 2026 (Yahya): Gemini hears the audio itself.** One model call does recognition and extraction, so Egyptian Arabic is understood by Gemini rather than by Chrome's recogniser. Not built yet.
+
+- **Browser:** `MediaRecorder` records one push-to-talk clip (voice-first §2 rule 1), mono Opus in WebM/Ogg at about 24 kbit/s.
+- **Clip length (Yahya, 14 Nov 2026):** recording stops by itself at **15 s** for a single answer and **30 s** for the opening sentence (several seasons at once), with a short tone and the dock saying it stopped. Clips under **0.5 s** are dropped as accidental taps and never sent. At 24 kbit/s, 30 s is about 90 KB; the backend rejects any upload over **256 KB** with 413. These limits sit far below Gemini's request size limit (inline data up to about 20 MB; check Google's current audio docs when wiring). The frontend keeps the `SpeechRecognizer` interface (`start`, `stop`, `onResult`, `onError`) so screens don't change.
+- **Backend:** `POST /speech/interpret` receives the clip (multipart) with `question_id`, `locale` and `context`, sends it to Gemini as inline audio with the §8.3 instruction and schema, validates the reply as in §8.3, and discards the audio. The key stays on the server.
+- **Optional `heard` field:** Gemini may return the words it heard, used only for the on-screen "I heard …" line; never spoken back as a fact and never trusted over the validated fields.
 
 | Situation | Behaviour |
 |---|---|
-| API missing (e.g. Firefox, some iOS) | Hide the mic button; touch and prompt audio remain |
+| `MediaRecorder` or mic missing | Hide the mic button; touch and prompt audio remain |
 | Permission denied | Do not re-prompt; continue with touch |
-| No result or timeout | Offer repeat, choices or help; nothing advances |
+| Empty clip, timeout, Gemini error | `no_match`: offer repeat, choices or help; nothing advances |
 
-Chrome's implementation sends audio to Google. The microphone disclosure must say so before permission is requested (PRIVACY_ASSUMPTIONS.md).
+The microphone disclosure must say the recording is sent to Google to be understood, before permission is requested. Abuse limits on this endpoint: §10a. Still open: whether Web Speech stays as a fallback when the backend is unreachable.
 
-### 8.3 Interpretation (D6)
+### 8.3 Interpretation (D6, Gemini extraction)
 
-`POST /speech/interpret`
+Decided 14 Nov 2026 (Yahya): **Gemini extracts the facts the farmer said; it never decides, advises or chats.** Model: `gemini-3.8-flash` (check the exact ID on Google's model page before wiring it). The call is made by the backend only; the key never reaches the browser.
+
+`POST /speech/interpret` keeps its request:
 
 ```json
 {"question_id": "s1_final_cut_date", "answer_type": "date", "locale": "ar-EG",
- "transcript": "عشرين مايو", "context": {"issue_date": ""}}
+ "transcript": "عشرين مايو", "context": {"season_order": 1, "issue_date": "2026-11-14"}}
 ```
 
-Returns a `SpeechProposal`:
+**What the backend sends to Gemini:** the audio clip (§8.2; the transcript in the dev adapter), the current `question_id`, the allowed values from the data-release catalogue (crop IDs, purposes) and this fixed instruction: *extract only what the speaker said; return `null` for every field that was not said; never guess a year, unit, crop or date; never add advice or text outside the schema.* Structured output is required (`response_mime_type: application/json` with the schema below), temperature 0.
+
+**Extraction schema (strict; every field nullable, no extra keys):**
 
 ```json
-{"question_id": "s1_final_cut_date", "status": "needs_clarification",
- "field_path": "seasons[0].harvest_or_cut_date",
- "proposed": {"value": null, "partial": {"day": 20, "month": 5}},
- "clarification": {"code": "ask_year", "choices": ["2027", "2028"]},
- "readback": {"text": "...", "speech": "عشرين مايو، أنهي سنة؟"}}
+{
+  "seasons": [
+    {"order": 1,
+     "crop": "berseem | grain_maize | grain_sorghum | wheat | unknown | null",
+     "crop_said": "the words used, only when ambiguous (e.g. \"ذرة\"), else null",
+     "purpose": "forage | grain | null",
+     "sowing_date":   {"day": 1, "month": 1, "year": null},
+     "last_cut_date": {"day": 20, "month": 5, "year": null},
+     "must_stay": true}
+  ],
+  "area": {"value": null, "unit": "feddan | qirat | hectare | null"},
+  "answer": {"yes_no": "yes | no | null", "confirm": null, "dont_know": null},
+  "ambiguous": [{"path": "seasons[1].crop", "said": "ذرة", "options": ["grain_maize", "grain_sorghum"]}],
+  "off_topic": false
+}
 ```
 
-One parser per answer type, all deterministic:
+- A date part not said is `null` (`"year": null` for “20 May”). The backend resolves a missing year only from the season being asked and always reads it back with the year (design/voice-first.md §3).
+- `seasons` lists only seasons the speaker mentioned. `must_stay` is `true` only when the farmer said it must not change; otherwise `null`, never `false` by default.
+- `unknown` crop or `dont_know: true` means the farmer said “I don't know”; that becomes `confirmed_unknown` after readback, never a guess.
+- `off_topic: true` (for example “what should I plant?”) returns the fixed redirect template; Gemini's own words are never shown or spoken.
 
-| `answer_type` | Handles | Clarifies when |
-|---|---|---|
-| `crop` | برسيم، قمح، ذرة، درة، سورجم and spelling variants | "درة"/"ذرة" alone: maize or sorghum? grain or forage? |
-| `yes_no` | أيوه، آه، تمام، لا، مش، ما…ش; corrections like "مش قمح، قصدي برسيم" | Mixed or contradictory answer |
-| `date` | Day, month name or number, optional year, "١٠/١١" | Missing year; relative dates ("الجمعة الجاية", "بعد العيد") are never guessed |
-| `area` | Numbers in words and digits; فدان، قيراط، نص، ربع، "فدان إلا ربع" | Missing unit |
-| `unknown` | مش عارف، مش فاكر، معرفش | Never; returns `unknown` for `confirmed_unknown` |
-| `choice` | Any closed list from `prompts.json`, matched against lexicon synonyms | No or multiple matches |
+**Backend validation after Gemini (deterministic):** reject the whole reply as `no_match` if it is not valid JSON for the schema; drop any value outside the catalogue enums; check day/month ranges, the season's months and that a planned date is not in the past; negation is checked again on the transcript (a negated protected value never becomes permission to change it). Timeout or provider error → `no_match`, and the screen points to the pictures.
 
-- Arabic normalisation before matching: remove tashkeel and tatweel; unify alef forms, ة/ه and ى/ي; convert Arabic-Indic digits.
-- Negation is detected before value extraction. A negated protected value never becomes permission to change it.
-- Parsers are tested against the twelve case families in [validation_accessibility_alignment.md](../reports/validation_accessibility_alignment.md), with a held-out set of paraphrases.
-- An LLM fallback for `no_match` may be added later behind this same endpoint. It would still only propose.
+**Response:** the existing `SpeechProposal`, one per extracted field. **Proposed contract change (Yahya, shared-contract owner; Amr reviews frontend impact):** `POST /speech/interpret` returns `{"proposals": [SpeechProposal, ...], "ambiguous": [...], "off_topic": bool}` so one sentence can fill several fields (lab 02 “opening sentence”). Single-field answers return a list of one.
+
+- Recognition and extraction never confirm. The readback and the separate explicit confirm (§8.1) are unchanged.
+- The audio is sent to Google for recognition and extraction and is not stored or logged by us. Check the Gemini API data terms for the tier we use; the mic disclosure must say the words are sent to Google to be understood.
+- Test before relying on it: a set of real Egyptian Arabic recordings per answer type, scored field by field (correct, wrong, null when said, value when not said). No accuracy figure exists yet.
+- ~~Open: send the audio itself to Gemini.~~ Decided 14 Nov 2026 (Yahya): yes, see §8.2.
 
 ## 9. Voice output (D7)
 
 | Audio | Source | Works offline |
 |---|---|---|
 | Fixed prompts and help lines (both languages) | Generated once by `scripts/build_prompt_audio.py` or recorded by the team; stored in `frontend/public/audio/{locale}/{question_id}.{text_sha8}.mp3` | Yes |
-| Dynamic sentences (dates, conflicts, takeaways) | `POST /speech/tts` → provider → disk cache → `GET /audio/{sha}.mp3` | Yes, once cached |
+| Dynamic sentences (dates, conflicts, takeaways) | Pre-generated per scenario by the same script; `POST /speech/tts` looks up the file → `GET /audio/{sha}.mp3`, else `unavailable` | Yes |
 | Fallback | Browser `speechSynthesis` if a matching voice exists, labelled "device voice"; otherwise text plus "audio unavailable" | Yes |
 
 `POST /speech/tts`
@@ -419,11 +451,11 @@ One parser per answer type, all deterministic:
  "params": {"season_id": "s2", "sowing_date": "2027-05-15", "protected_cut_date": "2027-05-20"}}
 ```
 
-Returns `{"status": "ready", "audio_url": "/api/v1/audio/3fa1….mp3", "template_version": 1, "voice": "ar-EG-SalmaNeural", "cached": true}` or `{"status": "unavailable", "reason_code": "provider_unavailable"}`.
+Returns `{"status": "ready", "audio_url": "/api/v1/audio/3fa1….mp3", "template_version": 1, "voice": "<elevenlabs voice_id>", "cached": true}` or `{"status": "unavailable", "reason_code": "not_generated"}` (no pre-generated file for these params; changed 13 Nov 2026 from `provider_unavailable` because nothing is generated live).
 
 - The client sends a code and params, never free text, so the backend cannot be used to speak arbitrary advice.
 - Cache key: SHA256 of `locale + voice + template_version + rendered speech text`. A changed plan produces new params and therefore a new file, so old audio cannot narrate a new plan.
-- `TtsProvider` is a small protocol (`synthesize(text, locale) → bytes`). The adapters are `azure` (candidate: `ar-EG-SalmaNeural`, `en-US-JennyNeural`) and `none`. **Provider selection and credentials remain an open decision.** Keys live only in backend environment variables.
+- `TtsProvider` is a small protocol (`synthesize(text, locale) → bytes`). **Provider: ElevenLabs, offline only (Yahya, 13 Nov 2026).** All audio is pre-generated by the build script; at runtime `POST /speech/tts` only returns an already generated file or `unavailable`, and the deployed backend holds no provider key. See [voice-generation.md](voice-generation.md).
 - `scripts/prewarm_audio.py` renders and caches every UH-001 sentence so the demo plays without network access.
 
 ## 10. Configuration, errors and logging
@@ -440,7 +472,35 @@ Returns `{"status": "ready", "audio_url": "/api/v1/audio/3fa1….mp3", "template
 
 - Errors use the envelope in API_CONTRACTS §6. A cross-season conflict is a `200` planning result, never an error.
 - Logs contain request ID, path, status, duration and error code. Never transcripts, audio or full scenario bodies.
-- Local development: Vite proxies `/api` to `uvicorn app.main:app --reload`. Demo: FastAPI serves the built frontend from one process.
+- Local development: Vite proxies `/api` to `uvicorn backend.app.main:app --port 8787` (run from the repo root; `MEG_API_URL` overrides). Demo: FastAPI serves the built frontend from one process (not built yet).
+
+## 10a. Public hosting and abuse limits
+
+Decided 14 Nov 2026 (Yahya): **the app is hosted publicly for the NASA Space Apps judges with no password or sign-in.** Anyone with the link can use it, so every endpoint that costs money (Gemini, and ElevenLabs if speech is ever generated live) or writes to disk is limited. **Goal: a judge never hits a limit; someone scripting the API gets cut off, and the bill has a hard ceiling.** No CAPTCHA or sign-up, because they would get in the judges' way.
+
+**Sizing.** One full journey (four seasons, changes, confirm, alternatives) is about 10–30 voice turns and under 100 API calls. Limits are set at several times that, per IP, so a judge replaying the demo several times, or several judges behind one venue Wi-Fi, stay well inside.
+
+| Endpoint | Per-IP limit | Global ceiling | When hit |
+|---|---|---|---|
+| `POST /speech/interpret` (Gemini) | 20 / minute, 300 / day | 3,000 calls / day | 429 → dock says "too many tries, use the pictures"; touch still completes everything |
+| `POST /speech/tts` | 60 / minute (file lookups are cheap). Live generation, if adopted: 30 new sentences / hour | ElevenLabs character budget / day | Fall back to device voice, labelled |
+| `POST /scenarios`, revisions, evidence cards (SQLite writes) | 30 / minute, 500 / day | DB size cap; scenarios older than 30 days pruned | 429 |
+| Planner, replay, catalogue, results (CPU only) | 120 / minute | n/a | 429 |
+| Everything | Body ≤ 64 KB JSON, 256 KB audio (413) | Provider calls time out after 10 s | `no_match` / `unavailable` |
+
+All numbers are starting values, set by `MEG_*` settings so they can change without a deploy. Watch real use in the first days and adjust.
+
+**How:**
+- **In-process limiter**, a small token-bucket middleware in `core/` keyed by client IP and route group. One uvicorn worker is enough for the judging load, so no Redis. Counters reset on restart, but the global daily ceilings are persisted in SQLite so a restart doesn't reset the budget. Written ourselves, no new package.
+- **Client IP:** `MEG_PROXY_HOPS=N` takes the Nth address from the right of `X-Forwarded-For` (proxies append, so a client-sent value can't be used); 0 uses the socket address. Checked once per deployment ([hosting.md](hosting.md) step 3).
+- **429 responses** use the existing error envelope with a `Retry-After` header ([API contracts](api-contracts.md), 429 row). The frontend never retries automatically.
+- **Hard spending caps at the providers too:** a Google Cloud budget alert and API quota on the Gemini key, and a monthly character limit on the ElevenLabs key. The app's ceilings are the first line; the provider caps are the backstop if the app's logic fails.
+- **Keys** live only in the server environment, never in the frontend bundle or the repo. CORS allows only the app's own origin.
+- **No free text to providers:** `/speech/interpret` accepts only an audio clip plus known `question_id`s; `/speech/tts` accepts only template codes and typed params (§9). Neither can be used as a general-purpose Gemini or TTS proxy.
+- **Privacy:** audio and transcripts are not logged. Rate-limit logs keep a hashed IP and counts only.
+- **Budget exhausted ≠ broken:** when a ceiling is hit, voice degrades to pictures and device voice; the Promise Test and every screen keep working.
+
+**Built 14 Nov 2026:** `core/limits.py` (per-client limits, body caps, daily voice ceiling in the `usage` table), tested in `backend/tests/test_limits.py`. Not built: DB pruning (the free host wipes the file on redeploy anyway) and live-TTS limits (no live TTS yet). Deployment steps: [hosting.md](hosting.md).
 
 ## 11. Testing
 

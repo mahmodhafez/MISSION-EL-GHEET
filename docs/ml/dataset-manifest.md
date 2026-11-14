@@ -4,14 +4,14 @@
 
 Status: Current,  · Owner: Refaat. Last reviewed .
 
-Protocol `meg-daily7-ridge-v1`; assembled release `meg-shared--v1`; Refaat dataset `sakha-power-lst--et0-v1`. One source lineage; these IDs describe assembly versus original dataset, not alternative weather. Full file hashes live in the generated `data/local/shared--v1/manifest.json`; copy that file with every delivery. The containing application `data_release` binds this manifest plus approved KB/rule/calculation versions and remains Yahya's single HTTP version token.
+Protocol `meg-daily7-ridge-v1`; assembled release `meg-shared-20261113-v1`; Refaat dataset `sakha-power-lst-20261110-et0-v1`. One source lineage; these IDs describe assembly versus original dataset, not alternative weather. Full file hashes live in the generated `data/local/shared-20261113-v1/manifest.json`; copy that file with every delivery. The containing application `data_release` binds this manifest plus approved KB/rule/calculation versions and remains Yahya's single HTTP version token.
 
 ## Available files and preparation
 
 | File relative to assembled release | Coverage / purpose | SHA256 |
 |---|---|---|
-| `refaat/data/fit_targets.csv` | –;6,574 rows; fit only | `24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2` |
-| `refaat/data/diagnostic_validation_targets.csv` | –;1,096 rows; diagnostic scoring | `362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc` |
+| `refaat/data/fit_targets.csv` | 2001-01-01–2018-12-31;6,574 rows; fit only | `24a26ba5b0d44d35147397fbed5309fe925a63034cfc4a4b74a90d5dfca130c2` |
+| `refaat/data/diagnostic_validation_targets.csv` | 2019-01-01–2021-12-31;1,096 rows; diagnostic scoring | `362181c33fde7201b3159d294dc494eaa897adeac8d69d21739416da18647bfc` |
 | `refaat/data/forecast_windows.csv` | 36 fixed monthly diagnostic origins | `8fc0c0aa99f57ee47910c3cf3bd49eeb6b4f9cccf692aa9a821d8e9e73311a44` |
 | `weather/weather_et0.csv` | 2001–2025;9,131 rows; historical evaluation, unchanged bytes | `17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8` |
 | `weather/weather_et0_2026_Jan_Oct.csv` | Jan–Oct2026;304 rows; quarantine, not new test | `c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e` |
@@ -26,11 +26,11 @@ Targets exactly `date,tmax_c,et0_mm_day`, units `degC`, `mm/day`. Full weather a
 Build command (exists now; refuses existing destination; no external packages):
 
 ```powershell
-python ml/tools/prepare_shared_release.py --refaat "C:/Users/Amr Hany/Downloads/ML_HANDOFF.zip" --science docs/VALIDATION_ARTIFACTS.zip --output data/local/shared--v1
+python ml/tools/prepare_shared_release.py --refaat "<local-transfer-dir>/ML_HANDOFF.zip" --science docs/VALIDATION_ARTIFACTS.zip --output data/local/shared-20261113-v1
 python -m unittest discover -s ml/tests -v
 ```
 
-The current workspace already has that release. Other machines receive either the small assembled directory (with manifest), or the archives through approved team file sharing and run the command. Do not put the 469MB archive/weights in Git. Builder verifies both archive hashes, 27 Refaat file hashes, frozen CSV hashes and cross-source target identity before atomic publication. It does not execute archive code, regenerate scientific bytes, or overwrite outputs. Safe no-overwrite reruns use a new path but retain the release ID only for identical contents.
+The recovery checkout has a verified runtime/test subset at that path; LOCAL_SUBSET.json lists copied and omitted members. The original manifest remains byte-preserved, so this is not a complete package. Other machines receive either the small assembled directory (with manifest), or the archives through approved team file sharing and run the command. Do not put the 469MB archive/weights in Git. Builder verifies both archive hashes, 27 Refaat file hashes, frozen CSV hashes and cross-source target identity before atomic publication. It does not execute archive code, regenerate scientific bytes, or overwrite outputs. Safe no-overwrite reruns use a new path but retain the release ID only for identical contents.
 
 ## One forecast protocol
 
@@ -52,13 +52,13 @@ Feature order is fixed and written to `feature_schema.json`:
 
 There are 38 numeric features per model. Exclude any context with a missing required observation; no imputation or observed future weather. All transforms are fitted on that model's training rows. Use `Pipeline(StandardScaler(), Ridge(alpha=...,solver="svd"))`; alpha grid **[1,10,100]**, no extra search. Single shared alpha selected by mean validation MAE skill normalized by the calendar comparator across 14 target/lead cells. Store separate raw MAE/RMSE/bias; the selector is not a crop suitability score. Fit on float32-converted observations cast to float64 for stable linear algebra; score truth using Refaat's original convention.
 
-Inner tuning: fit origins every Monday whose entire 60-day history and label interval are in 2001–2015; train labels end by . Validate on the 15th of each month in 2016–2018, only when training labels are <= that issue's cutoff. Build an **inner-only** climatology from 2001–2015 via the generic records route; label it inner diagnostic, not the immutable research baseline. Do not call fixed-2001–2018 `from_csv` as the inner comparator. No 2019–2021 outcomes select hyperparameters.
+Inner tuning: fit origins every Monday whose entire 60-day history and label interval are in 2001–2015; train labels end by 2015-12-31. Validate on the 15th of each month in 2016–2018, only when training labels are <= that issue's cutoff. Build an **inner-only** climatology from 2001–2015 via the generic records route; label it inner diagnostic, not the immutable research baseline. Do not call fixed-2001–2018 `from_csv` as the inner comparator. No 2019–2021 outcomes select hyperparameters.
 
-After alpha selection, refit on Monday origins with labels entirely in 2001–2018. Assert every fit label date <= and <=first diagnostic cutoff. Score the exact supplied 36 2019–2021 origins once. They are existing **diagnostic** dates, not a new untouched test. 2022–2025 is an inspected reserve; no testing/tuning there today. Jan–Oct2026 is quarantined consumed evidence. No random split, shuffled overlapping-window split, foundation pretraining independence or fresh-test claim.
+After alpha selection, refit on Monday origins with labels entirely in 2001–2018. Assert every fit label date <=2018-12-31 and <=first diagnostic cutoff. Score the exact supplied 36 2019–2021 origins once. They are existing **diagnostic** dates, not a new untouched test. 2022–2025 is an inspected reserve; no testing/tuning there today. Jan–Oct2026 is quarantined consumed evidence. No random split, shuffled overlapping-window split, foundation pretraining independence or fresh-test claim.
 
 Store per training example: `issue,cutoff,context_start,target_start,target_end,variable,lead_day,split,source_sha256,feature_schema_version`. Store features/labels in separate `X.csv`/`y.csv` for each partition and model key, or a shared keyed table with identical fields. Label endpoints crossing a boundary are purged. A training manifest records actual retained/excluded origin counts; counts are computed, not guessed.
 
-Metrics: MAE,RMSE,bias by variable/lead, and seasonal breakdown with sample counts. Compare Ridge, climatology and persistence on the same keys. Skill=1−MAE_model/MAE_baseline; zero denominator means undefined. For diagnostic paired uncertainty resample whole issue blocks (3 consecutive monthly origins,2,000 draws,seed), keeping both targets/all leads together. Do not treat correlated daily errors as independent. Point-only Ridge has **no q10/q90**; never invent zero-width confidence bands. No interval calibration work today.
+Metrics: MAE,RMSE,bias by variable/lead, and seasonal breakdown with sample counts. Compare Ridge, climatology and persistence on the same keys. Skill=1−MAE_model/MAE_baseline; zero denominator means undefined. For diagnostic paired uncertainty resample whole issue blocks (3 consecutive monthly origins,2,000 draws,seed20261113), keeping both targets/all leads together. Do not treat correlated daily errors as independent. Point-only Ridge has **no q10/q90**; never invent zero-width confidence bands. No interval calibration work today.
 
 P1 success: reproduce fit, show parameter coefficients differ from zero, no leakage, exact504 output keys, test/metrics report and honest win/loss. Optional research promotion gate: ≥5% lower aggregate MAE for **both** targets against strongest baseline, no lead/season MAE degradation >5%, paired95% improvement interval above zero. Sparse seasonal samples make results inconclusive, not a pass. This diagnostic gate alone does **not** authorize live farmer-facing Ridge: fresh prospective evidence, a relevant permitted decision and compatible uncertainty contract remain missing. The current API needs quantiles, so point-only Ridge stays research-only. Stop after3 alpha values; ≤10min fit/score compute, ≤90min total task.
 

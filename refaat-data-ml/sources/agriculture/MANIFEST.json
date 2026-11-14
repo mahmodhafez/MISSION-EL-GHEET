@@ -1,0 +1,49 @@
+{
+  "research_version": "2026-11-11",
+  "recovered_from": "~/Downloads/MISSION_EL_GHEET_Research_Package",
+  "archive": "MISSION_EL_GHEET_Research_Package.zip",
+  "archive_sha256": "315c0c0a54c882c0febb49bd0d5fcad3c17198201e2584edb9010d826b1c5b17",
+  "archive_required_at_runtime": false,
+  "files": {
+    "MISSION_EL_GHEET_Crop_Rule_Ledger.csv": {
+      "bytes": 17090,
+      "sha256": "333eb77a764d4d74b29301f166bcf97a976365d2aaa6cfa024ee79957cc01fb9",
+      "archive_member": "MISSION_EL_GHEET_Crop_Rule_Ledger.csv"
+    },
+    "MISSION_EL_GHEET_Data_Feasibility_Report.md": {
+      "bytes": 12053,
+      "sha256": "54e347812b643c1500c438ebf2541bc992a3c72b24a1cec4b82c37540502d832",
+      "archive_member": "MISSION_EL_GHEET_Data_Feasibility_Report.md"
+    },
+    "MISSION_EL_GHEET_Data_Findings_AR.md": {
+      "bytes": 9190,
+      "sha256": "162f04dcc87cf0b3cd0d229204ce9a80efe7120350b188df9d964d9a0251dbe9",
+      "archive_member": "MISSION_EL_GHEET_Data_Findings_AR.md"
+    },
+    "MISSION_EL_GHEET_Evidence_Register.csv": {
+      "bytes": 54301,
+      "sha256": "1991a51d48c3bbe2ce341a814a69b211e609ab5d7bd6f7b24d6e6c7e847dcbb1",
+      "archive_member": "MISSION_EL_GHEET_Evidence_Register.csv"
+    },
+    "MISSION_EL_GHEET_Feature_Feasibility.md": {
+      "bytes": 9486,
+      "sha256": "9945091596ac07c88a362d16c57014946f045947da716b01877716e57f29583f",
+      "archive_member": "MISSION_EL_GHEET_Feature_Feasibility.md"
+    },
+    "MISSION_EL_GHEET_POWER_Parameter_Specification.csv": {
+      "bytes": 12188,
+      "sha256": "9b732bd5eb4619c410fb64b9f2323409cf69849e9f8f457f10addead0ef25a36",
+      "archive_member": "MISSION_EL_GHEET_POWER_Parameter_Specification.csv"
+    },
+    "MISSION_EL_GHEET_Refaat_Implementation_Handoff.md": {
+      "bytes": 11064,
+      "sha256": "991ab3ddb1a426a69095c5e026bc2650e1e58a4c8d1e0c94b0e75f6721777310",
+      "archive_member": "MISSION_EL_GHEET_Refaat_Implementation_Handoff.md"
+    },
+    "MISSION_EL_GHEET_Scientific_Research_Annex.md": {
+      "bytes": 35480,
+      "sha256": "27802df1e91b3230143bb0a858513a4d65a63a557510f74b258b9a805bcde50c",
+      "archive_member": "MISSION_EL_GHEET_Scientific_Research_Annex.md"
+    }
+  }
+}

@@ -1,2 +1,7 @@
 # Preserve the byte-identified historical ET0 generator across checkout platforms.
 data/validation/audit_weather.py -text
+
+# Preserve the original evidence hashes and the reviewed release across Windows checkouts.
+packages/meg-core/src/sources/agriculture/** -text
+packages/meg-core/src/knowledge_base/** -text
+docs/planner/scientific-review/**/approval-matrix.csv -text

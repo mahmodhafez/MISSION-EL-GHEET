@@ -19,12 +19,14 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 
 | Path | What lives there | Real code yet? |
 |---|---|---|
-| `backend/` | FastAPI app (`app/`), tests | No, empty placeholders |
-| `frontend/` | React app (`src/features/*`) | No, empty placeholders |
+| `backend/` | FastAPI app (package `backend.app`, run from the repo root), Season Replay, tests | Yes: reviewed KB, real planner, replay, SQLite; see `docs/status/backend.md` |
+| `packages/meg-core/` | Planner (Promise Test, candidate generation), reviewed Sakha agricultural KB, 12-crop catalogue | Yes, 118 tests; see `docs/status/planner.md` |
+| `refaat-data-ml/` | Refaat's climate data release, `ClimateStore`, agricultural KB sources, Ridge experiment, handoffs | Yes; 43/46 tests (3 need local raw NASA files) |
+| `frontend/` | React app (`src/features/*`): voice-first flow; backend via `VITE_API_BASE`, else a dev adapter | Yes, see `docs/status/frontend.md` |
 | `ml/` | Shared-release builder (`tools/`), tests, future experiments | Builder + 3 tests |
 | `data/validation/` | NASA POWER / ET0 audit and regeneration scripts | Yes, 16 tests |
 | `data/local/` | Assembled data release (mostly git-ignored) | Partial, see `docs/status/ml-data.md` |
-| `work/ux-phase-2/`, `work/ux-phase-3/` | Standalone HTML wireframes and the Fieldlight prototype | Yes (design artifacts) |
+| `work/ux-phase-2/`, `-3/`, `-4/` | Standalone HTML wireframes, the Fieldlight prototype, voice-first page labs | Yes (design artifacts) |
 | `archive-snapshot/`, `work/*` (other) | Frozen evidence from the 13 Nov recovery snapshot | Don't edit |
 | `docs/` | Everything written. Start at `docs/README.md` | n/a |
 
@@ -32,7 +34,8 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 
 1. `docs/rules/working.md`: how to work here (scope, honesty, science rules).
 2. `docs/rules/git.md`: branches, commits, PRs. **Several people and agents share this repo.**
-3. The status file for your area in `docs/status/`.
+3. `docs/rules/dependencies.md` before installing or adding any package (supply-chain rules).
+4. The status file for your area in `docs/status/`.
 
 ## Routing: if you're doing X, read Y
 
@@ -49,6 +52,7 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 | About to propose an idea | `docs/rejected.md`: check it isn't already turned down |
 | Unsure what a term means (UH-001, P0, R1, Astra, LST…) | `docs/glossary.md` |
 | Writing or reorganising docs | `docs/rules/docs.md` |
+| Adding, updating or installing a package | `docs/rules/dependencies.md` |
 
 ## Rules that cause the most damage when broken
 
@@ -60,6 +64,8 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 - **Shared contracts change only by agreement.** API schemas, `meg_core.contracts` and the
   data release need sign-off from every owner they touch (see `docs/team.md`).
 - **Never push to `main` directly, never force-push, never commit data/model files or secrets.**
+- **Packages: minimum age 14 days, exact pins, hashed lock files, no install scripts, pinned pnpm/pip.**
+  Run `python3 -I scripts/check_dependency_age.py` before committing a lock change. See `docs/rules/dependencies.md`.
 
 ## Commands that exist today
 
@@ -68,16 +74,25 @@ python -I -S -m unittest discover -s data/validation -p "test_*.py" -v   # 16 te
 python -I -S -m unittest discover -s ml/tests -v                        # 3 tests
 node work/ux-phase-2/check-wireframes-v3.cjs                            # wireframe smoke check
 node work/ux-phase-3/check-hybrid.cjs                                   # Fieldlight prototype check
+node work/ux-phase-4/check-labs.cjs                                     # voice-first page labs check
+python -I -S -m unittest discover -s packages/meg-core/tests -v         # planner: 118 tests (3 skipped)
+cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm dev   # app at http://127.0.0.1:5173 (dev adapter, no server)
+cd frontend && VITE_API_BASE=/api/v1 corepack pnpm dev                 # app against the backend (proxied to :8787)
+cd frontend && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build   # 16 unit tests
+python3 -I scripts/check_dependency_age.py                              # lock files: hashes + 14-day minimum age
+python3 -m venv backend/.venv && cp backend/pip.conf backend/.venv/pip.conf && backend/.venv/bin/pip install --require-hashes --no-deps --only-binary :all: -r backend/requirements.lock
+backend/.venv/bin/python -m pytest -q backend/tests                    # backend: 77 tests (from the repo root)
+backend/.venv/bin/uvicorn backend.app.main:app --port 8787              # API at http://127.0.0.1:8787/api/v1 (docs at /docs)
+(cd refaat-data-ml && python3 -m unittest discover -s tests)           # Refaat data/KB: 43/46 (3 need local NASA files)
 ```
 
-No app install/run commands exist yet. Add them here when the first app code lands.
+The frontend uses the backend when `VITE_API_BASE` is set, otherwise a labelled dev adapter (real planner export for UH-001 only).
 
 ## Facts worth knowing on day one
 
-- `backend/` and `frontend/` contain only `.gitkeep` files. Docs once assumed backend code
-  existed when it didn't; check the tree before you believe a doc.
+- Check the tree before you believe a doc: docs once assumed backend code existed when it didn't.
 - The big evidence ZIP (`docs/VALIDATION_ARTIFACTS.zip`, ~470 MB) and model weights are **not in
-  git**. Request them from Amr/Refaat (`docs/archive/handoff-/ARTIFACT_TRANSFER.md`).
+  git**. Request them from Amr/Refaat (`docs/archive/handoff/ARTIFACT_TRANSFER.md`).
 - Many older docs contain Windows paths from Amr's machine (`C:/Users/Amr Hany/...`). They are
   history, not paths you should expect to exist.
 - Status words have exact meanings: `feasible | rejected | needs_review` for plans;
@@ -91,3 +106,5 @@ No app install/run commands exist yet. Add them here when the first app code lan
 Update `docs/status/<area>.md` in the same commit as the code: what changed, its date, and what
 you actually verified. If you learned a durable fact, put it in the matching topic file and date
 it. Don't grow this file; it's a router.
+
+Current ownership (confirmed by Amr, 2026-11-13): follow `docs/team.md`; it supersedes older assignments in topic documents. Shared API approval is pending. No trained forecast is required for P0.

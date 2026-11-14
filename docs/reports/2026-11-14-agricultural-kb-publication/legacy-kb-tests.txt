@@ -1,0 +1,23 @@
+test_all_approval_scientific_and_applicability_states (test_kb.AgriculturalKBTests.test_all_approval_scientific_and_applicability_states) ... ok
+test_dangling_duplicate_and_nonreciprocal_links_are_invalid (test_kb.AgriculturalKBTests.test_dangling_duplicate_and_nonreciprocal_links_are_invalid) ... ok
+test_dated_named_and_scope_bound_approval_required (test_kb.AgriculturalKBTests.test_dated_named_and_scope_bound_approval_required) ... ok
+test_explicit_locality_and_all_conditions_required (test_kb.AgriculturalKBTests.test_explicit_locality_and_all_conditions_required) ... ok
+test_import_is_byte_reproducible_and_preserves_research (test_kb.AgriculturalKBTests.test_import_is_byte_reproducible_and_preserves_research) ... ok
+test_linked_evidence_status_is_an_independent_gate (test_kb.AgriculturalKBTests.test_linked_evidence_status_is_an_independent_gate) ... ok
+test_missing_invalid_json_and_structured_errors (test_kb.AgriculturalKBTests.test_missing_invalid_json_and_structured_errors) ... ok
+test_missing_local_applicability_review_is_invalid (test_kb.AgriculturalKBTests.test_missing_local_applicability_review_is_invalid) ... ok
+test_nonlocal_and_forage_sources_do_not_gain_sakha_applicability (test_kb.AgriculturalKBTests.test_nonlocal_and_forage_sources_do_not_gain_sakha_applicability) ... ok
+test_original_27_rules_18_verified_four_crops_no_approval (test_kb.AgriculturalKBTests.test_original_27_rules_18_verified_four_crops_no_approval) ... ok
+test_pending_review_missing_evidence_and_constraint_block (test_kb.AgriculturalKBTests.test_pending_review_missing_evidence_and_constraint_block) ... ok
+test_portable_default_load_without_site_packages_or_models (test_kb.AgriculturalKBTests.test_portable_default_load_without_site_packages_or_models) ... ok
+test_queries_return_json_copies_and_include_shared_rules (test_kb.AgriculturalKBTests.test_queries_return_json_copies_and_include_shared_rules) ... ok
+test_scientific_verified_alone_and_approved_alone_cannot_activate (test_kb.AgriculturalKBTests.test_scientific_verified_alone_and_approved_alone_cannot_activate) ... ok
+test_source_byte_tampering_rejected (test_kb.AgriculturalKBTests.test_source_byte_tampering_rejected) ... ok
+test_stale_approval_after_rule_evidence_or_source_change (test_kb.AgriculturalKBTests.test_stale_approval_after_rule_evidence_or_source_change) ... ok
+test_supported_constraint_shapes_and_invalid_boundaries (test_kb.AgriculturalKBTests.test_supported_constraint_shapes_and_invalid_boundaries) ... ok
+test_unknown_missing_wrong_types_and_forged_enforceability_rejected (test_kb.AgriculturalKBTests.test_unknown_missing_wrong_types_and_forged_enforceability_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 3.303s
+
+OK

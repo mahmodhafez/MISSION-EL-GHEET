@@ -1,0 +1,77 @@
+{
+  "package": "backend",
+  "dataset_version": "sakha-power-lst-20261110-et0-v1",
+  "started_utc": "2026-11-13T03:34:18.080254+00:00",
+  "python": "3.12.14",
+  "platform": "Windows 11",
+  "commands": [
+    {
+      "name": "verify_package",
+      "exit_code": 0,
+      "seconds": 0.32
+    },
+    {
+      "name": "public_unit_and_consumer_suite",
+      "exit_code": 0,
+      "seconds": 1.32,
+      "tests_run": 15,
+      "failed": 0,
+      "skipped": 0,
+      "passed_tests": [
+        "test_backend.ClimateConsumerTests.test_contract_signatures_and_json_serialization",
+        "test_backend.ClimateConsumerTests.test_daily_rows_flags_units_sources_and_copy_isolation",
+        "test_backend.ClimateConsumerTests.test_et0_and_temperature_inclusive_including_leap_day",
+        "test_backend.ClimateConsumerTests.test_fit_only_heat_threshold_and_inclusive_operator",
+        "test_backend.ClimateConsumerTests.test_leap_rules_exclude_anchor_for_every_plan_or_include_extra_day",
+        "test_backend.ClimateConsumerTests.test_paired_continuous_four_season_blocks_and_duration_accounting",
+        "test_backend.ClimateConsumerTests.test_partial_unavailable_and_invalid_dates",
+        "test_backend.ClimateConsumerTests.test_protected_commitments_must_be_comparable_and_inside_covered_years",
+        "test_backend.ClimateConsumerTests.test_references_have_separate_support_and_quantiles",
+        "test_backend.ClimateConsumerTests.test_release_identity_and_tampered_cache_refused",
+        "test_backend.ClimateConsumerTests.test_schema_mismatches_refused_and_planner_status_never_inferred",
+        "test_backend.ClimateConsumerTests.test_unknown_policy_missing_endpoint_and_overlap_do_not_produce_evidence",
+        "test_et0.DailyET0Tests.test_first_canonical_day_and_separate_sensitivities",
+        "test_et0.DailyET0Tests.test_invalid_and_missing_public_inputs",
+        "test_et0.DailyET0Tests.test_published_fao_examples_via_public_implementation"
+      ]
+    },
+    {
+      "name": "backend_request_response",
+      "exit_code": 0,
+      "seconds": 1.16
+    },
+    {
+      "name": "backend_onboarding_python_example",
+      "exit_code": 0,
+      "seconds": 0.92
+    }
+  ],
+  "checks": {
+    "backend": {
+      "matches_shipped_example": true,
+      "byte_identical_example": true,
+      "eligible_anchors": [
+        2015,
+        2016
+      ],
+      "excluded_anchors": [
+        {
+          "anchor": 2024,
+          "reason": "incomplete_continuous_block",
+          "first": "2024-01-01",
+          "last": "2026-12-31",
+          "coverage": {
+            "expected_days": 1096,
+            "valid_days": 1035,
+            "fraction": 0.9443430656934306
+          }
+        }
+      ],
+      "climate_methods_exercised": 7,
+      "application_backend_exercised": false
+    }
+  },
+  "shipped_files_verified": 24,
+  "status": "VERIFIED AND TESTED",
+  "finished_utc": "2026-11-13T03:34:22.192030+00:00"
+}

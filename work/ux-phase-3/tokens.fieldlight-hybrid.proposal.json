@@ -1,0 +1,151 @@
+{
+  "status": "Fieldlight preferred; hybrid refinement pending Amr approval",
+  "recommended": "light",
+  "themes": {
+    "light": {
+      "canvas": "#F4F8F3",
+      "surface": "#FFFFFF",
+      "ink": "#16352B",
+      "muted": "#496459",
+      "action": "#17634B",
+      "actionHover": "#104D3A",
+      "secondary": "#254D62",
+      "accent": "#D6E7A3",
+      "wash": "#E6F0E7",
+      "border": "#6C8175",
+      "focus": "#1849AD",
+      "radius": 10
+    }
+  },
+  "semantic": {
+    "protected": {
+      "ink": "#283F73",
+      "surface": "#EDF0FA",
+      "meaning": "retained commitment, not feasibility"
+    },
+    "feasible": {
+      "ink": "#245C45",
+      "surface": "#EAF3EC",
+      "meaning": "only with current supported completed checks; no UH-001 example"
+    },
+    "rejected": {
+      "ink": "#9C3027",
+      "surface": "#FBEDE9",
+      "meaning": "demonstrated conflict"
+    },
+    "review": {
+      "ink": "#805000",
+      "surface": "#FFF2D5",
+      "meaning": "agricultural review required"
+    },
+    "unknown": {
+      "ink": "#4D5864",
+      "surface": "#EEF1F4",
+      "meaning": "missing fact or unavailable evidence; never zero"
+    },
+    "saved": {
+      "ink": "#283F73",
+      "surface": "#EDF0FA",
+      "meaning": "storage only; double rule, not plan approval"
+    },
+    "history": {
+      "ink": "#244B53",
+      "surface": "#ECF4F3",
+      "border": "#647E87",
+      "meaning": "historical regional evidence; solid archive rule"
+    },
+    "outlook": {
+      "ink": "#574168",
+      "surface": "#F2EDF6",
+      "border": "#796386",
+      "meaning": "future probabilistic concept; dashed boundary, currently unavailable"
+    },
+    "disabled": {
+      "ink": "#555C64",
+      "surface": "#E9ECEE",
+      "meaning": "unavailable control with visible reason"
+    }
+  },
+  "onAction": "#FFFFFF",
+  "typography": {
+    "bodyArabic": 20,
+    "bodyEnglish": 18,
+    "bodyLineArabic": 1.7,
+    "bodyLineEnglish": 1.6,
+    "support": 16,
+    "metadataNonessential": 12,
+    "questionMobile": 30,
+    "questionDesktop": 36,
+    "essentialDate": 24,
+    "control": 18,
+    "weights": [
+      400,
+      500,
+      600
+    ],
+    "arabicTracking": 0,
+    "familyArabic": [
+      "NotoArabic",
+      "Tahoma",
+      "Arial",
+      "sans-serif"
+    ],
+    "familyEnglish": [
+      "Readex",
+      "Arial",
+      "sans-serif"
+    ],
+    "seasonName": 22,
+    "seasonStatus": 16
+  },
+  "space": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    32,
+    40,
+    48,
+    64
+  ],
+  "controls": {
+    "minimumTarget": 48,
+    "standardHeight": 56,
+    "primaryHeight": 60,
+    "voiceHeight": 112,
+    "minimumGap": 8,
+    "focusOutline": 3,
+    "focusSeparation": 2,
+    "voiceMinimumWidth": 112
+  },
+  "layout": {
+    "mobileGutter": 20,
+    "desktopGutter": 36,
+    "maximumContent": 1180,
+    "stackBelow": 700,
+    "sideBySideReviewAbove": 1080,
+    "verticalPathBelow": 700,
+    "minimumSeasonColumn": 160,
+    "mobileArchWidth": 96
+  },
+  "motion": {
+    "selectionMs": 120,
+    "disclosureMs": 160,
+    "reducedMotion": "immediate state changes; no spatial motion",
+    "phase3": "No animation; immediate control feedback"
+  },
+  "signature": {
+    "seasonArch": "120px 120px 18px 18px",
+    "mobileBotanicalWindow": "56px 56px 12px 12px",
+    "ordinaryRadius": 12,
+    "usage": "Arches only for season portraits; no clipped labels or controls"
+  },
+  "states": {
+    "selected": "2px action border + explicit label",
+    "focus": "3px #1849AD with 3px offset",
+    "disabled": "Native disabled, legible reason, no reduced opacity",
+    "loading": "Retain content and state what is loading; no fabricated progress"
+  }
+}

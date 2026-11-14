@@ -8,7 +8,7 @@ Wire contracts: [api-contracts.md](api-contracts.md). Implementation map: [backe
 
 ## Authority and scope
 
-The unchanged [PRODUCT.md](../product/product.md), [SCIENCE.md](../science/science.md), [DATA_SPEC.md](../science/data-spec.md), [ML_EXPERIMENT.md](../ml/ml-experiment.md), [REFERENCE_SCENARIO.md](../product/reference-scenario.md) and [HANDOFF.md](../archive/handoff-.md) govern product and scientific meaning. The handoff confirms Sakha despite earlier pending-locality wording. The subsequent architecture approval resolves the handoff's pending architecture/stack wording; it does not resolve scientific uncertainty.
+The unchanged [PRODUCT.md](../product/product.md), [SCIENCE.md](../science/science.md), [DATA_SPEC.md](../science/data-spec.md), [ML_EXPERIMENT.md](../ml/ml-experiment.md), [REFERENCE_SCENARIO.md](../product/reference-scenario.md) and [HANDOFF.md](../archive/handoff.md) govern product and scientific meaning. The handoff confirms Sakha despite earlier pending-locality wording. The subsequent architecture approval resolves the handoff's pending architecture/stack wording; it does not resolve scientific uncertainty.
 
 Preserve all seven product requirements, all four catalogue crops, Egyptian Arabic/English voice interaction, and the trained-ML workstream. Feasibility under applicable rules and explicit assumptions is not proof of field performance. Farmer approval is not scientific verification.
 
