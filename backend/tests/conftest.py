@@ -6,12 +6,12 @@ import pytest
 from fastapi.testclient import TestClient
 
 BACKEND = pathlib.Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(BACKEND))
+sys.path.insert(0, str(BACKEND.parent))  # repo root: the package is backend.app
 REPO = BACKEND.parent
 FIXTURE = REPO / "packages" / "meg-core" / "tools" / "fixtures" / "uh001.json"
 
-from app.core.config import Settings  # noqa: E402
-from app.main import create_app  # noqa: E402
+from backend.app.core.config import Settings  # noqa: E402
+from backend.app.main import create_app  # noqa: E402
 
 
 class FakeExtractor:
@@ -45,3 +45,11 @@ def client(tmp_path, fake):
 def client_no_speech(tmp_path):
     settings = Settings.load(db_path=tmp_path / "t.sqlite3", data_release_path=FIXTURE, gemini_api_key="")
     return TestClient(create_app(settings))
+
+
+@pytest.fixture
+def reviewed(tmp_path, fake):
+    """App on Refaat's reviewed Sakha KB (the production default)."""
+    settings = Settings.load(db_path=tmp_path / "r.sqlite3", data_release_path="reviewed",
+                             forecast_bundle=tmp_path / "none.json", gemini_api_key="")
+    return TestClient(create_app(settings, extractor=fake))

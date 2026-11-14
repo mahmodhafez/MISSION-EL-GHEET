@@ -33,7 +33,7 @@ def _path(value: str) -> Path:
 @dataclass(frozen=True)
 class Settings:
     db_path: Path
-    data_release_path: Path
+    data_release_path: Path | str  # "reviewed" = Refaat's reviewed KB inside meg_core; else a planner fixture JSON
     cors_origins: tuple[str, ...]
     gemini_api_key: str = field(repr=False)
     gemini_model: str
@@ -45,7 +45,7 @@ class Settings:
         f = _env_file()
         s = cls(
             db_path=_path(_get("MEG_DB_PATH", "backend/var/meg.sqlite3", f)),
-            data_release_path=_path(_get("MEG_DATA_RELEASE_PATH", "packages/meg-core/tools/fixtures/uh001.json", f)),
+            data_release_path=(lambda v: v if v == "reviewed" else _path(v))(_get("MEG_DATA_RELEASE_PATH", "reviewed", f)),
             cors_origins=tuple(o for o in _get("MEG_CORS_ORIGINS", "http://127.0.0.1:5173,http://localhost:5173", f).split(",") if o),
             gemini_api_key=_get("MEG_GEMINI_API_KEY", "", f),
             gemini_model=_get("MEG_GEMINI_MODEL", "gemini-3.8-flash", f),

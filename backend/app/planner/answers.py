@@ -63,7 +63,10 @@ def labels(first_winter_year: int) -> list[str]:
 
 def to_payload(a: Answers, release) -> dict:
     """Build the planner-shaped request ({snapshot, exploration, confirm_exploration})."""
-    profiles = getattr(release.kb, "profiles", ())
+    # Fixture release: look the profile up here. Reviewed release: a placeholder that the adapter replaces with
+    # bind_profiles() (exact crop_id + purpose, never broadened).
+    profiles = getattr(getattr(release, "kb", None), "profiles", ())
+    reviewed = not profiles
     seasons, commitments = [], []
     for order, (s, label) in enumerate(zip(sorted(a.seasons, key=lambda x: x.season_id), labels(a.first_winter_year)), start=1):
         known = s.crop_id not in (None, UNKNOWN_CROP)
@@ -74,7 +77,8 @@ def to_payload(a: Answers, release) -> dict:
             "season_id": s.season_id, "order": order, "season_label": label,
             "crop_id": farmer(s.crop_id if known else None),
             "purpose": farmer(purpose if known else None),
-            "profile_id": fact(profile.profile_id, origin="derived", evidence=profile.evidence_status) if profile else missing("profile_unavailable"),
+            "profile_id": (fact(profile.profile_id, origin="derived", evidence=profile.evidence_status) if profile
+                           else fact(s.crop_id, origin="derived") if (reviewed and known) else missing("profile_unavailable")),
             "sowing_date": farmer(sow, "farmer_unknown" if s.sowing_date == "unknown" else "not_collected"),
             "harvest_or_cut_date": farmer(s.last_cut_date) if s.last_cut_date else missing(),
             "crop_end_exclusive": missing(),

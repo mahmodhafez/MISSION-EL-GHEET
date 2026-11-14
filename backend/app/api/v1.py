@@ -10,7 +10,8 @@ from fastapi import APIRouter, Query, Request
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..core.errors import ApiError
-from ..planner.adapter import InputValidationError, run_promise_test
+from ..planner.adapter import InputValidationError, KBError, run_promise_test
+from ..replay import ClimateDataError, ClimateInputError, compare_sowing_windows
 from ..planner.answers import Answers, to_payload
 from ..i18n.render import render_result
 from ..speech.extraction import is_empty, validate
@@ -65,8 +66,9 @@ def health(req: Request):
 
 
 @router.get("/catalogue")
-def catalogue(req: Request):
-    return _app(req).release.catalogue()
+def catalogue(req: Request, first_winter_year: int | None = Query(default=None, ge=2020, le=2100)):
+    rel = _app(req).release
+    return rel.catalogue(first_winter_year) if first_winter_year is not None and hasattr(rel, "built") else rel.catalogue()
 
 
 def _scenario_or_404(req: Request, sid: str) -> dict:
@@ -128,7 +130,13 @@ def promise_test(sid: str, req: Request, locale: Locale = "ar-EG"):
     try:
         out = run_promise_test(sc["input"], s.release)
     except InputValidationError as e:
-        raise ApiError(422, e.code, "The planner refused this input.", list(e.field_paths)) from None
+        paths = [e.field_paths] if isinstance(e.field_paths, str) else list(e.field_paths)
+        raise ApiError(422, e.code, "The planner refused this input.", paths) from None
+    except KBError as e:
+        code = getattr(e, "code", "KB_UNAVAILABLE")
+        if code == "OUTSIDE_RELEASE_SCOPE":
+            raise ApiError(422, "outside_release_scope", "This knowledge base covers Sakha only.") from None
+        raise ApiError(503, "kb_unavailable", "The agricultural knowledge base could not be loaded.") from None
     rid = s.store.add_result(sid, sc["revision"], "promise_test", s.release.data_release, out)  # codes + params only
     rendered = render_result(out["result"], sc["input"]["snapshot"]["input"], locale)
     return {"result_id": rid, "scenario_id": sid, "revision": sc["revision"], "data_release": s.release.data_release, **out, "rendered": rendered}
@@ -169,11 +177,44 @@ def get_card(cid: str, req: Request):
     return {**c, "current": sc is not None and sc["revision"] == c["revision"]}
 
 
+class ReplayBody(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    sow_dates: list[date] = Field(min_length=1, max_length=4)
+    window_days: int = Field(default=14, ge=1, le=120)
+    result_id: str | None = None
+
+
+def _statuses(result: dict, plan_input: dict) -> dict[str, str]:
+    """Plan statuses keyed by sowing date: current plan dates → current status; option dates → their status."""
+    out: dict[str, str] = {}
+    for s in plan_input["seasons"]:
+        if s["sowing_date"]["value"]:
+            out.setdefault(s["sowing_date"]["value"], result["current"]["status"])
+    for c in result["review_investigations"] + result["feasible_alternatives"] + result["rejected_candidates"]:
+        for ch in c["changes"]:
+            if ch["direct"] and ch["field"] == "sowing_date" and ch["after"]["value"]:
+                out[ch["after"]["value"]] = c["evaluation"]["status"]
+    return out
+
+
 @router.post("/scenarios/{sid}/replay")
-def replay(sid: str, req: Request):
-    _scenario_or_404(req, sid)
-    # Historical NASA replay is not connected yet (ML/data work in progress). Never a fake value.
-    return {"status": "unavailable", "reason": "replay_not_connected"}
+def replay(sid: str, body: ReplayBody, req: Request):
+    """Season Replay (Mahmoud + Amr, climate/season-replay-hardening): equal-length 14-day windows per sowing date,
+    NASA POWER 2001–2025 history + Refaat climatology. Echoes planner statuses; never changes them."""
+    s = _app(req)
+    sc = _scenario_or_404(req, sid)
+    statuses = None
+    if body.result_id:
+        r = s.store.get_result(body.result_id)
+        if r is None or r["scenario_id"] != sid:
+            raise ApiError(404, "result_not_found")
+        statuses = {d.isoformat(): st for d, st in ((d, _statuses(r["payload"]["result"], sc["input"]["snapshot"]["input"]).get(d.isoformat())) for d in body.sow_dates) if st}
+    try:
+        return {"status": "ok", "replay": compare_sowing_windows([d.isoformat() for d in body.sow_dates], window_days=body.window_days, planner_statuses=statuses or None)}
+    except ClimateInputError as e:
+        raise ApiError(422, "invalid_replay_request", str(e)[:300]) from None
+    except ClimateDataError:
+        return {"status": "unavailable", "reason": "climate_data_unavailable"}
 
 
 @router.get("/forecast")

@@ -1,4 +1,5 @@
-"""create_app(): settings → data release → store → routes. Run: backend/.venv/bin/uvicorn app.main:app (from backend/)."""
+"""create_app(): settings → data release → store → routes.
+Run from the repo root: backend/.venv/bin/uvicorn backend.app.main:app --port 8787"""
 from __future__ import annotations
 
 

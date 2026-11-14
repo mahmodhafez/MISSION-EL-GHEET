@@ -6,6 +6,28 @@
 
 ---
 
+## Final integration (14 Nov 2026, branch `chore/final-integration`)
+
+Merged: `backend/milestone-1` (frontend + backend), `review/agronomy-kb-final` (Refaat's reviewed KB + 12-crop catalogue),
+`climate/season-replay-hardening` (Mahmoud + Amr), `data/refaat-data-ml-recovery`. `planner/refaat-kb-adapter` left out
+(superseded; its adapter is in the 12-crop branch).
+
+- **Layout:** one package `backend.app`, run from the repo root (`uvicorn backend.app.main:app`); tests run as `pytest backend/tests`.
+- **Reviewed KB by default** (`MEG_DATA_RELEASE_PATH=reviewed`): `sakha-agricultural-review-2026-11-14.1`, hash-checked at
+  load. The planner KB is built per request for the scenario's season labels; profiles bound by exact crop + purpose
+  (`bind_profiles`); "I don't know" seasons are not bound. 27 rules, **0 enforceable** (no local sign-off), so results are
+  `rejected` or `needs_review`, never `feasible`. KB errors: out-of-scope site 422, missing/altered KB 503.
+- **`/catalogue`** = `catalogue_view`: 8 offerable crops (wheat, berseem forage, maize, sorghum, rice, faba bean, sugar beet,
+  Egyptian cotton), all `approval: pending`; 4 research records (watermelon, strawberry, cantaloupe, harankash) info only.
+- **`/replay` is real:** `compare_sowing_windows` (14-day windows, NASA POWER 2001–2025 + Refaat climatology), statuses
+  echoed from the stored Promise Test, never changed.
+- **Verified:** backend 69 tests; planner 118; UH-001 through the app on the reviewed KB = rejected, 28 May / 1 Jun
+  needs_review, 0 feasible, search incomplete; replay 15 May / 28 May / 1 Jun returned for 25 years. Full browser journey
+  against the running backend (390×760, 1280×820) passed with no errors or scrolling.
+- **Open:** preparation days and harvest dates not asked (no "why" step); 4.6 MB of CSVs + 2 ZIPs committed under
+  `refaat-data-ml/` against the no-data rule (Refaat to decide); four KB rules cite private documents only (Amr's F3);
+  Gemini not tested with a key; Refaat's KB schema and Amr's adapter conventions still need Yahya's formal approval.
+
 ## Built and verified (14 Nov 2026, branch `backend/milestone-1`)
 
 FastAPI app in `backend/app/` around the real `meg_core` planner (`packages/meg-core`, merged in via `chore/app-integration`):

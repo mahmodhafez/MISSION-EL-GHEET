@@ -1,4 +1,4 @@
-from app.speech.extraction import is_empty, validate
+from backend.app.speech.extraction import is_empty, validate
 
 CROPS = ["berseem", "grain_maize", "grain_sorghum", "wheat"]
 BASE = {"seasons": [], "area": None, "answer": {"yes_no": None, "confirm": None, "dont_know": None}, "ambiguous": [], "off_topic": False}

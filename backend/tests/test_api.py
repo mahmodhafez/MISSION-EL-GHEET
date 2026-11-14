@@ -78,7 +78,6 @@ def test_errors_use_one_envelope(client, uh001):
 
 def test_side_services_are_honest(client, uh001):
     sc = make(client, uh001)
-    assert client.post(f"/api/v1/scenarios/{sc['id']}/replay").json() == {"status": "unavailable", "reason": "replay_not_connected"}
     far = client.get("/api/v1/forecast", params={"action_dates": ["2027-05-28"], "today": "2026-11-14"}).json()
     assert far["status"] == "not_applicable"
     near = client.get("/api/v1/forecast", params={"action_dates": ["2026-11-16"], "today": "2026-11-14"}).json()

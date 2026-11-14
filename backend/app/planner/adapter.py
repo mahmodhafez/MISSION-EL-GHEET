@@ -24,8 +24,10 @@ from meg_core.planner._types import ScopeRequest, SearchPolicy  # noqa: E402
 from meg_core.planner._validation import InputValidationError  # noqa: E402
 from meg_core.planner.scope import prepare_scope  # noqa: E402
 from meg_core.planner.service import plan as plan_service  # noqa: E402
+from meg_core.agricultural_release import bind_profiles, catalogue_view, load_reviewed_release  # noqa: E402
+from agricultural_kb import KBError  # noqa: E402
 
-__all__ = ["InputValidationError", "Release", "load_release", "run_promise_test", "decode_input"]
+__all__ = ["InputValidationError", "KBError", "Release", "ReviewedRelease", "load_release", "run_promise_test", "decode_input"]
 
 TAGGED = (_types.Rule, _types.ExplorationChoice, _types.DateRangeChoice)
 
@@ -111,8 +113,39 @@ class Release:
         }
 
 
-def load_release(path: Path) -> Release:
-    """Load a KB. Today the only one is the UH-001 planner fixture: NOT a runtime agronomy release (Refaat owns that)."""
+class ReviewedRelease:
+    """Refaat's reviewed Sakha KB (sakha-agricultural-review-2026-11-14.1), hash-pinned inside meg_core.
+    Built per request for the scenario's season labels (docs/agronomy/yahya-kb-integration-handoff.md).
+    0 enforceable rules today, so no plan can be feasible."""
+    synthetic = False
+    note = "Reviewed Sakha agricultural KB; every rule pending local sign-off, none enforced."
+
+    def __init__(self):
+        self.release = load_reviewed_release()
+        self.data_release = self.release.version
+
+    def built(self, site_id: str, season_labels: tuple[str, ...]):
+        return self.release.for_planner(site_id=site_id, season_labels=season_labels)
+
+    def catalogue(self, first_winter_year: int | None = None) -> dict:
+        y = first_winter_year or 2026
+        built = self.built(self.release.site_id, (f"winter-{y}", f"summer-{y + 1}", f"winter-{y + 1}", f"summer-{y + 2}"))
+        view = catalogue_view(self.release, built)
+        return {
+            "data_release": self.data_release,
+            "crop_ids": [c["crop_id"] for c in view if c["offerable_purposes"]],
+            "crops": view,
+            "profiles": [{"profile_id": p.profile_id, "crop_id": p.crop_id, "purpose": p.purpose, "evidence_status": p.evidence_status} for p in built.kb.profiles],
+            "runtime": True,
+            "note": self.note,
+        }
+
+
+def load_release(path: Path | str):
+    """`reviewed` → Refaat's reviewed KB (default). A JSON path → that planner fixture KB (tests, golden UH-001)."""
+    if str(path) == "reviewed":
+        return ReviewedRelease()
+    path = Path(path)
     raw = json.loads(path.read_text(encoding="utf-8"))
     kb = decode(_types.KnowledgeBase, raw["kb"], "$.kb")
     synthetic = "SYNTHETIC" in json.dumps(raw["kb"])
@@ -134,11 +167,19 @@ def run_promise_test(payload: dict, release: Release) -> dict:
     if snapshot.data_release != release.data_release:
         raise InputValidationError("data_release_mismatch", ("snapshot.data_release",))
     confirm = bool(payload.get("confirm_exploration", False))
+    if isinstance(release, ReviewedRelease):
+        # Per-request KB for these season labels; bind each known crop to its exact (crop_id, purpose) profile.
+        built = release.built(snapshot.input.site_id, tuple(s.season_label for s in snapshot.input.seasons))
+        kb = built.kb
+        seasons = tuple(bind_profiles((s,), kb)[0] if s.crop_id.value is not None else s for s in snapshot.input.seasons)
+        snapshot = replace(snapshot, input=replace(snapshot.input, seasons=seasons))
+    else:
+        kb = release.kb
     draft = replace(snapshot, input=replace(snapshot.input, journey="explore")) if (choices or catalogue) else snapshot
-    preview = prepare_scope(ScopeRequest(snapshot=draft, choices=choices, catalogue_choices=catalogue), release.kb)
+    preview = prepare_scope(ScopeRequest(snapshot=draft, choices=choices, catalogue_choices=catalogue), kb)
     bound = draft
     if preview.choices or preview.issues:
         extra = {"scope_hash": preview.scope_hash, "exploration_confirmed": True} if confirm else {}
         bound = replace(draft, input=replace(draft.input, exploration=preview.choices, pending_scope_issues=preview.issues, **extra))
-    result = plan_service(bound, release.kb, SearchPolicy())
+    result = plan_service(bound, kb, SearchPolicy())
     return {"synthetic": release.synthetic, "exploration_confirmed": confirm, "preview": encode(preview), "result": encode(result)}
