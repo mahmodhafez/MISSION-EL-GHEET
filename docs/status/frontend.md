@@ -25,6 +25,11 @@ Nothing else.
 
 ## Built and verified (14 Nov 2026)
 
+- **Brand kit logo (14 Nov):** the Start screen now shows the brand kit's vertical lockup on cream
+  (`media/brand/mission-el-gheet-logo.svg`), and the favicon set (`favicon.svg`, `favicon.ico`,
+  `apple-touch-icon.png`) comes from the same kit. Checked: typecheck, 30 unit tests and build pass;
+  Start screen screenshot at 390 px shows the new logo.
+
 Vite 8 + React 19 + TypeScript 7 + Tailwind 4 app in `frontend/` implementing the voice-first labs (`work/ux-phase-4/`) as one flow:
 Start (logo, audio unlock) → check / explore → practice mic (real browser recogniser) → four seasons (crops from the catalogue,
 season-limited dates, no past dates, berseem sowing may be past) → what must stay → what may change → readback + one confirm →
