@@ -14,6 +14,7 @@ import json
 import pathlib
 import re
 import sys
+import time
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -22,9 +23,17 @@ from datetime import datetime, timedelta, timezone
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
-def get_json(url: str) -> dict:
-    with urllib.request.urlopen(url, timeout=30) as r:
-        return json.load(r)
+def get_json(url: str, attempts: int = 3) -> dict:
+    """Up to 3 tries for flaky networks; still fails closed if every try fails."""
+    for i in range(attempts):
+        try:
+            with urllib.request.urlopen(url, timeout=30) as r:
+                return json.load(r)
+        except OSError:
+            if i == attempts - 1:
+                raise
+            time.sleep(2 * (i + 1))
+    raise RuntimeError("unreachable")
 
 
 def npm_entries(lock: pathlib.Path):

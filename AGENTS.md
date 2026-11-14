@@ -19,7 +19,7 @@ Shared domain logic is planned as a standalone `meg_core` package (see `docs/pla
 
 | Path | What lives there | Real code yet? |
 |---|---|---|
-| `backend/` | FastAPI app (`app/`), tests | No, empty placeholders |
+| `backend/` | FastAPI app (`app/`), tests | Milestone 1 (real planner, SQLite); see `docs/status/backend.md` |
 | `frontend/` | React app (`src/features/*`): voice-first flow on a dev adapter | Yes, see `docs/status/frontend.md` |
 | `ml/` | Shared-release builder (`tools/`), tests, future experiments | Builder + 3 tests |
 | `data/validation/` | NASA POWER / ET0 audit and regeneration scripts | Yes, 16 tests |
@@ -77,14 +77,16 @@ python -I -S -m unittest discover -s packages/meg-core/tests -v         # planne
 cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm dev   # app at http://127.0.0.1:5173 (dev adapter)
 cd frontend && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build   # 12 unit tests
 python3 -I scripts/check_dependency_age.py                              # lock files: hashes + 14-day minimum age
+python3 -m venv backend/.venv && cp backend/pip.conf backend/.venv/pip.conf && backend/.venv/bin/pip install --require-hashes --no-deps --only-binary :all: -r backend/requirements.lock
+cd backend && .venv/bin/python -m pytest -q                            # backend: 12 tests incl. UH-001 golden
+cd backend && .venv/bin/uvicorn app.main:app --port 8000                # API at http://127.0.0.1:8000/api/v1 (docs at /docs)
 ```
 
 The frontend runs on a labelled dev adapter until the backend serves `/api/v1`.
 
 ## Facts worth knowing on day one
 
-- `backend/` contains only `.gitkeep` files. Docs once assumed backend code
-  existed when it didn't; check the tree before you believe a doc.
+- Check the tree before you believe a doc: docs once assumed backend code existed when it didn't.
 - The big evidence ZIP (`docs/VALIDATION_ARTIFACTS.zip`, ~470 MB) and model weights are **not in
   git**. Request them from Amr/Refaat (`docs/archive/handoff/ARTIFACT_TRANSFER.md`).
 - Many older docs contain Windows paths from Amr's machine (`C:/Users/Amr Hany/...`). They are

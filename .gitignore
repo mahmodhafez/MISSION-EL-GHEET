@@ -110,3 +110,6 @@ Thumbs.db
 
 # Preserve folder placeholders, including in local output folders
 !.gitkeep
+
+# Backend local database and runtime files
+/backend/var/
