@@ -32,7 +32,7 @@ Where the running API differs from the text below, this section describes realit
 
 | Endpoint | Request | Response |
 |---|---|---|
-| `GET /catalogue[?first_winter_year=2026]` | — | `{data_release, crop_ids (offerable), crops: catalogue_view[], profiles[], runtime, note}` |
+| `GET /catalogue[?first_winter_year=2026]` | — | `{data_release, crop_ids (offerable **and** with reviewed-KB evidence: wheat, berseem, grain_maize, grain_sorghum), crops: catalogue_view[] + kb_evidence, profiles[], runtime, note}` |
 | `POST /scenarios/from-answers` | `{first_winter_year, journey: check|explore, seasons[4]: {season_id, crop_id|unknown|null, purpose, sowing_date: ISO|unknown|null, last_cut_date}, locks{season_id: bool}, permissions[{season_id, field: sowing_date|crop_id, allowed_values[]}], confirm_exploration}` | Scenario `{id, revision, data_release, input, created_at, updated_at}` |
 | `POST /scenarios` / `revisions` | Planner-shaped `{snapshot, exploration, confirm_exploration}` (+ `expected_revision`) | Scenario; 409 `revision_conflict`, 409 `data_release_mismatch`, 422 `invalid_snapshot` |
 | `POST /scenarios/{id}/promise-test?locale=ar-EG|en` | — | `{result_id, scenario_id, revision, data_release, synthetic, exploration_confirmed, preview, result: PlanningResult, rendered}` |
@@ -44,6 +44,11 @@ Where the running API differs from the text below, this section describes realit
 
 - `rendered` = `{locale, headline, conflicts[], why, options[], coverage[], review_reasons[], takeaway}`, each item
   `{code, version, text, speech}`. Stored results keep codes and params only.
+- **Proposed 14 Nov, additive, needs Amr's sign-off:** `rendered.research` (optional; `null` on fixture releases) =
+  `{caveat, seasons[{season_id, crop_id, crop, notes[], other[]}], empty_seasons[], empty_hint}`. Each note is
+  `{rule_id, kind, title, text, speech, window, farmer_date, placement: before|inside|after|null, days_outside, dates[], where, source}`.
+  These are sourced, **unenforced** reviewed-KB rules shown beside the farmer's dates (`backend/app/planner/research.py`).
+  They never change plan status. Only exact date/day patterns are parsed; anything else goes to `other` with its English source text.
 - `/speech/interpret` returns the validated extraction, not yet the proposed `proposals[]` list. Audio input (Gemini hears the clip, backend design §8.2) is a proposed change, not built: clip ≤ 30 s and ≤ 256 KB (413 above). Public endpoints are rate-limited (429 + `Retry-After`, backend design §10a).
 - Errors: one envelope `{error: {code, message, field_paths}}`; KB out of scope 422, KB missing/altered 503.
 

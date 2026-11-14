@@ -27,7 +27,20 @@ export interface RenderedResult {
   locale: 'ar-EG' | 'en';
   headline: Rendered | null; conflicts: Rendered[]; why: Rendered | null;
   options: (Rendered & { candidate_id: string })[]; coverage: Rendered[]; review_reasons: Rendered[]; takeaway: Rendered | null;
+  /** Sourced findings from the reviewed KB (advisory; never changes status). Absent with the dev adapter / older servers. */
+  research?: ResearchBlock;
 }
+export interface ResearchSource { source_id: string; title: string; url: string | null; version: string | null; locator: string | null }
+export type ResearchKind = 'sowing_window' | 'maturity_window' | 'harvest_window' | 'trial_dates' | 'maturity_days' | 'first_cut';
+export interface ResearchNote {
+  rule_id: string; kind: ResearchKind; title: string; text: string; speech: string;
+  window: { start: string; end: string } | null; farmer_date: string | null;
+  placement: 'before' | 'inside' | 'after' | null; days_outside: number | null;
+  dates: string[]; where: string; source: ResearchSource;
+}
+export interface ResearchOther { rule_id: string; label: string; source_text: string; where: string; source: ResearchSource }
+export interface ResearchSeason { season_id: string; crop_id: string; crop: string; notes: ResearchNote[]; other: ResearchOther[] }
+export interface ResearchBlock { caveat: Rendered; seasons: ResearchSeason[]; empty_seasons: string[]; empty_hint: Rendered | null }
 export type PlanResponse =
   | { status: 'ok'; source: 'dev-export' | 'server'; data_release: string; result: PlanningResult; rendered?: RenderedResult; result_id?: string }
   | Unavailable;
@@ -57,7 +70,8 @@ export type InterpretResponse = { status: 'ok'; extraction: Extraction } | { sta
 export interface PlannerClient {
   readonly kind: 'dev' | 'http';
   /** `pending`: no crop in this release has agronomic sign-off, so tiles show a "needs review" badge. */
-  catalogue(): Promise<{ data_release: string; crop_ids: string[]; pending?: boolean }>;
+  /** `locked_ids`: crops shown greyed out and not selectable (no reviewed evidence in the KB yet). */
+  catalogue(): Promise<{ data_release: string; crop_ids: string[]; pending?: boolean; locked_ids?: string[] }>;
   promiseTest(snapshot: IntakeSnapshot, ctx: { locale: Locale; firstWinterYear: number }): Promise<PlanResponse>;
   /** Re-render a stored result in another language without re-running the planner (server only). */
   relocalise?(resultId: string, locale: Locale): Promise<RenderedResult | null>;

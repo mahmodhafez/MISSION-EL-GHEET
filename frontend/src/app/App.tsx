@@ -22,7 +22,7 @@ const SCREENS: Record<Route, () => React.ReactElement | null> = {
 export function App({ client }: { client: PlannerClient }) {
   const [state, dispatch] = useReducer(reducer, undefined, () => initialState());
   const voice = useVoice(state.locale);
-  useEffect(() => { client.catalogue().then((c) => dispatch({ type: 'set', patch: { cropIds: c.crop_ids, cropsPending: !!c.pending, dataRelease: c.data_release } })); }, [client]);
+  useEffect(() => { client.catalogue().then((c) => dispatch({ type: 'set', patch: { cropIds: c.crop_ids, lockedCropIds: c.locked_ids ?? [], cropsPending: !!c.pending, dataRelease: c.data_release } })); }, [client]);
   // Language switch: re-render the stored server result in the new language (planner not re-run).
   useEffect(() => {
     const p = state.plan;

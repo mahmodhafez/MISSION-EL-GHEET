@@ -14,6 +14,7 @@ from ..core.errors import ApiError
 from ..planner.adapter import InputValidationError, KBError, run_promise_test
 from ..replay import ClimateDataError, ClimateInputError, compare_sowing_windows
 from ..planner.answers import Answers, to_payload
+from ..planner.research import research_block
 from ..i18n.render import render_result
 from ..speech.extraction import is_empty, validate
 
@@ -141,6 +142,7 @@ def promise_test(sid: str, req: Request, locale: Locale = "ar-EG"):
         raise ApiError(503, "kb_unavailable", "The agricultural knowledge base could not be loaded.") from None
     rid = s.store.add_result(sid, sc["revision"], "promise_test", s.release.data_release, out)  # codes + params only
     rendered = render_result(out["result"], sc["input"]["snapshot"]["input"], locale)
+    rendered["research"] = research_block(s.release, sc["input"]["snapshot"]["input"], locale)  # advisory, never status
     return {"result_id": rid, "scenario_id": sid, "revision": sc["revision"], "data_release": s.release.data_release, **out, "rendered": rendered}
 
 
@@ -151,6 +153,8 @@ def get_result(rid: str, req: Request, locale: Locale = "ar-EG"):
         raise ApiError(404, "result_not_found")
     sc = _app(req).store.get_scenario(r["scenario_id"])
     rendered = render_result(r["payload"]["result"], sc["input"]["snapshot"]["input"], locale) if sc else None
+    if rendered is not None:
+        rendered["research"] = research_block(_app(req).release, sc["input"]["snapshot"]["input"], locale)
     return {**r, "current": sc is not None and sc["revision"] == r["revision"], "rendered": rendered}
 
 

@@ -6,6 +6,7 @@ import { Icon, CropArt } from '../../components/Icon';
 import { Banner, DateText, Hero, SeasonStrip, plantOf } from '../../components/parts';
 import { PLANT, UI } from '../../i18n/strings';
 import { dateText, num, type Bi } from '../../i18n/format';
+import { Research } from './Research';
 import { conflictPair, conflictSeasons, prepSteps, reviewReasons } from './explain';
 
 export function Checking() {
@@ -58,6 +59,10 @@ export function Result() {
   const cur = state.plan.result.current;
   const rendered = state.plan.rendered;
   const pair = conflictPair(cur);
+  // Sourced research (server only): advisory, shown for every status; absent with the dev adapter.
+  const rb = rendered?.research;
+  const research = rb && (rb.seasons.some((s) => s.notes.length || s.other.length) || rb.empty_hint)
+    ? <Research block={rb} locale={state.locale} t={t} onAddCrops={() => { voice.stop(); dispatch({ type: 'go', route: 'intake' }); }} /> : null;
   const idx = (sid: string | null) => state.seasons.findIndex((s) => s.season_id === sid);
   const sow = pair ? state.seasons[idx(pair.sowSeason)] : null;
   const cut = pair ? state.seasons[idx(pair.cutSeason)] : null;
@@ -81,7 +86,8 @@ export function Result() {
     prompt = { ar: 'مفيش تعارض واضح، بس الخطة محتاجة مراجعة زراعية.', en: 'No clear conflict, but the plan needs agricultural review.' };
     body = (<>
       <SeasonStrip inline items={state.seasons.map((s) => ({ cropId: s.crop_id, date: s.last_cut_date ?? (s.sowing_date !== 'unknown' ? s.sowing_date : null), kind: s.last_cut_date ? 'end' as const : undefined, mark: state.locks[s.season_id] ? 'lock' as const : undefined, cls: state.locks[s.season_id] ? 'lock' : '' }))} />
-      <div className="review-box">
+      {research}
+      <div className={`review-box${research ? ' compact' : ''}`}>
         <p className="ok-line"><Icon name="check" />{t({ ar: 'مفيش تعارض في المواعيد', en: 'No clash between the dates' })}</p>
         <p className="rv-head">{t({ ar: 'علشان تبقى أكيدة، لسه محتاج مراجعة زراعية:', en: 'To be sure, these still need agricultural review:' })}</p>
         <ul className="rv-list">{rs.map((r, k) => <li key={k}><span className="ic"><Icon name={r.icon} /></span><b>{t(r.label)}</b><span>{t(r.note)}</span></li>)}</ul>
@@ -105,7 +111,7 @@ export function Result() {
   return (
     <Shell prompt={prompt} onTranscript={undefined}>
       <div className="calm">
-        {banner}<DevBadge />{body}
+        {banner}<DevBadge />{body}{cur.status !== 'needs_review' && research}
         <div className="calm-end">{hasOptions && <p className="found"><Icon name="search" />{t(found)}</p>}<div className="three-btns">
           {hasOptions && <button className="primary" onClick={() => dispatch({ type: 'go', route: 'options' })}><Icon name="search" /><span>{t({ ar: 'شوف اللي لقيناه', en: 'See what we found' })}</span></button>}
           {(prepSteps(cur) || rendered?.why) && <button className="secondary" onClick={() => dispatch({ type: 'go', route: 'why' })}><Icon name="help" /><span>{t({ ar: 'ليه؟', en: 'Why?' })}</span></button>}
