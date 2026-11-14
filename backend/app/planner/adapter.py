@@ -124,6 +124,10 @@ class ReviewedRelease:
         self.release = load_reviewed_release()
         self.data_release = self.release.version
 
+    def evidenced(self) -> set[str]:
+        """crop_ids that have sourced evidence in the reviewed agricultural KB."""
+        return {c["crop_id"] for c in self.release.agricultural.get_crops()}
+
     def built(self, site_id: str, season_labels: tuple[str, ...]):
         return self.release.for_planner(site_id=site_id, season_labels=season_labels)
 
@@ -133,8 +137,10 @@ class ReviewedRelease:
         view = catalogue_view(self.release, built)
         return {
             "data_release": self.data_release,
-            "crop_ids": [c["crop_id"] for c in view if c["offerable_purposes"]],
-            "crops": view,
+            # Offer only crops with sourced evidence in the reviewed KB (Yahya, 14 Nov 2026): wheat, berseem, maize,
+            # sorghum. Other catalogue crops (rice, faba bean, sugar beet, cotton) have no reviewed evidence yet.
+            "crop_ids": [c["crop_id"] for c in view if c["offerable_purposes"] and c["crop_id"] in self.evidenced()],
+            "crops": [{**c, "kb_evidence": c["crop_id"] in self.evidenced()} for c in view],
             "profiles": [{"profile_id": p.profile_id, "crop_id": p.crop_id, "purpose": p.purpose, "evidence_status": p.evidence_status} for p in built.kb.profiles],
             "runtime": True,
             "note": self.note,

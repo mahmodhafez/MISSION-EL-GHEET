@@ -925,3 +925,50 @@ svg{display:inline-block;vertical-align:middle}
 .calm .found{display:flex;align-items:center;gap:8px;margin:0;font-size:16px;font-weight:600}
 .calm .found svg{width:20px;height:20px;flex:none}
 .calm > .review-box{max-width:640px;width:100%;margin-inline:auto}
+
+/* What research says: sourced KB findings, advisory only (never rejected styling). */
+.research{max-width:640px;width:100%;margin-inline:auto;display:grid;gap:12px}
+.research h3{margin:0;font-size:20px}
+.rs-caveat{display:flex;align-items:flex-start;gap:8px;margin:0;font-size:15px;color:var(--muted)}
+.rs-caveat svg{width:20px;height:20px;flex:none;margin-top:2px}
+.rs-season{display:grid;gap:10px}
+.rs-crop{display:flex;align-items:center;gap:10px;font-size:19px}
+.rs-crop .portrait-sm{width:44px;height:50px}.rs-crop .portrait-sm svg{width:34px;height:40px}
+.rs-notes{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.rs-note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;padding:12px;background:var(--surface);border:1px solid var(--divider);border-inline-start:4px solid var(--line);border-radius:12px}
+.rs-note.inside{border-inline-start-color:var(--feasible)}
+.rs-note.review{border-inline-start-color:var(--review);background:var(--review-bg)}
+.rs-note .ic svg{width:26px;height:26px;color:var(--muted)}
+.rs-note.review .ic svg{color:var(--review)}
+.rs-body{display:grid;gap:6px;min-width:0}
+.rs-body b{font-size:17px}
+.rs-body p{margin:0;font-size:16px}
+.rs-src{font-size:13px!important;color:var(--muted);overflow-wrap:anywhere}
+.rs-src a{color:var(--action)}
+.rs-line{display:grid;gap:4px;margin-block:4px}
+.rs-track{position:relative;height:14px;border-radius:7px;background:var(--unknown-bg)}
+.rs-band{position:absolute;top:0;bottom:0;border-radius:7px;background:var(--accent);border:1px solid var(--feasible)}
+.rs-mark{position:absolute;top:-4px;width:6px;height:22px;margin-inline-start:-3px;border-radius:3px;background:var(--ink)}
+.rs-note.review .rs-mark{background:var(--review)}
+.rs-ends{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;font-size:14px;color:var(--muted)}
+.rs-you{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ink)}
+.rs-note.review .rs-you{color:var(--review)}
+.rs-dot{width:10px;height:10px;border-radius:50%;background:currentColor;display:inline-block}
+.rs-chips{display:flex;flex-wrap:wrap;gap:6px}
+.rs-chips .chip{font-size:14px;padding:3px 10px;border-radius:12px;background:var(--portrait);border:1px solid var(--divider)}
+.rs-chips .chip.you{display:inline-flex;align-items:center;gap:6px;font-weight:600;background:var(--surface);border:2px solid var(--ink)}
+.rs-more summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-size:15px;color:var(--action)}
+.rs-more ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.rs-more li{padding:10px;border:1px solid var(--divider);border-radius:12px;background:var(--surface);display:grid;gap:4px}
+.rs-more p{margin:0;font-size:14px}
+.rs-empty{display:grid;gap:8px;justify-items:start;padding:10px 12px;border:1px dashed var(--line);border-radius:12px}
+.rs-empty p{margin:0;font-size:16px}
+.review-box.compact{padding:10px 12px;gap:6px}
+.review-box.compact .rv-head{font-size:14px;color:var(--muted)}
+.review-box.compact .rv-list li{border-width:1px;padding:4px 8px}
+.review-box.compact .rv-list .ic{width:28px;height:28px}.review-box.compact .rv-list .ic svg{width:20px;height:20px}
+.review-box.compact .rv-list b{font-size:15px}
+/* Crops without reviewed evidence: visible, greyed out, not selectable (14 Nov 2026). */
+.tile.locked{cursor:not-allowed;opacity:.5;filter:grayscale(1);background:var(--surface);border-style:dashed}
+.tile.locked:hover{background:var(--surface)}
+.tile.locked .tile-badge{white-space:nowrap;border-radius:999px;font-size:12px;padding:1px 8px}

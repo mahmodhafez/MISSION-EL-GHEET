@@ -5,7 +5,10 @@ from test_answers import UH001_ANSWERS
 def test_catalogue_separates_offerable_from_research(reviewed):
     c = reviewed.get("/api/v1/catalogue").json()
     assert c["data_release"] == "sakha-agricultural-review-2026-11-14.1"
-    assert set(c["crop_ids"]) == {"wheat", "grain_maize", "grain_sorghum", "berseem", "rice", "faba_bean", "sugar_beet", "egyptian_cotton"}
+    # Only crops with reviewed-KB evidence are offered (14 Nov 2026).
+    assert set(c["crop_ids"]) == {"wheat", "grain_maize", "grain_sorghum", "berseem"}
+    no_evidence = {x["crop_id"] for x in c["crops"] if not x["kb_evidence"]}
+    assert {"rice", "faba_bean", "sugar_beet", "egyptian_cotton"} <= no_evidence
     research = {x["crop_id"] for x in c["crops"] if x["research_only"]}
     assert {"watermelon", "strawberry", "cantaloupe", "harankash"} <= research
     assert not research & set(c["crop_ids"])

@@ -38,8 +38,10 @@ export function Intake() {
   const slot = state.slots[Math.min(i, 3)];
   const entry = state.seasons[Math.min(i, 3)];
   const plants = plantsFrom(state.cropIds);
+  // Crops with no reviewed evidence: shown greyed out so the farmer sees them, but they can't be picked.
+  const locked = plantsFrom(state.lockedCropIds).filter((p) => !plants.some((x) => x.plant === p.plant));
   // More than 4 crops: show them all at once (row tiles on phone, 4×2 on desktop) instead of paging.
-  const many = plants.length > 4;
+  const many = plants.length + locked.length > 4;
   const endDate = asksLastCut(entry.crop_id);
 
   const answer = (patch: Partial<SeasonEntry>, after: Field, heardChips?: Bi[]) => {
@@ -121,7 +123,8 @@ export function Intake() {
   } else if (field === 'crop') {
     prompt = { ar: `الموسم ${num(i + 1, 'ar')}، ${SEASON_KIND[slot.kind].ar}. هتزرع إيه؟`, en: `Season ${i + 1}, ${SEASON_KIND[slot.kind].en}. What will you grow?` };
     body = (<>{q({ ar: 'هتزرع إيه؟', en: 'What will you grow?' }, state.cropsPending && <span className="badge review q-note" title={t({ ar: 'كل المحاصيل لسه محتاجة مراجعة زراعية', en: 'Every crop still needs agricultural review' })}><Icon name="review" />{t(UI.needsReview)}</span>)}
-      <div className={`tiles four ${many ? 'compact' : ''}`}>{plants.map((p) => <Tile key={p.plant} label={t(PLANT[p.plant])} art={<CropArt plant={p.plant} />} pressed={plantOf(entry.crop_id) === p.plant} onClick={() => pickPlant(p.plant)} />)}</div>
+      <div className={`tiles four ${many ? 'compact' : ''}`}>{plants.map((p) => <Tile key={p.plant} label={t(PLANT[p.plant])} art={<CropArt plant={p.plant} />} pressed={plantOf(entry.crop_id) === p.plant} onClick={() => pickPlant(p.plant)} />)}
+        {locked.map((p) => <Tile key={p.plant} label={t(PLANT[p.plant])} art={<CropArt plant={p.plant} />} disabled badge={t({ ar: 'مش متاح', en: 'Not yet' })} onClick={() => {}} />)}</div>
       <button className="secondary wide-btn" onClick={() => answer({ crop_id: 'unknown', purpose: null, sowing_date: null, last_cut_date: null }, 'crop')}><Icon name="unknown" />{t(PLANT.unknown)}</button></>);
   } else if (field === 'purpose') {
     const opts = plants.find((p) => p.plant === plantOf(entry.crop_id))?.options ?? [];

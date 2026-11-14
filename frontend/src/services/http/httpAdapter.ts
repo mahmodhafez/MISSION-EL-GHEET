@@ -23,8 +23,10 @@ export function createHttpClient(base = '/api/v1'): PlannerClient {
   return {
     kind: 'http',
     async catalogue() {
-      const c = await call<{ data_release: string; crop_ids: string[]; crops?: { approval: string }[] }>('/catalogue');
-      return { data_release: c.data_release, crop_ids: c.crop_ids, pending: (c.crops ?? []).some((x) => x.approval !== 'approved') };
+      const c = await call<{ data_release: string; crop_ids: string[]; crops?: { crop_id: string; approval: string; offerable_purposes?: string[]; kb_evidence?: boolean }[] }>('/catalogue');
+      // Crops the catalogue could offer but the reviewed KB has no evidence for: shown greyed out, not selectable.
+      const locked = (c.crops ?? []).filter((x) => x.offerable_purposes?.length && x.kb_evidence === false && !c.crop_ids.includes(x.crop_id)).map((x) => x.crop_id);
+      return { data_release: c.data_release, crop_ids: c.crop_ids, pending: (c.crops ?? []).some((x) => x.approval !== 'approved'), locked_ids: locked };
     },
     async promiseTest(s: IntakeSnapshot, ctx): Promise<PlanResponse> {
       try {

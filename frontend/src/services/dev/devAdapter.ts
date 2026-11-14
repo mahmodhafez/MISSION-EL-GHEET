@@ -40,7 +40,8 @@ export function createDevClient(): PlannerClient {
   return {
     kind: 'dev',
     async catalogue() {
-      return { data_release: exportDoc.data_release, crop_ids: exportDoc.result.scope.available_crop_ids };
+      // Same picture as the server (14 Nov 2026): these catalogue crops have no reviewed KB evidence yet.
+      return { data_release: exportDoc.data_release, crop_ids: exportDoc.result.scope.available_crop_ids, locked_ids: ['rice', 'faba_bean', 'sugar_beet', 'egyptian_cotton'] };
     },
     async promiseTest(snapshot) {
       await new Promise((r) => setTimeout(r, 900)); // let "checking" be seen

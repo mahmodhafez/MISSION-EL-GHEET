@@ -14,7 +14,7 @@
 | 2 | Real crop pictures from Moaaz + a farmer recognition test | Current drawings are placeholders |
 | 3 | Decide whether research-only crops show greyed as “still being studied” | Today they are hidden (not selectable) |
 | 4 | Record push-to-talk clips (`MediaRecorder`) and send audio to `/speech/interpret` (Gemini hears it, decided 14 Nov); auto-stop at 15 s (30 s for the opening sentence), drop clips under 0.5 s, show "too many tries, use the pictures" on 429; apply the slot-filling rules; test on a real Android phone | Web Speech + dev keyword stand-in until then; [voice-first §2a](../design/voice-first.md) |
-| 5 | Real audio: pre-generated ElevenLabs files via `/speech/tts` (Moaaz) | Device voice, labelled, until then |
+| 5 | Real audio: Moaaz runs `build_voice.py --generate`; clips play automatically | Device voice, labelled, for anything not recorded |
 | 6 | Types generated from the backend OpenAPI; reload a saved card | Handwritten types; save works, reload not shown |
 | 7 | Opening long sentence (several seasons in one utterance) and per-field “Change” undo | Lab 02 state 2 |
 | 8 | Commit the UI audit as a repeatable check | Lives in a local scratch script (uses a Playwright copy outside the repo); adding it needs a vetted dev dependency |
@@ -39,16 +39,18 @@ before/after + why review → check again → summary + save; past weather and 7
 - **Speech:** Web Speech recognition (ar-EG / en-US) push-to-talk; device voice for output, labelled; a dev keyword extractor
   returns the Gemini schema shape until `/speech/interpret` exists.
 - **Hosting (2026-11-14):** `frontend/vercel.json` for Vercel (root `frontend/`, `VITE_API_BASE` = Render URL); voice turns that hit a server limit (429) switch to the pictures instead of retrying. Not deployed yet: [hosting.md](../backend/hosting.md).
+- **Recorded voice (2026-11-14):** `src/services/speech/clips.ts` matches each spoken sentence to `src/voice/voice-index.json` (built by `backend/scripts/voice_build`), then plays recorded pieces and words in order; otherwise the labelled device voice. Verified: 6 new unit tests (every catalogue line in both languages, real UH-001 backend speech, screen prompts), the fake-audio pipeline (383 clips, no cutting failures), and a headless click-through of the check, explore, needs-review and help flows in English and Arabic: every spoken sentence matched except the Season Replay summary (device voice). Not yet heard with real speech.
 - **UI fixes from Yahya's review (2026-11-14):** season names sit above the season cards (no longer cut by the arch) with one
   year format; "What may change" cards are compact (two small add buttons, removable chosen chips); "needs review" result shows
   the plan, "no clash between the dates" and a labelled list of what still needs review; the explore result says what the search
   found; Season Replay is reachable from the result ("Weather in past years (NASA)"), not only after Save. Checked with headless
   screenshots at 390 px (EN + AR) against the local backend.
+- **What research says (2026-11-14):** the result screen shows the backend's optional `rendered.research` (sourced findings from the reviewed Sakha KB) for every status, as the main content of "needs review" (the review list stays, compact, below it): calm caveat, per-crop note cards with title, text and a `where · source` link with locator, a window band with the farmer's date marker (RTL-aware, amber when before/after, never red), trial-date chips, a collapsed "More from the sources (English)" list, and the empty-seasons hint with an Add crops button to intake. `src/features/promise-test/Research.tsx`, `research.ts`; types in `plannerClient.ts`. Without `research` (dev adapter) the screen is unchanged; no voice change (appending would break recorded-clip matching). Verified: typecheck, 26 unit tests (4 new: render en + ar-EG of the contract's wheat example, timeline math), build. Not yet checked against the live backend or in a browser.
 - **Mic fix (2026-11-14):** the mic no longer turns on by itself after other taps. The delayed first-tap start is cancelled by any
   other tap, speech, or navigation; Back, language switch and screen changes close an open mic; events from aborted listens are
   ignored (one failure = one miss); the invisible ring no longer extends the mic's hit area; "speaking" no longer looks like
   "listening". Covered by `src/app/useVoice.test.ts` (fake recogniser); not yet re-tested on a real phone.
-- **Verified:** `pnpm typecheck`, `pnpm build` and `pnpm test` (16 unit tests) pass. A headless-Chromium click-through of the full
+- **Verified:** `pnpm typecheck`, `pnpm build` and `pnpm test` (22 unit tests) pass. A headless-Chromium click-through of the full
   UH-001 journey (26 steps, at 390×760 and 1280×820, English plus Arabic summary) reached the real result (rejected; review dates
   28 May and 1 June; season-4 maize not checked, search incomplete) with no script errors, horizontal overflow or scrolling.
 - **Not verified:** real phones, real Arabic speech recognition or device voices, screen readers, farmers, the backend.

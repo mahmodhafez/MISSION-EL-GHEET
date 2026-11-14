@@ -143,6 +143,96 @@
       "version": 1,
       "ar-EG": "أيام التجهيز",
       "en": "preparation days"
+    },
+    "research.caveat": {
+      "version": 1,
+      "ar-EG": "من أبحاث منشورة. لسه محدش راجعها لسخا، فمش بتغيّر نتيجة خطتك.",
+      "en": "From published research. Not yet reviewed for Sakha, so it does not change your plan's status."
+    },
+    "research.empty_seasons": {
+      "version": 1,
+      "ar-EG": "قولّي هتزرع إيه في المواسم الجاية علشان نشوف هيمشوا مع بعض ولا لأ.",
+      "en": "Add the crops for your next seasons so we can check how they fit together."
+    },
+    "research.title.sowing": {
+      "version": 1,
+      "ar-EG": "ميعاد الزراعة",
+      "en": "Sowing date"
+    },
+    "research.title.trial": {
+      "version": 1,
+      "ar-EG": "اتجرّب في تجارب",
+      "en": "Tried in field trials"
+    },
+    "research.title.first_cut": {
+      "version": 1,
+      "ar-EG": "أول حشة",
+      "en": "First cut"
+    },
+    "research.title.harvest": {
+      "version": 1,
+      "ar-EG": "الحصاد",
+      "en": "Harvest"
+    },
+    "research.title.maturity_days": {
+      "version": 1,
+      "ar-EG": "مدة لحد ما يستوي",
+      "en": "Time to maturity"
+    },
+    "research.sowing_window.none": {
+      "version": 1,
+      "ar-EG": "تقويم {where}: زراعة {crop} من {start} لـ {end}.",
+      "en": "{where} calendar: sow {crop_bare} {start} – {end}."
+    },
+    "research.sowing_window.inside": {
+      "version": 1,
+      "ar-EG": "تقويم {where}: زراعة {crop} من {start} لـ {end}. ميعادك {farmer_date} جوّه الفترة دي.",
+      "en": "{where} calendar: sow {crop_bare} {start} – {end}. Your date, {farmer_date}, is inside this window."
+    },
+    "research.sowing_window.after": {
+      "version": 1,
+      "ar-EG": "تقويم {where}: زراعة {crop} من {start} لـ {end}. ميعادك {farmer_date} بعدها بـ {gap_days}.",
+      "en": "{where} calendar: sow {crop_bare} {start} – {end}. Your date, {farmer_date}, is {gap_days} after it."
+    },
+    "research.sowing_window.before": {
+      "version": 1,
+      "ar-EG": "تقويم {where}: زراعة {crop} من {start} لـ {end}. ميعادك {farmer_date} قبلها بـ {gap_days}.",
+      "en": "{where} calendar: sow {crop_bare} {start} – {end}. Your date, {farmer_date}, is {gap_days} before it."
+    },
+    "research.maturity_window": {
+      "version": 1,
+      "ar-EG": "تقويم {where}: {crop} بيستوي من {start} لـ {end}. الاستوا مش هو يوم ما الأرض تفضى.",
+      "en": "{where} calendar: {crop_bare} matures {start} – {end}. Maturity is not the day the field is free."
+    },
+    "research.harvest_window": {
+      "version": 1,
+      "ar-EG": "تقويم {where}: حصاد {crop} من {start} لـ {end}.",
+      "en": "{where} calendar: harvest {crop_bare} {start} – {end}."
+    },
+    "research.trial_dates": {
+      "version": 1,
+      "ar-EG": "تجربة في {where} زرعت {crop} في {dates}.{extra}",
+      "en": "A trial at {where} sowed {crop_bare} on {dates}.{extra}"
+    },
+    "research.maturity_pair": {
+      "version": 1,
+      "ar-EG": "{range} لما اتزرع {sown}",
+      "en": "{range} when sown {sown}"
+    },
+    "research.maturity_days": {
+      "version": 1,
+      "ar-EG": "في تجربة في {where} ({cultivar})، {crop} استوى بعد {pairs}.",
+      "en": "In a trial at {where} ({cultivar}), {crop_bare} reached maturity in {pairs}."
+    },
+    "research.first_cut": {
+      "version": 1,
+      "ar-EG": "{where}: أول حشة بعد الزراعة بـ {first}، وبعدها كل {interval}.",
+      "en": "{where}: first cut {first} after sowing, then every {interval}."
+    },
+    "research.first_cut.dated": {
+      "version": 1,
+      "ar-EG": "{where}: أول حشة بعد الزراعة بـ {first}، وبعدها كل {interval}. من ميعاد زراعتك {sow}، يعني تقريبًا من {start} لـ {end}.",
+      "en": "{where}: first cut {first} after sowing, then every {interval}. From your sowing on {sow}, that is about {start} – {end}."
     }
   }
 }

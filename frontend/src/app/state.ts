@@ -21,6 +21,7 @@ export interface State {
   today: string;
   slots: SeasonSlot[];
   cropIds: string[];
+  lockedCropIds: string[];
   cropsPending: boolean;
   dataRelease: string | null;
   seasons: SeasonEntry[];
@@ -48,7 +49,7 @@ export function initialState(now = new Date()): State {
   const slots = slotsFrom(firstWinter(today));
   return {
     locale: 'ar', route: 'start', history: [], audioUnlocked: false, journey: 'explore', today, slots,
-    cropIds: [], cropsPending: false, dataRelease: null,
+    cropIds: [], lockedCropIds: [], cropsPending: false, dataRelease: null,
     seasons: slots.map((s) => ({ season_id: s.id, crop_id: null, purpose: null, sowing_date: null, last_cut_date: null })),
     cursor: { season: 0, field: 'crop' }, clarify: false, msg: null, heard: null,
     locks: {}, permissions: [], confirmed: false, stale: false, plan: null, pick: 0, practiced: false,
