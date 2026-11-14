@@ -14,7 +14,7 @@
 | 2 | Real crop pictures from Moaaz + a farmer recognition test | Current drawings are placeholders |
 | 3 | Decide whether research-only crops show greyed as “still being studied” | Today they are hidden (not selectable) |
 | 4 | Record push-to-talk clips (`MediaRecorder`) and send audio to `/speech/interpret` (Gemini hears it, decided 14 Nov); auto-stop at 15 s (30 s for the opening sentence), drop clips under 0.5 s, show "too many tries, use the pictures" on 429; apply the slot-filling rules; test on a real Android phone | Web Speech + dev keyword stand-in until then; [voice-first §2a](../design/voice-first.md) |
-| 5 | Real audio: Moaaz runs `build_voice.py --generate`; clips play automatically | Device voice, labelled, for anything not recorded |
+| 5 | Arabic word clips (crops, numbers, months, years, day counts: 102), the 7 research lines, re-records of `why.local`, `options.found_one`, `api.dates_to_check`; English audio; a listening pass in the app | 75 Arabic clips shipped 14 Nov; 25 sentences with a changing word still use the device voice |
 | 6 | Types generated from the backend OpenAPI; reload a saved card | Handwritten types; save works, reload not shown |
 | 7 | Opening long sentence (several seasons in one utterance) and per-field “Change” undo | Lab 02 state 2 |
 | 8 | Commit the UI audit as a repeatable check | Lives in a local scratch script (uses a Playwright copy outside the repo); adding it needs a vetted dev dependency |
@@ -45,6 +45,16 @@ before/after + why review → check again → summary + save; past weather and 7
   the plan, "no clash between the dates" and a labelled list of what still needs review; the explore result says what the search
   found; Season Replay is reachable from the result ("Weather in past years (NASA)"), not only after Save. Checked with headless
   screenshots at 390 px (EN + AR) against the local backend.
+- **Arabic voice clips shipped (2026-11-14):** 75 ElevenLabs clips (Fatima, Expressive Egyptian, Eleven v4; delivered as
+  `catalogue_voice_ar.zip`) in `public/audio/ar/` + `manifest.json`, committed so the deployed app plays them. **41 Arabic
+  sentences play recorded** (every sentence without a changing word, except the 7 new research lines). The **25 with a
+  crop/date/number** still use the device voice: the zip has no word clips. 6 clips left out: cut only from the 3 lines
+  the zip marks `_regenerate`; one was 0.10 s of near-silence, one ran long, one looked truncated. English has no clips.
+  A clip that fails to load or play (404, decode error) now falls back to the device voice and the label switches to
+  "Device voice", instead of showing "Sound is not working". Verified: 4 new tests (`speaker.test.ts`: recorded playback,
+  fallback, English), 30 unit tests, typecheck, build (75 clips in `dist/audio/ar`), `vite preview` serves them as
+  `audio/mpeg`; all 81 delivered clips probed (mp3 44.1 kHz mono 128 kbps, loudness, silences). **Not heard by a person
+  in the app yet.**
 - **What research says (2026-11-14):** the result screen shows the backend's optional `rendered.research` (sourced findings from the reviewed Sakha KB) for every status, as the main content of "needs review" (the review list stays, compact, below it): calm caveat, per-crop note cards with title, text and a `where · source` link with locator, a window band with the farmer's date marker (RTL-aware, amber when before/after, never red), trial-date chips, a collapsed "More from the sources (English)" list, and the empty-seasons hint with an Add crops button to intake. `src/features/promise-test/Research.tsx`, `research.ts`; types in `plannerClient.ts`. Without `research` (dev adapter) the screen is unchanged; no voice change (appending would break recorded-clip matching). Verified: typecheck, 26 unit tests (4 new: render en + ar-EG of the contract's wheat example, timeline math), build. Not yet checked against the live backend or in a browser.
 - **Mic fix (2026-11-14):** the mic no longer turns on by itself after other taps. The delayed first-tap start is cancelled by any
   other tap, speech, or navigation; Back, language switch and screen changes close an open mic; events from aborted listens are

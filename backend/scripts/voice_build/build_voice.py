@@ -9,6 +9,7 @@ Standard library only (+ ffmpeg/ffprobe on PATH for --generate / --recordings). 
     python3 -I backend/scripts/voice_build/build_voice.py --generate         # ElevenLabs (ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID_AR/_EN)
     python3 -I backend/scripts/voice_build/build_voice.py --generate --fake  # beeps instead of speech: checks the pipeline
     python3 -I backend/scripts/voice_build/build_voice.py --recordings DIR   # human recordings named as in the sheet
+    python3 -I backend/scripts/voice_build/build_voice.py --import DIR       # clips already cut elsewhere, named <key>.mp3
 
 See README.md in this folder.
 """
@@ -326,17 +327,79 @@ def produce(index: dict, source: str, rec_dir: Path | None, fresh: bool) -> None
             if src:
                 encode(src, dest)
                 made += 1
-    keys = {loc: sorted(p.stem for p in (AUDIO / loc).glob("*.mp3")) for loc in LOCALES if (AUDIO / loc).exists()}
-    manifest = {"source": source, "voice": {l: (voices[l] if source == "eleven" else source) for l in LOCALES},
-                "model": os.environ.get("ELEVENLABS_MODEL_ID", "eleven_multilingual_v2") if source == "eleven" else None,
-                "built": time.strftime("%Y-%m-%d"), "keys": keys}
+    write_manifest(index, made, report, source, {l: (voices[l] if source == "eleven" else source) for l in LOCALES},
+                   os.environ.get("ELEVENLABS_MODEL_ID", "eleven_multilingual_v2") if source == "eleven" else None)
+
+
+def write_manifest(index: dict, made: int, report: list[str], source: str, voice: dict, model: str | None) -> None:
+    """List every clip on disk that the current index uses; the app only plays clips listed here."""
+    used = {l: {p["key"] for f in frames(index, l) for p in f["pieces"]} | {w["key"] for w in word_list(index, l)} for l in LOCALES}
+    keys = {loc: sorted(p.stem for p in (AUDIO / loc).glob("*.mp3") if p.stem in used[loc]) for loc in LOCALES if (AUDIO / loc).exists()}
+    manifest = {"source": source, "voice": voice, "model": model, "built": time.strftime("%Y-%m-%d"), "keys": keys}
     (AUDIO / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False) + "\n", encoding="utf-8")
-    need = sum(len({p["key"] for f in frames(index, l) for p in f["pieces"]} | {w["key"] for w in word_list(index, l)}) for l in LOCALES)
-    have = sum(len(v) for v in keys.values())
-    print(f"{made} clips made now; {have} of {need} clips present in {AUDIO.relative_to(REPO)}.")
+    for loc in LOCALES:
+        print(f"{loc}: {len(keys.get(loc, []))} of {len(used[loc])} clips present")
+    print(f"{made} clips added now, in {AUDIO.relative_to(REPO)}.")
     if report:
+        OUT.mkdir(parents=True, exist_ok=True)
         (OUT / "report.txt").write_text("\n".join(report) + "\n", encoding="utf-8")
         print(f"{len(report)} problem(s), see {OUT / 'report.txt'}:\n  " + "\n  ".join(report[:10]))
+
+
+def loudness(f: Path) -> float:
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(f), "-af", "volumedetect", "-f", "null", "-"], capture_output=True, text=True).stderr
+    m = re.search(r"mean_volume: (-?[\d.]+) dB", err)
+    return float(m.group(1)) if m else -99.0
+
+
+def import_pieces(index: dict, src_dir: Path, voice: str) -> None:
+    """Copy clips that were already cut elsewhere (e.g. catalogue_voice/pieces/<key>.mp3) into the app.
+
+    Keys are hashes of locale + text, so a clip's file name says which sentence piece or word it is.
+    Each clip must decode, last at least 0.15 s and not be near-silent. If the folder's overrides.json lists
+    `_regenerate` line ids, clips cut only from those recordings (per jobs.json) are left out."""
+    for tool in ("ffmpeg", "ffprobe"):
+        if not shutil.which(tool):
+            sys.exit(f"{tool} not found on PATH.")
+    pieces = src_dir / "pieces" if (src_dir / "pieces").is_dir() else src_dir
+    bad_lines: set[str] = set()
+    if (src_dir / "overrides.json").exists():
+        bad_lines = set(json.loads((src_dir / "overrides.json").read_text(encoding="utf-8")).get("_regenerate", []))
+    sources: dict[str, set[str]] = {}
+    if bad_lines and (src_dir / "jobs.json").exists():
+        for b in json.loads((src_dir / "jobs.json").read_text(encoding="utf-8")).get("bases", []):
+            for p in b["pieces"]:
+                sources.setdefault(p["key"], set()).add(b["id"])
+    loc_of = {}
+    for loc in LOCALES:
+        for f in frames(index, loc):
+            for p in f["pieces"]:
+                loc_of[p["key"]] = loc
+        for w in word_list(index, loc):
+            loc_of[w["key"]] = loc
+    report, made, locs = [], 0, set()
+    for f in sorted(pieces.glob("*.mp3")):
+        k = f.stem
+        if k not in loc_of:
+            report.append(f"{k}: not in the current voice index; skipped")
+            continue
+        if sources.get(k) and sources[k] <= bad_lines:
+            report.append(f"{k}: cut from {sorted(sources[k])}, marked _regenerate; skipped")
+            continue
+        try:
+            d = duration(f)
+        except (subprocess.CalledProcessError, ValueError):
+            report.append(f"{k}: does not decode; skipped")
+            continue
+        if d < 0.15 or loudness(f) < -40:
+            report.append(f"{k}: too short or near-silent ({d:.2f} s); skipped")
+            continue
+        dest = AUDIO / loc_of[k] / f"{k}.mp3"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(f, dest)
+        made += 1
+        locs.add(loc_of[k])
+    write_manifest(index, made, report, "import", {l: voice for l in sorted(locs)}, None)
 
 
 def main() -> None:
@@ -348,6 +411,8 @@ def main() -> None:
     ap.add_argument("--fake", action="store_true", help="with --generate: beeps instead of ElevenLabs")
     ap.add_argument("--recordings", type=Path, help="make missing clips from human recordings in this folder")
     ap.add_argument("--fresh", action="store_true", help="delete existing clips first")
+    ap.add_argument("--import", dest="import_dir", type=Path, help="copy already-cut clips named <key>.mp3 from this folder")
+    ap.add_argument("--voice", default="imported", help="with --import: voice name recorded in the manifest")
     a = ap.parse_args()
     index = build_index()
     for msg in sorted(SKIPPED):
@@ -355,6 +420,11 @@ def main() -> None:
     if a.check:
         ok = INDEX.exists() and INDEX.read_text(encoding="utf-8") == index_text(index)
         print("voice index up to date" if ok else "voice index OUT OF DATE: run build_voice.py --index")
+        if (AUDIO / "manifest.json").exists():  # every clip the app is told about must be on disk
+            listed = json.loads((AUDIO / "manifest.json").read_text(encoding="utf-8")).get("keys", {})
+            missing = [f"{l}/{k}.mp3" for l, ks in listed.items() for k in ks if not (AUDIO / l / f"{k}.mp3").exists()]
+            print(f"audio manifest: {sum(map(len, listed.values()))} clips listed, {len(missing)} missing" + (f": {missing[:5]}" if missing else ""))
+            ok = ok and not missing
         sys.exit(0 if ok else 1)
     if a.index or a.generate or a.recordings:
         INDEX.write_text(index_text(index), encoding="utf-8")
@@ -366,7 +436,11 @@ def main() -> None:
         print(text.splitlines()[3].strip(), f"→ {OUT / 'recording-sheet.md'}")
     if a.generate or a.recordings:
         produce(index, "recordings" if a.recordings else "fake" if a.fake else "eleven", a.recordings, a.fresh)
-    if not any([a.index, a.sheet, a.generate, a.recordings]):
+    if a.import_dir:
+        if a.fresh and AUDIO.exists():
+            shutil.rmtree(AUDIO)
+        import_pieces(index, a.import_dir, a.voice)
+    if not any([a.index, a.sheet, a.generate, a.recordings, a.import_dir]):
         ap.print_help()
 
 

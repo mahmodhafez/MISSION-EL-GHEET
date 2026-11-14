@@ -46,7 +46,7 @@ export function useVoice(locale: Locale) {
     cancelListen();
     if (!spk.current.available) { setState('audiooff'); return; }
     setState('speaking');
-    setSource(spk.current.speak(b[locale], locale === 'ar' ? 'ar-EG' : 'en-GB', () => setState((v) => (v === 'speaking' ? rest() : v)), () => setState('audiooff')));
+    setSource(spk.current.speak(b[locale], locale === 'ar' ? 'ar-EG' : 'en-GB', () => setState((v) => (v === 'speaking' ? rest() : v)), () => setState('audiooff'), setSource));
   }, [locale, rest]);
 
   const miss = useCallback((kind: 'nospeech' | 'notunderstood') => {

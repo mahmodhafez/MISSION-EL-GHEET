@@ -21,7 +21,7 @@ The frontend calls the backend directly (`VITE_API_BASE` = the Render URL); the 
 ## Before you deploy
 
 - **Render and Vercel deploy `main`** (`render.yaml` `branch: main`, Vercel production branch). Merge `chore/final-integration` into `main` by pull request first; never push to `main` directly.
-- **Voice clips:** the deployed app plays recorded voice only if `frontend/public/audio/` (built by [`voice_build`](../../backend/scripts/voice_build/README.md)) is in the commit Vercel builds. That folder is git-ignored until the clips are generated and listened to; until then every sentence uses the labelled device voice (and the browser logs one harmless 404 for `/audio/manifest.json`).
+- **Voice clips:** the deployed app plays recorded voice only if `frontend/public/audio/` (built by [`voice_build`](../../backend/scripts/voice_build/README.md)) is in the commit Vercel builds. Since 14 Nov it is committed with 75 Arabic clips; sentences without clips (English, and Arabic ones with a changing word) use the labelled device voice.
 - **Rehearsed 14 Nov 2026** on a clean copy of the repo: Render's exact build command (hashed lock, pip 24.0) and start command, then a production frontend build pointed at it, clicked through in a browser. Health `"status":"ok"`; the allowed origin passes the CORS preflight and another origin is refused; the UH-001 explore journey returned the conflict, the search summary and Season Replay with every API call 200/201 and no development badge. App start to healthy: 0.4 s on a laptop (a Render wake-up is mostly Render's own container start). Not yet run on Render itself.
 
 ## Steps

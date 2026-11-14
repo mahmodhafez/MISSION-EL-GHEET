@@ -114,6 +114,5 @@ Thumbs.db
 # Backend local database and runtime files
 /backend/var/
 
-# Generated voice clips (backend/scripts/voice_build); committing them is a pending decision
-/frontend/public/audio/
+# Voice build scratch output (the clips in frontend/public/audio/ are committed: the deployed app serves them)
 /backend/scripts/voice_build/out/
