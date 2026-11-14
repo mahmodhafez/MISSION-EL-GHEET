@@ -1,0 +1,17 @@
+{
+  "declared_before_held_out_predictions": true,
+  "training": "2001-01-01 through 2018-12-31",
+  "diagnostic_validation": "36 monthly issue dates, 15th of each month in 2019-2021",
+  "training_configurations": ["20-step execution smoke test", "200-step bounded adaptation test if smoke succeeds"],
+  "selection": "Select the adapter with lower ET0 MAE on diagnostic validation; report Tmax separately. Do not tune after held-out evaluation.",
+  "held_out_period": "2026-07-01 through 2026-10-31",
+  "held_out_issue_dates": "Every 7 days from 2026-07-01, retaining only origins with all seven target dates no later than 2026-10-31",
+  "checkpoint_revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+  "checkpoint_revision_date": "2026-06-05T11:55:42.000Z",
+  "cutoff": "D-7 for every target channel; predict 14 steps and score steps 8-14 as D+1 through D+7",
+  "context": "60 complete historical days ending at cutoff",
+  "comparators": ["latest-available-value persistence", "training-only day-of-year climatology with +/-15-day window", "unchanged pretrained model", "selected LoRA adapter"],
+  "metrics": ["MAE and RMSE per target", "bias and MAE by lead", "0.1/0.5/0.9 quantile loss", "80% interval coverage and width"],
+  "interpretation": "Adapter improvement must be assessed against both the unchanged checkpoint and useful simple baselines, separately for Tmax and ET0. A short seasonal test is not deployment validation, irrigation advice, or evidence of better crop outcomes.",
+  "limitations": ["Historical revised archive with simulated latency", "One source point", "Limited July-October test seasons", "No near-term agricultural decision usefulness trial", "No station truth validation of ET0 labels"]
+}

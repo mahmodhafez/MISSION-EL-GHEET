@@ -1,0 +1,1982 @@
+{
+  "request": {
+    "site_id": "sakha_31.10_30.95",
+    "interval": [
+      "2014-06-03",
+      "2014-06-05"
+    ],
+    "climatology_target_date": "2028-02-29",
+    "plans": [
+      {
+        "plan_id": "calendar_A",
+        "plan_version": "example-1",
+        "field_id": "sample-field",
+        "planner_status": "needs_review",
+        "mapping_policy": "explicit_calendar_windows_v1",
+        "commitments": [
+          {
+            "id": "cut",
+            "description": "Protected livestock cut (example commitment)",
+            "date": "2027-05-20"
+          }
+        ],
+        "seasons": [
+          {
+            "season_id": "winter1",
+            "crop_id": "berseem",
+            "purpose": "forage",
+            "sow_date": "2026-11-01",
+            "crop_end_exclusive": "2027-05-21"
+          },
+          {
+            "season_id": "summer1",
+            "crop_id": "grain_maize",
+            "purpose": "grain",
+            "sow_date": "2027-06-01",
+            "crop_end_exclusive": "2027-09-21"
+          },
+          {
+            "season_id": "winter2",
+            "crop_id": "wheat",
+            "purpose": "grain",
+            "sow_date": "2027-11-20",
+            "crop_end_exclusive": "2028-04-26"
+          },
+          {
+            "season_id": "summer2",
+            "crop_id": "grain_sorghum",
+            "purpose": "grain",
+            "sow_date": "2028-06-01",
+            "crop_end_exclusive": "2028-09-22"
+          }
+        ]
+      },
+      {
+        "plan_id": "calendar_B",
+        "plan_version": "example-1",
+        "field_id": "sample-field",
+        "planner_status": "needs_review",
+        "mapping_policy": "explicit_calendar_windows_v1",
+        "commitments": [
+          {
+            "id": "cut",
+            "description": "Protected livestock cut (example commitment)",
+            "date": "2027-05-20"
+          }
+        ],
+        "seasons": [
+          {
+            "season_id": "winter1",
+            "crop_id": "berseem",
+            "purpose": "forage",
+            "sow_date": "2026-11-01",
+            "crop_end_exclusive": "2027-05-21"
+          },
+          {
+            "season_id": "summer1",
+            "crop_id": "grain_maize",
+            "purpose": "grain",
+            "sow_date": "2027-06-08",
+            "crop_end_exclusive": "2027-09-29"
+          },
+          {
+            "season_id": "winter2",
+            "crop_id": "wheat",
+            "purpose": "grain",
+            "sow_date": "2027-11-20",
+            "crop_end_exclusive": "2028-04-26"
+          },
+          {
+            "season_id": "summer2",
+            "crop_id": "grain_sorghum",
+            "purpose": "grain",
+            "sow_date": "2028-06-01",
+            "crop_end_exclusive": "2028-09-22"
+          }
+        ]
+      }
+    ],
+    "template_anchor_year": 2026,
+    "anchor_years": [
+      2015,
+      2016,
+      2024
+    ]
+  },
+  "daily": {
+    "status": "complete",
+    "start": "2014-06-03",
+    "end": "2014-06-05",
+    "coverage": {
+      "expected_days": 3,
+      "valid_days": 3,
+      "fraction": 1.0
+    },
+    "quality": {
+      "review_days": 2,
+      "flag_day_counts": {},
+      "statistical_column_day_counts": {
+        "et0_mm_day": 1,
+        "solar_mj_m2_day": 2,
+        "wind2_m_s": 1
+      }
+    },
+    "provenance": {
+      "site_id": "sakha_31.10_30.95",
+      "dataset_version": "sakha-power-lst-20261110-et0-v1",
+      "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+      "time_standard": "LST",
+      "source_sha256": {
+        "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+      }
+    },
+    "units": {
+      "tmax_c": "degC",
+      "tmin_c": "degC",
+      "tdew_c": "degC",
+      "rh_percent": "%",
+      "wind2_m_s": "m/s",
+      "solar_mj_m2_day": "MJ/m2/day",
+      "pressure_kpa": "kPa",
+      "rain_mm_day": "mm/day",
+      "et0_mm_day": "mm/day",
+      "et0_rhmean_approx_mm_day": "mm/day",
+      "et0_without_cloud_floor_mm_day": "mm/day"
+    },
+    "rows": [
+      {
+        "tmax_c": 40.3,
+        "tmin_c": 18.27,
+        "tdew_c": 9.47,
+        "rh_percent": 37.57,
+        "wind2_m_s": 3.39,
+        "solar_mj_m2_day": 21.27,
+        "pressure_kpa": 101.2,
+        "rain_mm_day": 0.0,
+        "et0_mm_day": 9.453448674399759,
+        "et0_rhmean_approx_mm_day": 8.56548261059558,
+        "et0_without_cloud_floor_mm_day": 9.453448674399759,
+        "date": "2014-06-03",
+        "snapshot": "historical",
+        "flags": [],
+        "statistical_columns": [
+          "solar_mj_m2_day"
+        ],
+        "disposition": "retain_review"
+      },
+      {
+        "tmax_c": 44.85,
+        "tmin_c": 23.29,
+        "tdew_c": 9.23,
+        "rh_percent": 34.14,
+        "wind2_m_s": 5.63,
+        "solar_mj_m2_day": 20.7,
+        "pressure_kpa": 100.71,
+        "rain_mm_day": 0.0,
+        "et0_mm_day": 14.048773842966526,
+        "et0_rhmean_approx_mm_day": 12.242559608139993,
+        "et0_without_cloud_floor_mm_day": 14.048773842966526,
+        "date": "2014-06-04",
+        "snapshot": "historical",
+        "flags": [],
+        "statistical_columns": [
+          "wind2_m_s",
+          "solar_mj_m2_day",
+          "et0_mm_day"
+        ],
+        "disposition": "retain_review"
+      },
+      {
+        "tmax_c": 32.66,
+        "tmin_c": 20.93,
+        "tdew_c": 14.34,
+        "rh_percent": 53.07,
+        "wind2_m_s": 4.7,
+        "solar_mj_m2_day": 27.14,
+        "pressure_kpa": 101.14,
+        "rain_mm_day": 0.0,
+        "et0_mm_day": 8.584888967969412,
+        "et0_rhmean_approx_mm_day": 7.886642298605473,
+        "et0_without_cloud_floor_mm_day": 8.584888967969412,
+        "date": "2014-06-05",
+        "snapshot": "historical",
+        "flags": [],
+        "statistical_columns": [],
+        "disposition": "retain"
+      }
+    ]
+  },
+  "climatology": {
+    "status": "complete",
+    "reference_id": "historical_2001_2025",
+    "quantiles": {
+      "target_date": "2028-02-29",
+      "reference_start": "2001-01-01",
+      "reference_end": "2025-12-31",
+      "method": "seasonal_climatology/descriptive/linear_quantiles_pm15_f64/v1",
+      "support_days": 756,
+      "tmax_c": {
+        "q10": 18.08,
+        "q50": 23.235,
+        "q90": 29.84
+      },
+      "et0_mm_day": {
+        "q10": 2.6018262317477165,
+        "q50": 3.6810329052678927,
+        "q90": 5.222126450834053
+      }
+    },
+    "units": {
+      "tmax_c": "degC",
+      "et0_mm_day": "mm/day"
+    },
+    "coverage": {
+      "expected_days": 756,
+      "valid_days": 756,
+      "fraction": 1.0
+    },
+    "quality": {
+      "review_days": 106,
+      "flag_day_counts": {
+        "dew_above_tmin": 66,
+        "negative_unbounded_cloud_factor": 3,
+        "raw_ratio_below_0_3": 6
+      },
+      "statistical_column_day_counts": {
+        "et0_mm_day": 1,
+        "rain_mm_day": 41,
+        "rh_percent": 1,
+        "solar_mj_m2_day": 1
+      }
+    },
+    "provenance": {
+      "site_id": "sakha_31.10_30.95",
+      "dataset_version": "sakha-power-lst-20261110-et0-v1",
+      "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+      "time_standard": "LST",
+      "source_sha256": {
+        "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+      }
+    }
+  },
+  "et0_summary": {
+    "status": "complete",
+    "start": "2014-06-03",
+    "end": "2014-06-05",
+    "coverage": {
+      "expected_days": 3,
+      "valid_days": 3,
+      "fraction": 1.0
+    },
+    "quality": {
+      "review_days": 2,
+      "flag_day_counts": {},
+      "statistical_column_day_counts": {
+        "et0_mm_day": 1,
+        "solar_mj_m2_day": 2,
+        "wind2_m_s": 1
+      }
+    },
+    "provenance": {
+      "site_id": "sakha_31.10_30.95",
+      "dataset_version": "sakha-power-lst-20261110-et0-v1",
+      "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+      "time_standard": "LST",
+      "source_sha256": {
+        "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+      }
+    },
+    "metrics": {
+      "days": 3,
+      "et0_total_mm": 32.0871114853357,
+      "mean_et0_mm_day": 10.695703828445232,
+      "tmax_min_c": 32.66,
+      "tmax_mean_c": 39.27,
+      "tmax_max_c": 44.85
+    }
+  },
+  "heat_exposure": {
+    "status": "complete",
+    "start": "2014-06-03",
+    "end": "2014-06-05",
+    "coverage": {
+      "expected_days": 3,
+      "valid_days": 3,
+      "fraction": 1.0
+    },
+    "quality": {
+      "review_days": 2,
+      "flag_day_counts": {},
+      "statistical_column_day_counts": {
+        "et0_mm_day": 1,
+        "solar_mj_m2_day": 2,
+        "wind2_m_s": 1
+      }
+    },
+    "provenance": {
+      "site_id": "sakha_31.10_30.95",
+      "dataset_version": "sakha-power-lst-20261110-et0-v1",
+      "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+      "time_standard": "LST",
+      "source_sha256": {
+        "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+      }
+    },
+    "definition": {
+      "threshold_c": 39.48,
+      "operator": ">=",
+      "statistic": "pooled daily Tmax p90, linear interpolation",
+      "fit_start": "2001-01-01",
+      "fit_end": "2018-12-31",
+      "kind": "historical_exposure"
+    },
+    "hot_days": 2,
+    "hot_day_fraction": 0.6666666666666666
+  },
+  "one_plan_replay": {
+    "status": "complete",
+    "mapping_policy": "explicit_calendar_windows_v1",
+    "mapped_feasibility": "not_evaluated",
+    "template_anchor_year": 2026,
+    "baseline_id": "calendar_A",
+    "requested_anchors": [
+      2015
+    ],
+    "eligible_anchors": [
+      2015
+    ],
+    "exclusions": [],
+    "blocks": [
+      {
+        "anchor": 2015,
+        "block_id": "2015-2017",
+        "first": "2015-01-01",
+        "last": "2017-12-31",
+        "comparison_start": "2015-11-01",
+        "comparison_stop_exclusive": "2017-09-22",
+        "coverage": {
+          "expected_days": 1096,
+          "valid_days": 1096,
+          "fraction": 1.0
+        },
+        "quality": {
+          "review_days": 124,
+          "flag_day_counts": {
+            "dew_above_tmin": 44,
+            "negative_unbounded_cloud_factor": 4,
+            "raw_ratio_below_0_3": 5
+          },
+          "statistical_column_day_counts": {
+            "et0_mm_day": 4,
+            "rain_mm_day": 73,
+            "rh_percent": 2,
+            "solar_mj_m2_day": 4,
+            "wind2_m_s": 2
+          }
+        },
+        "provenance": {
+          "site_id": "sakha_31.10_30.95",
+          "dataset_version": "sakha-power-lst-20261110-et0-v1",
+          "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+          "time_standard": "LST",
+          "source_sha256": {
+            "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+          }
+        },
+        "plans": [
+          {
+            "plan_id": "calendar_A",
+            "plan_version": "example-1",
+            "field_id": "sample-field",
+            "planner_status": "needs_review",
+            "commitments": [
+              {
+                "id": "cut",
+                "description": "Protected livestock cut (example commitment)",
+                "date": "2016-05-20"
+              }
+            ],
+            "seasons": [
+              {
+                "season_id": "winter1",
+                "crop_id": "berseem",
+                "purpose": "forage",
+                "sow_date": "2015-11-01",
+                "crop_end_exclusive": "2016-05-21",
+                "metrics": {
+                  "days": 202,
+                  "et0_total_mm": 866.9216770931475,
+                  "mean_et0_mm_day": 4.291691470758156,
+                  "tmax_min_c": 13.46,
+                  "tmax_mean_c": 25.992128712871285,
+                  "tmax_max_c": 45.98,
+                  "hot_days": 5,
+                  "hot_day_fraction": 0.024752475247524754
+                },
+                "quality": {
+                  "review_days": 26,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 8,
+                    "negative_unbounded_cloud_factor": 2,
+                    "raw_ratio_below_0_3": 3
+                  },
+                  "statistical_column_day_counts": {
+                    "et0_mm_day": 2,
+                    "rain_mm_day": 15,
+                    "solar_mj_m2_day": 1
+                  }
+                }
+              },
+              {
+                "season_id": "summer1",
+                "crop_id": "grain_maize",
+                "purpose": "grain",
+                "sow_date": "2016-06-01",
+                "crop_end_exclusive": "2016-09-21",
+                "metrics": {
+                  "days": 112,
+                  "et0_total_mm": 903.532287426136,
+                  "mean_et0_mm_day": 8.067252566304786,
+                  "tmax_min_c": 32.47,
+                  "tmax_mean_c": 38.26392857142857,
+                  "tmax_max_c": 46.63,
+                  "hot_days": 28,
+                  "hot_day_fraction": 0.25
+                },
+                "quality": {
+                  "review_days": 4,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "rh_percent": 2,
+                    "solar_mj_m2_day": 2
+                  }
+                }
+              },
+              {
+                "season_id": "winter2",
+                "crop_id": "wheat",
+                "purpose": "grain",
+                "sow_date": "2016-11-20",
+                "crop_end_exclusive": "2017-04-26",
+                "metrics": {
+                  "days": 157,
+                  "et0_total_mm": 538.8181531060126,
+                  "mean_et0_mm_day": 3.431962758637023,
+                  "tmax_min_c": 14.71,
+                  "tmax_mean_c": 22.421783439490444,
+                  "tmax_max_c": 37.96,
+                  "hot_days": 0,
+                  "hot_day_fraction": 0.0
+                },
+                "quality": {
+                  "review_days": 31,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 21,
+                    "negative_unbounded_cloud_factor": 1,
+                    "raw_ratio_below_0_3": 1
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 12
+                  }
+                }
+              },
+              {
+                "season_id": "summer2",
+                "crop_id": "grain_sorghum",
+                "purpose": "grain",
+                "sow_date": "2017-06-01",
+                "crop_end_exclusive": "2017-09-22",
+                "metrics": {
+                  "days": 113,
+                  "et0_total_mm": 909.1447742902474,
+                  "mean_et0_mm_day": 8.045528976019888,
+                  "tmax_min_c": 32.41,
+                  "tmax_mean_c": 38.30132743362832,
+                  "tmax_max_c": 43.74,
+                  "hot_days": 31,
+                  "hot_day_fraction": 0.2743362831858407
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              }
+            ],
+            "outside_crop_intervals": [
+              {
+                "start": "2016-05-21",
+                "stop_exclusive": "2016-06-01",
+                "metrics": {
+                  "days": 11,
+                  "et0_total_mm": 90.76787676192617,
+                  "mean_et0_mm_day": 8.251625160175108,
+                  "tmax_min_c": 29.98,
+                  "tmax_mean_c": 33.905454545454546,
+                  "tmax_max_c": 39.89,
+                  "hot_days": 1,
+                  "hot_day_fraction": 0.09090909090909091
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              },
+              {
+                "start": "2016-09-21",
+                "stop_exclusive": "2016-11-20",
+                "metrics": {
+                  "days": 60,
+                  "et0_total_mm": 281.9415882038213,
+                  "mean_et0_mm_day": 4.699026470063688,
+                  "tmax_min_c": 22.99,
+                  "tmax_mean_c": 31.068666666666665,
+                  "tmax_max_c": 41.59,
+                  "hot_days": 1,
+                  "hot_day_fraction": 0.016666666666666666
+                },
+                "quality": {
+                  "review_days": 9,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 9
+                  }
+                }
+              },
+              {
+                "start": "2017-04-26",
+                "stop_exclusive": "2017-06-01",
+                "metrics": {
+                  "days": 36,
+                  "et0_total_mm": 277.33097500831957,
+                  "mean_et0_mm_day": 7.703638194675544,
+                  "tmax_min_c": 28.29,
+                  "tmax_mean_c": 34.11527777777778,
+                  "tmax_max_c": 40.97,
+                  "hot_days": 2,
+                  "hot_day_fraction": 0.05555555555555555
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              }
+            ],
+            "in_crop": {
+              "days": 584,
+              "et0_total_mm": 3218.4168919155436,
+              "mean_et0_mm_day": 5.510987828622506,
+              "tmax_min_c": 13.46,
+              "tmax_mean_c": 29.767534246575345,
+              "tmax_max_c": 46.63,
+              "hot_days": 64,
+              "hot_day_fraction": 0.1095890410958904
+            },
+            "in_crop_quality": {
+              "review_days": 61,
+              "flag_day_counts": {
+                "dew_above_tmin": 29,
+                "negative_unbounded_cloud_factor": 3,
+                "raw_ratio_below_0_3": 4
+              },
+              "statistical_column_day_counts": {
+                "et0_mm_day": 2,
+                "rain_mm_day": 27,
+                "rh_percent": 2,
+                "solar_mj_m2_day": 3
+              }
+            },
+            "outside_crop_days": 107,
+            "outside_crop_et0_total_mm": 650.0404399740671
+          }
+        ],
+        "differences_from_baseline": {}
+      }
+    ],
+    "block_variability": {
+      "calendar_A": {
+        "days": {
+          "count": 1,
+          "min": 584,
+          "median": 584,
+          "max": 584
+        },
+        "et0_total_mm": {
+          "count": 1,
+          "min": 3218.4168919155436,
+          "median": 3218.4168919155436,
+          "max": 3218.4168919155436
+        },
+        "mean_et0_mm_day": {
+          "count": 1,
+          "min": 5.510987828622506,
+          "median": 5.510987828622506,
+          "max": 5.510987828622506
+        },
+        "tmax_mean_c": {
+          "count": 1,
+          "min": 29.767534246575345,
+          "median": 29.767534246575345,
+          "max": 29.767534246575345
+        },
+        "hot_days": {
+          "count": 1,
+          "min": 64,
+          "median": 64,
+          "max": 64
+        },
+        "hot_day_fraction": {
+          "count": 1,
+          "min": 0.1095890410958904,
+          "median": 0.1095890410958904,
+          "max": 0.1095890410958904
+        }
+      }
+    },
+    "paired_difference_variability": {},
+    "blockers": [],
+    "heat_definition": {
+      "threshold_c": 39.48,
+      "operator": ">=",
+      "statistic": "pooled daily Tmax p90, linear interpolation",
+      "fit_start": "2001-01-01",
+      "fit_end": "2018-12-31",
+      "kind": "historical_exposure"
+    },
+    "provenance": {
+      "site_id": "sakha_31.10_30.95",
+      "dataset_version": "sakha-power-lst-20261110-et0-v1",
+      "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+      "time_standard": "LST",
+      "source_sha256": {
+        "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+      }
+    },
+    "coverage": {
+      "requested_blocks": 1,
+      "eligible_blocks": 1
+    },
+    "quality": {
+      "scope": "Per shared block, in-crop union, season and outside-crop interval; counts in blocks."
+    }
+  },
+  "comparison": {
+    "status": "partial",
+    "mapping_policy": "explicit_calendar_windows_v1",
+    "mapped_feasibility": "not_evaluated",
+    "template_anchor_year": 2026,
+    "baseline_id": "calendar_A",
+    "requested_anchors": [
+      2015,
+      2016,
+      2024
+    ],
+    "eligible_anchors": [
+      2015,
+      2016
+    ],
+    "exclusions": [
+      {
+        "anchor": 2024,
+        "reason": "incomplete_continuous_block",
+        "first": "2024-01-01",
+        "last": "2026-12-31",
+        "coverage": {
+          "expected_days": 1096,
+          "valid_days": 1035,
+          "fraction": 0.9443430656934306
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "anchor": 2015,
+        "block_id": "2015-2017",
+        "first": "2015-01-01",
+        "last": "2017-12-31",
+        "comparison_start": "2015-11-01",
+        "comparison_stop_exclusive": "2017-09-22",
+        "coverage": {
+          "expected_days": 1096,
+          "valid_days": 1096,
+          "fraction": 1.0
+        },
+        "quality": {
+          "review_days": 124,
+          "flag_day_counts": {
+            "dew_above_tmin": 44,
+            "negative_unbounded_cloud_factor": 4,
+            "raw_ratio_below_0_3": 5
+          },
+          "statistical_column_day_counts": {
+            "et0_mm_day": 4,
+            "rain_mm_day": 73,
+            "rh_percent": 2,
+            "solar_mj_m2_day": 4,
+            "wind2_m_s": 2
+          }
+        },
+        "provenance": {
+          "site_id": "sakha_31.10_30.95",
+          "dataset_version": "sakha-power-lst-20261110-et0-v1",
+          "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+          "time_standard": "LST",
+          "source_sha256": {
+            "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+          }
+        },
+        "plans": [
+          {
+            "plan_id": "calendar_A",
+            "plan_version": "example-1",
+            "field_id": "sample-field",
+            "planner_status": "needs_review",
+            "commitments": [
+              {
+                "id": "cut",
+                "description": "Protected livestock cut (example commitment)",
+                "date": "2016-05-20"
+              }
+            ],
+            "seasons": [
+              {
+                "season_id": "winter1",
+                "crop_id": "berseem",
+                "purpose": "forage",
+                "sow_date": "2015-11-01",
+                "crop_end_exclusive": "2016-05-21",
+                "metrics": {
+                  "days": 202,
+                  "et0_total_mm": 866.9216770931475,
+                  "mean_et0_mm_day": 4.291691470758156,
+                  "tmax_min_c": 13.46,
+                  "tmax_mean_c": 25.992128712871285,
+                  "tmax_max_c": 45.98,
+                  "hot_days": 5,
+                  "hot_day_fraction": 0.024752475247524754
+                },
+                "quality": {
+                  "review_days": 26,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 8,
+                    "negative_unbounded_cloud_factor": 2,
+                    "raw_ratio_below_0_3": 3
+                  },
+                  "statistical_column_day_counts": {
+                    "et0_mm_day": 2,
+                    "rain_mm_day": 15,
+                    "solar_mj_m2_day": 1
+                  }
+                }
+              },
+              {
+                "season_id": "summer1",
+                "crop_id": "grain_maize",
+                "purpose": "grain",
+                "sow_date": "2016-06-01",
+                "crop_end_exclusive": "2016-09-21",
+                "metrics": {
+                  "days": 112,
+                  "et0_total_mm": 903.532287426136,
+                  "mean_et0_mm_day": 8.067252566304786,
+                  "tmax_min_c": 32.47,
+                  "tmax_mean_c": 38.26392857142857,
+                  "tmax_max_c": 46.63,
+                  "hot_days": 28,
+                  "hot_day_fraction": 0.25
+                },
+                "quality": {
+                  "review_days": 4,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "rh_percent": 2,
+                    "solar_mj_m2_day": 2
+                  }
+                }
+              },
+              {
+                "season_id": "winter2",
+                "crop_id": "wheat",
+                "purpose": "grain",
+                "sow_date": "2016-11-20",
+                "crop_end_exclusive": "2017-04-26",
+                "metrics": {
+                  "days": 157,
+                  "et0_total_mm": 538.8181531060126,
+                  "mean_et0_mm_day": 3.431962758637023,
+                  "tmax_min_c": 14.71,
+                  "tmax_mean_c": 22.421783439490444,
+                  "tmax_max_c": 37.96,
+                  "hot_days": 0,
+                  "hot_day_fraction": 0.0
+                },
+                "quality": {
+                  "review_days": 31,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 21,
+                    "negative_unbounded_cloud_factor": 1,
+                    "raw_ratio_below_0_3": 1
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 12
+                  }
+                }
+              },
+              {
+                "season_id": "summer2",
+                "crop_id": "grain_sorghum",
+                "purpose": "grain",
+                "sow_date": "2017-06-01",
+                "crop_end_exclusive": "2017-09-22",
+                "metrics": {
+                  "days": 113,
+                  "et0_total_mm": 909.1447742902474,
+                  "mean_et0_mm_day": 8.045528976019888,
+                  "tmax_min_c": 32.41,
+                  "tmax_mean_c": 38.30132743362832,
+                  "tmax_max_c": 43.74,
+                  "hot_days": 31,
+                  "hot_day_fraction": 0.2743362831858407
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              }
+            ],
+            "outside_crop_intervals": [
+              {
+                "start": "2016-05-21",
+                "stop_exclusive": "2016-06-01",
+                "metrics": {
+                  "days": 11,
+                  "et0_total_mm": 90.76787676192617,
+                  "mean_et0_mm_day": 8.251625160175108,
+                  "tmax_min_c": 29.98,
+                  "tmax_mean_c": 33.905454545454546,
+                  "tmax_max_c": 39.89,
+                  "hot_days": 1,
+                  "hot_day_fraction": 0.09090909090909091
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              },
+              {
+                "start": "2016-09-21",
+                "stop_exclusive": "2016-11-20",
+                "metrics": {
+                  "days": 60,
+                  "et0_total_mm": 281.9415882038213,
+                  "mean_et0_mm_day": 4.699026470063688,
+                  "tmax_min_c": 22.99,
+                  "tmax_mean_c": 31.068666666666665,
+                  "tmax_max_c": 41.59,
+                  "hot_days": 1,
+                  "hot_day_fraction": 0.016666666666666666
+                },
+                "quality": {
+                  "review_days": 9,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 9
+                  }
+                }
+              },
+              {
+                "start": "2017-04-26",
+                "stop_exclusive": "2017-06-01",
+                "metrics": {
+                  "days": 36,
+                  "et0_total_mm": 277.33097500831957,
+                  "mean_et0_mm_day": 7.703638194675544,
+                  "tmax_min_c": 28.29,
+                  "tmax_mean_c": 34.11527777777778,
+                  "tmax_max_c": 40.97,
+                  "hot_days": 2,
+                  "hot_day_fraction": 0.05555555555555555
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              }
+            ],
+            "in_crop": {
+              "days": 584,
+              "et0_total_mm": 3218.4168919155436,
+              "mean_et0_mm_day": 5.510987828622506,
+              "tmax_min_c": 13.46,
+              "tmax_mean_c": 29.767534246575345,
+              "tmax_max_c": 46.63,
+              "hot_days": 64,
+              "hot_day_fraction": 0.1095890410958904
+            },
+            "in_crop_quality": {
+              "review_days": 61,
+              "flag_day_counts": {
+                "dew_above_tmin": 29,
+                "negative_unbounded_cloud_factor": 3,
+                "raw_ratio_below_0_3": 4
+              },
+              "statistical_column_day_counts": {
+                "et0_mm_day": 2,
+                "rain_mm_day": 27,
+                "rh_percent": 2,
+                "solar_mj_m2_day": 3
+              }
+            },
+            "outside_crop_days": 107,
+            "outside_crop_et0_total_mm": 650.0404399740671
+          },
+          {
+            "plan_id": "calendar_B",
+            "plan_version": "example-1",
+            "field_id": "sample-field",
+            "planner_status": "needs_review",
+            "commitments": [
+              {
+                "id": "cut",
+                "description": "Protected livestock cut (example commitment)",
+                "date": "2016-05-20"
+              }
+            ],
+            "seasons": [
+              {
+                "season_id": "winter1",
+                "crop_id": "berseem",
+                "purpose": "forage",
+                "sow_date": "2015-11-01",
+                "crop_end_exclusive": "2016-05-21",
+                "metrics": {
+                  "days": 202,
+                  "et0_total_mm": 866.9216770931475,
+                  "mean_et0_mm_day": 4.291691470758156,
+                  "tmax_min_c": 13.46,
+                  "tmax_mean_c": 25.992128712871285,
+                  "tmax_max_c": 45.98,
+                  "hot_days": 5,
+                  "hot_day_fraction": 0.024752475247524754
+                },
+                "quality": {
+                  "review_days": 26,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 8,
+                    "negative_unbounded_cloud_factor": 2,
+                    "raw_ratio_below_0_3": 3
+                  },
+                  "statistical_column_day_counts": {
+                    "et0_mm_day": 2,
+                    "rain_mm_day": 15,
+                    "solar_mj_m2_day": 1
+                  }
+                }
+              },
+              {
+                "season_id": "summer1",
+                "crop_id": "grain_maize",
+                "purpose": "grain",
+                "sow_date": "2016-06-08",
+                "crop_end_exclusive": "2016-09-29",
+                "metrics": {
+                  "days": 113,
+                  "et0_total_mm": 888.6198125141422,
+                  "mean_et0_mm_day": 7.863892146142851,
+                  "tmax_min_c": 31.32,
+                  "tmax_mean_c": 37.712212389380525,
+                  "tmax_max_c": 43.82,
+                  "hot_days": 24,
+                  "hot_day_fraction": 0.21238938053097345
+                },
+                "quality": {
+                  "review_days": 1,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "solar_mj_m2_day": 1
+                  }
+                }
+              },
+              {
+                "season_id": "winter2",
+                "crop_id": "wheat",
+                "purpose": "grain",
+                "sow_date": "2016-11-20",
+                "crop_end_exclusive": "2017-04-26",
+                "metrics": {
+                  "days": 157,
+                  "et0_total_mm": 538.8181531060126,
+                  "mean_et0_mm_day": 3.431962758637023,
+                  "tmax_min_c": 14.71,
+                  "tmax_mean_c": 22.421783439490444,
+                  "tmax_max_c": 37.96,
+                  "hot_days": 0,
+                  "hot_day_fraction": 0.0
+                },
+                "quality": {
+                  "review_days": 31,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 21,
+                    "negative_unbounded_cloud_factor": 1,
+                    "raw_ratio_below_0_3": 1
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 12
+                  }
+                }
+              },
+              {
+                "season_id": "summer2",
+                "crop_id": "grain_sorghum",
+                "purpose": "grain",
+                "sow_date": "2017-06-01",
+                "crop_end_exclusive": "2017-09-22",
+                "metrics": {
+                  "days": 113,
+                  "et0_total_mm": 909.1447742902474,
+                  "mean_et0_mm_day": 8.045528976019888,
+                  "tmax_min_c": 32.41,
+                  "tmax_mean_c": 38.30132743362832,
+                  "tmax_max_c": 43.74,
+                  "hot_days": 31,
+                  "hot_day_fraction": 0.2743362831858407
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              }
+            ],
+            "outside_crop_intervals": [
+              {
+                "start": "2016-05-21",
+                "stop_exclusive": "2016-06-08",
+                "metrics": {
+                  "days": 18,
+                  "et0_total_mm": 155.581331679206,
+                  "mean_et0_mm_day": 8.643407315511444,
+                  "tmax_min_c": 29.98,
+                  "tmax_mean_c": 37.108333333333334,
+                  "tmax_max_c": 46.63,
+                  "hot_days": 6,
+                  "hot_day_fraction": 0.3333333333333333
+                },
+                "quality": {
+                  "review_days": 3,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "rh_percent": 2,
+                    "solar_mj_m2_day": 1
+                  }
+                }
+              },
+              {
+                "start": "2016-09-29",
+                "stop_exclusive": "2016-11-20",
+                "metrics": {
+                  "days": 52,
+                  "et0_total_mm": 232.04060819853538,
+                  "mean_et0_mm_day": 4.4623193884333725,
+                  "tmax_min_c": 22.99,
+                  "tmax_mean_c": 30.638653846153847,
+                  "tmax_max_c": 37.44,
+                  "hot_days": 0,
+                  "hot_day_fraction": 0.0
+                },
+                "quality": {
+                  "review_days": 9,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 9
+                  }
+                }
+              },
+              {
+                "start": "2017-04-26",
+                "stop_exclusive": "2017-06-01",
+                "metrics": {
+                  "days": 36,
+                  "et0_total_mm": 277.33097500831957,
+                  "mean_et0_mm_day": 7.703638194675544,
+                  "tmax_min_c": 28.29,
+                  "tmax_mean_c": 34.11527777777778,
+                  "tmax_max_c": 40.97,
+                  "hot_days": 2,
+                  "hot_day_fraction": 0.05555555555555555
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              }
+            ],
+            "in_crop": {
+              "days": 585,
+              "et0_total_mm": 3203.5044170035494,
+              "mean_et0_mm_day": 5.476075926501794,
+              "tmax_min_c": 13.46,
+              "tmax_mean_c": 29.675487179487178,
+              "tmax_max_c": 45.98,
+              "hot_days": 60,
+              "hot_day_fraction": 0.10256410256410256
+            },
+            "in_crop_quality": {
+              "review_days": 58,
+              "flag_day_counts": {
+                "dew_above_tmin": 29,
+                "negative_unbounded_cloud_factor": 3,
+                "raw_ratio_below_0_3": 4
+              },
+              "statistical_column_day_counts": {
+                "et0_mm_day": 2,
+                "rain_mm_day": 27,
+                "solar_mj_m2_day": 2
+              }
+            },
+            "outside_crop_days": 106,
+            "outside_crop_et0_total_mm": 664.952914886061
+          }
+        ],
+        "differences_from_baseline": {
+          "calendar_B": {
+            "days": 1,
+            "et0_total_mm": -14.912474911994195,
+            "mean_et0_mm_day": -0.0349119021207116,
+            "tmax_mean_c": -0.09204706708816701,
+            "hot_days": -4,
+            "hot_day_fraction": -0.007024938531787844
+          }
+        }
+      },
+      {
+        "anchor": 2016,
+        "block_id": "2016-2018",
+        "first": "2016-01-01",
+        "last": "2018-12-31",
+        "comparison_start": "2016-11-01",
+        "comparison_stop_exclusive": "2018-09-22",
+        "coverage": {
+          "expected_days": 1096,
+          "valid_days": 1096,
+          "fraction": 1.0
+        },
+        "quality": {
+          "review_days": 121,
+          "flag_day_counts": {
+            "dew_above_tmin": 45,
+            "negative_unbounded_cloud_factor": 4,
+            "raw_ratio_below_0_3": 4
+          },
+          "statistical_column_day_counts": {
+            "et0_mm_day": 2,
+            "rain_mm_day": 72,
+            "rh_percent": 3,
+            "solar_mj_m2_day": 3
+          }
+        },
+        "provenance": {
+          "site_id": "sakha_31.10_30.95",
+          "dataset_version": "sakha-power-lst-20261110-et0-v1",
+          "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+          "time_standard": "LST",
+          "source_sha256": {
+            "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+          }
+        },
+        "plans": [
+          {
+            "plan_id": "calendar_A",
+            "plan_version": "example-1",
+            "field_id": "sample-field",
+            "planner_status": "needs_review",
+            "commitments": [
+              {
+                "id": "cut",
+                "description": "Protected livestock cut (example commitment)",
+                "date": "2017-05-20"
+              }
+            ],
+            "seasons": [
+              {
+                "season_id": "winter1",
+                "crop_id": "berseem",
+                "purpose": "forage",
+                "sow_date": "2016-11-01",
+                "crop_end_exclusive": "2017-05-21",
+                "metrics": {
+                  "days": 201,
+                  "et0_total_mm": 793.497517719624,
+                  "mean_et0_mm_day": 3.947748844376239,
+                  "tmax_min_c": 14.71,
+                  "tmax_mean_c": 24.308507462686567,
+                  "tmax_max_c": 40.97,
+                  "hot_days": 2,
+                  "hot_day_fraction": 0.009950248756218905
+                },
+                "quality": {
+                  "review_days": 32,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 21,
+                    "negative_unbounded_cloud_factor": 1,
+                    "raw_ratio_below_0_3": 1
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 13
+                  }
+                }
+              },
+              {
+                "season_id": "summer1",
+                "crop_id": "grain_maize",
+                "purpose": "grain",
+                "sow_date": "2017-06-01",
+                "crop_end_exclusive": "2017-09-21",
+                "metrics": {
+                  "days": 112,
+                  "et0_total_mm": 901.7787550721612,
+                  "mean_et0_mm_day": 8.05159602743001,
+                  "tmax_min_c": 32.41,
+                  "tmax_mean_c": 38.28928571428571,
+                  "tmax_max_c": 43.74,
+                  "hot_days": 30,
+                  "hot_day_fraction": 0.26785714285714285
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              },
+              {
+                "season_id": "winter2",
+                "crop_id": "wheat",
+                "purpose": "grain",
+                "sow_date": "2017-11-20",
+                "crop_end_exclusive": "2018-04-26",
+                "metrics": {
+                  "days": 157,
+                  "et0_total_mm": 575.2297101788731,
+                  "mean_et0_mm_day": 3.6638835043240325,
+                  "tmax_min_c": 14.46,
+                  "tmax_mean_c": 24.654458598726116,
+                  "tmax_max_c": 37.66,
+                  "hot_days": 0,
+                  "hot_day_fraction": 0.0
+                },
+                "quality": {
+                  "review_days": 28,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 14,
+                    "negative_unbounded_cloud_factor": 2,
+                    "raw_ratio_below_0_3": 2
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 14
+                  }
+                }
+              },
+              {
+                "season_id": "summer2",
+                "crop_id": "grain_sorghum",
+                "purpose": "grain",
+                "sow_date": "2018-06-01",
+                "crop_end_exclusive": "2018-09-22",
+                "metrics": {
+                  "days": 113,
+                  "et0_total_mm": 899.6631217996911,
+                  "mean_et0_mm_day": 7.961620546899922,
+                  "tmax_min_c": 33.51,
+                  "tmax_mean_c": 37.72238938053098,
+                  "tmax_max_c": 44.66,
+                  "hot_days": 20,
+                  "hot_day_fraction": 0.17699115044247787
+                },
+                "quality": {
+                  "review_days": 2,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "rh_percent": 1,
+                    "solar_mj_m2_day": 1
+                  }
+                }
+              }
+            ],
+            "outside_crop_intervals": [
+              {
+                "start": "2017-05-21",
+                "stop_exclusive": "2017-06-01",
+                "metrics": {
+                  "days": 11,
+                  "et0_total_mm": 90.70052508942145,
+                  "mean_et0_mm_day": 8.245502280856496,
+                  "tmax_min_c": 30.15,
+                  "tmax_mean_c": 34.77727272727273,
+                  "tmax_max_c": 38.45,
+                  "hot_days": 0,
+                  "hot_day_fraction": 0.0
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              },
+              {
+                "start": "2017-09-21",
+                "stop_exclusive": "2017-11-20",
+                "metrics": {
+                  "days": 60,
+                  "et0_total_mm": 260.93240665799283,
+                  "mean_et0_mm_day": 4.348873444299881,
+                  "tmax_min_c": 24.48,
+                  "tmax_mean_c": 29.724833333333333,
+                  "tmax_max_c": 39.65,
+                  "hot_days": 1,
+                  "hot_day_fraction": 0.016666666666666666
+                },
+                "quality": {
+                  "review_days": 10,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 2
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 10
+                  }
+                }
+              },
+              {
+                "start": "2018-04-26",
+                "stop_exclusive": "2018-06-01",
+                "metrics": {
+                  "days": 36,
+                  "et0_total_mm": 285.875018758136,
+                  "mean_et0_mm_day": 7.940972743281555,
+                  "tmax_min_c": 28.62,
+                  "tmax_mean_c": 35.65277777777778,
+                  "tmax_max_c": 43.1,
+                  "hot_days": 8,
+                  "hot_day_fraction": 0.2222222222222222
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              }
+            ],
+            "in_crop": {
+              "days": 583,
+              "et0_total_mm": 3170.1691047703493,
+              "mean_et0_mm_day": 5.4376828555237555,
+              "tmax_min_c": 14.46,
+              "tmax_mean_c": 29.68746140651801,
+              "tmax_max_c": 44.66,
+              "hot_days": 52,
+              "hot_day_fraction": 0.08919382504288165
+            },
+            "in_crop_quality": {
+              "review_days": 62,
+              "flag_day_counts": {
+                "dew_above_tmin": 35,
+                "negative_unbounded_cloud_factor": 3,
+                "raw_ratio_below_0_3": 3
+              },
+              "statistical_column_day_counts": {
+                "rain_mm_day": 27,
+                "rh_percent": 1,
+                "solar_mj_m2_day": 1
+              }
+            },
+            "outside_crop_days": 107,
+            "outside_crop_et0_total_mm": 637.5079505055503
+          },
+          {
+            "plan_id": "calendar_B",
+            "plan_version": "example-1",
+            "field_id": "sample-field",
+            "planner_status": "needs_review",
+            "commitments": [
+              {
+                "id": "cut",
+                "description": "Protected livestock cut (example commitment)",
+                "date": "2017-05-20"
+              }
+            ],
+            "seasons": [
+              {
+                "season_id": "winter1",
+                "crop_id": "berseem",
+                "purpose": "forage",
+                "sow_date": "2016-11-01",
+                "crop_end_exclusive": "2017-05-21",
+                "metrics": {
+                  "days": 201,
+                  "et0_total_mm": 793.497517719624,
+                  "mean_et0_mm_day": 3.947748844376239,
+                  "tmax_min_c": 14.71,
+                  "tmax_mean_c": 24.308507462686567,
+                  "tmax_max_c": 40.97,
+                  "hot_days": 2,
+                  "hot_day_fraction": 0.009950248756218905
+                },
+                "quality": {
+                  "review_days": 32,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 21,
+                    "negative_unbounded_cloud_factor": 1,
+                    "raw_ratio_below_0_3": 1
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 13
+                  }
+                }
+              },
+              {
+                "season_id": "summer1",
+                "crop_id": "grain_maize",
+                "purpose": "grain",
+                "sow_date": "2017-06-08",
+                "crop_end_exclusive": "2017-09-29",
+                "metrics": {
+                  "days": 113,
+                  "et0_total_mm": 889.2747265986085,
+                  "mean_et0_mm_day": 7.869687846005385,
+                  "tmax_min_c": 31.65,
+                  "tmax_mean_c": 38.02716814159292,
+                  "tmax_max_c": 43.74,
+                  "hot_days": 29,
+                  "hot_day_fraction": 0.25663716814159293
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              },
+              {
+                "season_id": "winter2",
+                "crop_id": "wheat",
+                "purpose": "grain",
+                "sow_date": "2017-11-20",
+                "crop_end_exclusive": "2018-04-26",
+                "metrics": {
+                  "days": 157,
+                  "et0_total_mm": 575.2297101788731,
+                  "mean_et0_mm_day": 3.6638835043240325,
+                  "tmax_min_c": 14.46,
+                  "tmax_mean_c": 24.654458598726116,
+                  "tmax_max_c": 37.66,
+                  "hot_days": 0,
+                  "hot_day_fraction": 0.0
+                },
+                "quality": {
+                  "review_days": 28,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 14,
+                    "negative_unbounded_cloud_factor": 2,
+                    "raw_ratio_below_0_3": 2
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 14
+                  }
+                }
+              },
+              {
+                "season_id": "summer2",
+                "crop_id": "grain_sorghum",
+                "purpose": "grain",
+                "sow_date": "2018-06-01",
+                "crop_end_exclusive": "2018-09-22",
+                "metrics": {
+                  "days": 113,
+                  "et0_total_mm": 899.6631217996911,
+                  "mean_et0_mm_day": 7.961620546899922,
+                  "tmax_min_c": 33.51,
+                  "tmax_mean_c": 37.72238938053098,
+                  "tmax_max_c": 44.66,
+                  "hot_days": 20,
+                  "hot_day_fraction": 0.17699115044247787
+                },
+                "quality": {
+                  "review_days": 2,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {
+                    "rh_percent": 1,
+                    "solar_mj_m2_day": 1
+                  }
+                }
+              }
+            ],
+            "outside_crop_intervals": [
+              {
+                "start": "2017-05-21",
+                "stop_exclusive": "2017-06-08",
+                "metrics": {
+                  "days": 18,
+                  "et0_total_mm": 151.26766207177755,
+                  "mean_et0_mm_day": 8.403759003987641,
+                  "tmax_min_c": 30.15,
+                  "tmax_mean_c": 35.87277777777778,
+                  "tmax_max_c": 41.36,
+                  "hot_days": 2,
+                  "hot_day_fraction": 0.1111111111111111
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              },
+              {
+                "start": "2017-09-29",
+                "stop_exclusive": "2017-11-20",
+                "metrics": {
+                  "days": 52,
+                  "et0_total_mm": 212.86929814918938,
+                  "mean_et0_mm_day": 4.0936403490228725,
+                  "tmax_min_c": 24.48,
+                  "tmax_mean_c": 29.07038461538462,
+                  "tmax_max_c": 37.71,
+                  "hot_days": 0,
+                  "hot_day_fraction": 0.0
+                },
+                "quality": {
+                  "review_days": 10,
+                  "flag_day_counts": {
+                    "dew_above_tmin": 2
+                  },
+                  "statistical_column_day_counts": {
+                    "rain_mm_day": 10
+                  }
+                }
+              },
+              {
+                "start": "2018-04-26",
+                "stop_exclusive": "2018-06-01",
+                "metrics": {
+                  "days": 36,
+                  "et0_total_mm": 285.875018758136,
+                  "mean_et0_mm_day": 7.940972743281555,
+                  "tmax_min_c": 28.62,
+                  "tmax_mean_c": 35.65277777777778,
+                  "tmax_max_c": 43.1,
+                  "hot_days": 8,
+                  "hot_day_fraction": 0.2222222222222222
+                },
+                "quality": {
+                  "review_days": 0,
+                  "flag_day_counts": {},
+                  "statistical_column_day_counts": {}
+                }
+              }
+            ],
+            "in_crop": {
+              "days": 584,
+              "et0_total_mm": 3157.665076296797,
+              "mean_et0_mm_day": 5.406960747083557,
+              "tmax_min_c": 14.46,
+              "tmax_mean_c": 29.651472602739723,
+              "tmax_max_c": 44.66,
+              "hot_days": 51,
+              "hot_day_fraction": 0.08732876712328767
+            },
+            "in_crop_quality": {
+              "review_days": 62,
+              "flag_day_counts": {
+                "dew_above_tmin": 35,
+                "negative_unbounded_cloud_factor": 3,
+                "raw_ratio_below_0_3": 3
+              },
+              "statistical_column_day_counts": {
+                "rain_mm_day": 27,
+                "rh_percent": 1,
+                "solar_mj_m2_day": 1
+              }
+            },
+            "outside_crop_days": 106,
+            "outside_crop_et0_total_mm": 650.0119789791029
+          }
+        ],
+        "differences_from_baseline": {
+          "calendar_B": {
+            "days": 1,
+            "et0_total_mm": -12.504028473552353,
+            "mean_et0_mm_day": -0.03072210844019896,
+            "tmax_mean_c": -0.03598880377828806,
+            "hot_days": -1,
+            "hot_day_fraction": -0.0018650579195939737
+          }
+        }
+      }
+    ],
+    "block_variability": {
+      "calendar_A": {
+        "days": {
+          "count": 2,
+          "min": 583,
+          "median": 583.5,
+          "max": 584
+        },
+        "et0_total_mm": {
+          "count": 2,
+          "min": 3170.1691047703493,
+          "median": 3194.2929983429467,
+          "max": 3218.4168919155436
+        },
+        "mean_et0_mm_day": {
+          "count": 2,
+          "min": 5.4376828555237555,
+          "median": 5.474335342073131,
+          "max": 5.510987828622506
+        },
+        "tmax_mean_c": {
+          "count": 2,
+          "min": 29.68746140651801,
+          "median": 29.727497826546678,
+          "max": 29.767534246575345
+        },
+        "hot_days": {
+          "count": 2,
+          "min": 52,
+          "median": 58.0,
+          "max": 64
+        },
+        "hot_day_fraction": {
+          "count": 2,
+          "min": 0.08919382504288165,
+          "median": 0.09939143306938603,
+          "max": 0.1095890410958904
+        }
+      },
+      "calendar_B": {
+        "days": {
+          "count": 2,
+          "min": 584,
+          "median": 584.5,
+          "max": 585
+        },
+        "et0_total_mm": {
+          "count": 2,
+          "min": 3157.665076296797,
+          "median": 3180.584746650173,
+          "max": 3203.5044170035494
+        },
+        "mean_et0_mm_day": {
+          "count": 2,
+          "min": 5.406960747083557,
+          "median": 5.441518336792676,
+          "max": 5.476075926501794
+        },
+        "tmax_mean_c": {
+          "count": 2,
+          "min": 29.651472602739723,
+          "median": 29.66347989111345,
+          "max": 29.675487179487178
+        },
+        "hot_days": {
+          "count": 2,
+          "min": 51,
+          "median": 55.5,
+          "max": 60
+        },
+        "hot_day_fraction": {
+          "count": 2,
+          "min": 0.08732876712328767,
+          "median": 0.09494643484369511,
+          "max": 0.10256410256410256
+        }
+      }
+    },
+    "paired_difference_variability": {
+      "calendar_B": {
+        "days": {
+          "count": 2,
+          "min": 1,
+          "median": 1.0,
+          "max": 1,
+          "positive_blocks": 2,
+          "negative_blocks": 0,
+          "zero_blocks": 0
+        },
+        "et0_total_mm": {
+          "count": 2,
+          "min": -14.912474911994195,
+          "median": -13.708251692773274,
+          "max": -12.504028473552353,
+          "positive_blocks": 0,
+          "negative_blocks": 2,
+          "zero_blocks": 0
+        },
+        "mean_et0_mm_day": {
+          "count": 2,
+          "min": -0.0349119021207116,
+          "median": -0.03281700528045528,
+          "max": -0.03072210844019896,
+          "positive_blocks": 0,
+          "negative_blocks": 2,
+          "zero_blocks": 0
+        },
+        "tmax_mean_c": {
+          "count": 2,
+          "min": -0.09204706708816701,
+          "median": -0.06401793543322754,
+          "max": -0.03598880377828806,
+          "positive_blocks": 0,
+          "negative_blocks": 2,
+          "zero_blocks": 0
+        },
+        "hot_days": {
+          "count": 2,
+          "min": -4,
+          "median": -2.5,
+          "max": -1,
+          "positive_blocks": 0,
+          "negative_blocks": 2,
+          "zero_blocks": 0
+        },
+        "hot_day_fraction": {
+          "count": 2,
+          "min": -0.007024938531787844,
+          "median": -0.004444998225690909,
+          "max": -0.0018650579195939737,
+          "positive_blocks": 0,
+          "negative_blocks": 2,
+          "zero_blocks": 0
+        }
+      }
+    },
+    "blockers": [],
+    "heat_definition": {
+      "threshold_c": 39.48,
+      "operator": ">=",
+      "statistic": "pooled daily Tmax p90, linear interpolation",
+      "fit_start": "2001-01-01",
+      "fit_end": "2018-12-31",
+      "kind": "historical_exposure"
+    },
+    "provenance": {
+      "site_id": "sakha_31.10_30.95",
+      "dataset_version": "sakha-power-lst-20261110-et0-v1",
+      "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+      "time_standard": "LST",
+      "source_sha256": {
+        "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf"
+      }
+    },
+    "coverage": {
+      "requested_blocks": 3,
+      "eligible_blocks": 2
+    },
+    "quality": {
+      "scope": "Per shared block, in-crop union, season and outside-crop interval; counts in blocks."
+    }
+  },
+  "release": {
+    "status": "complete",
+    "provenance": {
+      "site_id": "sakha_31.10_30.95",
+      "dataset_version": "sakha-power-lst-20261110-et0-v1",
+      "et0_method_version": "fao56-dewpoint-asce-floor-v1",
+      "time_standard": "LST",
+      "source_sha256": {
+        "historical": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf",
+        "recent": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700"
+      }
+    },
+    "source_receipts": [
+      {
+        "snapshot": "historical",
+        "raw": "power_sakha_2001_2025_LST.json",
+        "raw_sha256": "212bf82f9b2baf09eed440a5a5a6d889891964da2448a7c06a57deb3954f20bf",
+        "raw_bytes": 1214288,
+        "derived": "weather_et0.csv",
+        "derived_sha256": "17141df82f6300c051257c21fb9ac3d9f5f1627fd32cbc8c07bc9296c477bde8",
+        "derived_bytes": 1017464,
+        "retrieval_utc": "2026-11-10T18:30:43.237314+00:00",
+        "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CT2MDEW%2CRH2M%2CWS2M%2CALLSKY_SFC_SW_DWN%2CPS%2CPRECTOTCORR&community=AG&longitude=30.95&latitude=31.10&start=20010101&end=20251231&format=JSON&time-standard=LST",
+        "header": {
+          "title": "NASA/POWER Source Native Resolution Daily Data",
+          "api": {
+            "version": "v2.10.3",
+            "name": "POWER Daily API"
+          },
+          "sources": [
+            "MERRA2",
+            "SYN1DEG",
+            "POWER"
+          ],
+          "fill_value": -999.0,
+          "time_standard": "LST",
+          "start": "20010101",
+          "end": "20251231"
+        },
+        "coordinates": [
+          30.95,
+          31.1,
+          4.96
+        ],
+        "definitions": {
+          "T2M_MAX": {
+            "units": "C",
+            "longname": "Temperature at 2 Meters Maximum"
+          },
+          "T2M_MIN": {
+            "units": "C",
+            "longname": "Temperature at 2 Meters Minimum"
+          },
+          "T2MDEW": {
+            "units": "C",
+            "longname": "Dew/Frost Point at 2 Meters"
+          },
+          "RH2M": {
+            "units": "%",
+            "longname": "Relative Humidity at 2 Meters"
+          },
+          "WS2M": {
+            "units": "m/s",
+            "longname": "Wind Speed at 2 Meters"
+          },
+          "ALLSKY_SFC_SW_DWN": {
+            "units": "MJ/m^2/day",
+            "longname": "All Sky Surface Shortwave Downward Irradiance"
+          },
+          "PS": {
+            "units": "kPa",
+            "longname": "Surface Pressure"
+          },
+          "PRECTOTCORR": {
+            "units": "mm/day",
+            "longname": "Precipitation Corrected"
+          }
+        },
+        "request": {
+          "parameters": "T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PS,PRECTOTCORR",
+          "community": "AG",
+          "longitude": "30.95",
+          "latitude": "31.10",
+          "start": "20010101",
+          "end": "20251231",
+          "format": "JSON",
+          "time-standard": "LST"
+        }
+      },
+      {
+        "snapshot": "recent",
+        "raw": "power_sakha_2026_Jan_Oct_LST.json",
+        "raw_sha256": "6a957d31aff96ab9b6de604f1ed5bd0def3ee364e742458d5f0e4e9aa37b8700",
+        "raw_bytes": 41487,
+        "derived": "weather_et0_2026_Jan_Oct.csv",
+        "derived_sha256": "c4d5929fd0d4d55c416ee45d5ebd21502142994afbc76b00c6f20e1b349ee36e",
+        "derived_bytes": 33936,
+        "retrieval_utc": "2026-11-10T23:27:30.138361+00:00",
+        "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX%2CT2M_MIN%2CT2MDEW%2CRH2M%2CWS2M%2CALLSKY_SFC_SW_DWN%2CPS%2CPRECTOTCORR&community=AG&longitude=30.95&latitude=31.10&start=20260101&end=20261031&format=JSON&time-standard=LST",
+        "header": {
+          "title": "NASA/POWER Source Native Resolution Daily Data",
+          "api": {
+            "version": "v2.10.3",
+            "name": "POWER Daily API"
+          },
+          "sources": [
+            "MERRA2",
+            "GEOSIT",
+            "SYN1DEG",
+            "FLASHFLUX",
+            "POWER"
+          ],
+          "fill_value": -999.0,
+          "time_standard": "LST",
+          "start": "20260101",
+          "end": "20261031"
+        },
+        "coordinates": [
+          30.95,
+          31.1,
+          4.96
+        ],
+        "definitions": {
+          "T2M_MAX": {
+            "units": "C",
+            "longname": "Temperature at 2 Meters Maximum"
+          },
+          "T2M_MIN": {
+            "units": "C",
+            "longname": "Temperature at 2 Meters Minimum"
+          },
+          "T2MDEW": {
+            "units": "C",
+            "longname": "Dew/Frost Point at 2 Meters"
+          },
+          "RH2M": {
+            "units": "%",
+            "longname": "Relative Humidity at 2 Meters"
+          },
+          "WS2M": {
+            "units": "m/s",
+            "longname": "Wind Speed at 2 Meters"
+          },
+          "ALLSKY_SFC_SW_DWN": {
+            "units": "MJ/m^2/day",
+            "longname": "All Sky Surface Shortwave Downward Irradiance"
+          },
+          "PS": {
+            "units": "kPa",
+            "longname": "Surface Pressure"
+          },
+          "PRECTOTCORR": {
+            "units": "mm/day",
+            "longname": "Precipitation Corrected"
+          }
+        },
+        "request": {
+          "parameters": "T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PS,PRECTOTCORR",
+          "community": "AG",
+          "longitude": "30.95",
+          "latitude": "31.10",
+          "start": "20260101",
+          "end": "20261031",
+          "format": "JSON",
+          "time-standard": "LST"
+        }
+      }
+    ],
+    "coverage": {
+      "first": "2001-01-01",
+      "last": "2026-10-31",
+      "valid_days": 9435
+    },
+    "quality": {
+      "review_days": 937,
+      "flag_day_counts": {
+        "dew_above_tmin": 306,
+        "mixed_sources_in_response": 304,
+        "negative_unbounded_cloud_factor": 21,
+        "raw_ratio_below_0_3": 38
+      },
+      "statistical_column_day_counts": {
+        "et0_mm_day": 23,
+        "rain_mm_day": 557,
+        "rh_percent": 21,
+        "solar_mj_m2_day": 56,
+        "tdew_c": 3,
+        "tmax_c": 1,
+        "wind2_m_s": 16
+      }
+    },
+    "heat_definition": {
+      "threshold_c": 39.48,
+      "operator": ">=",
+      "statistic": "pooled daily Tmax p90, linear interpolation",
+      "fit_start": "2001-01-01",
+      "fit_end": "2018-12-31",
+      "kind": "historical_exposure"
+    },
+    "scope": "Daily POWER regional gridded weather and calculated short-grass reference ET0."
+  }
+}

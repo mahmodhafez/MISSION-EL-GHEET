@@ -1,0 +1,13 @@
+# Raw and derived NASA POWER snapshots stay out of git (repo rule: no raw/generated data).
+# Place hash-verified local copies as described in sources/LOCAL_INPUTS.md.
+sources/power_sakha_2001_2025_LST.json
+sources/power_sakha_2026_Jan_Oct_LST.json
+sources/weather_et0.csv
+sources/weather_et0_2026_Jan_Oct.csv
+
+# Generated outputs (handoff ZIPs are rebuilt with make_handoffs.py).
+outputs/
+
+__pycache__/
+*.pyc
+.venv/
