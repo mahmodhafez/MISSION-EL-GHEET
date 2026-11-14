@@ -815,3 +815,79 @@ details.more summary{cursor:pointer;font-weight:600;min-height:32px}
 /* Full rows only (8 crops → 2×4 or 4×2, no orphan cell): 2 columns below 820px, 4 from 820px */
 .tiles.compact{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (min-width:820px){.tiles.compact{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* ===== Parallel visual review fixes (14 Nov) ===== */
+/* Icons inside text stay inline (Tailwind preflight makes svg block). */
+svg{display:inline-block;vertical-align:middle}
+/* Direction-carrying icons mirror in Arabic (Back, forward arrow). */
+[dir="rtl"] .i-back,[dir="rtl"] .i-arrow{transform:scaleX(-1)}
+[dir="rtl"] .vs .i-arrow{transform:scaleX(-1)}
+/* Status badges on pictures: fixed size, icon always inside the circle, at every width. */
+.s-mark{width:24px !important;height:24px !important;inset-block-start:-6px !important;inset-inline-end:-8px !important;display:grid !important;place-items:center;overflow:hidden;flex:none;z-index:1}
+.strip .s-art .s-mark > svg,.clash .s-art .s-mark > svg,.s-art .s-mark > svg{width:14px !important;height:14px !important}
+/* Season strip: same height on every step (date + year lines always reserved); short year shown on phone. */
+.strip .s-when{white-space:nowrap;flex-wrap:nowrap}
+.strip .s-when .s-yr{display:block;width:100%}
+.strip .s-when{flex-wrap:wrap}
+.strip .s-date{white-space:nowrap}
+@media (max-width:600px){.strip .s-sy{display:inline !important}.strip .s-season{font-size:10.5px;gap:2px}.strip{padding:6px 10px;gap:6px}}
+/* One gutter for header, strip and content. */
+.app-head{padding-inline:18px}
+@media (max-width:600px){.app-head{padding-inline:14px}}
+/* Voice dock: captions kept on phone, labels on one baseline, short status line. */
+.dock{align-items:end}
+.dock .ctl{justify-content:flex-end}
+.dock .dock-state{align-self:center}
+.dock-state small{text-wrap:balance}
+@media (max-width:600px){.dock .round-label{display:block !important;font-size:11px}.dock-state{font-size:15px}.dock-state small{font-size:12px;line-height:1.25}.mic{width:64px;height:64px}.mic svg{width:30px;height:30px}.round{width:48px;height:48px}}
+/* Actions sit at the bottom of the screen (thumb reach); main content centred in the space above. */
+.push-end{margin-top:auto !important}
+.calm > .clash,.calm > .strip.in{margin-block:auto}
+.hero h2{font-weight:700}
+.hero p.mic-hint{font-weight:400}
+/* Wide primary buttons do not stretch across desktop screens. */
+@media (min-width:700px){.wide-btn,.two-btns,.three-btns,.date-cards,.perm,.scope-list,.replay-sum,.facts{max-width:640px;margin-inline:auto;width:100%}}
+/* Headings may use the full width; the season part never splits. */
+.question.q-small{max-width:none}
+.nowrap{white-space:nowrap}
+/* Permission chips: add-actions are solid green outlines; chosen values a green tint (amber means "needs review"). */
+.pchip.add{border:2px solid var(--action);color:var(--action);background:#fff}
+.pchip[aria-pressed="true"]{border:2px solid var(--feasible);background:var(--feasible-bg);color:var(--feasible)}
+@media (max-width:400px){.two-btns.stack-narrow{grid-template-columns:1fr}.two-btns.stack-narrow > *{white-space:normal}}
+/* Unknown banner title in ink (grey reads as disabled). */
+.banner.unknown{color:var(--ink)}
+.banner.unknown svg{color:var(--unknown)}
+/* Saved: a clear success state the same height as the Save button. */
+.banner.saved{background:var(--feasible-bg);color:var(--feasible);border-color:var(--feasible);min-height:58px}
+/* Date cards keep their year; badges never wrap. */
+.date-card .yr{display:block !important}
+.replay-card .badge,.date-card .badge{white-space:nowrap}
+.ichip.no svg{color:var(--muted)}
+.replay-sum li{max-width:70ch}
+/* Day grid always 7 columns; past days/months: grey and dashed, no strike-through over digits. */
+@media (min-width:1000px){.days{grid-template-columns:repeat(7,1fr) !important}}
+.dense-grid button:disabled{text-decoration:none;opacity:.7}
+/* "What must stay?": centred desktop cards hide the separator dot; type on its own line. */
+@media (min-width:1000px) and (min-height:801px){.path.wide li h3 .sep{display:none}.path.wide li h3 .meta{display:block;font-weight:400}.path.wide li .when{justify-content:center}}
+/* Intent pictures scale with the tile at every width. */
+.tiles.two .tile{min-height:180px}
+.intent-art .mini{width:clamp(22px,5vw,44px);height:clamp(28px,6vw,54px)}
+.intent-art .mini svg{width:80%;height:80%}
+.intent-art .badge-ic{width:clamp(30px,6vw,48px);height:clamp(30px,6vw,48px);inset-inline-end:-6px;inset-block-start:-8px}
+.intent-art{padding:10px 8px}
+/* Crop-picker labels readable on small phones. */
+@media (max-width:380px){.tiles.compact .tile{font-size:14px}}
+/* Strip: the season label carries the years, so dates show day + month only; one reserved line keeps every card the same height. */
+.strip .s-when{flex-wrap:nowrap}
+@media (max-height:800px) and (min-width:820px){.days{grid-template-columns:repeat(8,1fr) !important}.date-card .secondary{min-height:48px}}
+@media (max-width:819px){.tiles.compact .tile{min-height:56px}.tiles.compact{gap:6px}}
+@media (max-width:400px){.two-btns.stack-narrow{grid-template-columns:1fr 1fr}.two-btns.stack-narrow > *{white-space:normal;font-size:14px;line-height:1.2;padding-inline:6px}}
+@media (min-width:820px) and (max-height:900px){.days{grid-template-columns:repeat(8,1fr) !important}}
+@media (max-height:720px){.app-main{gap:8px}.date-cards{gap:8px}}
+@media (max-width:819px){.tiles.compact .tile .art{width:42px;height:46px}.tiles.compact .tile .art svg{width:34px;height:40px}.tiles.compact .tile{padding-block:3px}}
+@media (max-width:400px){.q-row{gap:4px 6px}.q-note{font-size:11px;padding:1px 6px}.q-note svg{width:13px;height:13px}.question.q-small{font-size:19px}}
+/* Button rows share the full width whatever the number of buttons; only button rows are capped on desktop. */
+.three-btns{display:flex;gap:8px}
+.three-btns > *{flex:1 1 0;min-width:0}
+@media (min-width:700px){.perm,.scope-list,.date-cards,.replay-sum,.facts{max-width:none;margin-inline:0}}
+.strip-label{font-size:17px;font-weight:700;margin-top:4px}@media (max-height:800px){.strip-label{font-size:15px;margin-top:0}}

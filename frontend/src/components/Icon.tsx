@@ -3,7 +3,7 @@ import type { PlantArt } from '../domain/catalogue';
 
 export function Icon({ name, className }: { name: string; className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth={2.2}
+    <svg className={`i-${name}${className ? ` ${className}` : ''}`} viewBox="0 0 36 36" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth={2.2}
       strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: ICON[name] ?? ICON.plan }} />
   );
 }

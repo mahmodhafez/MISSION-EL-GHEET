@@ -79,7 +79,7 @@ export function Result() {
   } else if (cur.status === 'needs_review') {
     const rs = reviewReasons(cur);
     prompt = { ar: 'مفيش تعارض واضح، بس الخطة محتاجة مراجعة زراعية.', en: 'No clear conflict, but the plan needs agricultural review.' };
-    body = <div className="facts four">{rs.map((r, k) => <span key={k} className="fact unk"><Icon name={r.icon} />؟<small>{t(r.label)}</small></span>)}</div>;
+    body = <div className="facts four">{rs.map((r, k) => <span key={k} className="fact unk"><Icon name={r.icon} />{state.locale === 'ar' ? '؟' : '?'}<small>{t(r.label)}</small></span>)}</div>;
   } else {
     prompt = { ar: 'الخطة ماشية بالشروط اللي اتقالت. ده مش وعد بمحصول.', en: 'The plan holds under the stated conditions. That is not a promise of a harvest.' };
     body = <Hero icon="feasible" title={t({ ar: 'الخطة ماشية بالشروط دي', en: 'The plan holds under these conditions' })} />;
@@ -96,8 +96,8 @@ export function Result() {
       <div className="calm">
         {banner}<DevBadge />{body}
         <div className="calm-end"><div className="three-btns">
-          {prepSteps(cur) || rendered?.why ? <button className="secondary" onClick={() => dispatch({ type: 'go', route: 'why' })}><Icon name="help" /><span>{t({ ar: 'ليه؟', en: 'Why?' })}</span></button> : <span />}
-          {hasOptions ? <button className="primary" onClick={() => dispatch({ type: 'go', route: 'options' })}><Icon name="calendar" /><span>{t({ ar: 'مواعيد تانية', en: 'Other dates' })}</span></button> : <span />}
+          {hasOptions && <button className="primary" onClick={() => dispatch({ type: 'go', route: 'options' })}><Icon name="calendar" /><span>{t({ ar: 'مواعيد تانية', en: 'Other dates' })}</span></button>}
+          {(prepSteps(cur) || rendered?.why) && <button className="secondary" onClick={() => dispatch({ type: 'go', route: 'why' })}><Icon name="help" /><span>{t({ ar: 'ليه؟', en: 'Why?' })}</span></button>}
           <button className="secondary" onClick={() => { voice.stop(); dispatch({ type: 'go', route: 'summary' }); }}><Icon name="save" /><span>{t({ ar: 'احفظ', en: 'Save' })}</span></button>
         </div></div>
       </div>

@@ -44,7 +44,7 @@ export function Protect() {
             </li>);
         })}
       </ol>
-      <button className="primary wide-btn" onClick={next}>
+      <button className="primary wide-btn push-end" onClick={next}>
         <Icon name="check" />{state.journey === 'explore' ? t({ ar: 'التالي: إيه اللي ممكن يتغيّر؟', en: 'Next: what may change?' }) : t({ ar: 'التالي', en: 'Next' })}
         {n > 0 && <span className="badge protected" style={{ background: '#fff' }}><Icon name="lock" />{num(n, L)}</span>}
       </button>
@@ -73,11 +73,11 @@ export function Permit() {
     const slot = state.slots[adding.season]; const s = state.seasons[adding.season];
     return (
       <Shell prompt={{ ar: 'اختار الميعاد اللي ممكن نجرّبه.', en: 'Choose a date we may try.' }}>
-        <h2 className="question q-small">{t({ ar: `ميعاد تاني لـ${PLANT[plantOf(s.crop_id)].def}`, en: `Another date for ${PLANT[plantOf(s.crop_id)].en.toLowerCase()}` })} · <SeasonName slot={slot} /></h2>
+        <h2 className="question q-small">{t({ ar: `ميعاد تاني: ${PLANT[plantOf(s.crop_id)].def}`, en: `Another date for ${PLANT[plantOf(s.crop_id)].en.toLowerCase()}` })} <span className="nowrap">· <SeasonName slot={slot} /></span></h2>
         {adding.ym && <p className="sub">{MONTHS[L][adding.ym.m - 1]} {num(adding.ym.y, L)}</p>}
         <DatePicker slot={slot} today={state.today} ym={adding.ym} onMonth={(ym) => setAdding({ ...adding, ym })}
           onDay={(d) => { const cur = get(s.season_id, 'sowing_date'); if (d !== s.sowing_date && !cur.includes(d)) setVals(s.season_id, 'sowing_date', [...cur, d].sort()); setAdding(null); }} />
-        <button className="secondary wide-btn" onClick={() => setAdding(null)}><Icon name="back" />{t({ ar: 'رجوع', en: 'Back' })}</button>
+        <button className="secondary wide-btn push-end" onClick={() => setAdding(null)}>{t({ ar: 'إلغاء، سيب الميعاد', en: 'Cancel, keep the date' })}</button>
       </Shell>);
   }
 
@@ -87,10 +87,10 @@ export function Permit() {
     const chosen = get(s.season_id, 'crop_id');
     return (
       <Shell prompt={{ ar: 'أنهي محصول ممكن نجرّبه بداله؟', en: 'Which crop may we try instead?' }}>
-        <h2 className="question q-small">{t({ ar: `بدل ${PLANT[plantOf(s.crop_id)].def}`, en: `Instead of ${PLANT[plantOf(s.crop_id)].en.toLowerCase()}` })} · <SeasonName slot={state.slots[cropFor]} /></h2>
+        <h2 className="question q-small">{t({ ar: `بدل ${PLANT[plantOf(s.crop_id)].def}`, en: `Instead of ${PLANT[plantOf(s.crop_id)].en.toLowerCase()}` })} <span className="nowrap">· <SeasonName slot={state.slots[cropFor]} /></span></h2>
         <div className={`tiles four ${others.length > 4 ? 'compact' : ''}`}>{others.map((pl) => { const id = pl.options[0].crop_id; return (
           <Tile key={id} label={t(PLANT[pl.plant])} art={<CropArt plant={pl.plant} />} pressed={chosen.includes(id)} onClick={() => toggle(s.season_id, 'crop_id', id)} />); })}</div>
-        <button className="primary wide-btn" onClick={() => setCropFor(null)}><Icon name="check" />{t({ ar: 'تمام', en: 'Done' })}</button>
+        <button className="primary wide-btn push-end" onClick={() => setCropFor(null)}><Icon name="check" />{t({ ar: 'تمام', en: 'Done' })}</button>
       </Shell>);
   }
   return (
@@ -111,14 +111,14 @@ export function Permit() {
               {s.sowing_date && s.sowing_date !== 'unknown' && <span className="was">{t({ ar: 'الزراعة دلوقتي', en: 'sowing now' })} <DateText value={s.sowing_date} noYear /></span>}
               <div className="pchips">
                 {dates.map((d) => <button key={d} className="pchip" aria-pressed onClick={() => toggle(s.season_id, 'sowing_date', d)}><Icon name="check" /><DateText value={d} noYear /></button>)}
-                {!asksLastCut(s.crop_id) && <button className="pchip" aria-pressed={false} onClick={() => setAdding({ season: i })}><Icon name="calendar" />{t({ ar: 'ميعاد تاني', en: 'Another date' })}</button>}
                 {crops.map((id) => <button key={id} className="pchip" aria-pressed onClick={() => toggle(s.season_id, 'crop_id', id)}><Icon name="check" />{t(PLANT[plantOf(id)])}</button>)}
-                {!cropLocked && <button className="pchip" aria-pressed={false} onClick={() => setCropFor(i)}><Icon name="plus" />{t({ ar: 'محصول تاني', en: 'Another crop' })}</button>}
+                {!asksLastCut(s.crop_id) && <button className="pchip add" aria-pressed={false} onClick={() => setAdding({ season: i })}><Icon name="calendar" />{t({ ar: 'ميعاد تاني', en: 'Another date' })}</button>}
+                {!cropLocked && <button className="pchip add" aria-pressed={false} onClick={() => setCropFor(i)}><Icon name="plus" />{t({ ar: 'محصول تاني', en: 'Another crop' })}</button>}
               </div>
             </div>
           </div>);
       })}
-      <div className="two-btns">
+      <div className="two-btns push-end stack-narrow">
         <button className="primary" onClick={() => dispatch({ type: 'go', route: 'scope' })}><Icon name="check" />{t({ ar: 'التالي', en: 'Next' })}</button>
         <button className="secondary" onClick={() => { dispatch({ type: 'set', patch: { journey: 'check', permissions: [] } }); dispatch({ type: 'go', route: 'scope' }); }}>{t({ ar: 'مفيش حاجة تتغيّر', en: 'Nothing may change' })}</button>
       </div>
@@ -166,7 +166,7 @@ export function ScopeReadback() {
         })}
         {unknowns.map((u, k) => <li key={k} className="unk"><Icon name="unknown" /><span>{t(u)}</span></li>)}
       </ul>
-      <button className="primary wide-btn" onClick={confirm}><Icon name={explore ? 'search' : 'check'} />{explore ? t({ ar: 'أكّد ودوّر', en: 'Confirm and search' }) : t({ ar: 'أكّد وشيّك', en: 'Confirm and check' })}</button>
+      <button className="primary wide-btn push-end" onClick={confirm}><Icon name={explore ? 'search' : 'check'} />{explore ? t({ ar: 'أكّد ودوّر', en: 'Confirm and search' }) : t({ ar: 'أكّد وشيّك', en: 'Confirm and check' })}</button>
     </Shell>
   );
 }

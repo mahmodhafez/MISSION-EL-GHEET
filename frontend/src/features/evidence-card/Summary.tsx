@@ -37,11 +37,11 @@ export function Summary() {
           <button className="hear" aria-label={t({ ar: 'اسمع الملخص', en: 'Hear the summary' })} onClick={() => voice.speak(spokenTakeaway)}><Icon name="speaker" /></button></div>
         <SeasonStrip inline compact items={items} />
         {problem && <Banner kind={cur?.status === 'rejected' ? 'rejected' : 'review'} icon={cur?.status === 'rejected' ? 'reject' : 'review'}>{t(problem)}</Banner>}
-        <div className="chips-row" style={{ justifyContent: 'flex-start' }}>
-          <button className="ichip" onClick={() => dispatch({ type: 'go', route: 'replay' })}><Icon name="sun" />{t({ ar: 'الجو اللي فات', en: 'Past weather' })}</button>
-          <button className="ichip" onClick={() => dispatch({ type: 'go', route: 'forecast' })}><Icon name="future" />{t({ ar: 'الأسبوع الجاي', en: 'Next week' })}</button>
-        </div>
         <div className="calm-end">
+          <div className="two-btns">
+            <button className="secondary" onClick={() => dispatch({ type: 'go', route: 'replay' })}><Icon name="sun" />{t({ ar: 'الجو اللي فات', en: 'Past weather' })}</button>
+            <button className="secondary" onClick={() => dispatch({ type: 'go', route: 'forecast' })}><Icon name="future" />{t({ ar: 'الأسبوع الجاي', en: 'Next week' })}</button>
+          </div>
           {save === 'idle' && <button className="primary wide-btn" onClick={doSave}><Icon name="save" />{t({ ar: 'احفظ للمراجعة', en: 'Save for review' })}</button>}
           {save === 'saving' && <button className="primary wide-btn" disabled><Icon name="save" />{t({ ar: 'بيتحفظ…', en: 'Saving…' })}</button>}
           {typeof save === 'object' && save.status === 'saved' && <Banner kind="saved" icon="check">{t({ ar: 'اتحفظت للمراجعة', en: 'Saved for review' })}</Banner>}

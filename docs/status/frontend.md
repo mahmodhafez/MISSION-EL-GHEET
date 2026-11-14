@@ -56,6 +56,13 @@ before/after + why review → check again → summary + save; past weather and 7
   crops every crop is visible at once, with no paging: row tiles (picture | name | 44px listen) in 2 columns on phone and 4 on
   desktop; one "needs review" note beside the question; the "Another crop" picker uses the same layout. Verified: full journey
   at 390×760 and 1280×820 with no scrolling. Drawings are placeholders for Moaaz's pictures and a farmer recognition test.
+- **UI review (14 Nov, later):** four parallel visual reviews of all 22 screens (360/650/1280, AR/EN) plus an automated audit
+  at 12 widths (360–1440 px; clipping, overlap, overflow, mid-word breaks, buttons touching tile borders, scrolling). Fixed:
+  RTL Back/arrow mirroring, fixed-size status badges, constant-height season strip, dock captions on phone, one gutter,
+  actions at the bottom with centred content, full-width button rows, unknown (not red) style for "not checked", green
+  permission chips, success style for Saved, Arabic decimal separator and °C in replay, current-language Start button.
+  Audit clean at all 12 widths in both languages. Deliberately not changed: Arabic year order (earlier year on the right, by
+  decision) and listen buttons stay 44 px (minimum target).
 - **Known gaps:** harvest dates for maize, wheat and sorghum are not asked (the fixture supplies illustrative ones); season month
   windows are placeholders (voice-first.md open question 6); crop pictures are drawings.
 

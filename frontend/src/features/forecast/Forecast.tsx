@@ -19,8 +19,8 @@ export function Forecast() {
   return (
     <Shell prompt={view ? { ar: `${view.title.ar}. ${view.text.ar}.`, en: `${view.title.en}. ${view.text.en}.` } : null}>
       {view && <Hero icon="future" sub={view.sub} unknown title={t(view.title)} text={t(view.text)} />}
-      <span className="badge sim" style={{ justifySelf: 'center' }}><Icon name="future" />{t({ ar: 'تجريبي', en: 'Experimental' })}</span>
-      <button className="primary wide-btn" onClick={() => dispatch({ type: 'back' })}><Icon name="check" />{t({ ar: 'كمّل', en: 'Continue' })}</button>
+      <span className="badge sim" style={{ alignSelf: 'center' }}><Icon name="future" />{t({ ar: 'تجريبي', en: 'Experimental' })}</span>
+      <button className="primary wide-btn push-end" onClick={() => dispatch({ type: 'back' })}><Icon name="check" />{t({ ar: 'كمّل', en: 'Continue' })}</button>
     </Shell>
   );
 }

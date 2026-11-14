@@ -52,7 +52,7 @@ export function Options() {
         <ul className="scope-list">{(() => {
           const main = coverage.filter((c) => c.code !== 'search_incomplete');
           const note = coverage.find((c) => c.code === 'search_incomplete');
-          return (main.length ? main : coverage.slice(0, 1)).map((c, k) => <li key={k} className="blocked"><Icon name="reject" /><span>{c.text}{note && main.length > 0 && k === 0 && <small>{note.text}</small>}</span></li>);
+          return (main.length ? main : coverage.slice(0, 1)).map((c, k) => <li key={k} className="unk"><Icon name="unknown" /><span>{c.text}{note && main.length > 0 && k === 0 && <small>{note.text}</small>}</span></li>);
         })()}</ul>)}
       {coverage.length === 0 && (blocked.length > 0 || r.search.status === 'incomplete') && (
         <ul className="scope-list">
@@ -60,7 +60,7 @@ export function Options() {
             const sid = b.season_ids[0]; const perm = state.permissions.find((p) => p.season_id === sid && b.choice_ids.length);
             const what = perm?.field === 'crop_id' ? perm.allowed_values.map((c) => t(PLANT[plantOf(c)])).join('، ') : t({ ar: 'اختيار', en: 'A choice' });
             const i = state.seasons.findIndex((s) => s.season_id === sid);
-            return <li key={b.code + sid} className="blocked"><Icon name="reject" /><span>{what} {t({ ar: 'في الموسم', en: 'in season' })} {num(i + 1, state.locale)}: {t({ ar: 'ماتشيّكش', en: 'not checked' })}<small>{t({ ar: 'مفيش بيانات كفاية · البحث مش كامل', en: 'not enough data · search incomplete' })}</small></span></li>;
+            return <li key={b.code + sid} className="unk"><Icon name="unknown" /><span>{what} {t({ ar: 'في الموسم', en: 'in season' })} {num(i + 1, state.locale)}: {t({ ar: 'ماتشيّكش', en: 'not checked' })}<small>{t({ ar: 'مفيش بيانات كفاية · البحث مش كامل', en: 'not enough data · search incomplete' })}</small></span></li>;
           })}
         </ul>)}
       <button className="secondary wide-btn" onClick={() => dispatch({ type: 'go', route: 'summary' })}><Icon name="save" />{t({ ar: 'سيب خطتي واحفظها', en: 'Keep my plan and save it' })}</button>
@@ -103,7 +103,7 @@ export function Inspect() {
       <p className="strip-label"><Icon name="search" />{t({ ar: 'بالتغيير ده:', en: 'With this change:' })} {whatChanged}</p>
       <SeasonStrip inline compact items={stripFor(state.seasons, state.locks, changes)} />
       {reasons.length > 0 && <><p className="strip-label"><Icon name="review" />{t({ ar: 'ليه محتاج مراجعة؟', en: 'Why it needs review' })}</p>
-        <div className="facts four">{reasons.map((r, k) => <span key={k} className="fact unk"><Icon name={r.icon} />؟<small>{t(r.label)}</small></span>)}</div></>}
+        <div className="facts" style={{ gridTemplateColumns: `repeat(${reasons.length}, minmax(0, 1fr))` }}>{reasons.map((r, k) => <span key={k} className="fact unk"><Icon name={r.icon} />{state.locale === 'ar' ? '؟' : '?'}<small>{t(r.label)}</small></span>)}</div></>}
       <div className="two-btns">
         <button className="primary" onClick={() => dispatch({ type: 'go', route: 'try' })}><Icon name="check" />{t({ ar: 'جرّبه', en: 'Try it' })}</button>
         <button className="secondary" onClick={() => dispatch({ type: 'back' })}><Icon name="back" />{t({ ar: 'رجوع', en: 'Back' })}</button>
@@ -133,7 +133,7 @@ export function TryAgain() {
       <h2 className="question">{t({ ar: 'نشيّك تاني بالتغيير ده؟', en: 'Check again with this change?' })}</h2>
       <SeasonStrip inline compact items={stripFor(state.seasons, state.locks, changes)} />
       <p className="keepnote"><Icon name="lock" />{t({ ar: 'خطتك الأصلية محفوظة لحد ما تحفظ الجديدة', en: 'Your original plan is kept until you save a new one' })}</p>
-      <button className="primary wide-btn" onClick={apply}><Icon name="repeat" />{t({ ar: 'شيّك على الخطة تاني', en: 'Check the plan again' })}</button>
+      <button className="primary wide-btn push-end" onClick={apply}><Icon name="repeat" />{t({ ar: 'شيّك على الخطة تاني', en: 'Check the plan again' })}</button>
       <button className="secondary wide-btn" onClick={() => dispatch({ type: 'go', route: 'options' })}><Icon name="back" />{t({ ar: 'لأ، رجّع خطتي', en: 'No, back to my plan' })}</button>
     </Shell>
   );

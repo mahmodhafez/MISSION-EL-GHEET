@@ -112,7 +112,7 @@ export function Intake() {
   if (field === 'done') {
     prompt = { ar: 'تمام، المواسم الأربعة اتملت. اللي بعده: إيه اللي لازم يفضل؟', en: 'Good, all four seasons are filled. Next: what must stay?' };
     body = (<><Hero icon="check" title={t({ ar: 'المواسم الأربعة جاهزة', en: 'All four seasons filled' })} text={t({ ar: 'دوس على أي موسم فوق علشان تغيّره', en: 'Tap any season above to change it' })} />
-      <button className="primary wide-btn" onClick={() => dispatch({ type: 'go', route: 'protect' })}><Icon name="lock" />{t({ ar: 'التالي: إيه اللي لازم يفضل؟', en: 'Next: what must stay?' })}</button></>);
+      <button className="primary wide-btn push-end" onClick={() => dispatch({ type: 'go', route: 'protect' })}><Icon name="arrow" />{t({ ar: 'التالي: إيه اللي لازم يفضل؟', en: 'Next: what must stay?' })}</button></>);
   } else if (state.clarify) {
     prompt = { ar: 'تقصد ذرة شامية ولا ذرة رفيعة؟', en: 'Do you mean maize or sorghum?' };
     body = (<>{q({ ar: 'أنهي ذرة؟', en: 'Which one?' })}<div className="tiles two">

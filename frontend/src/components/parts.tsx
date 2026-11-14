@@ -20,11 +20,12 @@ export function SeasonName({ slot }: { slot: SeasonSlot }) {
   return <>{t(SEASON_KIND[slot.kind])} <SeasonYears slot={slot} locale={state.locale} /></>;
 }
 
-export function DateText({ value, noYear }: { value: string; noYear?: boolean }) {
+export function DateText({ value, noYear, short }: { value: string; noYear?: boolean; short?: boolean }) {
   const { state } = useApp();
   const { y, m, d } = parseIso(value);
   const L = state.locale;
-  return <bdi>{noYear ? `${num(d, L)} ${MONTHS[L][m - 1]}` : `${num(d, L)} ${MONTHS[L][m - 1]} ${num(y, L)}`}</bdi>;
+  const mo = short && L === 'en' ? MONTHS.en[m - 1].slice(0, 3) : MONTHS[L][m - 1];
+  return <bdi>{noYear ? `${num(d, L)} ${mo}` : `${num(d, L)} ${mo} ${num(y, L)}`}</bdi>;
 }
 
 export const plantOf = (cropId: string | null): PlantArt => (cropId && cropId !== 'unknown' ? cropView(cropId).plant : 'unknown');
@@ -48,8 +49,8 @@ export function SeasonStrip({ items, onPick, inline, compact }: { items: StripIt
             <span className="s-art"><CropArt plant={plant} />{it.mark && <span className={`s-mark ${it.mark}`}><Icon name={MARK_ICON[it.mark]} /></span>}</span>
             <span className="s-name">{name}</span>
             {it.date ? (
-              <span className="s-when"><Icon name={it.kind === 'end' ? 'cut' : 'sow'} /><span className="s-date"><DateText value={it.date} noYear /></span><span className="s-yr"><bdi>{num(parseIso(it.date).y, L)}</bdi></span></span>
-            ) : it.note ? <span className="s-when muted">{it.note}</span> : null}
+              <span className="s-when"><Icon name={it.kind === 'end' ? 'cut' : 'sow'} /><span className="s-date"><DateText value={it.date} noYear short /></span></span>
+            ) : <span className="s-when muted">{it.note ?? '\u00a0'}</span>}
           </>
         );
         return (

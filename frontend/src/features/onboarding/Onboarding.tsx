@@ -18,8 +18,9 @@ export function Start() {
         <p className="sub">{t({ ar: 'خطّط أرضك لـ ٤ مواسم', en: 'Plan your field for 4 seasons' })}</p>
         {/* Start is also the audio unlock: the first tap browsers need before playing sound. */}
         <div className="actions">
-          <button className="primary" lang="ar" onClick={() => start('ar')}><Icon name="play" /><span>ابدأ</span></button>
-          <button className="secondary" lang="en" onClick={() => start('en')}><Icon name="play" /><span>Start</span></button>
+          {/* The current language's Start is the filled (primary) button */}
+          <button className={state.locale === 'ar' ? 'primary' : 'secondary'} lang="ar" onClick={() => start('ar')}><Icon name="play" /><span>ابدأ</span></button>
+          <button className={state.locale === 'en' ? 'primary' : 'secondary'} lang="en" onClick={() => start('en')}><Icon name="play" /><span>Start</span></button>
         </div>
         <span className="badge sim">{t(UI.practice)}</span>
       </div>
@@ -80,8 +81,8 @@ export function Practice() {
       </Hero>
       <p className="mic-hint" role="status" style={{ textAlign: 'center' }}>{hint}</p>
       {heard
-        ? <button className="primary wide-btn" onClick={() => dispatch({ type: 'go', route: 'intake' })}><Icon name="check" />{t({ ar: 'يلا نبدأ', en: "Let's start" })}</button>
-        : <button className="secondary wide-btn" onClick={() => dispatch({ type: 'go', route: 'intake' })}>{t({ ar: 'اتخطّى', en: 'Skip' })}</button>}
+        ? <button className="primary wide-btn push-end" onClick={() => dispatch({ type: 'go', route: 'intake' })}><Icon name="check" />{t({ ar: 'يلا نبدأ', en: "Let's start" })}</button>
+        : <button className="secondary wide-btn push-end" onClick={() => dispatch({ type: 'go', route: 'intake' })}>{t({ ar: 'اتخطّى', en: 'Skip' })}</button>}
     </Shell>
   );
 }
