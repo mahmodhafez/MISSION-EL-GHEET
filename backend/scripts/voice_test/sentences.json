@@ -1,0 +1,24 @@
+{
+  "_note": "Listening test only (voice-generation.md Q4). Each sentence is recorded ONCE with the 'recorded' values (the frame); the {slots} are then cut out and replaced with clips of the 'new' values (B). A is the whole sentence generated with the 'new' values, for comparison. Templates are the backend speech templates (backend/app/i18n/messages.json, 14 Nov 2026); 02 is draft readback wording. 'recorded' values for 01 and 03 are the real UH-001 output; 'new' values are a hypothetical plan for listening only, not planner results. Dates are spelled by backend/app/i18n/formatting.py.",
+  "gap_ms": 30,
+  "sentences": [
+    {
+      "id": "01_conflict",
+      "template": "زراعة {crop} يوم {sowing} قبل حشة البرسيم اللي ثبّتها يوم {cut}. الحشة هتفضل.",
+      "recorded": {"crop": "الذرة الشامية", "sowing": "خمستاشر مايو", "cut": "عشرين مايو"},
+      "new": {"crop": "الذرة الرفيعة", "sowing": "تلاتة يوليو", "cut": "عشرة يوليو"}
+    },
+    {
+      "id": "02_readback",
+      "template": "الموسم الأول: {crop}. الزراعة يوم {date}. صح كده؟",
+      "recorded": {"crop": "القمح", "date": "واحد نوفمبر ألفين ستة وعشرين"},
+      "new": {"crop": "الفول البلدي", "date": "اتناشر نوفمبر ألفين ستة وعشرين"}
+    },
+    {
+      "id": "03_option",
+      "template": "لو {crop} {date}: اللي عليه قفل بيفضل. ميعاد الحصاد يبقى مش معروف، فمحتاج مراجعة زراعية.",
+      "recorded": {"crop": "الذرة الشامية", "date": "تمانية وعشرين مايو"},
+      "new": {"crop": "الذرة الرفيعة", "date": "أربعة يونيو"}
+    }
+  ]
+}
