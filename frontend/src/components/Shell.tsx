@@ -34,7 +34,9 @@ export function Shell({ prompt = null, top, children, back = true, dock = true, 
   const micLabel = v === 'listening' ? t(UI.doneTalking) : v === 'denied' || v === 'unsupported' ? t(line1) : t(UI.talk);
 
   return (
-    <section className={`stage ${v === 'fallback' || v === 'denied' || v === 'unsupported' ? 'fallback' : ''}`} lang={L} dir={L === 'ar' ? 'rtl' : 'ltr'}>
+    <section className={`stage ${v === 'fallback' || v === 'denied' || v === 'unsupported' ? 'fallback' : ''}`} lang={L} dir={L === 'ar' ? 'rtl' : 'ltr'}
+      // Tapping anything except a mic (a picture, a disabled date, empty space) closes an open or pending mic.
+      onPointerDownCapture={(e) => { if ((v === 'listening' || v === 'asking') && !(e.target as Element).closest('[data-mic]')) voice.cancel(); }}>
       <div className="app-head">
         {back && state.history.length > 0 && (
           <button className="chip-btn" onClick={() => { voice.stop(); dispatch({ type: 'back' }); }}><Icon name="back" /><span>{t(UI.back)}</span></button>
@@ -72,7 +74,7 @@ export function Shell({ prompt = null, top, children, back = true, dock = true, 
             </div>
           </div>
           <div className="ctl">
-            <button className={`mic ${micCls}`} aria-label={micLabel} aria-pressed={v === 'listening'} disabled={!onTranscript}
+            <button type="button" data-mic className={`mic ${micCls}`} aria-label={micLabel} aria-pressed={v === 'listening'} disabled={!onTranscript}
               onClick={() => onTranscript && voice.micTap(onTranscript)}>
               <Icon name={micCls === 'off' ? 'micoff' : 'mic'} /><span className="ring" />
             </button>

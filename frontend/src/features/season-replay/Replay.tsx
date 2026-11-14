@@ -48,7 +48,7 @@ export function Replay() {
           const tmax = mean(w.window_id, 'tmax_mean_c'); const et0 = mean(w.window_id, 'et0_total_mm');
           return (
             <div className="replay-card" key={w.window_id}>
-              <span className="big-date"><Icon name="sow" /><DateText value={w.sow_date} noYear /></span>
+              <span className="big-date"><Icon name="sow" /><DateText value={w.sow_date} noYear short /></span>
               {st && <span className={`badge ${st.cls}`}><Icon name={st.icon} />{t(st)}</span>}
               <span className="m"><Icon name="thermo" />{tmax == null ? '—' : fmt(`${tmax.toFixed(1)}°`)}</span>
               <span className="m"><Icon name="drop" />{et0 == null ? '—' : `${num(Math.round(et0), L)} ${t({ ar: 'مم', en: 'mm' })}`}</span>

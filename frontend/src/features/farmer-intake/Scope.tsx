@@ -106,15 +106,17 @@ export function Permit() {
         return (
           <div className="perm" key={s.season_id}>
             <span className="s-art"><CropArt plant={plantOf(s.crop_id)} /></span>
-            <div>
-              <b>{t(p)} · <SeasonName slot={state.slots[i]} /></b>
-              {s.sowing_date && s.sowing_date !== 'unknown' && <span className="was">{t({ ar: 'الزراعة دلوقتي', en: 'sowing now' })} <DateText value={s.sowing_date} noYear /></span>}
-              <div className="pchips">
-                {dates.map((d) => <button key={d} className="pchip" aria-pressed onClick={() => toggle(s.season_id, 'sowing_date', d)}><Icon name="check" /><DateText value={d} noYear /></button>)}
-                {crops.map((id) => <button key={id} className="pchip" aria-pressed onClick={() => toggle(s.season_id, 'crop_id', id)}><Icon name="check" />{t(PLANT[plantOf(id)])}</button>)}
-                {!asksLastCut(s.crop_id) && <button className="pchip add" aria-pressed={false} onClick={() => setAdding({ season: i })}><Icon name="calendar" />{t({ ar: 'ميعاد تاني', en: 'Another date' })}</button>}
-                {!cropLocked && <button className="pchip add" aria-pressed={false} onClick={() => setCropFor(i)}><Icon name="plus" />{t({ ar: 'محصول تاني', en: 'Another crop' })}</button>}
-              </div>
+            <div className="perm-head">
+              <b>{t(p)}</b>
+              <span className="was"><SeasonName slot={state.slots[i]} />{s.sowing_date && s.sowing_date !== 'unknown' && <> · <Icon name="sow" /><DateText value={s.sowing_date} noYear /></>}</span>
+            </div>
+            {(dates.length > 0 || crops.length > 0) && <div className="pchips chosen">
+              {dates.map((d) => <button key={d} className="pchip" aria-pressed aria-label={`${t({ ar: 'شيل', en: 'Remove' })}: ${d}`} onClick={() => toggle(s.season_id, 'sowing_date', d)}><Icon name="check" /><DateText value={d} noYear /><Icon name="close" /></button>)}
+              {crops.map((id) => <button key={id} className="pchip" aria-pressed aria-label={`${t({ ar: 'شيل', en: 'Remove' })}: ${t(PLANT[plantOf(id)])}`} onClick={() => toggle(s.season_id, 'crop_id', id)}><Icon name="check" />{t(PLANT[plantOf(id)])}<Icon name="close" /></button>)}
+            </div>}
+            <div className="perm-add">
+              {!asksLastCut(s.crop_id) && <button className="padd" onClick={() => setAdding({ season: i })}><Icon name="plus" />{t({ ar: 'ميعاد تاني', en: 'Other date' })}</button>}
+              {!cropLocked && <button className="padd" onClick={() => setCropFor(i)}><Icon name="plus" />{t({ ar: 'محصول تاني', en: 'Other crop' })}</button>}
             </div>
           </div>);
       })}

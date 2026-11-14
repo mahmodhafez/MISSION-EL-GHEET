@@ -72,7 +72,7 @@ describe('planner output → screens', () => {
   });
   it('investigations, review reasons and blocked choices', () => {
     expect(result.review_investigations.map((c) => directChanges(c)[0].value)).toEqual(['2027-05-28', '2027-06-01']);
-    expect(reviewReasons(result.review_investigations[0].evaluation).map((r) => r.label.en)).toEqual(['harvest date', 'water', 'soil', 'variety']);
+    expect(reviewReasons(result.review_investigations[0].evaluation).map((r) => r.label.en)).toEqual(['Harvest date', 'Water', 'Soil', 'Variety']);
     expect(blockedChoices(result)).toHaveLength(1);
     expect(result.search.status).toBe('incomplete');
   });

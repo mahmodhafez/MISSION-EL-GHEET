@@ -25,18 +25,19 @@ export function prepSteps(e: PlanEvaluation): PrepSteps | null {
 /** Seasons involved in a failing hard check (for red marks). */
 export const conflictSeasons = (e: PlanEvaluation) => new Set(failing(e).flatMap((c) => c.explanation.params.season_id ? [String(c.explanation.params.season_id)] : c.season_ids.slice(-1)));
 
-/** Top reasons a plan needs review, from its unknown checks, as picture tiles (farmer words). */
-const REASONS: [string, string, Bi][] = [
-  ['endpoint_mapping_missing', 'cut', { ar: 'ميعاد الحصاد', en: 'harvest date' }],
-  ['irrigation_availability_unknown', 'drop', { ar: 'المية', en: 'water' }],
-  ['soil_suitability_unknown', 'soil', { ar: 'التربة', en: 'soil' }],
-  ['cultivar_availability_unknown', 'sow', { ar: 'الصنف', en: 'variety' }],
-  ['forage_quantity_unknown', 'cow', { ar: 'كمية العلف', en: 'feed amount' }],
-  ['sowing_support_unverified', 'calendar', { ar: 'ميعاد الزراعة', en: 'sowing date' }],
+/** Top reasons a plan needs review, from its unknown checks (farmer words + what is missing). */
+const NOT_KNOWN: Bi = { ar: 'لسه مش معروف', en: 'not known yet' };
+const REASONS: [string, string, Bi, Bi][] = [
+  ['endpoint_mapping_missing', 'cut', { ar: 'ميعاد الحصاد', en: 'Harvest date' }, NOT_KNOWN],
+  ['irrigation_availability_unknown', 'drop', { ar: 'المية', en: 'Water' }, NOT_KNOWN],
+  ['soil_suitability_unknown', 'soil', { ar: 'التربة', en: 'Soil' }, NOT_KNOWN],
+  ['cultivar_availability_unknown', 'sow', { ar: 'الصنف', en: 'Variety' }, NOT_KNOWN],
+  ['forage_quantity_unknown', 'cow', { ar: 'كمية العلف', en: 'Feed amount' }, NOT_KNOWN],
+  ['sowing_support_unverified', 'calendar', { ar: 'ميعاد الزراعة', en: 'Sowing date' }, { ar: 'الأبحاث لسه ماأكّدتهوش', en: 'not yet confirmed by research' }],
 ];
 export function reviewReasons(e: PlanEvaluation, max = 4) {
   const codes = new Set(e.checks.filter((c) => c.outcome === 'unknown').map((c) => c.explanation.code));
-  return REASONS.filter(([code]) => codes.has(code)).slice(0, max).map(([, icon, label]) => ({ icon, label }));
+  return REASONS.filter(([code]) => codes.has(code)).slice(0, max).map(([, icon, label, note]) => ({ icon, label, note }));
 }
 
 export interface DirectChange { season_id: string; field: string; value: string | null }

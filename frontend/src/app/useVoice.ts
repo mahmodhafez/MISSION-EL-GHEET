@@ -17,11 +17,32 @@ export function useVoice(locale: Locale) {
   const asked = useRef(false);
   const rest = useCallback((): VoiceState => (denied.current ? 'denied' : rec.current.supported ? 'idle' : 'unsupported'), []);
 
-  const stop = useCallback(() => { spk.current.stop(); setState((v) => (v === 'speaking' ? rest() : v)); }, [rest]);
+  /* Every listen gets a session id; callbacks from an older (aborted) session are ignored, and the
+   * delayed start after the permission notice is cancelled by anything else the farmer does. */
+  const session = useRef(0);
+  const pending = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cancelListen = useCallback(() => {
+    session.current += 1;
+    if (pending.current) { clearTimeout(pending.current); pending.current = null; }
+    rec.current.abort();
+  }, []);
+
+  /** Stop the mic (if open or about to open) without counting a miss. */
+  const cancel = useCallback(() => {
+    cancelListen();
+    setState((v) => (v === 'listening' || v === 'asking' || v === 'processing' ? rest() : v));
+  }, [cancelListen, rest]);
+
+  /** Stop everything: speech and mic. Used on navigation, language switch and screen changes. */
+  const stop = useCallback(() => {
+    cancelListen();
+    spk.current.stop();
+    setState((v) => (v === 'speaking' || v === 'listening' || v === 'asking' || v === 'processing' ? rest() : v));
+  }, [cancelListen, rest]);
 
   const speak = useCallback((b: Bi | null) => {
     if (!b) return;
-    rec.current.abort();
+    cancelListen();
     if (!spk.current.available) { setState('audiooff'); return; }
     setState('speaking');
     spk.current.speak(b[locale], locale === 'ar' ? 'ar-EG' : 'en-GB', () => setState((v) => (v === 'speaking' ? rest() : v)), () => setState('audiooff'));
@@ -34,22 +55,30 @@ export function useVoice(locale: Locale) {
   const micTap = useCallback((onTranscript: (t: string) => void) => {
     if (denied.current) { setState('denied'); return; }
     if (!rec.current.supported) { setState('unsupported'); return; }
-    if (state === 'listening' || state === 'asking') { rec.current.stop(); setState('processing'); return; }
+    if (state === 'asking') { cancel(); return; }
+    if (state === 'listening') { rec.current.stop(); setState('processing'); return; }
+    cancelListen();
     spk.current.stop();
+    const id = session.current;
+    const live = () => id === session.current;
     const begin = () => {
+      pending.current = null;
+      if (!live()) return;
       setState('listening');
+      let done = false; // one outcome per session: error and end both fire on failure
+      const finish = (f: () => void) => { if (!live() || done) return; done = true; f(); };
       rec.current.start(locale === 'ar' ? 'ar-EG' : 'en-US', {
-        result: (t) => { setState('processing'); setMisses(0); onTranscript(t); },
-        error: (e) => { if (e === 'denied') { denied.current = true; setState('denied'); } else if (e === 'nospeech') miss('nospeech'); else setState(rest()); },
-        end: () => miss('nospeech'),
+        result: (t) => finish(() => { setState('processing'); setMisses(0); onTranscript(t); }),
+        error: (e) => finish(() => { if (e === 'denied') { denied.current = true; setState('denied'); } else if (e === 'nospeech') miss('nospeech'); else setState(rest()); }),
+        end: () => finish(() => miss('nospeech')),
       });
     };
-    if (!asked.current) { asked.current = true; setState('asking'); setTimeout(begin, 1400); return; }
+    if (!asked.current) { asked.current = true; setState('asking'); pending.current = setTimeout(begin, 1400); return; }
     begin();
-  }, [state, locale, miss, rest]);
+  }, [state, locale, miss, rest, cancel, cancelListen]);
 
-  useEffect(() => () => { rec.current.abort(); spk.current.stop(); }, []);
+  useEffect(() => () => { cancelListen(); spk.current.stop(); }, [cancelListen]);
 
-  return { state, setState, misses, speak, stop, micTap, notUnderstood: () => miss('notunderstood'), settle: () => setState(rest()), deviceVoice: spk.current.available };
+  return { state, setState, misses, speak, stop, cancel, micTap, notUnderstood: () => miss('notunderstood'), settle: () => setState(rest()), deviceVoice: spk.current.available };
 }
 export type Voice = ReturnType<typeof useVoice>;

@@ -13,7 +13,7 @@
 | 1 | Ask preparation days and harvest dates, so the planner can compute “why” | Server results have no `preparation_shortfall` without them |
 | 2 | Real crop pictures from Moaaz + a farmer recognition test | Current drawings are placeholders |
 | 3 | Decide whether research-only crops show greyed as “still being studied” | Today they are hidden (not selectable) |
-| 4 | Speech on a real Android phone: recognition (ar-EG) and Gemini extraction with a key | Dev keyword stand-in is used when the server has no key |
+| 4 | Record push-to-talk clips (`MediaRecorder`) and send audio to `/speech/interpret` (Gemini hears it, decided 14 Nov); auto-stop at 15 s (30 s for the opening sentence), drop clips under 0.5 s, show "too many tries, use the pictures" on 429; apply the slot-filling rules; test on a real Android phone | Web Speech + dev keyword stand-in until then; [voice-first §2a](../design/voice-first.md) |
 | 5 | Real audio: pre-generated ElevenLabs files via `/speech/tts` (Moaaz) | Device voice, labelled, until then |
 | 6 | Types generated from the backend OpenAPI; reload a saved card | Handwritten types; save works, reload not shown |
 | 7 | Opening long sentence (several seasons in one utterance) and per-field “Change” undo | Lab 02 state 2 |
@@ -38,7 +38,16 @@ before/after + why review → check again → summary + save; past weather and 7
   UH-001 text is hard-coded in the result screens.
 - **Speech:** Web Speech recognition (ar-EG / en-US) push-to-talk; device voice for output, labelled; a dev keyword extractor
   returns the Gemini schema shape until `/speech/interpret` exists.
-- **Verified:** `pnpm typecheck`, `pnpm build` and `pnpm test` (12 unit tests) pass. A headless-Chromium click-through of the full
+- **UI fixes from Yahya's review (2026-11-14):** season names sit above the season cards (no longer cut by the arch) with one
+  year format; "What may change" cards are compact (two small add buttons, removable chosen chips); "needs review" result shows
+  the plan, "no clash between the dates" and a labelled list of what still needs review; the explore result says what the search
+  found; Season Replay is reachable from the result ("Weather in past years (NASA)"), not only after Save. Checked with headless
+  screenshots at 390 px (EN + AR) against the local backend.
+- **Mic fix (2026-11-14):** the mic no longer turns on by itself after other taps. The delayed first-tap start is cancelled by any
+  other tap, speech, or navigation; Back, language switch and screen changes close an open mic; events from aborted listens are
+  ignored (one failure = one miss); the invisible ring no longer extends the mic's hit area; "speaking" no longer looks like
+  "listening". Covered by `src/app/useVoice.test.ts` (fake recogniser); not yet re-tested on a real phone.
+- **Verified:** `pnpm typecheck`, `pnpm build` and `pnpm test` (16 unit tests) pass. A headless-Chromium click-through of the full
   UH-001 journey (26 steps, at 390×760 and 1280×820, English plus Arabic summary) reached the real result (rejected; review dates
   28 May and 1 June; season-4 maize not checked, search incomplete) with no script errors, horizontal overflow or scrolling.
 - **Not verified:** real phones, real Arabic speech recognition or device voices, screen readers, farmers, the backend.

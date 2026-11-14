@@ -79,7 +79,13 @@ export function Result() {
   } else if (cur.status === 'needs_review') {
     const rs = reviewReasons(cur);
     prompt = { ar: 'مفيش تعارض واضح، بس الخطة محتاجة مراجعة زراعية.', en: 'No clear conflict, but the plan needs agricultural review.' };
-    body = <div className="facts four">{rs.map((r, k) => <span key={k} className="fact unk"><Icon name={r.icon} />{state.locale === 'ar' ? '؟' : '?'}<small>{t(r.label)}</small></span>)}</div>;
+    body = (<>
+      <SeasonStrip inline items={state.seasons.map((s) => ({ cropId: s.crop_id, date: s.last_cut_date ?? (s.sowing_date !== 'unknown' ? s.sowing_date : null), kind: s.last_cut_date ? 'end' as const : undefined, mark: state.locks[s.season_id] ? 'lock' as const : undefined, cls: state.locks[s.season_id] ? 'lock' : '' }))} />
+      <div className="review-box">
+        <p className="ok-line"><Icon name="check" />{t({ ar: 'مفيش تعارض في المواعيد', en: 'No clash between the dates' })}</p>
+        <p className="rv-head">{t({ ar: 'علشان تبقى أكيدة، لسه محتاج مراجعة زراعية:', en: 'To be sure, these still need agricultural review:' })}</p>
+        <ul className="rv-list">{rs.map((r, k) => <li key={k}><span className="ic"><Icon name={r.icon} /></span><b>{t(r.label)}</b><span>{t(r.note)}</span></li>)}</ul>
+      </div></>);
   } else {
     prompt = { ar: 'الخطة ماشية بالشروط اللي اتقالت. ده مش وعد بمحصول.', en: 'The plan holds under the stated conditions. That is not a promise of a harvest.' };
     body = <Hero icon="feasible" title={t({ ar: 'الخطة ماشية بالشروط دي', en: 'The plan holds under these conditions' })} />;
@@ -88,6 +94,11 @@ export function Result() {
     : cur.status === 'needs_review' ? <Banner kind="review" icon="review">{t({ ar: 'محتاج مراجعة زراعية', en: 'Needs agricultural review' })}</Banner>
     : <Banner kind="feasible" icon="feasible">{t({ ar: 'ماشية بالشروط الموضّحة', en: 'Feasible under stated conditions' })}</Banner>;
   const hasOptions = state.journey === 'explore';
+  // Explore: say what the search found right here, so this screen differs from a plain check.
+  const nFeasible = state.plan.result.feasible_alternatives.length, nReview = state.plan.result.review_investigations.length;
+  const found: Bi = nFeasible
+    ? { ar: `دوّرنا في اللي سمحت بيه: لقينا ${num(nFeasible, 'ar')} بديل`, en: `We searched what you allowed: ${nFeasible} alternative${nFeasible > 1 ? 's' : ''} found` }
+    : { ar: `دوّرنا في اللي سمحت بيه: مفيش بديل أكيد${nReview === 1 ? '، وفيه ميعاد واحد نراجعه' : nReview > 1 ? `، وفيه ${num(nReview, 'ar')} مواعيد نراجعها` : ''}`, en: `We searched what you allowed: no sure alternative${nReview ? ` · ${nReview} date${nReview > 1 ? 's' : ''} to check` : ''}` };
   // Backend-owned wording (D4) when the server sent it: screen keeps pictures, voice reads the template speech.
   const said = rendered?.conflicts[0] ?? rendered?.headline;
   if (said) prompt = { ar: said.speech, en: said.speech };
@@ -95,11 +106,13 @@ export function Result() {
     <Shell prompt={prompt} onTranscript={undefined}>
       <div className="calm">
         {banner}<DevBadge />{body}
-        <div className="calm-end"><div className="three-btns">
-          {hasOptions && <button className="primary" onClick={() => dispatch({ type: 'go', route: 'options' })}><Icon name="calendar" /><span>{t({ ar: 'مواعيد تانية', en: 'Other dates' })}</span></button>}
+        <div className="calm-end">{hasOptions && <p className="found"><Icon name="search" />{t(found)}</p>}<div className="three-btns">
+          {hasOptions && <button className="primary" onClick={() => dispatch({ type: 'go', route: 'options' })}><Icon name="search" /><span>{t({ ar: 'شوف اللي لقيناه', en: 'See what we found' })}</span></button>}
           {(prepSteps(cur) || rendered?.why) && <button className="secondary" onClick={() => dispatch({ type: 'go', route: 'why' })}><Icon name="help" /><span>{t({ ar: 'ليه؟', en: 'Why?' })}</span></button>}
           <button className="secondary" onClick={() => { voice.stop(); dispatch({ type: 'go', route: 'summary' }); }}><Icon name="save" /><span>{t({ ar: 'احفظ', en: 'Save' })}</span></button>
-        </div></div>
+        </div>
+        <button className="secondary wide-btn" onClick={() => { voice.stop(); dispatch({ type: 'go', route: 'replay' }); }}><Icon name="sun" /><span>{t({ ar: 'الجو في السنين اللي فاتت (ناسا)', en: 'Weather in past years (NASA)' })}</span></button>
+        </div>
       </div>
     </Shell>
   );

@@ -78,7 +78,7 @@ node work/ux-phase-4/check-labs.cjs                                     # voice-
 python -I -S -m unittest discover -s packages/meg-core/tests -v         # planner: 118 tests (3 skipped)
 cd frontend && corepack pnpm install --frozen-lockfile && corepack pnpm dev   # app at http://127.0.0.1:5173 (dev adapter, no server)
 cd frontend && VITE_API_BASE=/api/v1 corepack pnpm dev                 # app against the backend (proxied to :8787)
-cd frontend && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build   # 12 unit tests
+cd frontend && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build   # 16 unit tests
 python3 -I scripts/check_dependency_age.py                              # lock files: hashes + 14-day minimum age
 python3 -m venv backend/.venv && cp backend/pip.conf backend/.venv/pip.conf && backend/.venv/bin/pip install --require-hashes --no-deps --only-binary :all: -r backend/requirements.lock
 backend/.venv/bin/python -m pytest -q backend/tests                    # backend: 69 tests (from the repo root)

@@ -77,7 +77,7 @@ export function Practice() {
   return (
     <Shell prompt={{ ar: 'جرّب: دوس الميكروفون وقول اسم محصول.', en: 'Try it: tap the mic and say a crop.' }} onTranscript={onTranscript}>
       <Hero icon="mic" title={t({ ar: 'جرّب الميكروفون', en: 'Try the mic' })}>
-        <button className={`mic-big ${cls}`} aria-label={hint} onClick={() => voice.micTap(onTranscript)}><Icon name={heard ? 'check' : 'mic'} /><span className="ring" /></button>
+        <button type="button" data-mic className={`mic-big ${cls}`} aria-label={hint} onClick={() => voice.micTap(onTranscript)}><Icon name={heard ? 'check' : 'mic'} /><span className="ring" /></button>
       </Hero>
       <p className="mic-hint" role="status" style={{ textAlign: 'center' }}>{hint}</p>
       {heard

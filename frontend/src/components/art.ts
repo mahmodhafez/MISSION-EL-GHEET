@@ -29,6 +29,7 @@ export const ICON: Record<string, string> = {
   drop:'<path d="M18 4q10 12 10 19a10 10 0 0 1-20 0q0-7 10-19z"/>',
   search:'<circle cx="15" cy="15" r="10"/><path d="m22 22 10 10"/>',
   plus:'<path d="M18 6v24M6 18h24"/>',
+  close:'<path d="M10 10l16 16M26 10L10 26"/>',
   cow:'<path d="M5 9q4 3 9 2M31 9q-4 3-9 2"/><path d="M12 11q6-3 12 0l1 12q0 8-7 8t-7-8z"/><circle cx="15" cy="17" r="1"/><circle cx="21" cy="17" r="1"/><path d="M14 26q4 2 8 0"/>',
   sack:'<path d="M13 5h10l-2 6q9 5 9 14a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7q0-9 9-14z"/><path d="M14 11h8M15 22l3 3 3-3"/>',
   field:'<path d="M3 29 11 8h14l8 21z"/><path d="M7 19h22M18 8v21"/>',

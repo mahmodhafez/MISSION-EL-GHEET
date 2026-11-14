@@ -9,10 +9,10 @@ import { daysIn, iso, monthIsPast, monthsOf, type SeasonSlot } from '../domain/s
 
 /** Arabic year ranges read right-to-left: each year is its own isolate, earlier year on the right. */
 export function SeasonYears({ slot, short, locale }: { slot: SeasonSlot; short?: boolean; locale: Locale }) {
-  const y = (n: number) => num(short ? String(n).slice(2) : n, locale);
-  if (slot.kind === 'summer') return <bdi>{y(slot.startYear)}</bdi>;
-  if (locale === 'en') return <bdi>{`${slot.startYear}/${String(slot.startYear + 1).slice(2)}`}</bdi>;
-  return <span className="yr-range"><bdi>{y(slot.startYear)}</bdi>/<bdi>{y(slot.startYear + 1)}</bdi></span>;
+  // Same shape everywhere: "Summer 2027", "Winter 2026/27" (short) or "Winter 2026/2027".
+  const second = num(short ? String(slot.startYear + 1).slice(2) : slot.startYear + 1, locale);
+  if (slot.kind === 'summer') return <bdi>{num(slot.startYear, locale)}</bdi>;
+  return <span className="yr-range"><bdi>{num(slot.startYear, locale)}</bdi>/<bdi>{second}</bdi></span>;
 }
 
 export function SeasonName({ slot }: { slot: SeasonSlot }) {
@@ -45,7 +45,6 @@ export function SeasonStrip({ items, onPick, inline, compact }: { items: StripIt
         const name = it.cropId && it.cropId !== 'unknown' ? t(PLANT[plant]) : t({ ar: 'لسه', en: 'Not yet' });
         const inner = (
           <>
-            <span className="s-season"><Icon name={slot.kind === 'summer' ? 'sun' : 'winter'} /><span>{t(SEASON_KIND[slot.kind])}</span><span className="s-sy"><SeasonYears slot={slot} short locale={L} /></span></span>
             <span className="s-art"><CropArt plant={plant} />{it.mark && <span className={`s-mark ${it.mark}`}><Icon name={MARK_ICON[it.mark]} /></span>}</span>
             <span className="s-name">{name}</span>
             {it.date ? (
@@ -55,6 +54,7 @@ export function SeasonStrip({ items, onPick, inline, compact }: { items: StripIt
         );
         return (
           <li key={slot.id} className={`${it.cropId && it.cropId !== 'unknown' ? '' : 'empty'} ${it.cls ?? ''}`}>
+            <span className="s-season"><Icon name={slot.kind === 'summer' ? 'sun' : 'winter'} /><span>{t(SEASON_KIND[slot.kind])}</span><span className="s-sy"><SeasonYears slot={slot} short locale={L} /></span></span>
             {onPick ? (
               <button className="s-card" aria-current={it.current ? 'step' : undefined} onClick={() => onPick(i)}>{inner}</button>
             ) : <div className="s-card">{inner}</div>}

@@ -21,16 +21,17 @@ export function createRecognizer(): Recognizer {
     supported: !!Ctor,
     start(lang, on) {
       if (!Ctor) return on.error('unsupported');
+      if (current) { const old = current; current = null; old.onresult = old.onerror = old.onend = null; old.abort(); }
       const r = new Ctor();
       r.lang = lang; r.interimResults = false; r.maxAlternatives = 1; r.continuous = false;
       let got = false;
       r.onresult = (e) => { const t = e.results[0]?.[0]?.transcript?.trim(); if (t) { got = true; on.result(t); } };
       r.onerror = (e) => on.error(e.error === 'not-allowed' || e.error === 'service-not-allowed' ? 'denied' : e.error === 'no-speech' ? 'nospeech' : e.error === 'network' ? 'network' : 'aborted');
-      r.onend = () => { if (!got) on.end(); current = null; };
+      r.onend = () => { if (!got) on.end(); if (current === r) current = null; };
       current = r;
       r.start();
     },
     stop() { current?.stop(); },
-    abort() { current?.abort(); current = null; },
+    abort() { const r = current; current = null; if (r) { r.onresult = r.onerror = r.onend = null; r.abort(); } },
   };
 }
