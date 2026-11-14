@@ -5,6 +5,7 @@ from .dataset import ClimateDataError, ClimateInputError, ClimateStore
 from .evidence_card import build_climate_evidence_card
 from .replay import HistoricalSeasonReplay
 from .service import (
+    compare_sowing_windows,
     create_evidence_card,
     evaluate_season_replay,
     get_climate_store,
@@ -19,6 +20,7 @@ __all__ = [
     "HistoricalSeasonReplay",
     "SeasonalClimatology",
     "build_climate_evidence_card",
+    "compare_sowing_windows",
     "create_evidence_card",
     "evaluate_season_replay",
     "get_climate_store",

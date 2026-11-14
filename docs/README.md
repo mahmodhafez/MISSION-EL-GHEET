@@ -42,6 +42,8 @@ evidence, never edited · **Archive** = superseded, history only.
 | Planner | [planner/research-handoff.md](planner/research-handoff.md): compatibility review of the planner research | Current 11 Nov | Karim / Yahya |
 | Planner | [planner/implementation-handoff.md](planner/implementation-handoff.md): M1/M2 code, interfaces, tests, manual CLI, resume steps | Draft 13 Nov | Amr + Astra |
 | Planner | [planner/frontend-handoff.md](planner/frontend-handoff.md): frontend tasks for the planner UI ("Astra") | Proposed 13 Nov | Amr |
+| Climate | [climate/season-replay-integration-handoff.md](climate/season-replay-integration-handoff.md): Season Replay + climatology interface for the backend | Proposed 14 Nov | Mahmoud; review Amr |
+| Climate | [reviews/season-replay-final-audit.md](reviews/season-replay-final-audit.md) + [test report](reviews/season-replay-test-report.md): red-team audit of `2a4e4bc` | Review 14 Nov | Amr |
 | ML | [ml/plan.md](ml/plan.md): deadline execution plan | Current 13 Nov | Amr |
 | ML | [ml/model-selection.md](ml/model-selection.md): which models are used, deferred or rejected | Current 13 Nov | Amr |
 | ML | [ml/dataset-manifest.md](ml/dataset-manifest.md): the single data/evaluation protocol | Current 13 Nov | Refaat |

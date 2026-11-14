@@ -9,7 +9,6 @@ import json
 import math
 import os
 import re
-import subprocess
 from collections import Counter
 from datetime import date
 from pathlib import Path
@@ -78,52 +77,25 @@ def descriptive(values: list[float]) -> Json:
 
 
 def resolve_data_directory(explicit_dir: str | Path | None = None) -> Path:
-    """Locate or extract the verified Sakha release directory."""
-    if explicit_dir is not None:
-        candidate = Path(explicit_dir)
-        if candidate.is_dir() and (candidate / "release.json").is_file():
-            return candidate
+    """Locate the verified Sakha release read-only. Never downloads, runs git or writes files.
 
-    env_dir = os.environ.get("MEG_CLIMATE_DATA_DIR")
-    if env_dir:
-        candidate = Path(env_dir)
-        if candidate.is_dir() and (candidate / "release.json").is_file():
+    Order: explicit argument, then MEG_CLIMATE_DATA_DIR, then repository-relative defaults.
+    An explicitly supplied location that is invalid is an error, never silently replaced.
+    """
+    for label, value in (("data_dir", explicit_dir), ("MEG_CLIMATE_DATA_DIR", os.environ.get("MEG_CLIMATE_DATA_DIR"))):
+        if value:
+            candidate = Path(value)
+            if not (candidate / "release.json").is_file():
+                raise ClimateDataError(f"{label} does not contain release.json: {candidate}")
             return candidate
-
     repo_root = Path(__file__).resolve().parents[3]
-    search_paths = [
-        repo_root / "data" / "local" / "sakha",
-        repo_root / "data" / "processed",
-        repo_root / "refaat-data-ml" / "data",
-    ]
+    search_paths = [repo_root / "data" / "local" / "sakha", repo_root / "refaat-data-ml" / "data"]
     for p in search_paths:
-        if p.is_dir() and (p / "release.json").is_file():
+        if (p / "release.json").is_file():
             return p
-
-    # Attempt git extraction from origin/data/refaat-data-ml-recovery
-    extract_target = repo_root / "data" / "local" / "sakha"
-    try:
-        extract_target.mkdir(parents=True, exist_ok=True)
-        files = [
-            "sakha_daily.csv", "quality_flags.csv", "fit_targets.csv",
-            "diagnostic_validation_targets.csv", "forecast_windows.csv",
-            "source_manifest.json", "release.json"
-        ]
-        for f in files:
-            target_file = extract_target / f
-            if not target_file.is_file():
-                blob = subprocess.check_output(
-                    ["git", "show", f"origin/data/refaat-data-ml-recovery:refaat-data-ml/data/{f}"],
-                    cwd=repo_root
-                )
-                target_file.write_bytes(blob)
-        if (extract_target / "release.json").is_file():
-            return extract_target
-    except Exception:
-        pass
-
     raise ClimateDataError(
-        f"Sakha climate dataset not found. Checked: {[str(p) for p in search_paths]}"
+        "Sakha climate release not found. Set MEG_CLIMATE_DATA_DIR to Refaat's refaat-data-ml/data directory "
+        f"(release sakha-power-lst-20261110-et0-v1). Checked: {[str(p) for p in search_paths]}"
     )
 
 

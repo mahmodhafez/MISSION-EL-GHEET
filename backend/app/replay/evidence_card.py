@@ -72,17 +72,11 @@ def build_climate_evidence_card(
         "plan_status": plan_status,
         "decision_state": decision_state,
         "currency": "current",
-        "preserved_commitment_ids": preserved_commitment_ids or ["cut", "occupation"],
+        "preserved_commitment_ids": list(preserved_commitment_ids or []),
         "changes": changes or [],
-        "assumptions": assumptions or [
-            "Land preparation requires 7 full days after crop release.",
-            "Historical NASA POWER daily records (2001-2025 LST) represent past atmospheric demand.",
-        ],
-        "outstanding_checks": outstanding_checks or [
-            "Soil suitability and salinity level for farmer field are unmeasured.",
-            "Irrigation delivery schedules and canal reliability are unverified.",
-            "Crop-specific Kc coefficients and stages for ETc calculation are unavailable.",
-        ],
+        # Scenario-specific content must come from the caller (planner); no UH-001 defaults.
+        "assumptions": list(assumptions or []),
+        "outstanding_checks": list(outstanding_checks or []),
         "source_refs": [
             {
                 "source_id": "NASA_POWER_DAILY_V2.10.3",

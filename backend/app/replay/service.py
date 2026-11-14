@@ -9,7 +9,8 @@ from .climatology import SeasonalClimatology
 from .dataset import ClimateStore, Json
 from .evidence_card import build_climate_evidence_card
 from .replay import HistoricalSeasonReplay
-from .uncle_hussein import compare_may28_vs_june1
+from .uncle_hussein import run_uh001_window_comparison
+from .windows import compare_planting_windows
 
 _STORE_CACHE: dict[str, ClimateStore] = {}
 
@@ -51,14 +52,17 @@ def evaluate_season_replay(
 
 def get_climatology_profile(
     target_date: str,
-    reference: str = "historical_2001_2025",
+    reference: str = "ml_fit_2001_2018",
     data_dir: str | Path | None = None,
 ) -> Json:
     """Get seasonal climatology quantiles (q10, q50, q90) for target month/day.
 
+    Default is Refaat's evaluated research baseline (2001-2018). "historical_2001_2025" is a
+    separately labelled descriptive reference that was never evaluated as a predictor.
+
     Args:
         target_date: YYYY-MM-DD string (month/day selects circular leap-calendar slot).
-        reference: "historical_2001_2025" (default, descriptive) or "ml_fit_2001_2018" (benchmark).
+        reference: "ml_fit_2001_2018" (default, evaluated baseline) or "historical_2001_2025" (descriptive).
         data_dir: Optional custom dataset directory path.
 
     Returns:
@@ -68,14 +72,31 @@ def get_climatology_profile(
     return store.get_climatology(target_date, reference=reference)
 
 
-def run_uncle_hussein_comparison(
-    anchor_years: list[int] | None = None,
+def compare_sowing_windows(
+    sow_dates: list[str],
+    *,
+    window_days: int = 14,
+    years: list[int] | None = None,
+    planner_statuses: dict[str, str] | None = None,
     data_dir: str | Path | None = None,
 ) -> Json:
-    """Run the grounded Uncle Hussein UH-001 comparison: May 28 (R1) vs June 1 (R2)."""
-    store = get_climate_store(data_dir)
-    engine = HistoricalSeasonReplay(store)
-    return compare_may28_vs_june1(engine, anchor_years=anchor_years)
+    """Equal-length historical windows (Layer A) plus Refaat's climatology (Layer B).
+
+    One date evaluates a single window; two or more compare against the first date.
+    planner_statuses (sow date -> Promise Test status) is echoed unchanged.
+    """
+    return compare_planting_windows(get_climate_store(data_dir), sow_dates, window_days=window_days,
+                                    years=years, planner_statuses=planner_statuses)
+
+
+def run_uncle_hussein_comparison(
+    planner_statuses: dict[str, str] | None = None,
+    years: list[int] | None = None,
+    data_dir: str | Path | None = None,
+) -> Json:
+    """UH-001: 14-day windows from 28 May vs 1 June 2027. No crop-end date is assumed."""
+    return run_uh001_window_comparison(get_climate_store(data_dir), planner_statuses=planner_statuses,
+                                       years=years)
 
 
 def create_evidence_card(

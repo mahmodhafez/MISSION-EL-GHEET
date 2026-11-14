@@ -27,7 +27,7 @@ SCIENTIFIC_GUARDRAILS = {
     "etc_reason": "kc_and_growth_stages_unavailable_in_release",
     "heat_exposure_note": (
         "Heat exposure is measured against the historical empirical benchmark "
-        "(pooled 2001-2018 daily Tmax P90 = 39.48 degC), NOT a crop physiological damage threshold."
+        "(pooled 2001-2018 daily Tmax P90 = {threshold:.2f} degC), NOT a crop physiological damage threshold."
     ),
     "feasibility_rule": (
         "Historical climate replay never modifies agricultural feasibility. "
@@ -238,7 +238,11 @@ class HistoricalSeasonReplay:
             "quality": {
                 "scope": "Per shared block, in-crop union, season and outside-crop interval; counts in blocks."
             },
-            "scientific_guardrails": SCIENTIFIC_GUARDRAILS.copy(),
+            "scientific_guardrails": {
+                **SCIENTIFIC_GUARDRAILS,
+                "heat_exposure_note": SCIENTIFIC_GUARDRAILS["heat_exposure_note"].format(
+                    threshold=self.store._threshold_c),
+            },
             "units": {
                 "days": "days",
                 "et0_total_mm": "mm",
@@ -252,7 +256,7 @@ class HistoricalSeasonReplay:
             "uncertainty_and_limitations": [
                 "ET0 measures atmospheric reference grass demand (FAO-56), never irrigation water usage.",
                 "Actual crop water requirements (ETc) are unavailable because verified growth stages and Kc values are open.",
-                "Heat threshold (39.48 degC) is an empirical historical fit-period P90 benchmark, not a crop physiological damage threshold.",
+                f"Heat threshold ({self.store._threshold_c:.2f} degC) is an empirical historical fit-period P90 benchmark, not a crop physiological damage threshold.",
                 "Historical weather replay does not predict future weather or guarantee crop yields.",
                 "Feasibility of plans is determined solely by Promise Test rules; climate metrics never modify feasibility.",
             ],

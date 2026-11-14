@@ -4,7 +4,6 @@ import unittest
 
 from backend.app.replay.evidence_card import build_climate_evidence_card
 from backend.app.replay.service import create_evidence_card, evaluate_season_replay
-from backend.app.replay.uncle_hussein import build_uh001_plans
 
 
 class TestClimateEvidenceCard(unittest.TestCase):
@@ -58,8 +57,13 @@ class TestClimateEvidenceCard(unittest.TestCase):
             )
 
     def test_evidence_card_with_replay_summary(self):
-        uh_plans = build_uh001_plans()
-        r1 = uh_plans["R1"]
+        # TEST-ONLY plan with explicit caller-supplied windows (not agronomy, not UH-001 data).
+        r1 = {
+            "plan_id": "TEST_PLAN", "plan_version": "1", "field_id": "test_field",
+            "planner_status": "needs_review", "mapping_policy": "explicit_calendar_windows_v1", "commitments": [],
+            "seasons": [{"season_id": "s1", "crop_id": "test_crop", "purpose": "grain",
+                         "sow_date": "2026-06-01", "crop_end_exclusive": "2026-09-01"}],
+        }
 
         replay_res = evaluate_season_replay(
             plans=[r1],
@@ -76,6 +80,10 @@ class TestClimateEvidenceCard(unittest.TestCase):
             plan_status=r1["planner_status"],
             replay_result=replay_res,
         )
+        # No scenario-specific content is invented when the caller supplies none.
+        self.assertEqual(card["preserved_commitment_ids"], [])
+        self.assertEqual(card["assumptions"], [])
+        self.assertEqual(card["outstanding_checks"], [])
 
         self.assertIsNotNone(card["replay_id"])
         self.assertEqual(card["climate_evidence"]["eligible_blocks_count"], 3)
