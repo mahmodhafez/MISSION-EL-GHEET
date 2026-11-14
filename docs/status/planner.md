@@ -32,6 +32,11 @@ Twelve-crop catalogue (2026-11-14, branch `planner/twelve-crop-catalogue`, uncom
 and 0 of Refaat's 27 rules are enforceable. Wheat window conflict and berseem purpose are gated pending Refaat's decisions.
 See [handoff](../planner/implementation-handoff.md#refaat-kb-adapter-and-twelve-crop-catalogue-proposed-2026-11-14).
 
+KB release review (2026-11-14, branch `review/agronomy-kb-final`, uncommitted, base Refaat's `cae1703`):
+release `sakha-agricultural-review-2026-11-14.1` verified. It has 27 rules, 0 enforceable, and 0 sign-offs. Wheat
+and berseem conflicts are held. Added `bind_profiles` and `catalogue_view`. 118 tests pass with the reviewed KB, and
+UH-001 is unchanged. See the [review](../reviews/agronomy-kb-final-review.md).
+
 ## Built and verified
 
 - Built 2026-11-13: `packages/meg-core/src/meg_core/planner/constraints.py`, with private
