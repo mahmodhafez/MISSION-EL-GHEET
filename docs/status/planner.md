@@ -1,5 +1,9 @@
 # Status: planner (`meg_core`)
 
+**Publication rerun, 2026-11-14.** The final package was reconciled and reapplied at `5644125`; 110 planner tests, 18 original KB tests and all three UH-001 commands passed. Legacy P0/backend discovery each returned one missing-module error. [Actual results and limits](../reports/2026-11-14-agricultural-kb-publication.md).
+
+**Scientific review, 2026-11-14.** The separate Refaat review release preserves C01–C27, documents eight expansion crops and exposes a pinned loader. All crop approvals are pending and zero scientific predicates enter the planner. On CPython 3.12.14, 110 integrated planner tests and 18 original KB tests passed. UH-001 rejected the current plan and returned two review cases, with zero feasible alternatives. [Scientific handoff](../planner/scientific-review/sakha-agricultural-review-2026-11-14.1/SCIENTIFIC-REVIEW.ar-EG.md) · [Test record](../planner/scientific-review/sakha-agricultural-review-2026-11-14.1/TEST-RESULTS.md)
+
 **Read this if…** you're asking "does the Promise Test / candidate search exist?"
 
 **As of 2026-11-13**, last commit `a46500a` (M2, pushed to `origin/planner/candidate-generation`; M1 is `2b83f5c`).
@@ -17,6 +21,21 @@ Resume and run instructions: [implementation handoff](../planner/implementation-
 
 Milestone 2 worktree: `tmp/planner-candidate-generation` (branch `planner/candidate-generation`, from `2b83f5c`).
 M2 is committed as `a46500a` and pushed to `origin/planner/candidate-generation`. It is not merged and has no PR yet. The M1 worktree `tmp/planner-promise-test` is unchanged.
+
+Crop expansion (2026-11-14, branch `planner/crop-expansion-assessment`, not merged): research-only
+[assessment](../planner/crop-expansion-assessment.md) of 8 proposed crops and a proposed KB extension with 0 rules. Approved by Amr for
+preservation and team review only. All eight crops remain unapproved; none is runtime-eligible or produces a verified feasible recommendation.
+It awaits Refaat's source review and Amr's policy decisions (purpose changes, search budget, multi-year rotation input).
+
+Twelve-crop catalogue (2026-11-14, branch `planner/twelve-crop-catalogue`, uncommitted): Refaat KB adapter +
+`crop_catalogue` with four separate capability levels. 104 tests pass with Refaat's real KB. No crop is feasibility-eligible,
+and 0 of Refaat's 27 rules are enforceable. Wheat window conflict and berseem purpose are gated pending Refaat's decisions.
+See [handoff](../planner/implementation-handoff.md#refaat-kb-adapter-and-twelve-crop-catalogue-proposed-2026-11-14).
+
+KB release review (2026-11-14, branch `review/agronomy-kb-final`, uncommitted, base Refaat's `cae1703`):
+release `sakha-agricultural-review-2026-11-14.1` verified. It has 27 rules, 0 enforceable, and 0 sign-offs. Wheat
+and berseem conflicts are held. Added `bind_profiles` and `catalogue_view`. 118 tests pass with the reviewed KB, and
+UH-001 is unchanged. See the [review](../reviews/agronomy-kb-final-review.md).
 
 ## Built and verified
 

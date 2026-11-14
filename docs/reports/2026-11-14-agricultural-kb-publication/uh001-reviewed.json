@@ -1,0 +1,160 @@
+{
+  "fixture": "UH-001/v1; fictional farmer; source calendar retained",
+  "release": "sakha-agricultural-review-2026-11-14.1",
+  "catalogue_crop_count": 12,
+  "planner_profile_ids": [
+    "berseem",
+    "berseem-forage-proposed",
+    "egyptian_cotton",
+    "faba_bean",
+    "grain_maize",
+    "grain_sorghum",
+    "rice",
+    "sugar_beet",
+    "wheat"
+  ],
+  "runtime_rule_count": 0,
+  "template_count": 0,
+  "current": "rejected",
+  "service_current": "rejected",
+  "first_reason": "sowing_before_protected_cut",
+  "protected_cut": "2027-05-20",
+  "service_feasible": 0,
+  "generator_status_counts": {
+    "needs_review": 2
+  },
+  "generator_search": {
+    "status": "incomplete",
+    "raw_count": 5,
+    "materialized_count": 2,
+    "evaluated_count": 2,
+    "rejected_count": 0,
+    "needs_review_count": 2,
+    "feasible_count": 0,
+    "duplicate_count": 0,
+    "excluded_count": 0,
+    "blocked_count": 3,
+    "scope_choice_ids": [
+      "dates",
+      "s4-maize"
+    ],
+    "uninstantiated_choice_ids": [
+      "s4-maize"
+    ],
+    "limit_reason": "uninstantiated_choices",
+    "policy_version": "minimal-edits-v1-proposed",
+    "policy_approval": "pending_team_review"
+  },
+  "service_search": {
+    "status": "incomplete",
+    "raw_count": 5,
+    "materialized_count": 2,
+    "evaluated_count": 2,
+    "rejected_count": 0,
+    "needs_review_count": 2,
+    "feasible_count": 0,
+    "duplicate_count": 0,
+    "excluded_count": 0,
+    "blocked_count": 3,
+    "scope_choice_ids": [
+      "dates",
+      "s4-maize"
+    ],
+    "uninstantiated_choice_ids": [
+      "s4-maize"
+    ],
+    "limit_reason": "uninstantiated_choices",
+    "policy_version": "minimal-edits-v1-proposed",
+    "policy_approval": "pending_team_review"
+  },
+  "review_investigations": [
+    {
+      "candidate_id": "candidate-b9f6198abac979e45aaef92a4de2e7f5c51ef6807abef0e69a348f8c6f421a1e",
+      "status": "needs_review",
+      "s2_sowing": "2027-05-28",
+      "s1_cut": "2027-05-20",
+      "s2_harvest": null,
+      "s2_end_exclusive": null,
+      "s2_release": null,
+      "s2_preparation_days": 7,
+      "review_reasons": [
+        "endpoint_mapping_missing",
+        "forage_quantity_unknown",
+        "irrigation_availability_unknown",
+        "mandatory_topic_uncovered",
+        "occupancy_timing_unknown",
+        "preparation_requirement_unverified",
+        "profile_applicability_unverified",
+        "protected_commitment_unverified",
+        "sowing_support_unverified",
+        "transition_timing_unknown"
+      ]
+    },
+    {
+      "candidate_id": "candidate-280a7b716614fbfd2f16806307597496620748122d9c0ff1e1d367dd15db3287",
+      "status": "needs_review",
+      "s2_sowing": "2027-06-01",
+      "s1_cut": "2027-05-20",
+      "s2_harvest": null,
+      "s2_end_exclusive": null,
+      "s2_release": null,
+      "s2_preparation_days": 7,
+      "review_reasons": [
+        "endpoint_mapping_missing",
+        "forage_quantity_unknown",
+        "irrigation_availability_unknown",
+        "mandatory_topic_uncovered",
+        "occupancy_timing_unknown",
+        "preparation_requirement_unverified",
+        "profile_applicability_unverified",
+        "protected_commitment_unverified",
+        "sowing_support_unverified",
+        "transition_timing_unknown"
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "code": "profile_binding_unavailable",
+      "choice_ids": [
+        "s4-maize"
+      ],
+      "season_ids": [
+        "s4"
+      ],
+      "missing_input_paths": [
+        "kb.profiles.grain_maize"
+      ],
+      "source_refs": [],
+      "kind": "blocked"
+    },
+    {
+      "code": "profile_binding_unavailable",
+      "choice_ids": [
+        "s4-maize"
+      ],
+      "season_ids": [
+        "s4"
+      ],
+      "missing_input_paths": [
+        "kb.profiles.grain_maize"
+      ],
+      "source_refs": [],
+      "kind": "blocked"
+    },
+    {
+      "code": "profile_binding_unavailable",
+      "choice_ids": [
+        "s4-maize"
+      ],
+      "season_ids": [
+        "s4"
+      ],
+      "missing_input_paths": [
+        "kb.profiles.grain_maize"
+      ],
+      "source_refs": [],
+      "kind": "blocked"
+    }
+  ]
+}

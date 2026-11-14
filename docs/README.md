@@ -41,7 +41,11 @@ evidence, never edited · **Archive** = superseded, history only.
 | Planner | [planner/agronomy-evidence.md](planner/agronomy-evidence.md): source ledger | Current 11 Nov | Refaat |
 | Planner | [planner/agronomy-kb.v0.1.json](planner/agronomy-kb.v0.1.json), [audit.json](planner/audit.json): machine-readable KB draft | Proposed | Refaat / Karim |
 | Planner | [planner/research-handoff.md](planner/research-handoff.md): compatibility review of the planner research | Current 11 Nov | Karim / Yahya |
+| Planner | [planner/crop-expansion-assessment.md](planner/crop-expansion-assessment.md) + [agronomy-kb-extension.v0.2-proposed.json](planner/agronomy-kb-extension.v0.2-proposed.json): 12-crop evidence assessment, research-only | Proposed 14 Nov | Amr + Astra; review Refaat |
+| Planner | [planner/crop-catalogue.v0.1-proposed.json](planner/crop-catalogue.v0.1-proposed.json): 12-crop catalogue levels, berseem forage proposal, wheat conflict | Proposed 14 Nov | Amr + Astra; review Refaat |
+| Planner | [reviews/agronomy-kb-final-review.md](reviews/agronomy-kb-final-review.md), [rule matrix](reviews/agronomy-rule-matrix.md), [tests](reviews/agronomy-integration-tests.md), [Yahya handoff](agronomy/yahya-kb-integration-handoff.md): review of Refaat's KB release | Review 14 Nov | Amr + Astra |
 | Planner | [planner/implementation-handoff.md](planner/implementation-handoff.md): M1/M2 code, interfaces, tests, manual CLI, resume steps | Draft 13 Nov | Amr + Astra |
+| Planner | [Scientific review handoff](planner/scientific-review/sakha-agricultural-review-2026-11-14.1/SCIENTIFIC-REVIEW.ar-EG.md): reviewed KB, approval matrix, crop assessments, conflict decisions, sources, loader and historic verification | Reviewed 14 Nov; qualified agronomic sign-off pending | Refaat |
 | Planner | [planner/frontend-handoff.md](planner/frontend-handoff.md): frontend tasks for the planner UI ("Astra") | Proposed 13 Nov | Amr |
 | ML | [ml/plan.md](ml/plan.md): deadline execution plan | Current 13 Nov | Amr |
 | ML | [ml/model-selection.md](ml/model-selection.md): which models are used, deferred or rejected | Current 13 Nov | Amr |
@@ -61,6 +65,7 @@ evidence, never edited · **Archive** = superseded, history only.
 |---|---|
 | [2026-11-13-ml-plan-review](reports/2026-11-13-ml-plan-review.md) | ML plan review: consistency, data/code, methodology |
 | [2026-11-13-voice-first-research](reports/2026-11-13-voice-first-research.md) | Voice-first UI evidence for low-literacy users; Web Speech on Android |
+| [Final agricultural KB publication verification](reports/2026-11-14-agricultural-kb-publication.md) | Package fidelity, actual planner/KB tests, UH-001 and unresolved integration limits |
 | [validation_accessibility_alignment](reports/validation_accessibility_alignment.md) | Accessibility and challenge alignment |
 | [validation_models](reports/validation_models.md) | Why Chronos-2 + LoRA |
 | [validation_agronomy](reports/validation_agronomy.md) | Agronomy evidence for Sakha |

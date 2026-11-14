@@ -1,0 +1,389 @@
+{
+  "package_sha256_checks": 42,
+  "package_mismatches": 0,
+  "patched_files_matching_package": 39,
+  "previous_implementation_files_matching_package": 39,
+  "original_manifest_files_verified": 8,
+  "legacy_kb_rebuilt_byte_for_byte": true,
+  "approval_matrix_rows": 102,
+  "approval_matrix_columns": [
+    "record_id",
+    "record_type",
+    "crop_ids",
+    "topic",
+    "scientific_status",
+    "review_class",
+    "local_applicability",
+    "agronomic_approval",
+    "runtime_enforceable",
+    "exact_definition",
+    "units",
+    "cultivar_purpose",
+    "source_geography",
+    "source_season",
+    "soil_water_context",
+    "finding",
+    "original_limitation",
+    "signoff_needed",
+    "next_action",
+    "evidence_ids",
+    "original_source_ids",
+    "source_ids",
+    "original_locator",
+    "source_access_and_authority",
+    "publication_and_locator",
+    "source_urls",
+    "team_assertion_ids",
+    "enforcement_status",
+    "qualified_reviewer",
+    "signoff_reference",
+    "proposed_change"
+  ],
+  "matrix_distinct_values": {
+    "scientific_status": {
+      "VERIFIED": 18,
+      "CONDITIONAL": 5,
+      "DERIVED": 1,
+      "NOT APPLICABLE": 1,
+      "UNVERIFIED": 7,
+      "PARTIAL_PRIMARY": 1,
+      "SUPPORTED_IN_SOURCE": 15,
+      "UNRESOLVED": 1,
+      "UNKNOWN": 42,
+      "OBSERVED_CONFLICT": 3,
+      "OUT_OF_SCOPE": 2,
+      "HANDOFF_ONLY": 5,
+      "OBSERVED": 1
+    },
+    "agronomic_approval": {
+      "PENDING": 102
+    },
+    "runtime_enforceable": {
+      "FALSE": 102
+    },
+    "enforcement_status": {
+      "DISABLED": 102
+    }
+  },
+  "dossier_sections": {
+    "schema_version": "sakha-review-dossier/1",
+    "release": "sakha-agricultural-review-2026-11-14.1",
+    "provenance": 9,
+    "original_rule_reviews": 27,
+    "expansion_records": 75,
+    "expansion_assessments": 8,
+    "team_assertion_crosswalk": 14,
+    "source_register": 56,
+    "runtime_policy": "Only the original loader's get_enforceable_rules(site, conditions) output enters the planner. Review records are never supplied to adapt()."
+  },
+  "loader_status": {
+    "schema_version": "agricultural-kb/1",
+    "kb_version": "sakha-agricultural-review-2026-11-14.1",
+    "locality": "sakha",
+    "rules": 27,
+    "locally_approved_rules": 0,
+    "enforceable_rules": 0,
+    "status": "NO_LOCAL_SIGN_OFF",
+    "scientific_status_counts": {
+      "VERIFIED": 18,
+      "CONDITIONAL": 4,
+      "DERIVED": 1,
+      "NOT APPLICABLE": 1,
+      "UNVERIFIED": 3
+    },
+    "review": [
+      {
+        "rule_id": "C01",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C02",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C03",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C04",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C05",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C06",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C07",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C08",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C09",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C10",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C11",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C12",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C13",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C14",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C15",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C16",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C17",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C18",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C19",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C20",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C21",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C22",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_not_applicable",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C23",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C24",
+        "blockers": [
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C25",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C26",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      },
+      {
+        "rule_id": "C27",
+        "blockers": [
+          "scientific_evidence_not_verified",
+          "linked_evidence_not_verified",
+          "local_approval_pending",
+          "local_applicability_pending",
+          "unresolved_review_requirements",
+          "planner_activation_disabled",
+          "missing_structured_constraint"
+        ]
+      }
+    ]
+  },
+  "catalogue_crops": 12,
+  "planner_profiles": 9,
+  "runtime_rules": 0,
+  "base": "5644125a10f1866fc1d8fac84bd5de689402cc57"
+}
